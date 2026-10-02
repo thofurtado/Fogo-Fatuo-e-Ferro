@@ -7,14 +7,18 @@ config_version=5
 [application]
 
 config/name="Fogo-Fatuo-e-Ferro"
-run/main_scene="res://Scenes/MainTest.tscn"
+run/main_scene="res://Scenes/ComicPrologue.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=1152
-window/size/viewport_height=648
+window/size/viewport_width=572
+window/size/viewport_height=1024
+window/size/window_width_override=450
+window/size/window_height_override=800
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation=1
 
 [rendering]
 
