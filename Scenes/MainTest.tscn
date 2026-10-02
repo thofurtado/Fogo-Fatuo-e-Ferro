@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://Scripts/MainTest.gd" id="1_main"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="2_player"]
+[ext_resource type="Script" path="res://Scripts/NPC.gd" id="3_npc"]
+[ext_resource type="Script" path="res://Scripts/Scenery.gd" id="4_scenery"]
+[ext_resource type="Shader" path="res://Assets/Shaders/gibi_shader.gdshader" id="5_shader"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_npc"]
+radius = 48.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gibi"]
+shader = ExtResource("5_shader")
+shader_parameter/effect_enabled = true
+shader_parameter/paper_tint = Color(0.95, 0.92, 0.84, 1)
+shader_parameter/paper_roughness = 0.12
+shader_parameter/dots_scale = 160.0
+shader_parameter/misregistration_x = 1.0
+shader_parameter/misregistration_y = -0.6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_balloon"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.08, 0.08, 0.08, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MainTest" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Scenery" type="Node2D" parent="."]
+script = ExtResource("4_scenery")
+
+[node name="NPC" type="Area2D" parent="."]
+position = Vector2(580, 320)
+script = ExtResource("3_npc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+shape = SubResource("CircleShape2D_npc")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(380, 320)
+script = ExtResource("2_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="PanelContainer" parent="UILayer"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 440.0
+offset_bottom = 120.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "FOGO-FÁTUO & FERRO (PROTÓTIPO GIBI 1970)"
+
+[node name="ControlsLabel" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "• Mover: [W, A, S, D] ou Setas | Falar: [E / Espaço]"
+
+[node name="ShaderStatusLabel" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "ESTILO GIBI: [ATIVADO] (Pressione 'G' para alternar)"
+
+[node name="DialogueBubble" type="PanelContainer" parent="UILayer"]
+visible = false
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 720.0
+offset_bottom = 290.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_balloon")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DialogueBubble"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/DialogueBubble/MarginContainer"]
+layout_mode = 2
+
+[node name="SpeakerLabel" type="Label" parent="UILayer/DialogueBubble/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.2, 0.15, 1)
+theme_override_font_sizes/font_size = 13
+text = "TIÃO CABOCLO:"
+
+[node name="DialogueLabel" type="Label" parent="UILayer/DialogueBubble/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
+theme_override_font_sizes/font_size = 14
+text = "CUIDADO COM A MATA FECHADA QUANDO A NOITE CAI..."
+autowrap_mode = 2
+
+[node name="PostProcessLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="PostProcessLayer"]
+material = SubResource("ShaderMaterial_gibi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

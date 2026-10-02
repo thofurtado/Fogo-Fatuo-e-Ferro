@@ -1,11 +1,20 @@
-﻿; Engine configuration file.
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; but it can also be edited by text.
 
 config_version=5
 
 [application]
 
 config/name="Fogo-Fatuo-e-Ferro"
+run/main_scene="res://Scenes/MainTest.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+window/stretch/mode="canvas_items"
 
 [rendering]
 
