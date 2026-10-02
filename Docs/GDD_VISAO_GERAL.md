@@ -23,10 +23,17 @@ O jogo utiliza dois estilos visuais bem marcados para separar momentos narrativo
 * **Proporção:** Foco estrito na vertical (**9:16**). Versões de PC/Navegador utilizam as barras laterais vazias para fichas de personagem e inventário.
 * **Câmera e Mapa:** Visão isométrica/ortográfica top-down (*zoomed-out*), exibindo uma matriz ampla de cerca de 15 a 20 blocos de largura no modo exploração. Isso garante visão panorâmica, liberdade tática e menor detalhamento micro dos sprites.
 * **Fluxo de Criação (Modular):** Menus divididos por telas sequenciais e intuitivas para o polegar:
-  1. *Seleção de Região de Origem* (Onde o personagem nasce e para onde retorna ao morrer).
-  2. *Ascendência e Condição Social* (A origem cultural e o status legal na colônia).
-  3. *Ofício e Experiência* (A profissão prática, treinamento e especialidade).
-  4. *Traços, Bênçãos e Fobias* (Modificadores pessoais).
+  1. *Origem Étnico-Cultural* (A raiz ancestral e a relação mística com a terra).
+  2. *Condição Social & Status Legal* (O status perante a lei colonial de 1645: Livre, Fugitivo, Degredado, etc.).
+  3. *Região de Partida (As 6 Macro-Regiões)*:
+     - **Nordeste Açucareiro:** Alta densidade urbana/militar, engenhos e guerra.
+     - **Sertão Nordestino:** Bioma árido, distâncias médias, pecuária extensiva.
+     - **Planalto de Piratininga:** O coração vicentino, ponto de partida de expedições.
+     - **Litoral e Rotas de Serra:** Trilhas costeiras, encostas, escoamento mercante e portos.
+     - **Pantanal e Rios Centrais:** Terreno híbrido (água/terra), isolamento fluvial.
+     - **Sul e Bacia do Prata:** Grandes planícies, missões jesuíticas e fronteiras.
+  4. *Ofício e Sobrevivência* (A profissão prática, ferramentas e habilidades ativas).
+  5. *Traços, Bênçãos e Fobias* (Modificadores pessoais e sobrenaturais).
 
 ---
 
