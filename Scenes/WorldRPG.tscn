@@ -1,0 +1,591 @@
+[gd_scene load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://Scripts/WorldRPG.gd" id="1_world"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/textura_grama_serra.png" id="2_grass_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_jequitiba.png" id="3_tree_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/cabana_tropeira.png" id="4_cabin_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/fogueira_tropeiro.png" id="5_fire_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/bau_fechado.png" id="6_chest_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/placa_madeira.png" id="7_sign_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/altar_ancestral.png" id="8_altar_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/cerca_madeira.png" id="9_fence_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/amuleto_verde.png" id="10_amulet_tex"]
+[ext_resource type="Script" path="res://Scripts/CurumimPlayer.gd" id="11_player"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/curumim_spritesheet.png" id="12_sheet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tree_root"]
+radius = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cabin"]
+size = Vector2(340, 140)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fire"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact_small"]
+radius = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact_med"]
+radius = 56.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+bg_color = Color(0.1, 0.08, 0.06, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.72, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dice"]
+bg_color = Color(0.08, 0.12, 0.18, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
+bg_color = Color(1, 1, 1, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.08, 0.08, 0.08, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inv"]
+bg_color = Color(0.08, 0.07, 0.05, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.75, 0.4, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_world")
+
+[node name="Chao" type="TextureRect" parent="."]
+texture_repeat = 2
+offset_right = 1600.0
+offset_bottom = 1600.0
+texture = ExtResource("2_grass_tex")
+stretch_mode = 1
+
+[node name="Estradas" type="Node2D" parent="."]
+
+[node name="TrilhaSul" type="ColorRect" parent="Estradas"]
+offset_left = 770.0
+offset_top = 800.0
+offset_right = 830.0
+offset_bottom = 1450.0
+color = Color(0.76, 0.55, 0.32, 0.75)
+
+[node name="TrilhaOeste" type="ColorRect" parent="Estradas"]
+offset_left = 350.0
+offset_top = 775.0
+offset_right = 800.0
+offset_bottom = 825.0
+color = Color(0.76, 0.55, 0.32, 0.75)
+
+[node name="TrilhaLeste" type="ColorRect" parent="Estradas"]
+offset_left = 800.0
+offset_top = 775.0
+offset_right = 1250.0
+offset_bottom = 825.0
+color = Color(0.76, 0.55, 0.32, 0.75)
+
+[node name="LagoBrejo" type="ColorRect" parent="."]
+offset_left = 1120.0
+offset_top = 660.0
+offset_right = 1440.0
+offset_bottom = 940.0
+color = Color(0.1, 0.22, 0.28, 0.88)
+
+[node name="YSortContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" type="CharacterBody2D" parent="YSortContainer"]
+y_sort_enabled = true
+position = Vector2(800, 1400)
+script = ExtResource("11_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Player"]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("12_sheet")
+hframes = 3
+vframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Player"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="YSortContainer/Player"]
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = 0
+limit_right = 1600
+limit_bottom = 1600
+position_smoothing_enabled = true
+
+[node name="StartingClearing" type="Node2D" parent="YSortContainer"]
+y_sort_enabled = true
+
+[node name="CurupiraTotem" type="StaticBody2D" parent="YSortContainer/StartingClearing"]
+y_sort_enabled = true
+position = Vector2(740, 1370)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_altar_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
+position = Vector2(0, 30)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Area2D" type="Area2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/StartingClearing/CurupiraTotem/Area2D"]
+shape = SubResource("CircleShape2D_interact_med")
+
+[node name="Amuleto" type="Area2D" parent="YSortContainer/StartingClearing"]
+position = Vector2(850, 1380)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/StartingClearing/Amuleto"]
+texture = ExtResource("10_amulet_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/StartingClearing/Amuleto"]
+shape = SubResource("CircleShape2D_interact_small")
+
+[node name="Crossroads" type="Node2D" parent="YSortContainer"]
+y_sort_enabled = true
+
+[node name="Placa" type="Area2D" parent="YSortContainer/Crossroads"]
+position = Vector2(800, 770)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Crossroads/Placa"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("7_sign_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Crossroads/Placa"]
+shape = SubResource("CircleShape2D_interact_small")
+
+[node name="TropeiroCamp" type="Node2D" parent="YSortContainer"]
+y_sort_enabled = true
+
+[node name="Cabana" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
+y_sort_enabled = true
+position = Vector2(340, 680)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Cabana"]
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("4_cabin_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana"]
+position = Vector2(0, 45)
+shape = SubResource("RectangleShape2D_cabin")
+
+[node name="PortaArea" type="Area2D" parent="YSortContainer/TropeiroCamp/Cabana"]
+position = Vector2(-2, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana/PortaArea"]
+shape = SubResource("CircleShape2D_interact_small")
+
+[node name="Fogueira" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
+y_sort_enabled = true
+position = Vector2(440, 840)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_fire_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_fire")
+
+[node name="Area2D" type="Area2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Fogueira/Area2D"]
+shape = SubResource("CircleShape2D_interact_med")
+
+[node name="Bau" type="Area2D" parent="YSortContainer/TropeiroCamp"]
+y_sort_enabled = true
+position = Vector2(250, 830)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Bau"]
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("6_chest_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Bau"]
+shape = SubResource("CircleShape2D_interact_small")
+
+[node name="CercaNorte" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
+position = Vector2(170, 780)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/CercaNorte"]
+texture = ExtResource("9_fence_tex")
+
+[node name="CercaSul" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
+position = Vector2(170, 860)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/CercaSul"]
+texture = ExtResource("9_fence_tex")
+
+[node name="SacredMarsh" type="Node2D" parent="YSortContainer"]
+y_sort_enabled = true
+
+[node name="AltarFogoFatuo" type="StaticBody2D" parent="YSortContainer/SacredMarsh"]
+y_sort_enabled = true
+position = Vector2(1280, 770)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_altar_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
+position = Vector2(0, 35)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Area2D" type="Area2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo/Area2D"]
+shape = SubResource("CircleShape2D_interact_med")
+
+[node name="OssadaSoldado" type="Area2D" parent="YSortContainer/SacredMarsh"]
+position = Vector2(1180, 850)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SacredMarsh/OssadaSoldado"]
+shape = SubResource("CircleShape2D_interact_small")
+
+[node name="Trees" type="Node2D" parent="YSortContainer"]
+y_sort_enabled = true
+
+[node name="Tree1" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(620, 1480)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree1"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree1"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree2" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(980, 1480)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree2"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree2"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree3" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(550, 1300)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree3"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree3"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree4" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(1050, 1300)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree4"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree4"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree5" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(660, 1100)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree5"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree5"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree6" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(940, 1100)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree6"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree6"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree7" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(680, 920)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree7"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree7"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree8" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(920, 920)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree8"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree8"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree9" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(720, 650)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree9"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree9"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree10" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(880, 650)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree10"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree10"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree11" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(520, 880)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree11"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree11"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree12" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(1080, 880)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree12"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree12"]
+position = Vector2(0, 85)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="TopHUD" type="PanelContainer" parent="UILayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/TopHUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/TopHUD/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HeroLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "O JOVEM NATIVO"
+
+[node name="Spacer" type="Control" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HpLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 13
+text = "? HP: 12/12"
+
+[node name="ManaLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "  ? MANA: 10/10"
+
+[node name="Notice" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "SERRA DA MANTIQUEIRA (MUNDO ABERTO 2D)  ?  [WASD/Setas] Andar  ?  [E] Interagir  ?  [I] Mochila"
+
+[node name="DiceLogPanel" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 96.0
+offset_right = -20.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dice")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DiceLogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="DiceLogLabel" type="Label" parent="UILayer/DiceLogPanel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "TESTE DE DADOS STORYTELLER..."
+horizontal_alignment = 1
+
+[node name="DialogueBox" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -140.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/DialogueBox/MarginContainer"]
+layout_mode = 2
+
+[node name="Speaker" type="Label" parent="UILayer/DialogueBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.15, 1)
+theme_override_font_sizes/font_size = 13
+text = "CR?NICA DA MANTIQUEIRA:"
+
+[node name="DialogueText" type="Label" parent="UILayer/DialogueBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
+theme_override_font_sizes/font_size = 14
+text = "A mata respira ao seu redor..."
+autowrap_mode = 2
+
+[node name="InventoryPanel" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -180.0
+offset_right = 220.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inv")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 16
+text = "FICHA DO HER?I & MOCHILA"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemListLabel" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9, 0.85, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "ITENS NA MOCHILA..."
+
+[node name="Hint" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.55, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "[Pressione 'I' para fechar a mochila]"
+horizontal_alignment = 1
