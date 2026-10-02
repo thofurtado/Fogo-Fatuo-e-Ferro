@@ -24,6 +24,7 @@ var is_night: bool = false
 var near_amulet: bool = false
 var near_curupira: bool = false
 var amulet_collected: bool = false
+var transitioning: bool = false
 
 func _ready():
 	bg_noite.modulate.a = 0.0
@@ -57,6 +58,11 @@ func _refresh_inventory():
 func _process(delta):
 	var target_alpha = 1.0 if is_night else 0.0
 	bg_noite.modulate.a = lerp(bg_noite.modulate.a, target_alpha, delta * 3.5)
+	
+	# Transição ao norte da trilha (para a Encruzilhada)
+	if not transitioning and player.position.y < 130.0:
+		transitioning = true
+		get_tree().change_scene_to_file("res://Scenes/Crossroads.tscn")
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -90,7 +96,7 @@ func _interact_amulet():
 	_update_hud()
 	
 	speaker_label.text = "AMULETO ANCESTRAL:"
-	dialogue_label.text = "Você recolhe o Amuleto de Esmeralda! Ele emite uma pulsação quente que restaura sua coragem."
+	dialogue_label.text = "Você recolhe o Amuleto de Esmeralda! Ele pulsa com calor da terra. Siga a trilha ao NORTE para a Encruzilhada!"
 	dialogue_box.visible = true
 
 func _interact_curupira():
@@ -108,7 +114,7 @@ func _interact_curupira():
 	dice_log_text.text = log_str
 	
 	if roll["sucessos_finais"] > 0:
-		dialogue_label.text = "'Vejo que seu coração respeita a mata, %s! Siga os cogumelos azuis e tome cuidado com os homens de ferro.'" % arch["name"]
+		dialogue_label.text = "'Vejo que seu coração respeita a mata, %s! Siga ao norte até a bifurcação. O Rancho dos Tropeiros guarda ferro, mas o Brejo guarda o fogo sagrado.'" % arch["name"]
 	else:
 		dialogue_label.text = "'Hihihi! Quem pisa na minha floresta sem oferenda perde o rumo das pegadas!' (Você sente uma tontura mágica nas pernas!)"
 		
