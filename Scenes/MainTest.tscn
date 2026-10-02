@@ -1,25 +1,30 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://Scripts/MainTest.gd" id="1_main"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_player"]
 [ext_resource type="Script" path="res://Scripts/NPC.gd" id="3_npc"]
-[ext_resource type="Script" path="res://Scripts/Scenery.gd" id="4_scenery"]
-[ext_resource type="Shader" path="res://Assets/Shaders/gibi_shader.gdshader" id="5_shader"]
+[ext_resource type="Script" path="res://Scripts/FogoFatuo.gd" id="4_fogo"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/player.png" id="5_player_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/tiao_caboclo.png" id="6_tiao_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_tropical.png" id="7_tree_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/fogo_fatuo.png" id="8_fogo_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/porteira.png" id="9_porteira_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/tile_terra.png" id="10_terra_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/tile_grama.png" id="11_grama_tex"]
+[ext_resource type="Shader" path="res://Assets/Shaders/gibi_shader.gdshader" id="12_shader"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
-radius = 16.0
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_npc"]
-radius = 48.0
+radius = 64.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gibi"]
-shader = ExtResource("5_shader")
-shader_parameter/effect_enabled = true
-shader_parameter/paper_tint = Color(0.95, 0.92, 0.84, 1)
-shader_parameter/paper_roughness = 0.12
-shader_parameter/dots_scale = 160.0
-shader_parameter/misregistration_x = 1.0
-shader_parameter/misregistration_y = -0.6
+shader = ExtResource("12_shader")
+shader_parameter/effect_enabled = false
+shader_parameter/paper_tint = Color(0.98, 0.96, 0.91, 1)
+shader_parameter/paper_roughness = 0.04
+shader_parameter/vignette_strength = 0.15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_balloon"]
 bg_color = Color(1, 1, 1, 1)
@@ -27,33 +32,96 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.08, 0.08, 0.08, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.15)
+shadow_size = 4
+shadow_offset = Vector2(2, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+bg_color = Color(0.14, 0.12, 0.1, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.72, 0.35, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="MainTest" type="Node2D"]
 script = ExtResource("1_main")
 
-[node name="Scenery" type="Node2D" parent="."]
-script = ExtResource("4_scenery")
+[node name="ChaoTerra" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(600, 400)
+texture = ExtResource("10_terra_tex")
+region_enabled = true
+region_rect = Rect2(-1000, -1000, 3000, 3000)
+
+[node name="GramaPatch1" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(300, 320)
+texture = ExtResource("11_grama_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 256)
+
+[node name="GramaPatch2" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(750, 450)
+texture = ExtResource("11_grama_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 450, 300)
+
+[node name="Porteira" type="Sprite2D" parent="."]
+position = Vector2(620, 180)
+texture = ExtResource("9_porteira_tex")
+
+[node name="FogoFatuo" type="Node2D" parent="."]
+position = Vector2(460, 420)
+script = ExtResource("4_fogo")
+
+[node name="Sprite2D" type="Sprite2D" parent="FogoFatuo"]
+texture = ExtResource("8_fogo_tex")
+
+[node name="Arvore1" type="Sprite2D" parent="."]
+position = Vector2(160, 200)
+texture = ExtResource("7_tree_tex")
+
+[node name="Arvore2" type="Sprite2D" parent="."]
+position = Vector2(920, 240)
+texture = ExtResource("7_tree_tex")
+
+[node name="Arvore3" type="Sprite2D" parent="."]
+position = Vector2(880, 520)
+texture = ExtResource("7_tree_tex")
 
 [node name="NPC" type="Area2D" parent="."]
-position = Vector2(580, 320)
+position = Vector2(620, 360)
 script = ExtResource("3_npc")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC"]
+texture = ExtResource("6_tiao_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
 shape = SubResource("CircleShape2D_npc")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(380, 320)
+position = Vector2(340, 360)
 script = ExtResource("2_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("5_player_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_player")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.8, 1.8)
 position_smoothing_enabled = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
@@ -61,23 +129,25 @@ position_smoothing_enabled = true
 [node name="HUD" type="PanelContainer" parent="UILayer"]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 440.0
-offset_bottom = 120.0
+offset_right = 480.0
+offset_bottom = 125.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD"]
 layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/HUD/MarginContainer"]
 layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "FOGO-FÁTUO & FERRO (PROTÓTIPO GIBI 1970)"
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 17
+text = "FOGO-FÁTUO & FERRO"
 
 [node name="ControlsLabel" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -87,22 +157,22 @@ text = "• Mover: [W, A, S, D] ou Setas | Falar: [E / Espaço]"
 [node name="ShaderStatusLabel" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-text = "ESTILO GIBI: [ATIVADO] (Pressione 'G' para alternar)"
+text = "FILTRO PAPEL DE GIBI: [DESLIGADO] (Aperte 'G' para ligar)"
 
 [node name="DialogueBubble" type="PanelContainer" parent="UILayer"]
 visible = false
 offset_left = 400.0
 offset_top = 200.0
-offset_right = 720.0
-offset_bottom = 290.0
+offset_right = 740.0
+offset_bottom = 300.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_balloon")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/DialogueBubble"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/DialogueBubble/MarginContainer"]
 layout_mode = 2
@@ -110,13 +180,13 @@ layout_mode = 2
 [node name="SpeakerLabel" type="Label" parent="UILayer/DialogueBubble/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.2, 0.15, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 14
 text = "TIÃO CABOCLO:"
 
 [node name="DialogueLabel" type="Label" parent="UILayer/DialogueBubble/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 15
 text = "CUIDADO COM A MATA FECHADA QUANDO A NOITE CAI..."
 autowrap_mode = 2
 

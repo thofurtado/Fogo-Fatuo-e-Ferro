@@ -8,7 +8,7 @@ extends Node2D
 @onready var npc = $NPC
 @onready var player = $Player
 
-var shader_active: bool = true
+var shader_active: bool = false
 
 func _ready():
 	npc.interaction_requested.connect(_on_npc_interaction)
@@ -27,15 +27,14 @@ func _unhandled_input(event):
 
 func _update_hud():
 	if shader_active:
-		hud_status.text = "ESTILO GIBI: [ATIVADO] (Pressione 'G' para desativar)"
-		hud_status.modulate = Color(0.2, 0.9, 0.2)
+		hud_status.text = "FILTRO PAPEL DE GIBI: [LIGADO] (Pressione 'G' para desligar)"
+		hud_status.modulate = Color(0.9, 0.8, 0.4)
 	else:
-		hud_status.text = "ESTILO GIBI: [DESATIVADO] (Pressione 'G' para ativar)"
-		hud_status.modulate = Color(0.9, 0.3, 0.2)
+		hud_status.text = "FILTRO PAPEL DE GIBI: [DESLIGADO] (Pressione 'G' para ligar)"
+		hud_status.modulate = Color(0.7, 0.9, 0.7)
 
 func _on_npc_interaction(speaker_name: String, text: String):
 	speaker_label.text = speaker_name.to_upper() + ":"
 	dialogue_text.text = text.to_upper()
 	dialogue_panel.visible = true
-	# Posiciona o balão próximo ao NPC
-	dialogue_panel.global_position = npc.global_position + Vector2(-150, -110)
+	dialogue_panel.global_position = npc.global_position + Vector2(-160, -130)
