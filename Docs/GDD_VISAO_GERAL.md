@@ -22,6 +22,10 @@ O jogo utiliza dois estilos visuais bem marcados para separar momentos narrativo
 
 * **Proporção:** Foco estrito na vertical (**9:16**). Versões de PC/Navegador utilizam as barras laterais vazias para fichas de personagem e inventário.
 * **Câmera e Mapa:** Visão isométrica/ortográfica top-down (*zoomed-out*), exibindo uma matriz ampla de cerca de 15 a 20 blocos de largura no modo exploração. Isso garante visão panorâmica, liberdade tática e menor detalhamento micro dos sprites.
+* **Escala de Unidades (Grid Métrico / m³):**
+  - **Humanoides (Personagens / Inimigos):** 1m x 1m base | 2m de altura (2 blocos verticais).
+  - **Vegetação Padrão:** 1m x 1m base | 3m de altura.
+  - **Vegetação Monumental (Árvores Centenárias):** 3m x 3m (9m²) base | 5m a 7m de altura.
 * **Fluxo de Criação (Modular):** Menus divididos por telas sequenciais e intuitivas para o polegar:
   1. *Origem Étnico-Cultural* (A raiz ancestral e a relação mística com a terra).
   2. *Condição Social & Status Legal* (O status perante a lei colonial de 1645: Livre, Fugitivo, Degredado, etc.).
