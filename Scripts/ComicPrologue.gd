@@ -13,20 +13,19 @@ func _ready():
 	btn_resgatar.pressed.connect(_on_resgatar_pressed)
 
 func _on_fugir_pressed():
-	# Transição para a floresta
 	feedback_panel.visible = true
-	feedback_label.text = "VOCÊ MERGULHA NA ESCURIDÃO DA MATA FECHADA...\nOS ESPÍRITOS DA FLORESTA ACORDAM!"
+	feedback_label.text = "VOC? MERGULHA NA MATA FECHADA...\nOS ESP?RITOS DA FLORESTA ACORDAM!"
 	await get_tree().create_timer(1.8).timeout
-	get_tree().change_scene_to_file("res://Scenes/ForestGame.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MataTileMap.tscn")
 
 func _on_lutar_pressed():
 	feedback_panel.visible = true
-	feedback_label.text = "SUAS FLECHAS REBATEM NAS ARMADURAS DE FERRO!\nA MATA PUXA SEU BRAÇO PARA QUE VOCÊ SOBREVIVA..."
-	await get_tree().create_timer(2.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/ForestGame.tscn")
+	feedback_label.text = "SUAS FLECHAS REBATEM NAS ARMADURAS DE FERRO!\nA MATA PUXA SEU CORPO PARA QUE VOC? SOBREVIVA..."
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/MataTileMap.tscn")
 
 func _on_resgatar_pressed():
 	feedback_panel.visible = true
-	feedback_label.text = "VOCÊ ESCONDE AS CRIANÇAS NO OCO DA JAQUEIRA SAGRADA E PARTE PARA DESPISTAR OS INVASORES!"
-	await get_tree().create_timer(2.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/ForestGame.tscn")
+	feedback_label.text = "VOC? DESPISTA OS INVASORES E ENTRA NAS TRILHAS DA SERRA!"
+	await get_tree().create_timer(2.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/MataTileMap.tscn")

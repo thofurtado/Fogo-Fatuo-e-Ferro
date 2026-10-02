@@ -1,0 +1,264 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://Scripts/MataTileMap.gd" id="1_world"]
+[ext_resource type="TileSet" path="res://Assets/Tilesets/colonial_tileset.tres" id="2_tileset"]
+[ext_resource type="Script" path="res://Scripts/CurumimPlayer.gd" id="3_player"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/curumim_spritesheet.png" id="4_sheet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+bg_color = Color(0.1, 0.08, 0.06, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.72, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dice"]
+bg_color = Color(0.08, 0.12, 0.18, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
+bg_color = Color(1, 1, 1, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.08, 0.08, 0.08, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inv"]
+bg_color = Color(0.08, 0.07, 0.05, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.75, 0.4, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_world")
+
+[node name="ChaoLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_tileset")
+
+[node name="ObjetosLayer" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("2_tileset")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(656, 1088)
+script = ExtResource("3_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("4_sheet")
+hframes = 3
+vframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.8, 1.8)
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 1280
+position_smoothing_enabled = true
+
+[node name="CopasLayer" type="TileMapLayer" parent="."]
+z_index = 1
+tile_set = ExtResource("2_tileset")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="TopHUD" type="PanelContainer" parent="UILayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/TopHUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/TopHUD/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HeroLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "O JOVEM NATIVO"
+
+[node name="Spacer" type="Control" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HpLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 13
+text = "? HP: 12/12"
+
+[node name="ManaLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "  ? MANA: 10/10"
+
+[node name="Notice" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "MATA DA MANTIQUEIRA (TILEMAP 2D)  ?  [WASD/Setas] Andar  ?  [E] Interagir  ?  [I] Mochila"
+
+[node name="DiceLogPanel" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 96.0
+offset_right = -20.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dice")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DiceLogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="DiceLogLabel" type="Label" parent="UILayer/DiceLogPanel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "TESTE DE DADOS STORYTELLER..."
+horizontal_alignment = 1
+
+[node name="DialogueBox" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -140.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/DialogueBox/MarginContainer"]
+layout_mode = 2
+
+[node name="Speaker" type="Label" parent="UILayer/DialogueBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.25, 0.15, 1)
+theme_override_font_sizes/font_size = 13
+text = "CR?NICA DA MANTIQUEIRA:"
+
+[node name="DialogueText" type="Label" parent="UILayer/DialogueBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
+theme_override_font_sizes/font_size = 14
+text = "Voc? pisa na mata viva..."
+autowrap_mode = 2
+
+[node name="InventoryPanel" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -180.0
+offset_right = 220.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inv")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 16
+text = "FICHA DO HER?I & MOCHILA"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemListLabel" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9, 0.85, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "ITENS NA MOCHILA..."
+
+[node name="Hint" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.55, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "[Pressione 'I' para fechar a mochila]"
+horizontal_alignment = 1
