@@ -1,31 +1,45 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://Scripts/ComicPrologue.gd" id="1_prologue"]
 [ext_resource type="Texture2D" path="res://Assets/Backgrounds/hq_prologo.jpg" id="2_bg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
-bg_color = Color(1, 1, 1, 0.95)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_normal"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.9, 0.25, 0.15, 0.22)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.1, 0.1, 0.1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_color = Color(0.9, 0.2, 0.1, 0.95)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feedback"]
-bg_color = Color(0.08, 0.08, 0.08, 0.95)
+bg_color = Color(0.08, 0.08, 0.08, 0.96)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.9, 0.85, 0.7, 1)
+border_color = Color(0.95, 0.75, 0.35, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hint"]
+bg_color = Color(0.1, 0.09, 0.07, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.7, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="ComicPrologue" type="Control"]
 layout_mode = 3
@@ -47,21 +61,7 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="PanelContainer" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 140.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="Hotspots" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,59 +69,92 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
+[node name="BtnFugir" type="Button" parent="Hotspots"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 586.0
+offset_right = 196.0
+offset_bottom = 626.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+flat = true
 
-[node name="BtnFugir" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(160, 42)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
-theme_override_colors/font_hover_color = Color(0.85, 0.15, 0.1, 1)
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "[ 1. Fugir para a Mata ]"
+[node name="BtnLutar" type="Button" parent="Hotspots"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 586.0
+offset_right = 368.0
+offset_bottom = 626.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+flat = true
 
-[node name="BtnLutar" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(160, 42)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
-theme_override_colors/font_hover_color = Color(0.85, 0.15, 0.1, 1)
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "[ 2. Lutar pela Aldeia ]"
+[node name="BtnResgatar" type="Button" parent="Hotspots"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 586.0
+offset_right = 540.0
+offset_bottom = 626.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hover")
+flat = true
 
-[node name="BtnResgatar" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(160, 42)
+[node name="BottomHint" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -65.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hint")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomHint"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
-theme_override_colors/font_hover_color = Color(0.85, 0.15, 0.1, 1)
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "[ 3. Resgatar ]"
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="BottomHint/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "? CLIQUE EM UMA DAS 3 DECIS?ES NO QUADRINHO ACIMA ?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FeedbackPanel" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -260.0
-offset_top = -180.0
-offset_right = 260.0
-offset_bottom = -70.0
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -60.0
+offset_right = 250.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_feedback")
 
 [node name="FeedbackLabel" type="Label" parent="FeedbackPanel"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
 theme_override_font_sizes/font_size = 15
-text = "VOCÊ FUGIU PARA A MATA..."
+text = "VOC? FUGIU PARA A MATA..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
