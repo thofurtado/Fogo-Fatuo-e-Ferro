@@ -1,14 +1,14 @@
-# Mandinga RPG (Nome Provisorio)
+ï»¿# Fogo-FÃ¡tuo & Ferro
 
-Bem-vindos ao projeto! Este é o repositorio oficial do jogo.
+Bem-vindos ao projeto! Este Ã© o repositorio oficial do jogo.
 
 ## A Equipe
-- **Thomás Furtado**: Diretor de Produto / Gerente do Projeto
+- **ThomÃ¡s Furtado**: Diretor de Produto / Gerente do Projeto
 - **Jhonny**: Roteiro / Game Design / Mestre do Lore
 - **Antigravity (IA)**: Arquiteto de Software e Programador
 
 ## O Projeto
-- Gênero: RPG 2D Top-Down com mecanicas profundas de RPG de mesa.
+- GÃªnero: RPG 2D Top-Down com mecanicas profundas de RPG de mesa.
 - Ambientacao: Brasil Colonial / Pre-Colonial.
 - Tom: Imersivo, focado em escolhas, historico e com o lado visceral do nosso folclore.
 
