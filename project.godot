@@ -7,8 +7,12 @@ config_version=5
 [application]
 
 config/name="Fogo-Fatuo-e-Ferro"
-run/main_scene="res://Scenes/ComicPrologue.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[autoload]
+
+GameManager="*res://Scripts/GameManager.gd"
 
 [display]
 

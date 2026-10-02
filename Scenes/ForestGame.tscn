@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://Scripts/ForestGame.gd" id="1_forest"]
 [ext_resource type="Script" path="res://Scripts/CurumimPlayer.gd" id="2_player"]
@@ -13,6 +13,27 @@ radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amulet"]
 radius = 35.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_curupira"]
+radius = 65.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_right"]
+size = Vector2(160, 400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_left"]
+size = Vector2(140, 500)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+bg_color = Color(0.1, 0.08, 0.06, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.72, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
 bg_color = Color(1, 1, 1, 0.98)
@@ -29,17 +50,29 @@ shadow_color = Color(0, 0, 0, 0.25)
 shadow_size = 6
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
-bg_color = Color(0.12, 0.1, 0.08, 0.82)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dice"]
+bg_color = Color(0.15, 0.12, 0.08, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.85, 0.72, 0.35, 1)
+border_color = Color(0.9, 0.45, 0.2, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inv"]
+bg_color = Color(0.08, 0.07, 0.05, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.75, 0.4, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ForestGame" type="Control"]
 layout_mode = 3
@@ -72,18 +105,34 @@ texture = ExtResource("5_bg_noite")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Amuleto" type="Area2D" parent="."]
+[node name="ObstaculosColisao" type="StaticBody2D" parent="."]
+
+[node name="ColArvoreDireita" type="CollisionShape2D" parent="ObstaculosColisao"]
+position = Vector2(490, 260)
+shape = SubResource("RectangleShape2D_tree_right")
+
+[node name="ColMataEsquerda" type="CollisionShape2D" parent="ObstaculosColisao"]
+position = Vector2(70, 320)
+shape = SubResource("RectangleShape2D_tree_left")
+
+[node name="AmuletoArea" type="Area2D" parent="."]
 position = Vector2(310, 505)
 script = ExtResource("3_amulet")
 
-[node name="Sprite2D" type="Sprite2D" parent="Amuleto"]
+[node name="Sprite2D" type="Sprite2D" parent="AmuletoArea"]
 texture = ExtResource("7_amulet_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Amuleto"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AmuletoArea"]
 shape = SubResource("CircleShape2D_amulet")
 
+[node name="CurupiraArea" type="Area2D" parent="."]
+position = Vector2(395, 185)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CurupiraArea"]
+shape = SubResource("CircleShape2D_curupira")
+
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(285, 505)
+position = Vector2(285, 520)
 script = ExtResource("2_player")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -91,7 +140,7 @@ scale = Vector2(0.65, 0.65)
 texture = ExtResource("6_curumim_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 20)
+position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_curumim")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
@@ -99,9 +148,9 @@ shape = SubResource("CircleShape2D_curumim")
 [node name="TopHUD" type="PanelContainer" parent="UILayer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = -16.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
 offset_bottom = 85.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
@@ -109,9 +158,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/TopHUD"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/TopHUD/MarginContainer"]
 layout_mode = 2
@@ -119,38 +168,79 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HeroLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "O JOVEM NATIVO"
+
+[node name="Spacer" type="Control" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0.85, 0.45, 1)
-theme_override_font_sizes/font_size = 15
-text = "♥ HP: 100%   ⚡ MANA: 100%    ✦ FOGO-FÁTUO"
+
+[node name="HpLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 13
+text = "♥ HP: 12/12"
+
+[node name="ManaLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "  ⚡ MANA: 10/10"
 
 [node name="DayNightNotice" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "[N] Alternar Dia/Noite  •  [I] Inventário/Ficha  •  [W,A,S,D] Andar  •  [E] Interagir"
+
+[node name="DiceLogPanel" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 96.0
+offset_right = -20.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dice")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DiceLogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="DiceLogLabel" type="Label" parent="UILayer/DiceLogPanel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_font_sizes/font_size = 12
-text = "DIA (Sol na Copa & Trilha Aberta) • [N] Alternar Dia/Noite • [W,A,S,D] Andar"
+text = "TESTE DE DADOS STORYTELLER..."
+horizontal_alignment = 1
 
 [node name="DialogueBox" type="PanelContainer" parent="UILayer"]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
+offset_left = 20.0
 offset_top = -140.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
 
 [node name="MarginContainer" type="MarginContainer" parent="UILayer/DialogueBox"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/DialogueBox/MarginContainer"]
 layout_mode = 2
@@ -164,17 +254,67 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.25, 0.15, 1)
 theme_override_font_sizes/font_size = 13
-text = "MENSAGEM DA FLORESTA:"
+text = "O CURUPIRA:"
 
 [node name="DialogueText" type="Label" parent="UILayer/DialogueBox/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 text = "O Curupira te deixou um amuleto. Escolha um caminho para investigar..."
 autowrap_mode = 2
 
 [node name="Arrow" type="Label" parent="UILayer/DialogueBox/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_font_sizes/font_size = 20
 text = "➔"
+
+[node name="InventoryPanel" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -180.0
+offset_right = 220.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inv")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeroNameLabel" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 16
+text = "FICHA DO HERÓI"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemListLabel" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.9, 0.85, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "ITENS NA MOCHILA..."
+
+[node name="Hint" type="Label" parent="UILayer/InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.55, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "[Pressione 'I' para fechar a mochila]"
+horizontal_alignment = 1
