@@ -2,3 +2,7 @@
 .godot/
 *.translation
 export_presets.cfg
+
+# PDFs e Referencias pesadas
+Docs/Referencias/*.pdf
+

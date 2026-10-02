@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://Scripts/ForestGame.gd" id="1_forest"]
 [ext_resource type="Script" path="res://Scripts/CurumimPlayer.gd" id="2_player"]
 [ext_resource type="Script" path="res://Scripts/Amuleto.gd" id="3_amulet"]
-[ext_resource type="Texture2D" path="res://Assets/Backgrounds/mata_dia.jpg" id="4_bg_dia"]
-[ext_resource type="Texture2D" path="res://Assets/Backgrounds/mata_noite.jpg" id="5_bg_noite"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/curumim_transparente.png" id="6_curumim_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Backgrounds/mata_dia_limpa.jpg" id="4_bg_dia"]
+[ext_resource type="Texture2D" path="res://Assets/Backgrounds/mata_noite_limpa.jpg" id="5_bg_noite"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/curumim_spritesheet.png" id="6_curumim_sheet"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/amuleto_verde.png" id="7_amulet_tex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_curumim"]
-radius = 20.0
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amulet"]
 radius = 35.0
@@ -18,10 +18,10 @@ radius = 35.0
 radius = 65.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_right"]
-size = Vector2(160, 400)
+size = Vector2(160, 420)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_left"]
-size = Vector2(140, 500)
+size = Vector2(150, 520)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
 bg_color = Color(0.1, 0.08, 0.06, 0.9)
@@ -136,8 +136,11 @@ position = Vector2(285, 520)
 script = ExtResource("2_player")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.65, 0.65)
-texture = ExtResource("6_curumim_tex")
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_curumim_sheet")
+hframes = 3
+vframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 16)
@@ -194,7 +197,7 @@ text = "  ⚡ MANA: 10/10"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
 theme_override_font_sizes/font_size = 11
-text = "[N] Alternar Dia/Noite  •  [I] Inventário/Ficha  •  [W,A,S,D] Andar  •  [E] Interagir"
+text = "[N] Alternar Dia/Noite  •  [I] Mochila  •  [W,A,S,D] Andar em 4 Direções  •  [E] Interagir"
 
 [node name="DiceLogPanel" type="PanelContainer" parent="UILayer"]
 visible = false
