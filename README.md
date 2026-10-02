@@ -1,4 +1,4 @@
-﻿# Fogo-Fátuo & Ferro
+# Fogo-Fátuo & Ferro
 
 Bem-vindos ao projeto! Este é o repositorio oficial do jogo.
 
@@ -12,5 +12,8 @@ Bem-vindos ao projeto! Este é o repositorio oficial do jogo.
 - Ambientacao: Brasil Colonial / Pre-Colonial.
 - Tom: Imersivo, focado em escolhas, historico e com o lado visceral do nosso folclore.
 
-## Primeiros Passos
-O Jhonny tem um espaco reservado no arquivo GDD_Jhonny.md para comecar a rascunhar as regras.
+## Documentação Central
+- **[Documento de Visão Geral e Escopo (GDD)](Docs/GDD_VISAO_GERAL.md)**: Manual definitivo sobre premissa (1645), identidade visual dual, mecânicas mobile-first e regras de sobrevivência.
+- **[Área de Regras do Jhonny](GDD_Jhonny.md)**: Rascunhos de mecânicas de mesa e testes de dados.
+- **[Arquétipos](Docs/ARQUETIPOS.md)**: Diretrizes dos 5 arquétipos e criação de personagem.
+- **[Worldbuilding & Facções](Docs/WORLDBUILDING.md)**: Ecologia mágica e facções coloniais.
