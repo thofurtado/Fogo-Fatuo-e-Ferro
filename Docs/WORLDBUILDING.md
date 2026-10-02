@@ -92,3 +92,14 @@ Para garantir que o jogo nunca mais pare√ßa uma imagem plana com adesivo, todo c
 1. **Y-Sorting Obrigat√≥rio:** O p√© do personagem define sua coordenada Y. Se `Player.position.y < Arvore.position.y`, o personagem fica atr√°s da √°rvore. Se for maior, ele fica na frente. Isso cria tridimensionalidade visual org√¢nica.
 2. **Spritesheets em 4 Dire√ß√µes:** O jogador deve possuir anima√ß√µes reais de 4 dire√ß√µes (`walk_down`, `walk_up`, `walk_left`, `walk_right`) com taxa de quadros fluida.
 3. **Colis√£o Base-Only:** Troncos e obst√°culos s√≥ bloqueiam a passagem na raiz (ret√¢ngulo fino onde a base encosta no ch√£o), permitindo que a copa passe por cima da cabe√ßa do her√≥i.
+---
+
+## 5. Diretrizes do Kobold Guide to Worldbuilding (Wolfgang Baur & Keith Baker)
+
+1. **A Regra de "Fundo e Dinamite":**
+   * Toda cena ou regi„o criada na Godot 4 deve ter **dinamite acesa no presente**: um conflito urgente imediato que demanda aÁ„o ou escolha moral do jogador (evitando exposiÁıes enciclopÈdicas passivas).
+2. **ConstruÁ„o "De Dentro para Fora" (Inside-Out):**
+   * O jogo se expande do micro para o macro: O jogador parte da oca em chamas para a clareira do amuleto, da clareira para a encruzilhada da serra, e da serra para a guerra de facÁıes no sert„o colonial.
+3. **A DialÈtica do Ferro contra a Seiva:**
+   * Itens e armas de ferro emitem som met·lico rÌspido, fumaÁa de pÛlvora e afastam entidades pacÌficas.
+   * Rituais de cura, oferendas org‚nicas e ervas sagradas acalmam a mata e revelam atalhos mÌsticos.
