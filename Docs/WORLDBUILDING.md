@@ -92,14 +92,19 @@ Para garantir que o jogo nunca mais pareça uma imagem plana com adesivo, todo c
 1. **Y-Sorting Obrigatório:** O pé do personagem define sua coordenada Y. Se `Player.position.y < Arvore.position.y`, o personagem fica atrás da árvore. Se for maior, ele fica na frente. Isso cria tridimensionalidade visual orgânica.
 2. **Spritesheets em 4 Direções:** O jogador deve possuir animações reais de 4 direções (`walk_down`, `walk_up`, `walk_left`, `walk_right`) com taxa de quadros fluida.
 3. **Colisão Base-Only:** Troncos e obstáculos só bloqueiam a passagem na raiz (retângulo fino onde a base encosta no chão), permitindo que a copa passe por cima da cabeça do herói.
+4. **Escala de Unidades (Grid Métrico / m³):**
+   * **Humanoides (Personagens / Inimigos):** 1m x 1m base (pegada de colisão) | 2m de altura visual (2 blocos verticais).
+   * **Vegetação Padrão:** 1m x 1m base | 3m de altura visual.
+   * **Vegetação Monumental (Árvores Centenárias / Jequitibás):** 3m x 3m (9m²) base de colisão na raiz | 5m a 7m de altura visual da copa.
+
 ---
 
 ## 5. Diretrizes do Kobold Guide to Worldbuilding (Wolfgang Baur & Keith Baker)
 
 1. **A Regra de "Fundo e Dinamite":**
-   * Toda cena ou regi�o criada na Godot 4 deve ter **dinamite acesa no presente**: um conflito urgente imediato que demanda a��o ou escolha moral do jogador (evitando exposi��es enciclop�dicas passivas).
-2. **Constru��o "De Dentro para Fora" (Inside-Out):**
-   * O jogo se expande do micro para o macro: O jogador parte da oca em chamas para a clareira do amuleto, da clareira para a encruzilhada da serra, e da serra para a guerra de fac��es no sert�o colonial.
-3. **A Dial�tica do Ferro contra a Seiva:**
-   * Itens e armas de ferro emitem som met�lico r�spido, fuma�a de p�lvora e afastam entidades pac�ficas.
-   * Rituais de cura, oferendas org�nicas e ervas sagradas acalmam a mata e revelam atalhos m�sticos.
+   * Toda cena ou região criada na Godot 4 deve ter **dinamite acesa no presente**: um conflito urgente imediato que demanda ação ou escolha moral do jogador (evitando exposições enciclopédicas passivas).
+2. **Construção "De Dentro para Fora" (Inside-Out):**
+   * O jogo se expande do micro para o macro: O jogador parte da oca em chamas para a clareira do amuleto, da clareira para a encruzilhada da serra, e da serra para a guerra de facções no sertão colonial.
+3. **A Dialética do Ferro contra a Seiva:**
+   * Itens e armas de ferro emitem som metálico ríspido, fumaça de pólvora e afastam entidades pacíficas.
+   * Rituais de cura, oferendas orgânicas e ervas sagradas acalmam a mata e revelam atalhos místicos.

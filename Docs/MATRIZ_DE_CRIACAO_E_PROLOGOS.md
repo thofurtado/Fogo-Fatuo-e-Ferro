@@ -15,7 +15,7 @@ Porém, a jornada de cada jogador começa em um ponto de vista completamente dif
           ↓
   [ 2. CONDIÇÃO SOCIAL ]   -> Seu status perante a lei colonial (Livre, Fugitivo, Degredado...)
           ↓
-  [ 3. REGIÃO NO MAPA ]    -> Seu berço geográfico, clima local e Totem de Respawn
+  [ 3. REGIÃO NO MAPA ]    -> Uma das 6 macro-regiões (Berço, Clima e Totem de Respawn)
           ↓
      [ 4. OFÍCIO ]         -> Suas ferramentas de sobrevivência, perícias e papel prático
 ```
@@ -44,13 +44,13 @@ $$\text{Atributo Final} = \text{Base da Origem} + \text{Modificador de Condiçã
 ### Pilar 1: Origem Étnico-Cultural (As Raízes)
 Define a cosmovisão do herói e como o sobrenatural reage a ele:
 
-1. **Povos Originários da Costa (Ex: Tupi/Tabajara):**
+1. **Povos Originários da Costa (Ex: Tupi / Tabajara):**
    * *Bônus:* +2 Misticismo, +1 Destreza.
    * *Passiva Cultural:* Entende os sinais das aves e a linguagem das águas.
-2. **Povos do Sertão Bruto (Ex: Tapuias/Cariris):**
+2. **Povos do Sertão Bruto (Ex: Tapuias / Cariris):**
    * *Bônus:* +2 Força, +1 Misticismo.
    * *Passiva Cultural:* Resistência natural à sede e veneno de peçonha.
-3. **Afro-Atlântico (Bantos e Iorubás):**
+3. **Afro-Atlântico (Bantos e Iorubás / Comunidades Livres):**
    * *Bônus:* +2 Força, +1 Lábia.
    * *Passiva Cultural:* Sabedoria dos ancestrais além-mar e forja sagrada.
 4. **Luso-Brasileiro da Terra (Mestiço / Caboclo):**
@@ -68,41 +68,55 @@ Define como a sociedade dos homens e a lei colonial tratam você:
 1. **Cativo / Fugitivo da Senzala ou Engenho:**
    * *Status:* Marcado pela milícia (preço pela cabeça).
    * *Bônus:* +2 Vigor, Instinto de Fuga (anda mais rápido se estiver ferido).
-   * *Item:* Grilhão de ferro quebrado (usado como porrete ou arrombador).
+   * *Item Inicial:* Grilhão de ferro quebrado (usado como porrete ou alavanca).
 2. **Homem / Mulher Livre de Poucas Posses:**
    * *Status:* Neutro; transita nas feiras sem ser parado pelos guardas.
    * *Bônus:* +1 Lábia, +1 Destreza.
-   * *Item:* Salitre, fumo comum e pataca de cobre.
+   * *Item Inicial:* Salitre, fumo de rolo comum e pataca de cobre.
 3. **Degredado da Metrópole (Exilado Criminal):**
-   * *Status:* Desprezado pela Igreja, mas temido pelo submundo.
+   * *Status:* Desprezado pela Igreja, mas temido no submundo colonial.
    * *Bônus:* +1 Força, +1 Audácia.
-   * *Item:* Adaga de lâmina oculta e carta de perdão rasgada.
+   * *Item Inicial:* Adaga de lâmina oculta e carta de perdão rasgada.
 4. **Família Tradicional Decadente (Nobre da Terra Empobrecido):**
    * *Status:* Respeito aristocrático formal, mas sem ouro no bolso.
    * *Bônus:* +2 Lábia, +1 Reputação inicial.
-   * *Item:* Anel de sinete e casaca puída.
+   * *Item Inicial:* Anel de sinete e casaca puída de veludo.
 
 ---
 
-### Pilar 3: Região de Partida (O Berço e Respawn)
-Define onde o jogo começa, o clima e onde você renasce se sucumbir:
+### Pilar 3: Região de Partida (Divisão Macro-Regional do Mapa - 1645)
+O mapa global é dividido em **6 porções equivalentes de exploração**. A escolha define seu berço geográfico, perigos do bioma e o seu **Totem de Respawn**:
 
-1. **Noroeste Açucareiro (Litoral da Capitania de Pernambuco):**
-   * *Ambiente:* Canaviais queimados, fumaça de engenhos, patrulhas holandesas e bandeirantes.
-   * *Risco:* Alta densidade de soldados e milícias armadas de arcabuz.
-   * *Totem de Respawn:* Capela abandonada à beira-mar ou oco de jaqueira centenária.
-2. **Sertão dos Cariris e Caatinga da Borborema:**
-   * *Ambiente:* Terra rachada, espinheiros impenetráveis, lajedos sagrados.
-   * *Risco:* Insolação, escassez de água potável e bandos de guerrilha.
-   * *Totem de Respawn:* Altar de pedras empilhadas ou fonte de olho-d'água mística.
-3. **Serra dos Palmares e Matas de Refúgio:**
-   * *Ambiente:* Floresta tropical densa, cachoeiras, mocambos fortificados.
-   * *Risco:* Caçadores de escravizados, armadilhas de estacas e feras da mata.
-   * *Totem de Respawn:* Tronco da Gameleira Sagrada.
-4. **Rotas Fluviais do Rio São Francisco:**
-   * *Ambiente:* Barrancas barrentas, vapores noturnos e ilhas fluviais.
-   * *Risco:* Emboscadas de canoas e criaturas das águas (Iara, Caboclo d'Água).
-   * *Totem de Respawn:* Canoa encalhada sob o umbuzeiro.
+1. **Nordeste Açucareiro:**
+   * *Características:* Alta densidade urbana/militar, engenhos e guerra aberta (Insurreição Pernambucana).
+   * *Ambiente:* Canaviais queimados, fumaça de fornalhas, feitorias fortificadas e patrulhas da Companhia Holandesa (WIC) e milícias luso-brasileiras.
+   * *Riscos:* Fogo cruzado de mosquetes e canhões, capitães-do-mato e autos-de-fé.
+   * *Totem de Respawn:* Capela abandonada de taipa ou oco de jaqueira centenária no litoral.
+2. **Sertão Nordestino:**
+   * *Características:* Bioma árido, distâncias médias, pecuária extensiva dos currais.
+   * *Ambiente:* Caatinga cinzenta, espinheiros impenetráveis, leitos de rios secos e lajedos sagrados.
+   * *Riscos:* Insolação rápida, escassez severa de água potável, emboscadas em desfiladeiros de pedra e cascavéis.
+   * *Totem de Respawn:* Olho-d'água místico nas fendas do lajedo ou cruzeiro de pedra sertanejo.
+3. **Planalto de Piratininga:**
+   * *Características:* O coração vicentino, ponto de partida das expedições e bandeiras.
+   * *Ambiente:* Campos altos de altitude, colégio dos jesuítas, oficinas rústicas de ferreiros e armações de sertanistas.
+   * *Riscos:* Recrutamento forçado para bandeiras de apresamento, mamelucos violentos e choque bélico com nações nativas indomadas.
+   * *Totem de Respawn:* Pouso tropeiro fortificado ou tronco de jequitibá no cume da serra.
+4. **Litoral e Rotas de Serra:**
+   * *Características:* Trilhas costeiras escarpadas, escoamento mercante, contrabando e portos.
+   * *Ambiente:* Mata Atlântica de encosta, lamaçal contínuo, barrotes escorregadios e enseadas com ancoradouros clandestinos.
+   * *Riscos:* Quedas em precipícios, emboscadas de contrabandistas armados, neblina espessa (*mormaço*) e corsários na enseada.
+   * *Totem de Respawn:* Rancho tropeiro de cumeeira ou farol rústico de restinga.
+5. **Pantanal e Rios Centrais:**
+   * *Características:* Terreno híbrido (água e terra), isolamento fluvial profundo e expedições de monções.
+   * *Ambiente:* Corixos alagadiços, canais de igapó, capões de mata firme e rios caudalosos navegados em canoas monóxilas.
+   * *Riscos:* Piranhas, jacarés pantaneiros, febres da várzea e criaturas das águas profundas (Caboclo d'Água, Iara e Minhocão).
+   * *Totem de Respawn:* Canoa monóxila encalhada em capão de terra seca ou raiz de umbuzeiro d'água.
+6. **Sul e Bacia do Prata:**
+   * *Características:* Grandes planícies, missões jesuíticas e fronteiras ibéricas disputadas.
+   * *Ambiente:* Coxilhas verdes sem fim, vento minuano cortante, reduções de pedra dos Sete Povos e tropas de gado chimarrão.
+   * *Riscos:* Patrulhas montadas espanholas e portuguesas, caçadores de couro sem lei e tempestades repentinas (*pampeiros*).
+   * *Totem de Respawn:* Pórtico de pedra da missão jesuítica ou marco de fronteira colonial.
 
 ---
 
@@ -110,46 +124,91 @@ Define onde o jogo começa, o clima e onde você renasce se sucumbir:
 Define as habilidades ativas em combate/exploração e os equipamentos no inventário:
 
 1. **Tropeiro / Mercador de Picada:**
-   * *Habilidade:* Mula de Carga (inventário expandido) e Trânsito de Rotas.
-   * *Equipamento:* Bruaca de couro, pederneira e feijão tropeiro seco.
-2. **Mateiro / Rastreador de Rastro:**
-   * *Habilidade:* Passo Silencioso (ignora penalidade de movimento em terreno difícil) e Olho de Águia.
-   * *Equipamento:* Facão de mato e arco curto com flechas entalhadas.
+   * *Habilidade:* Mula de Carga (inventário dobrado) e Conhecimento de Rotas Seguras.
+   * *Equipamento:* Bruaca de couro reforçada, pederneira e feijão tropeiro desidratado (+HP).
+2. **Mateiro / Rastreador:**
+   * *Habilidade:* Passo Leve (ignora penalidade de terreno difícil) e Olho Clínico de Pegadas.
+   * *Equipamento:* Facão de mato e arco curto com flechas de ponta de osso.
 3. **Ferreiro de Campanha / Armeiro:**
-   * *Habilidade:* Conserto de Peças de Ferro e Manuseio de Pólvora sem risco de explosão acidental.
-   * *Equipamento:* Martelo de forja e pinças de ferro fundido.
+   * *Habilidade:* Forja Rápida de Lâminas e Manuseio Seguro de Pólvora/Chumbo.
+   * *Equipamento:* Martelo de forja, pinças de ferro e pederneira de chispa.
 4. **Boticário do Claustro / Rezadeira da Terra:**
-   * *Habilidade:* Preparo de Emplastros e Identificação de Ervas Medicinais / Venenos.
-   * *Equipamento:* Morteiro de pedra, frascos de barro e tintura de arnica.
+   * *Habilidade:* Preparo de Cataplasmas Medicinais e Identificação de Peçonhas/Ervas Místicas.
+   * *Equipamento:* Morteiro de pedra, frascos de cerâmica e óleo de copaíba.
 5. **Guerrilheiro / Soldado de Emboscada:**
-   * *Habilidade:* Golpe de Emboscada (dano crítico ao atacar sem ser visto) e Tiro de Pederneira.
-   * *Equipamento:* Pistola rústica de fecho de roda ou garrucha e balaço de chumbo.
+   * *Habilidade:* Tiro Furtivo de Pederneira e Fuga Tática por Trincheiras de Raízes.
+   * *Equipamento:* Garrucha de pederneira, polvorinho de chifre e adaga estreita.
 
 ---
 
 ## 4. O Sistema de Prólogos Dinâmicos (Como Começa a História)
 
-O prólogo em quadrinhos (estilo *Flavio Colin*) adapta seus quadros automaticamente:
+O prólogo em quadrinhos (estilo *Flavio Colin*) adapta seus quadros automaticamente conforme a ficha:
 
-* **O Incidente Inicial é gerado pela fórmula:**
-  $$\text{Quadro 1 (Cenário)} + \text{Quadro 2 (O Perigo da Condição)} + \text{Quadro 3 (A Reação pelo Ofício)}$$
+$$\text{Quadro 1 (A Região e Clima)} \rightarrow \text{Quadro 2 (O Conflito da Condição Social)} \rightarrow \text{Quadro 3 (A Reação pelo Ofício)} \rightarrow \text{O Encontro com o Fogo-Fátuo}$$
 
-### Exemplo Prático de Combinação:
-* **Ficha:** *Nativo dos Cariris + Homem Livre + Sertão da Borborema + Mateiro.*
-  * *Quadro 1:* O sol inclemente seca o leito do riacho nas pedras dos Cariris.
-  * *Quadro 2:* Uma tropa de bandeirantes desce a serra caçando guias à força para encontrar ouro.
-  * *Quadro 3:* O jogador usa suas pegadas invertidas e conhecimento da caatinga para escapar da primeira emboscada e encontrar o rastro do Fogo-Fátuo no lajedo sagrado.
+### Exemplo 1:
+* **Ficha:** *Nativo + Fugitivo + Nordeste Açucareiro + Mateiro*
+  * *Quadro 1:* O clarão avermelhado das fornalhas do engenho corta a noite em Pernambuco.
+  * *Quadro 2:* Capitães-do-mato com cães farejadores e arcabuzes cercam a mata próxima.
+  * *Quadro 3:* O mateiro apaga seus rastros andando para trás nas poças d'água e se embrenha no brejo.
+  * *Desfecho:* No coração do pântano, as chamas azuis do Boitatá/Fogo-Fátuo surgem das águas.
+
+### Exemplo 2:
+* **Ficha:** *Europeu Desertor + Degredado + Planalto de Piratininga + Ferreiro*
+  * *Quadro 1:* A névoa fria da serra cobre os galpões de armas e taipa de Piratininga.
+  * *Quadro 2:* Oficiais da Coroa dão voz de prisão por contrabando de pólvora e ferro.
+  * *Quadro 3:* O ferreiro derruba a bigorna contra a porta, cega os guardas com brasas e foge pela picada do sul.
+  * *Desfecho:* Na mata escura, o silêncio cai e olhos flamejantes de espíritos espiam entre os jequitibás.
 
 ---
 
 ## 5. Estrutura de Dados em GDScript (Para o Thomás)
 
 ```gdscript
-# Exemplo de Modelo de Dados para o GameManager.gd
-var character_builder = {
-    "origem": "tupi",        # Modifica atributos base e diálogo com Curupira
-    "condicao": "fugitivo",   # Modifica procurado pela milícia e item inicial
-    "regiao": "sertao",       # Modifica spawn point e perigos ambientais
-    "oficio": "tropeiro"      # Modifica inventário, habilidades e rotas
+# GameManager.gd - Dicionário canônico de regiões
+const REGIOES = {
+    "nordeste_acucareiro": {
+        "nome": "Nordeste Açucareiro",
+        "densidade": "alta",
+        "clima": "tropical_humido",
+        "respawn_totem": "Capela Litorânea",
+        "perigo_primario": "milicia_holandesa"
+    },
+    "sertao_nordestino": {
+        "nome": "Sertão Nordestino",
+        "densidade": "media",
+        "clima": "semiarido",
+        "respawn_totem": "Lajedo Sagrado",
+        "perigo_primario": "sede_e_peconha"
+    },
+    "planalto_piratininga": {
+        "nome": "Planalto de Piratininga",
+        "densidade": "media_alta",
+        "clima": "subtropical_altitude",
+        "respawn_totem": "Pouso Tropeiro da Serra",
+        "perigo_primario": "bandeiras_apresamento"
+    },
+    "litoral_rotas_serra": {
+        "nome": "Litoral e Rotas de Serra",
+        "densidade": "media",
+        "clima": "mata_atlantica_escarpa",
+        "respawn_totem": "Rancho de Cumeeira",
+        "perigo_primario": "precipicios_e_contrabando"
+    },
+    "pantanal_rios_centrais": {
+        "nome": "Pantanal e Rios Centrais",
+        "densidade": "baixa",
+        "clima": "inundavel_fluvial",
+        "respawn_totem": "Canoa do Capão",
+        "perigo_primario": "pantano_e_entidades_aquaticas"
+    },
+    "sul_bacia_prata": {
+        "nome": "Sul e Bacia do Prata",
+        "densidade": "baixa_media",
+        "clima": "pampas_coxilhas",
+        "respawn_totem": "Redução Jesuítica de Pedra",
+        "perigo_primario": "cavalaria_e_pampeiro"
+    }
 }
 ```
