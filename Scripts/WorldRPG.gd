@@ -26,7 +26,7 @@ func _ready():
 	dice_log_panel.visible = false
 	inventory_panel.visible = false
 	_update_hud()
-	_show_hint("CR?NICA DA MANTIQUEIRA", "Voc? adentra a floresta viva. Explore as trilhas com [WASD] ou Setas. Aproxime-se dos locais de interesse e pressione [E] para interagir. Pressione [I] para ver sua mochila.")
+	_show_hint("A NOITE DO FOGO & P?LVORA:", "Estouros de trov?o e fogo cercaram sua aldeia. Soldados da Coroa chegaram marchando com armaduras de ferro. Voc? escapou pelas sombras da mata e alcan?ou o alto da Serra da Mantiqueira... Encontre a trilha dos tropeiros e as entidades ancestrais para sobreviver! [Use WASD para andar | E para interagir]")
 	# Conex?o das ?reas de intera??o
 	$YSortContainer/StartingClearing/CurupiraTotem/Area2D.body_entered.connect(func(b): if b == player: register_target("curupira", "TOTEM ANCESTRAL", "Tronco consagrado ao Curupira. Pressione [E] para interagir."))
 	$YSortContainer/StartingClearing/CurupiraTotem/Area2D.body_exited.connect(func(b): if b == player: unregister_target("curupira"))

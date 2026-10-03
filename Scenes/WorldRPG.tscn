@@ -17,19 +17,19 @@
 radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tree_root"]
-radius = 22.0
+radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cabin"]
-size = Vector2(340, 140)
+size = Vector2(220, 90)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fire"]
-radius = 28.0
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact_small"]
-radius = 42.0
+radius = 38.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact_med"]
-radius = 56.0
+radius = 50.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
 bg_color = Color(0.1, 0.08, 0.06, 0.92)
@@ -116,10 +116,10 @@ offset_bottom = 825.0
 color = Color(0.76, 0.55, 0.32, 0.75)
 
 [node name="LagoBrejo" type="ColorRect" parent="."]
-offset_left = 1120.0
-offset_top = 660.0
-offset_right = 1440.0
-offset_bottom = 940.0
+offset_left = 1140.0
+offset_top = 680.0
+offset_right = 1420.0
+offset_bottom = 920.0
 color = Color(0.1, 0.22, 0.28, 0.88)
 
 [node name="YSortContainer" type="Node2D" parent="."]
@@ -142,7 +142,7 @@ position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_player")
 
 [node name="Camera2D" type="Camera2D" parent="YSortContainer/Player"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.25, 1.25)
 limit_left = 0
 limit_top = 0
 limit_right = 1600
@@ -157,11 +157,11 @@ y_sort_enabled = true
 position = Vector2(740, 1370)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
-scale = Vector2(0.65, 0.65)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("8_altar_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
-position = Vector2(0, 30)
+position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Area2D" type="Area2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
@@ -185,7 +185,7 @@ y_sort_enabled = true
 position = Vector2(800, 770)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Crossroads/Placa"]
-scale = Vector2(0.65, 0.65)
+scale = Vector2(0.38, 0.38)
 texture = ExtResource("7_sign_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Crossroads/Placa"]
@@ -196,32 +196,32 @@ y_sort_enabled = true
 
 [node name="Cabana" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
 y_sort_enabled = true
-position = Vector2(340, 680)
+position = Vector2(360, 700)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-scale = Vector2(0.72, 0.72)
+scale = Vector2(0.48, 0.48)
 texture = ExtResource("4_cabin_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-position = Vector2(0, 45)
+position = Vector2(0, 30)
 shape = SubResource("RectangleShape2D_cabin")
 
 [node name="PortaArea" type="Area2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-position = Vector2(-2, 100)
+position = Vector2(-2, 70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana/PortaArea"]
 shape = SubResource("CircleShape2D_interact_small")
 
 [node name="Fogueira" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
 y_sort_enabled = true
-position = Vector2(440, 840)
+position = Vector2(460, 830)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.42, 0.42)
 texture = ExtResource("5_fire_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
-position = Vector2(0, 10)
+position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_fire")
 
 [node name="Area2D" type="Area2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
@@ -234,22 +234,24 @@ y_sort_enabled = true
 position = Vector2(250, 830)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Bau"]
-scale = Vector2(0.68, 0.68)
+scale = Vector2(0.38, 0.38)
 texture = ExtResource("6_chest_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Bau"]
 shape = SubResource("CircleShape2D_interact_small")
 
 [node name="CercaNorte" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
-position = Vector2(170, 780)
+position = Vector2(220, 760)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/CercaNorte"]
+scale = Vector2(0.55, 0.55)
 texture = ExtResource("9_fence_tex")
 
 [node name="CercaSul" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
-position = Vector2(170, 860)
+position = Vector2(220, 860)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/CercaSul"]
+scale = Vector2(0.55, 0.55)
 texture = ExtResource("9_fence_tex")
 
 [node name="SacredMarsh" type="Node2D" parent="YSortContainer"]
@@ -260,11 +262,11 @@ y_sort_enabled = true
 position = Vector2(1280, 770)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("8_altar_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
-position = Vector2(0, 35)
+position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Area2D" type="Area2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
@@ -273,7 +275,7 @@ shape = SubResource("CircleShape2D_tree_root")
 shape = SubResource("CircleShape2D_interact_med")
 
 [node name="OssadaSoldado" type="Area2D" parent="YSortContainer/SacredMarsh"]
-position = Vector2(1180, 850)
+position = Vector2(1200, 840)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SacredMarsh/OssadaSoldado"]
 shape = SubResource("CircleShape2D_interact_small")
@@ -283,146 +285,194 @@ y_sort_enabled = true
 
 [node name="Tree1" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(620, 1480)
+position = Vector2(650, 1450)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree1"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree1"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree2" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(980, 1480)
+position = Vector2(950, 1450)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree2"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree2"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree3" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(550, 1300)
+position = Vector2(620, 1300)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree3"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree3"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree4" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(1050, 1300)
+position = Vector2(980, 1300)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree4"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree4"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree5" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(660, 1100)
+position = Vector2(660, 1120)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree5"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree5"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree6" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(940, 1100)
+position = Vector2(940, 1120)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree6"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree6"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree7" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(680, 920)
+position = Vector2(680, 940)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree7"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree7"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree8" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(920, 920)
+position = Vector2(920, 940)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree8"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree8"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree9" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(720, 650)
+position = Vector2(700, 680)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree9"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree9"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree10" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(880, 650)
+position = Vector2(900, 680)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree10"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree10"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree11" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(520, 880)
+position = Vector2(500, 880)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree11"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree11"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="Tree12" type="StaticBody2D" parent="YSortContainer/Trees"]
 y_sort_enabled = true
-position = Vector2(1080, 880)
+position = Vector2(1100, 880)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree12"]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree12"]
-position = Vector2(0, 85)
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree13" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(180, 680)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree13"]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree13"]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree14" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(520, 680)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree14"]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree14"]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree15" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(1080, 640)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree15"]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree15"]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_tree_root")
+
+[node name="Tree16" type="StaticBody2D" parent="YSortContainer/Trees"]
+y_sort_enabled = true
+position = Vector2(1440, 640)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree16"]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("3_tree_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Trees/Tree16"]
+position = Vector2(0, 40)
 shape = SubResource("CircleShape2D_tree_root")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
