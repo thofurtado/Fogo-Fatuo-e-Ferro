@@ -1,4 +1,4 @@
-extends Node2D
+﻿extends Node2D
 
 @onready var shader_rect = $PostProcessLayer/ColorRect
 @onready var dialogue_panel = $UILayer/DialogueBubble

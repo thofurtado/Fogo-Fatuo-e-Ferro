@@ -1,4 +1,4 @@
-extends Node2D
+﻿extends Node2D
 
 func _draw():
 	# Fundo: Chão de terra batida e capim

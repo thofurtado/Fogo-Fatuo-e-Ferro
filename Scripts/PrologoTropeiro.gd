@@ -1,4 +1,4 @@
-extends Control
+﻿extends Control
 
 @onready var cargo_title = $UILayer/CargoPanel/MarginContainer/VBoxContainer/CargoTitle
 @onready var cargo_stats = $UILayer/CargoPanel/MarginContainer/VBoxContainer/CargoStats

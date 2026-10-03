@@ -1,4 +1,4 @@
-extends Control
+﻿extends Control
 
 @onready var player = $Player
 @onready var chest_area = $BauArea

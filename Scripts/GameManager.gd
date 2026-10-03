@@ -1,4 +1,4 @@
-extends Node
+﻿extends Node
 
 # Singleton GameManager - Gerencia o estado global do RPG Fogo-Fátuo & Ferro
 
@@ -140,4 +140,4 @@ func select_cargo(cargo_id: String):
 
 func add_item(item_name: String):
 	inventory.append(item_name)
-	item_collected.emit(item_name)
+	item_collected.emit(item_name)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+﻿[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Scripts/CharacterSelect.gd" id="1_select"]
 [ext_resource type="Texture2D" path="res://Assets/Backgrounds/poster_capa.jpg" id="2_bg"]

@@ -1,4 +1,4 @@
-extends Control
+﻿extends Control
 
 @onready var btn_start = $ButtonsContainer/BtnStart
 @onready var btn_archetypes = $ButtonsContainer/BtnArchetypes

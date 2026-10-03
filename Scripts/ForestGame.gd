@@ -1,4 +1,4 @@
-extends Control
+﻿extends Control
 
 @onready var bg_dia = $BackgroundDia
 @onready var bg_noite = $BackgroundNoite

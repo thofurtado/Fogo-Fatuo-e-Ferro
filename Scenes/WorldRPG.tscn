@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+﻿[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://Scripts/WorldRPG.gd" id="1_world"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/textura_grama_serra.png" id="2_grass_tex"]

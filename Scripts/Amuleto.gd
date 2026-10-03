@@ -1,4 +1,4 @@
-extends Area2D
+﻿extends Area2D
 
 @onready var sprite = $Sprite2D
 var pulse_time: float = 0.0

@@ -1,4 +1,4 @@
-extends Area2D
+﻿extends Area2D
 
 signal interaction_requested(npc_name, dialogue_lines)
 

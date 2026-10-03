@@ -1,4 +1,4 @@
-extends Node2D
+﻿extends Node2D
 
 @onready var sprite = $Sprite2D
 var float_time: float = 0.0

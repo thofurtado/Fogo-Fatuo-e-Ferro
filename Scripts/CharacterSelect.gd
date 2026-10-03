@@ -1,4 +1,4 @@
-extends Control
+﻿extends Control
 
 @onready var title_label = $MainContainer/HeaderPanel/VBoxContainer/TitleLabel
 @onready var subtitle_label = $MainContainer/HeaderPanel/VBoxContainer/SubtitleLabel

@@ -1,4 +1,4 @@
-extends Node2D
+﻿extends Node2D
 
 @onready var player = $YSortContainer/Player
 @onready var chest_sprite = $YSortContainer/TropeiroCamp/Bau/Sprite2D
