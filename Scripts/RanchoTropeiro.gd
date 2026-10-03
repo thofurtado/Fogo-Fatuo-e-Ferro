@@ -1,4 +1,4 @@
-﻿extends Control
+extends Control
 
 @onready var player = $Player
 @onready var chest_area = $BauArea
@@ -6,8 +6,8 @@
 @onready var fire_area = $FogueiraArea
 
 @onready var dialogue_box = $UILayer/DialogueBox
-@onready var dialogue_label = $UILayer/DialogueBox/MarginContainer/HBoxContainer/VBoxContainer/DialogueText
-@onready var speaker_label = $UILayer/DialogueBox/MarginContainer/HBoxContainer/VBoxContainer/Speaker
+@onready var dialogue_label = $UILayer/DialogueBox/MarginContainer/VBoxContainer/DialogueText
+@onready var speaker_label = $UILayer/DialogueBox/MarginContainer/VBoxContainer/Speaker
 
 @onready var hud_hero_name = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/HeroLabel
 @onready var hud_hp = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/HpLabel
