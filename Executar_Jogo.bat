@@ -4,7 +4,9 @@ cd /d "%~dp0"
 
 set "GODOT_EXE="
 
-if exist "%LOCALAPPDATA%\Programs\Godot\Godot_v4.3-stable_win64.exe" (
+if exist "%USERPROFILE%\Documents\GODOT\Godot_v4.7.2-stable_win64.exe" (
+    set "GODOT_EXE=%USERPROFILE%\Documents\GODOT\Godot_v4.7.2-stable_win64.exe"
+) else if exist "%LOCALAPPDATA%\Programs\Godot\Godot_v4.3-stable_win64.exe" (
     set "GODOT_EXE=%LOCALAPPDATA%\Programs\Godot\Godot_v4.3-stable_win64.exe"
 ) else (
     where godot >nul 2>&1 && for /f "delims=" %%i in ('where godot') do set "GODOT_EXE=%%i"
