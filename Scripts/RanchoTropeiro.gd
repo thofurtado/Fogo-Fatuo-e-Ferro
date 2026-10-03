@@ -46,13 +46,21 @@ func _update_hud():
 	hud_hero_name.text = arch["name"]
 	hud_hp.text = "♥ HP: %d/%d" % [arch["vida_atual"], arch["vida_max"]]
 	hud_mana.text = "⚡ MANA: %d/%d" % [arch["mana_atual"], arch["mana_max"]]
+	
+	if GameManager.current_cargo.has("velocidade_micro"):
+		player.speed = 220.0 * GameManager.current_cargo["velocidade_micro"]
+		
 	_refresh_inventory()
 
 func _refresh_inventory():
 	var text = "ITENS NA MOCHILA:\n"
 	for item in GameManager.inventory:
 		text += "• " + item + "\n"
+	if GameManager.current_cargo.has("name"):
+		text += "\n📦 CARGA NAS MULAS:\n• " + GameManager.current_cargo["name"]
+		text += "\n  (Peso: %s | Marcha: %d%%)" % [GameManager.current_cargo["peso"], int(GameManager.current_cargo["velocidade_micro"] * 100)]
 	inventory_text.text = text
+
 
 func _process(_delta):
 	if transitioning:

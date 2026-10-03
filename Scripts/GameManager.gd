@@ -79,6 +79,50 @@ var inventory: Array[String] = []
 var quest_curupira_amulet: bool = false
 var has_curupira_blessing: bool = false
 
+var current_cargo: Dictionary = {}
+
+var cargos_catalog: Dictionary = {
+	"sal_charque": {
+		"id": "sal_charque",
+		"name": "Sacas de Sal & Charque",
+		"category": "Carga Comum (Comércio da Coroa)",
+		"lucro_reis": 200,
+		"peso": "Pesado (40 arrobas)",
+		"velocidade_micro": 0.8,
+		"dias_viagem": 2.0,
+		"risco_patrulha": 1,
+		"reacao_folclore": "Neutra (Entidades ignoram; atrai feras carnívoras)",
+		"item_inventario": "Fardo de Charque de Santos",
+		"desc": "Alimento vital para as vilas do planalto. Pagamento limpo e seguro pela Câmara. Mulas pesadas e passo cadenciado."
+	},
+	"ferro_polvora": {
+		"id": "ferro_polvora",
+		"name": "Caixotes de Ferro & Pólvora Holandesa",
+		"category": "Contrabando da Guerra (1645)",
+		"lucro_reis": 600,
+		"peso": "Muito Pesado (65 arrobas)",
+		"velocidade_micro": 0.65,
+		"dias_viagem": 3.5,
+		"risco_patrulha": 5,
+		"reacao_folclore": "Hostil (O 'Cheiro de Ferro' e pólvora enfurece os guardiões da mata)",
+		"item_inventario": "Barril de Pólvora Holandesa Clandestina",
+		"desc": "Armas para os revoltosos da serra. Paga uma fortuna, mas atrai capitães-do-mato com cães e a fúria do Curupira."
+	},
+	"fumo_reliquias": {
+		"id": "fumo_reliquias",
+		"name": "Fumo de Rolo & Relíquias Jesuítas",
+		"category": "Carga Mística & Botânica",
+		"lucro_reis": 250,
+		"peso": "Leve (15 arrobas)",
+		"velocidade_micro": 1.0,
+		"dias_viagem": 1.5,
+		"risco_patrulha": 2,
+		"reacao_folclore": "Abençoada (Fumo serve como oferenda automática nas encruzilhadas)",
+		"item_inventario": "Rolo de Fumo Sagrado da Mata",
+		"desc": "Fumo de corda aromático e unguentos sagrados. Marcha ligeira e atalhos abertos pelos espíritos da serra."
+	}
+}
+
 func select_archetype(index: int):
 	if index >= 0 and index < archetypes_catalog.size():
 		var chosen = archetypes_catalog[index].duplicate()
@@ -89,6 +133,11 @@ func select_archetype(index: int):
 		inventory.append(chosen["initial_item"])
 		character_selected.emit(chosen["id"])
 
+func select_cargo(cargo_id: String):
+	if cargos_catalog.has(cargo_id):
+		current_cargo = cargos_catalog[cargo_id].duplicate()
+		add_item(current_cargo["item_inventario"])
+
 func add_item(item_name: String):
 	inventory.append(item_name)
-	item_collected.emit(item_name)
+	item_collected.emit(item_name)
