@@ -8,19 +8,16 @@
 
 ---
 
-## 1. Atributos Básicos (Escala 1 a 5)
+## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)
 
-### Físicos
-- **Força / Ímpeto:** 3 *(Impacto violento da montaria de caititu e estocadas de vara)*
-- **Destreza / Celeridade:** 4 *(Movimentação acrobática, ziguezague por troncos caídos e alta iniciativa)*
-- **Vigor / Resiliência:** 4 *(Resistência vegetal rústica; couro batido da floresta)*
-
-### Sociais / Ameaça
-- **Presença / Pavor:** 4 *(Assobio ensurdecedor que arrepia homens e faz cães de caça fugirem ganindo)*
-- **Manipulação / Astúcia:** 3 *(Barganhas duras; atrai caçadores para desfiladeiros)*
-
-### Mentais / Percepção
-- **Prontidão / Sentido da Mata:** 5 *(Onisciente sobre a posição de armas de caça e armadilhas no seu território)*
+* **B – Bravura: 4** *(Guerreira impiedosa perante caçadores armados; lidera a fúria dos animais silvestres)*
+* **A – Agilidade: 4** *(Cavalga em disparada em ziguezague no caititu, desviando de tiros e raízes)*
+* **N – Navegação: 5** *(Dona de todas as picadas e tocas; tranca trilhas com espinhos e guia animais para a segurança)*
+* **D – Destreza: 4** *(Estocadas e chicotadas cirúrgicas com vara de pau-ferro/cipó para desarmar invasores)*
+* **E – Empenho: 4** *(Resistência vegetal rústica; couro batido da mata que amortece impactos e cansaço)*
+* **I – Ingenho: 3** *(Preparo de fumo alucinógeno de pito, extração de venenos de sapo e resinas anestésicas)*
+* **R – Raciocínio: 4** *(Detecta intenções gananciosas a léguas de distância e reconhece armadilhas de ferro)*
+* **A – Astúcia: 3** *(Barganha dura: aceita fumo de corda para liberar passagem ou condena o caçador à perdição)*
 
 ---
 

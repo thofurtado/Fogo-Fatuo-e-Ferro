@@ -7,19 +7,16 @@
 
 ---
 
-## 1. Atributos Iniciais (Escala 1 a 5)
+## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)
 
-### Físicos
-- **Força:** 3
-- **Destreza:** 3
-- **Vigor:** 4 *(Forjado pelo peso da armadura de couro e marchas pesadas)*
-
-### Sociais
-- **Presença:** 2
-- **Manipulação:** 2 *(Visto com desconfiança por autoridades civis e militares)*
-
-### Mentais
-- **Prontidão:** 3 *(Instinto tático militar aguçado)*
+* **B – Bravura: 4** *(Veterano de canhoneios e sangue dos engenhos; inabalável em combate corporal de facão e baioneta)*
+* **A – Agilidade: 2** *(Movimentação prejudicada por botas militares pesadas e couraça de couro batido)*
+* **N – Navegação: 2** *(Depende de marcos de fronteira e estradas reais; perde-se facilmente na mata fechada virgem)*
+* **D – Destreza: 4** *(Especialista em armas de pólvora: pontaria cirúrgica com bacamarte, arcabuz e manuseio de pólvora)*
+* **E – Empenho: 4** *(Resistência férrea de trincheira, marchas forçadas e alta tolerância a ferimentos de batalha)*
+* **I – Ingenho: 3** *(Engenharia de campanha básica, manutenção de mecanismos de disparo e fortificação de acampamentos)*
+* **R – Raciocínio: 3** *(Prontidão tática militar; treinado para reconhecer formações inimigas e linhas de tiro)*
+* **A – Astúcia: 2** *(Marcado como traidor da Coroa; impõe mais temor e intimidação do que diplomacia)*
 
 ---
 

@@ -20,20 +20,16 @@
 
 ---
 
-## 1. Atributos Iniciais (Escala 1 a 5)
+## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)
 
-### Físicos
-- **Força:** 2 *(Não é um guerreiro de armadura, mas sabe desatolar mulas e erguer bruacas)*
-- **Destreza / Celeridade:** 2 *(Passo firme e cadenciado pelo peso das cargas)*
-- **Vigor / Resistência:** 3 *(Costumado a noites frias de serra e chuva na encosta)*
-
-### Sociais
-- **Presença:** 3 *(Carismático e bem recebido em pousos e vilas)*
-- **Manipulação / Lábia:** 5 *(Mestre absoluto da barganha, diplomacia e contrabando)*
-
-### Mentais & Percepção
-- **Prontidão / Sentido de Trilha:** 3 *(Sente a chuva chegando antes das primeiras gotas)*
-- **Sobrevivência & Rotas:** 4 *(Conhece picadas clandestinas que não constam nos mapas reais)*
+* **B – Bravura: 3** *(Firme em desfiladeiros perigosos; não foge de onça, mas evita combates desnecessários)*
+* **A – Agilidade: 2** *(Passo firme e cadenciado pelo peso do fardo; não é acrobata)*
+* **N – Navegação: 5** *(Mestre absoluto das rotas de serra, atalhos clandestinos e pressentimento de chuvas)*
+* **D – Destreza: 3** *(Manejo preciso de laço de couro, facão de três listras e nós de amarras de carga)*
+* **E – Empenho: 4** *(Resistência excepcional a marchas diárias sob lama e frio; capacidade de carga dobrada pela mula)*
+* **I – Ingenho: 3** *(Conserta arreios, avalia pureza do sal/fumo e calcula pesos de balança)*
+* **R – Raciocínio: 3** *(Prontidão prática e faro aguçado para emboscadas de salteadores na curva da serra)*
+* **A – Astúcia: 5** *(Lábia comercial imbatível, barganha com mascates, diplomacia e contrabando com autoridades)*
 
 ---
 

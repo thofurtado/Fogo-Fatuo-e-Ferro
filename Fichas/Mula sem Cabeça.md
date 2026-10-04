@@ -8,19 +8,16 @@
 
 ---
 
-## 1. Atributos Básicos (Escala 1 a 5)
+## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)
 
-### Físicos
-- **Força / Ímpeto:** 4 *(Arromba cercas de madeira e derruba montarias no impacto)*
-- **Destreza / Celeridade:** 5 *(Movimentação rápida no turno; ordem de iniciativa alta)*
-- **Vigor / Resiliência:** 3 *(Resistente a armas comuns; sofre vulnerabilidade a prata/ferro abençoado)*
-
-### Sociais / Ameaça
-- **Presença / Pavor:** 5 *(Aura passiva: causa pânico automático no início do combate)*
-- **Manipulação / Astúcia:** 2 *(Agressividade puramente predatória e instintiva)*
-
-### Mentais / Percepção
-- **Prontidão / Sentido da Mata:** 4 *(Ignora invisibilidade leve/arbustos à noite; enxerga pegadas)*
+* **B – Bravura: 5** *(Fúria cega e inabalável da maldição; imune a qualquer teste de medo, dor ou hesitação)*
+* **A – Agilidade: 5** *(Galope sobrenatural cortando a escuridão; iniciativa máxima e ataques fulminantes)*
+* **N – Navegação: 3** *(Percorre velozmente estradas reais, pontes e encruzilhadas; evita entrar em brejos ou mata densa)*
+* **D – Destreza: 2** *(Ataques em carga frontal bruta e coices esmagadores; zero coordenação motora fina)*
+* **E – Empenho: 4** *(Corpo blindado por cascos de ferro incandescentes e fôlego eterno até o primeiro canto do galo)*
+* **I – Ingenho: 1** *(Instinto puramente amaldiçoado e predatório; desprovida de artifícios técnicos humanos)*
+* **R – Raciocínio: 2** *(Faro aguçado para o cheiro de medo e culpa; incapaz de desvendar estratégias de emboscada)*
+* **A – Astúcia: 5** *(Aura de Pavor místico: sua aproximação impõe terror paralisante imediato em homens e animais)*
 
 ---
 

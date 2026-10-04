@@ -12,19 +12,16 @@
 
 ---
 
-## 1. Atributos Básicos (Escala 1 a 5)
+## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)
 
-### Físicos
-- **Força / Ímpeto:** 2 *(Ataques focados e certeiros com porrete de pau-brasil)*
-- **Destreza / Celeridade:** 5 *(Agilidade extrema; ilusão óptica de movimento devido aos pés invertidos)*
-- **Vigor / Resiliência:** 3 *(A floresta absorve parte dos danos diretos sofrendo por ele)*
-
-### Sociais / Ameaça
-- **Presença / Pavor:** 3 *(Causa desorientação e culpa em vez de terror histérico)*
-- **Manipulação / Astúcia:** 5 *(Mestre das ilusões sonoras e caminhos falsos)*
-
-### Mentais / Percepção
-- **Prontidão / Sentido da Mata:** 5 *(Onisciente em seu bioma; impossível ser pego de surpresa)*
+* **B – Bravura: 3** *(Guerreiro místico destemido; prefere a desorientação e a ilusão ao combate corporal bruto)*
+* **A – Agilidade: 5** *(Celeridade sobre-humana e ilusão de deslocamento contínuo provocada pelos pés virados para trás)*
+* **N – Navegação: 5** *(Onisciente em seu bioma; domina cada raiz, rio e desfiladeiro; impossível de ser rastreado)*
+* **D – Destreza: 4** *(Golpes certeiros de tacape de pau-brasil e armadilhas perfeitas com cipós da serra)*
+* **E – Empenho: 3** *(Corpo ágil de curumim; a própria floresta absorve parte dos impactos desferidos contra ele)*
+* **I – Ingenho: 4** *(Conhecimento botânico ancestral; manipula a flora para trancar caminhos e curar feras)*
+* **R – Raciocínio: 5** *(Inteligência primordial e vigília eterna; impossível ser pego de surpresa no seu território)*
+* **A – Astúcia: 5** *(Mestre absoluto de ilusões acústicas, assobios que desorientam bússolas e barganhas com caçadores)*
 
 ---
 
