@@ -3,11 +3,19 @@
 > **Foco:** Comércio, Diplomacia, Exploração em Telas & Gestão de Carga.  
 > **Inspiração Visual e Mecânica:** Traço Gibi (Ziraldo & Maurício) com a dinâmica de exploração, quebra-cabeças e interação com objetos de **Goofy Troop (SNES / Capcom 1993)**.
 
+### 🎨 Design do Sprite de Exploração (Traço Gibi / Maurício de Sousa & Canini):
+![[tropeiro_mula_estilo_gibi.jpg]]
+*Silhueta arredondada, traço grosso de nanquim e cores planas saturadas: otimizado para visibilidade e leitura instantânea na tela 9:16 mobile!*
+
+---
+
+### 🖼️ Ilustração Conceitual (Estilo Ziraldo):
 ![[concept_tropeiro_mula.jpg]]
 
 - **Origem / Região de Início:** 4. Litoral e Rotas da Serra (Porto de Santos / Encostas da Serra do Mar)
 - **Condição Social & Ofício:** Tropeiro Livre / Mestre das Tropas de Mulas
 - **Companheira Inseparável:** A Mula Cargueira (transporta bruacas, barris de pólvora, fumo e mantimentos)
+
 
 ---
 
