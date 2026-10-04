@@ -1,15 +1,17 @@
 {
-	"nodes":[
-		{"id":"gdd","x":-450,"y":-200,"width":400,"height":450,"type":"file","file":"Docs/GDD_VISAO_GERAL.md"},
-		{"id":"world","x":0,"y":-200,"width":400,"height":450,"type":"file","file":"Docs/WORLDBUILDING.md"},
-		{"id":"matriz","x":450,"y":-200,"width":400,"height":450,"type":"file","file":"Docs/MATRIZ_DE_CRIACAO_E_PROLOGOS.md"},
-		{"id":"fichas","x":-220,"y":300,"width":380,"height":250,"type":"text","text":"### 🎭 Fichas dos Personagens\n- *Espaço reservado para as fichas que você está desenvolvendo!*\n- Cole aqui ou arraste novos arquivos markdown de personagens."},
-		{"id":"lembretes","x":220,"y":300,"width":380,"height":250,"type":"text","text":"### 📌 Lembretes & Próximos Passos\n- [ ] Ajustar mecânica de exploração no Godot\n- [ ] Validar atributos e fórmulas de combate\n- [ ] Adicionar rascunhos de cenários e cenas"}
+	"nodes": [
+		{"id": "historia", "x": 0, "y": -700, "width": 450, "height": 420, "type": "file", "file": "Docs/HISTORIA_E_AMBIENTACAO_1645.md"},
+		{"id": "gdd", "x": -450, "y": -200, "width": 400, "height": 450, "type": "file", "file": "Docs/GDD_VISAO_GERAL.md"},
+		{"id": "world", "x": 0, "y": -200, "width": 400, "height": 450, "type": "file", "file": "Docs/WORLDBUILDING.md"},
+		{"id": "matriz", "x": 450, "y": -200, "width": 400, "height": 450, "type": "file", "file": "Docs/MATRIZ_DE_CRIACAO_E_PROLOGOS.md"},
+		{"id": "fichas", "x": -220, "y": 300, "width": 380, "height": 250, "type": "text", "text": "### 🎭 Fichas dos Personagens\n- *Espaço reservado para as fichas que você está desenvolvendo!*\n- Cole aqui ou arraste novos arquivos markdown de personagens."},
+		{"id": "lembretes", "x": 220, "y": 300, "width": 380, "height": 250, "type": "text", "text": "### 📌 Lembretes & Próximos Passos\n- [ ] Ajustar mecânica de exploração no Godot\n- [ ] Validar atributos e fórmulas de combate\n- [ ] Adicionar rascunhos de cenários e cenas"}
 	],
-	"edges":[
-		{"id":"edge1","fromNode":"gdd","fromSide":"right","toNode":"world","toSide":"left"},
-		{"id":"edge2","fromNode":"world","fromSide":"right","toNode":"matriz","toSide":"left"},
-		{"id":"edge3","fromNode":"world","fromSide":"bottom","toNode":"fichas","toSide":"top"},
-		{"id":"edge4","fromNode":"matriz","fromSide":"bottom","toNode":"lembretes","toSide":"top"}
+	"edges": [
+		{"id": "edge_hist", "fromNode": "historia", "fromSide": "bottom", "toNode": "world", "toSide": "top"},
+		{"id": "edge1", "fromNode": "gdd", "fromSide": "right", "toNode": "world", "toSide": "left"},
+		{"id": "edge2", "fromNode": "world", "fromSide": "right", "toNode": "matriz", "toSide": "left"},
+		{"id": "edge3", "fromNode": "world", "fromSide": "bottom", "toNode": "fichas", "toSide": "top"},
+		{"id": "edge4", "fromNode": "matriz", "fromSide": "bottom", "toNode": "lembretes", "toSide": "top"}
 	]
 }
