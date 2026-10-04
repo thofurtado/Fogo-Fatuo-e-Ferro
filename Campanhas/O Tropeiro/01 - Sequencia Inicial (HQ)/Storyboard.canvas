@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"11f353862b800c37","type":"file","file":"Pasted image 20261004082207.png","x":-1987,"y":-920,"width":223,"height":399},
+		{"id":"629868b7c7188914","type":"text","text":"TELA INICIAL","x":-2000,"y":-480,"width":250,"height":60},
+		{"id":"mapamundi_screen_node","type":"file","file":"mapamundi_selecao_origem.jpg","x":-1660,"y":-920,"width":224,"height":400},
+		{"id":"mapamundi_text_node","type":"text","text":"## 1. SELEÇÃO DE ORIGEM\nMapa-múndi cartográfico em pergaminho (1645).\nO jogador escolhe 1 dos 3 continentes:\n- **Brasil / América do Sul**\n- **Europa**\n- **África**","x":-1680,"y":-480,"width":270,"height":150}
+	],
+	"edges":[
+		{"id":"0f9d95e55e78abeb","fromNode":"629868b7c7188914","fromSide":"top","toNode":"11f353862b800c37","toSide":"bottom"},
+		{"id":"edge_intro_to_mapa","fromNode":"11f353862b800c37","fromSide":"right","toNode":"mapamundi_screen_node","toSide":"left"},
+		{"id":"edge_mapa_text","fromNode":"mapamundi_text_node","fromSide":"top","toNode":"mapamundi_screen_node","toSide":"bottom"}
+	]
+}

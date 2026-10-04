@@ -5,7 +5,6 @@
 		{"id":"727cd46246645d22","type":"text","text":"Uma ideia de como seria a Gameplay no modo Exploração","x":-60,"y":71,"width":250,"height":98},
 		{"id":"ba42733079ef960f","type":"text","text":"Cut-scene inicial, formando o prólogo do jogo, quando o personagem escolhido é o índio Papa Pin. Brincar com 2 estilos de desenho diferentes, pra deixar mais expressivo","x":-120,"y":-340,"width":250,"height":220},
 		{"id":"a02ff128129e46d4","type":"file","file":"WhatsApp Image 2026-10-02 at 16.29.17.jpeg","x":-400,"y":260,"width":400,"height":332},
-		{"id":"cba18fca8fa7703b","type":"text","text":"Um possível design da tela de seleção de personagem. Mas a ordem tá errada. A seleção da região vem por último.","x":-20,"y":380,"width":250,"height":154},
 		{"id":"fb23c68d436e1377","type":"file","file":"Pasted image 20261003190620.jpg","x":120,"y":680,"width":400,"height":225},
 		{"id":"ce46124013a88ce6","type":"text","text":"Seguindo o visual das linhas de Ziraldo no modo Exploração, quero que o modo de batalha siga o estilo do Super Mario World, mas com a rolagem de dados sobreposta a tela de alguma forma","x":-125,"y":720,"width":250,"height":231},
 		{"id":"tropeiro_hq_node","type":"file","file":"hq_tropeiro.jpg","x":520,"y":-385,"width":313,"height":560},
@@ -18,7 +17,8 @@
 		{"id":"curupira_concept_text","type":"text","text":"## 🔥 O Curupira: Protetor da Mata\nFiel à anatomia clássica do folclore nacional:\n- Pés invertidos com pegadas ao contrário no solo\n- Cabelos de fogo vivo e dentes verdes\n- Expressão séria, calma e vigilante (guardião místico da floresta)\n- Tacape de pau-brasil e companheiro caititu (porco-do-mato)","x":1940,"y":120,"width":480,"height":260},
 		{"id":"0900bf7e3a954229","type":"file","file":"Pasted image 20261003220325.png","x":1130,"y":551,"width":320,"height":399},
 		{"id":"8da8380a69dd1519","type":"file","file":"Pasted image 20261003220525.png","x":840,"y":551,"width":279,"height":400},
-		{"id":"1a1fe01aa93a418c","type":"file","file":"Pasted image 20261003220547.png","x":1480,"y":551,"width":259,"height":400}
+		{"id":"1a1fe01aa93a418c","type":"file","file":"Pasted image 20261003220547.png","x":1480,"y":551,"width":259,"height":400},
+		{"id":"cba18fca8fa7703b","type":"text","text":"Um possível design da tela de seleção de personagem. Mas a ordem tá errada. A seleção da região vem por último.","x":0,"y":380,"width":250,"height":154}
 	],
 	"edges":[
 		{"id":"48a4bb44a449c4a7","fromNode":"727cd46246645d22","fromSide":"bottom","toNode":"b8abcaf1a7dd1292","toSide":"bottom"},

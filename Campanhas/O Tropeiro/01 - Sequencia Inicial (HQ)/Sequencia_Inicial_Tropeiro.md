@@ -20,9 +20,39 @@ Para manter a consistência e facilitar a importação direta para o Godot e Obs
 
 ---
 
-## 🎞️ Decupagem das Páginas & Legendas de Rodapé
+---
 
-*(À medida que você for desenhando no Corel e exportando, preencheremos ou ajustaremos as legendas e quadros abaixo)*
+## 🗺️ Etapa 0: A Tela de Seleção de Origem (Mapa-Múndi Cartográfico)
+
+Esta é a primeira tela interativa que abre a construção de personagem e define a raiz da campanha. O visual utiliza a moldura cartográfica entalhada e mapa em pergaminho antigo de 1645.
+
+![[mapamundi_selecao_origem.jpg]]
+
+### 🧭 Os 3 Continentes Selecionáveis:
+
+1. **🇧🇷 América do Sul (Brasil Colonial):**
+   * **Ícone no Mapa:** Estandarte colonial com a **Cruz da Ordem de Cristo** e aura iluminada em dourado.
+   * **Texto do Rodapé ao Clicar:**
+     > *"Ano de 1645. Nas terras de Santa Cruz, o sangue dos povos originários e dos mestiços da terra desafia as picadas da serra e as entidades milenares da mata."*
+   * **Próxima Tela:** Escolha entre **Tropeiro Paulista**, **Caboclo da Terra** ou **Nativo Batedor (Curumim)**.
+
+2. **👑 Continente Europeu:**
+   * **Ícone no Mapa:** Estandarte heráldico com brasão real de armas.
+   * **Texto do Rodapé ao Clicar:**
+     > *"Das cortes e frotas do Velho Mundo chegam os homens do ferro, da pólvora e da fé, buscando fortuna, redenção ou fuga no além-mar."*
+   * **Próxima Tela:** Escolha entre **Explorador Português**, **Soldado Espanhol** ou **Mercenário/Desertor Flamengo (WIC)**.
+
+3. **🛡️ Continente Africano:**
+   * **Ícone no Mapa:** Estandarte entalhado com escudo e máscara tribal guerreira.
+   * **Texto do Rodapé ao Clicar:**
+     > *"Trazidos pelas correntes do Atlântico sob o jugo dos grilhões, guerreiros, ferreiros sagrados e líderes ancestrais constroem a liberdade nos quilombos."*
+   * **Próxima Tela:** Escolha entre **Guerreiro Quilombola / Fugitivo**, **Ferreiro Ancestral** ou **Líder Comunitário**.
+
+---
+
+## 🎞️ Decupagem da Sequência Narrativa (HQ / Prólogo do Tropeiro)
+
+Após a escolha do continente (América do Sul) e da classe **Tropeiro**, a história engata na sequência em quadrinhos de introdução:
 
 ### 📄 Página 01: O Cenário & O Porto
 * **Arquivo da Imagem:** `![[tropeiro_intro_p01.png]]`
