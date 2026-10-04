@@ -15,7 +15,7 @@
 * **N – Navegação: 3** *(Percorre velozmente estradas reais, pontes e encruzilhadas; evita entrar em brejos ou mata densa)*
 * **D – Destreza: 2** *(Ataques em carga frontal bruta e coices esmagadores; zero coordenação motora fina)*
 * **E – Empenho: 4** *(Corpo blindado por cascos de ferro incandescentes e fôlego eterno até o primeiro canto do galo)*
-* **I – Ingenho: 1** *(Instinto puramente amaldiçoado e predatório; desprovida de artifícios técnicos humanos)*
+* **I – Instinto: 2** *(Instinto furioso e selvagem; rastreia almas pelo cheiro de medo e culpa na calada da noite)*
 * **R – Raciocínio: 2** *(Faro aguçado para o cheiro de medo e culpa; incapaz de desvendar estratégias de emboscada)*
 * **A – Astúcia: 5** *(Aura de Pavor místico: sua aproximação impõe terror paralisante imediato em homens e animais)*
 

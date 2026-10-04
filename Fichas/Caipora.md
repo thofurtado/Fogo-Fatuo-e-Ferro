@@ -15,7 +15,7 @@
 * **N – Navegação: 5** *(Dona de todas as picadas e tocas; tranca trilhas com espinhos e guia animais para a segurança)*
 * **D – Destreza: 4** *(Estocadas e chicotadas cirúrgicas com vara de pau-ferro/cipó para desarmar invasores)*
 * **E – Empenho: 4** *(Resistência vegetal rústica; couro batido da mata que amortece impactos e cansaço)*
-* **I – Ingenho: 3** *(Preparo de fumo alucinógeno de pito, extração de venenos de sapo e resinas anestésicas)*
+* **I – Instinto: 4** *(Sentido animal ancestral; lê o vento e antecipa a mira de caçadores antes do disparo)*
 * **R – Raciocínio: 4** *(Detecta intenções gananciosas a léguas de distância e reconhece armadilhas de ferro)*
 * **A – Astúcia: 3** *(Barganha dura: aceita fumo de corda para liberar passagem ou condena o caçador à perdição)*
 

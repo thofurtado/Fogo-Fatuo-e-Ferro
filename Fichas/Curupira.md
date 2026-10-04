@@ -19,7 +19,7 @@
 * **N – Navegação: 5** *(Onisciente em seu bioma; domina cada raiz, rio e desfiladeiro; impossível de ser rastreado)*
 * **D – Destreza: 4** *(Golpes certeiros de tacape de pau-brasil e armadilhas perfeitas com cipós da serra)*
 * **E – Empenho: 3** *(Corpo ágil de curumim; a própria floresta absorve parte dos impactos desferidos contra ele)*
-* **I – Ingenho: 4** *(Conhecimento botânico ancestral; manipula a flora para trancar caminhos e curar feras)*
+* **I – Instinto: 5** *(Instinto territorial supremo; pressente o peso de qualquer bota pisando em folha seca a léguas de distância)*
 * **R – Raciocínio: 5** *(Inteligência primordial e vigília eterna; impossível ser pego de surpresa no seu território)*
 * **A – Astúcia: 5** *(Mestre absoluto de ilusões acústicas, assobios que desorientam bússolas e barganhas com caçadores)*
 

@@ -14,7 +14,7 @@
 * **N – Navegação: 5** *(Onisciente no bioma; lê o voo das aves, correntes dos rios e rastros antigos na terra úmida)*
 * **D – Destreza: 5** *(Precisão cirúrgica no arco recurvo de madeira de lei, zarabatana e armadilhas de cipó)*
 * **E – Empenho: 3** *(Corpo enxuto e resistente; tolera sede e sol forte, mas não carrega fardos pesados de ferro)*
-* **I – Ingenho: 4** *(Conhecimento enciclopédico de ervas medicinais, raízes nutritivas e resinas de caça)*
+* **I – Instinto: 4** *(Simbiose primal com a floresta; arrepio na espinha ao notar predadores camuflados e venenos)*
 * **R – Raciocínio: 4** *(Foco mental aguçado; imune a desorientações sonoras simples e ilusões de estrada)*
 * **A – Astúcia: 2** *(Silencioso, reservado e direto; desconfia profundamente da lábia de mercadores das vilas)*
 

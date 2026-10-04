@@ -55,12 +55,12 @@ O sistema **B.A.N.D.E.I.R.A.** é a matriz primária universal de atributos de *
   * Limite de peso de carga nas bruacas e inventário individual.
   * Resistência a venenos, febres da várzea e exaustão por sede ou fome.
 
-### 6. 🌿 I – Ingenho (Engenho / Intelecto)
-* **O que mede:** Conhecimento técnico de manufatura colonial, identificação de ervas e minérios, línguas/dialetos e manipulação de pólvora/ferro.
+### 6. 👁️ I – Instinto
+* **O que mede:** Reação intuitiva, sexto sentido de sobrevivência na mata, leitura de perigo iminente, pressentimento e ação reflexiva sob pressão.
 * **Aplicações no Jogo:**
-  * Preparo de remédios, cataplasmas de copaíba e antídotos.
-  * Forja rápida de lâminas, reparo de armas de fogo e engenhocas de acampamento.
-  * Diálogo em múltiplos idiomas de 1645 (Português, Nheengatu/Tupi antigo, Holandês, Quimbundo).
+  * Notar emboscadas antes do primeiro golpe ou tiro.
+  * Reação visceral no combate (evitar golpes críticos e desarmes surpresa).
+  * Sentir a aproximação de entidades sobrenaturais pelo arrepio na espinha e silêncio da mata.
 
 ### 7. 🧠 R – Raciocínio
 * **O que mede:** Prontidão mental, concentração sob estresse, velocidade analítica e resistência a ilusões mentais.
@@ -80,11 +80,11 @@ O sistema **B.A.N.D.E.I.R.A.** é a matriz primária universal de atributos de *
 
 ## ⚖️ Tabela Canônica dos Personagens e Entidades
 
-| Personagem / Entidade | B (Bravura) | A (Agilidade) | N (Navegação) | D (Destreza) | E (Empenho) | I (Ingenho) | R (Raciocínio) | A (Astúcia) | Foco Principal |
+| Personagem / Entidade | B (Bravura) | A (Agilidade) | N (Navegação) | D (Destreza) | E (Empenho) | I (Instinto) | R (Raciocínio) | A (Astúcia) | Foco Principal |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | 🤠 **O Tropeiro Paulista** | 3 | 2 | **5** | 3 | **4** | 3 | 3 | **5** | Navegação de Rotas, Cargas & Lábia Comercial |
-| 🏹 **Papa Pin (Nativo)** | 3 | **5** | **5** | **5** | 3 | 4 | 4 | 2 | Agilidade Máxima, Tiro Certeiro & Mata |
+| 🏹 **Papa Pin (Nativo)** | 3 | **5** | **5** | **5** | 3 | **4** | 4 | 2 | Agilidade Máxima, Tiro Certeiro & Mata |
 | ⚔️ **Desertor da Coroa** | **4** | 2 | 2 | **4** | **4** | 3 | 3 | 2 | Combate Bélico, Pólvora & Resistência Física |
-| 🐗 **A Caipora** | **4** | 4 | **5** | 4 | **4** | 3 | 4 | 3 | Domínio da Fauna, Montaria & Emboscada |
-| 👹 **A Mula sem Cabeça** | **5** | **5** | 3 | 2 | **4** | 1 | 2 | **5** | Carga Rápida de Fogo & Aura de Pavor |
-| 🌿 **O Curupira (Reserva)**| 3 | **5** | **5** | 4 | 3 | 4 | **5** | **5** | Celeridade, Ilusão Mental & Sentido da Mata |
+| 🐗 **A Caipora** | **4** | 4 | **5** | 4 | **4** | **4** | 4 | 3 | Domínio da Fauna, Montaria & Emboscada |
+| 👹 **A Mula sem Cabeça** | **5** | **5** | 3 | 2 | **4** | 2 | 2 | **5** | Carga Rápida de Fogo & Aura de Pavor |
+| 🌿 **O Curupira (Reserva)**| 3 | **5** | **5** | 4 | 3 | **5** | **5** | **5** | Celeridade, Ilusão Mental & Sentido da Mata |

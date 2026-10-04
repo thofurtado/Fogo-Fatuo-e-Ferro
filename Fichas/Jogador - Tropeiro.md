@@ -27,7 +27,7 @@
 * **N – Navegação: 5** *(Mestre absoluto das rotas de serra, atalhos clandestinos e pressentimento de chuvas)*
 * **D – Destreza: 3** *(Manejo preciso de laço de couro, facão de três listras e nós de amarras de carga)*
 * **E – Empenho: 4** *(Resistência excepcional a marchas diárias sob lama e frio; capacidade de carga dobrada pela mula)*
-* **I – Ingenho: 3** *(Conserta arreios, avalia pureza do sal/fumo e calcula pesos de balança)*
+* **I – Instinto: 3** *(Faro aguçado para mudanças de clima na serra; pressente quando a mula estaca de pavor antes de ver a fera)*
 * **R – Raciocínio: 3** *(Prontidão prática e faro aguçado para emboscadas de salteadores na curva da serra)*
 * **A – Astúcia: 5** *(Lábia comercial imbatível, barganha com mascates, diplomacia e contrabando com autoridades)*
 

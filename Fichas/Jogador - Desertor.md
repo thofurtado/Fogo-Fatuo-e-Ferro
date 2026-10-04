@@ -14,7 +14,7 @@
 * **N – Navegação: 2** *(Depende de marcos de fronteira e estradas reais; perde-se facilmente na mata fechada virgem)*
 * **D – Destreza: 4** *(Especialista em armas de pólvora: pontaria cirúrgica com bacamarte, arcabuz e manuseio de pólvora)*
 * **E – Empenho: 4** *(Resistência férrea de trincheira, marchas forçadas e alta tolerância a ferimentos de batalha)*
-* **I – Ingenho: 3** *(Engenharia de campanha básica, manutenção de mecanismos de disparo e fortificação de acampamentos)*
+* **I – Instinto: 3** *(Reflexos de sobrevivência forjados em trincheiras; reage imediatamente ao menor estalo de galho ou cheiro de pólvora)*
 * **R – Raciocínio: 3** *(Prontidão tática militar; treinado para reconhecer formações inimigas e linhas de tiro)*
 * **A – Astúcia: 2** *(Marcado como traidor da Coroa; impõe mais temor e intimidação do que diplomacia)*
 
