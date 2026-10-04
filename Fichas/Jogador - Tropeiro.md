@@ -9,8 +9,9 @@
 
 ---
 
-### 🖼️ Ilustração Conceitual (Estilo Ziraldo):
-![[concept_tropeiro_mula.jpg]]
+### 🖼️ Character Concept Sheet Oficial (Traço Gibi Sério - 3.5 cabeças):
+![[tropeiro_mula_concept_sheet.jpg]]
+*Expressão calma, compenetrada e atenta. Foco em aventura histórica sem tom infantil.*
 
 - **Origem / Região de Início:** 4. Litoral e Rotas da Serra (Porto de Santos / Encostas da Serra do Mar)
 - **Condição Social & Ofício:** Tropeiro Livre / Mestre das Tropas de Mulas
