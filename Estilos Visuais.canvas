@@ -22,7 +22,9 @@
 		{"id":"mula_concept_node","type":"file","file":"mula_sem_cabeca_estilo_gibi.jpg","x":2480,"y":-385,"width":480,"height":480},
 		{"id":"mula_concept_text","type":"text","text":"## 👹 A Mula sem Cabeça (Criatura Ativa 1)\nTerror das estradas noturnas e encruzilhadas (1645):\n- Chamas de fogo-fátuo azul e alaranjado no lugar da cabeça\n- Cascos de ferro em brasa soltando fagulhas\n- Freio de ferro amaldiçoado com correntes\n- Estilo gibi sério: ameaçadora, rápida e sem tom infantil","x":2480,"y":120,"width":480,"height":260},
 		{"id":"caipora_concept_node","type":"file","file":"caipora_estilo_gibi.jpg","x":3020,"y":-385,"width":480,"height":480},
-		{"id":"caipora_concept_text","type":"text","text":"## 🐗 A Caipora (Criatura Ativa 2)\nProtetora das matas e dos animais da caça:\n- Montada no fiel caititu (porco-do-mato) com presas afiadas\n- Cachimbo de barro (pito) com fumaça mística de fumo de rolo\n- Vara de cipó / pau-ferro para desarme\n- Foco em emboscada a caçadores e exigência de oferendas","x":3020,"y":120,"width":480,"height":260}
+		{"id":"caipora_concept_text","type":"text","text":"## 🐗 A Caipora (Criatura Ativa 2)\nProtetora das matas e dos animais da caça:\n- Montada no fiel caititu (porco-do-mato) com presas afiadas\n- Cachimbo de barro (pito) com fumaça mística de fumo de rolo\n- Vara de cipó / pau-ferro para desarme\n- Foco em emboscada a caçadores e exigência de oferendas","x":3020,"y":120,"width":480,"height":260},
+		{"id":"a213a065d055d816","x":130,"y":-490,"width":341,"height":105,"type":"text","text":"**primeira captura de video de uma gameplay (criando personagem)**"},
+		{"id":"558c1d12e5beed34","x":590,"y":-1180,"width":310,"height":551,"type":"file","file":"primeira gameplay.mp4"}
 	],
 	"edges":[
 		{"id":"48a4bb44a449c4a7","fromNode":"727cd46246645d22","fromSide":"bottom","toNode":"b8abcaf1a7dd1292","toSide":"bottom"},
@@ -34,6 +36,8 @@
 		{"id":"edge_chico","fromNode":"tropeiro_chico_text","fromSide":"top","toNode":"tropeiro_chico_node","toSide":"bottom"},
 		{"id":"edge_curupira","fromNode":"curupira_concept_text","fromSide":"top","toNode":"curupira_concept_node","toSide":"bottom"},
 		{"id":"edge_mula","fromNode":"mula_concept_text","fromSide":"top","toNode":"mula_concept_node","toSide":"bottom"},
-		{"id":"edge_caipora","fromNode":"caipora_concept_text","fromSide":"top","toNode":"caipora_concept_node","toSide":"bottom"}
+		{"id":"edge_caipora","fromNode":"caipora_concept_text","fromSide":"top","toNode":"caipora_concept_node","toSide":"bottom"},
+		{"id":"7ada59ff5427f79d","fromNode":"a213a065d055d816","fromSide":"top","toNode":"558c1d12e5beed34","toSide":"bottom"},
+		{"id":"1bafca82e43eee5a","fromNode":"tropeiro_hq_node","fromSide":"right","toNode":"558c1d12e5beed34","toSide":"left"}
 	]
 }

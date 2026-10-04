@@ -8,6 +8,8 @@ Docs/Referencias/*.pdf
 
 # Obsidian (cache local e janelas)
 .obsidian/workspace.json
-.obsidian/workspace-mobile.json
 .obsidian/cache/
+
+# Gravacoes locais de gameplay
+gameplay/
 
