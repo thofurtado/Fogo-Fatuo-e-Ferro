@@ -1,5 +1,7 @@
 # 👹 Entidade Folclórica: A [[Mula sem Cabeça]]
 
+![[mula_sem_cabeca_estilo_gibi.jpg]]
+
 - **Domínio / Bioma:** Litoral e Rotas de Serra / Sertão (Trilhas noturnas e encostas)
 - **Conceito:** O fardo de uma alma amaldiçoada pela paixão proibida, transformada em uma fera de fogo e cascos de ferro que vaga pelas estradas desertas de 1645.
 - **Tipo de Batalha:** Visualização lateral 2D (Estilo JRPG / Super Mario RPG)

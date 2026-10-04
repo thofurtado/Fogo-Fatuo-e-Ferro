@@ -2,12 +2,22 @@
 	"nodes":[
 		{"id":"11f353862b800c37","type":"file","file":"Pasted image 20261004082207.png","x":-1987,"y":-920,"width":223,"height":399},
 		{"id":"629868b7c7188914","type":"text","text":"TELA INICIAL","x":-2000,"y":-480,"width":250,"height":60},
-		{"id":"mapamundi_screen_node","type":"file","file":"mapamundi_selecao_origem.jpg","x":-1660,"y":-920,"width":224,"height":400},
-		{"id":"mapamundi_text_node","type":"text","text":"## 1. SELEÇÃO DE ORIGEM\nMapa-múndi cartográfico em pergaminho (1645).\nO jogador escolhe 1 dos 3 continentes:\n- **Brasil / América do Sul**\n- **Europa**\n- **África**","x":-1680,"y":-480,"width":270,"height":150}
+		{"id":"mapamundi_screen_node","type":"file","file":"mapamundi_selecao_origem.jpg","x":-1660,"y":-920,"width":223,"height":400},
+		{"id":"mapamundi_text_node","type":"text","text":"## 1. SELEÇÃO DE ORIGEM\nMapa-múndi cartográfico em pergaminho (1645).\nO jogador escolhe 1 dos 3 continentes:\n- **Brasil / América do Sul**\n- **Europa**\n- **África**","x":-1680,"y":-480,"width":260,"height":150},
+		{"id":"2f48cb121c5e8144","type":"file","file":"Pasted image 20261004084907.png","x":-1320,"y":-920,"width":245,"height":399},
+		{"id":"2f407afc8a7e4e26","type":"text","text":"**Terceira tela de seleção:**\n\nNessa tela, baseado na origem do personagem, teremos a opção de escolha de \"classes\". (ex. Um originário do Brasil, pode ser indígena, pode ser mercador, pode ser soldado. Um originário do continente africano, tem as opções disponíveis: Escravo, Mercador, Clero por exemplo. Um originário Europeu, pode escolher entre um Explorador Português, um soldado Espanhol, um Desertor Holandes, tudo dentro das opções históricas da época.)","x":-1320,"y":-480,"width":250,"height":229},
+		{"id":"c39eda20044b7360","type":"file","file":"Pasted image 20261004085901.png","x":-980,"y":-920,"width":243,"height":400},
+		{"id":"8e392511d86f5f92","type":"text","text":"**Quarta e última tela de seleção:**\n\nAqui escolhemos a região onde o gancho na história para aquele personagem se inicia. \nQuando o jogador escolhe uma entre essas 6 opções de região \"1. Nordeste Açucareiro (Guerra holandesa, engenhos e costa)\n2. Sertão do São Francisco (Caatinga, pecuária e rotas de fuga)\n3. Planalto de Piratininga (Vilas vicentinas, berço das bandeiras)\n4. Litoral e Rotas de Serra (Serra do Mar, tropeirismo e rotas mercantes)\n5. Pantanal e Rios Centrais (Terreno híbrido, alagados e navegação)\n6. Sul e Bacia do Prata (Pampas, reduções jesuíticas e fronteiras)\", uma Identidade é gerada automaticamente. Vou dar um exemplo: Na seleção de origem, foi escolhido o Brasil. Na seleção de Classes, uma das opções era Indígena, mas não mostra de qual etnia. Nessa tela de escolha de região, é que vai aparecer de qual tribo ele é. Se escolheu o sul do Brasil, a trio predominante lá naquela época é a X... Se escolheu um Tropeiro do nordeste, será um tropeiro com carro de boi. Se escolheu o litoral de São Paulo, terá uma mula... ","x":-980,"y":-435,"width":250,"height":375},
+		{"id":"2f42fb17b4c3bbba","type":"text","text":"==Com base nessas escolhas, inicia o Prólogo baseado na historia do personagem escolhido==","x":-640,"y":-780,"width":250,"height":120}
 	],
 	"edges":[
 		{"id":"0f9d95e55e78abeb","fromNode":"629868b7c7188914","fromSide":"top","toNode":"11f353862b800c37","toSide":"bottom"},
 		{"id":"edge_intro_to_mapa","fromNode":"11f353862b800c37","fromSide":"right","toNode":"mapamundi_screen_node","toSide":"left"},
-		{"id":"edge_mapa_text","fromNode":"mapamundi_text_node","fromSide":"top","toNode":"mapamundi_screen_node","toSide":"bottom"}
+		{"id":"edge_mapa_text","fromNode":"mapamundi_text_node","fromSide":"top","toNode":"mapamundi_screen_node","toSide":"bottom"},
+		{"id":"0c6928f6ec8da3aa","fromNode":"mapamundi_screen_node","fromSide":"right","toNode":"2f48cb121c5e8144","toSide":"left"},
+		{"id":"c770f0dea1539160","fromNode":"2f48cb121c5e8144","fromSide":"right","toNode":"c39eda20044b7360","toSide":"left"},
+		{"id":"036c79d9efe5bfcb","fromNode":"2f407afc8a7e4e26","fromSide":"top","toNode":"2f48cb121c5e8144","toSide":"bottom"},
+		{"id":"23b74ffefaefdd81","fromNode":"8e392511d86f5f92","fromSide":"top","toNode":"c39eda20044b7360","toSide":"bottom"},
+		{"id":"ec0a065722f5066c","fromNode":"c39eda20044b7360","fromSide":"right","toNode":"2f42fb17b4c3bbba","toSide":"left"}
 	]
 }

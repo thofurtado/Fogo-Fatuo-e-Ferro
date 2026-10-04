@@ -14,11 +14,15 @@
 		{"id":"tropeiro_chico_node","type":"file","file":"tropeiro_mula_estilo_gibi.jpg","x":1420,"y":-385,"width":460,"height":460},
 		{"id":"tropeiro_chico_text","type":"text","text":"## 🌟 Padrão Oficial dos Sprites (Chico Bento / Canini)\nSilhueta limpa, proporções amigáveis (3.5 cabeças) e traço grosso de nanquim.\nZero poluição visual: perfeito para telas verticais 9:16 de celular e animações leves no Godot.","x":1420,"y":100,"width":460,"height":260},
 		{"id":"curupira_concept_node","type":"file","file":"curupira_estilo_gibi.jpg","x":1940,"y":-385,"width":480,"height":480},
-		{"id":"curupira_concept_text","type":"text","text":"## 🔥 O Curupira: Protetor da Mata\nFiel à anatomia clássica do folclore nacional:\n- Pés invertidos com pegadas ao contrário no solo\n- Cabelos de fogo vivo e dentes verdes\n- Expressão séria, calma e vigilante (guardião místico da floresta)\n- Tacape de pau-brasil e companheiro caititu (porco-do-mato)","x":1940,"y":120,"width":480,"height":260},
+		{"id":"curupira_concept_text","type":"text","text":"## 🔥 O Curupira (Reserva Técnica)\nGuardado temporariamente em reserva aguardando sprites de pés invertidos nítidos.\n- Cabelos de fogo vivo e dentes verdes\n- Expressão séria, calma e vigilante\n- Tacape de pau-brasil e caititu","x":1940,"y":120,"width":480,"height":260},
 		{"id":"0900bf7e3a954229","type":"file","file":"Pasted image 20261003220325.png","x":1130,"y":551,"width":320,"height":399},
 		{"id":"8da8380a69dd1519","type":"file","file":"Pasted image 20261003220525.png","x":840,"y":551,"width":279,"height":400},
 		{"id":"1a1fe01aa93a418c","type":"file","file":"Pasted image 20261003220547.png","x":1480,"y":551,"width":259,"height":400},
-		{"id":"cba18fca8fa7703b","type":"text","text":"Um possível design da tela de seleção de personagem. Mas a ordem tá errada. A seleção da região vem por último.","x":0,"y":380,"width":250,"height":154}
+		{"id":"cba18fca8fa7703b","type":"text","text":"Um possível design da tela de seleção de personagem. Mas a ordem tá errada. A seleção da região vem por último.","x":0,"y":380,"width":250,"height":154},
+		{"id":"mula_concept_node","type":"file","file":"mula_sem_cabeca_estilo_gibi.jpg","x":2480,"y":-385,"width":480,"height":480},
+		{"id":"mula_concept_text","type":"text","text":"## 👹 A Mula sem Cabeça (Criatura Ativa 1)\nTerror das estradas noturnas e encruzilhadas (1645):\n- Chamas de fogo-fátuo azul e alaranjado no lugar da cabeça\n- Cascos de ferro em brasa soltando fagulhas\n- Freio de ferro amaldiçoado com correntes\n- Estilo gibi sério: ameaçadora, rápida e sem tom infantil","x":2480,"y":120,"width":480,"height":260},
+		{"id":"caipora_concept_node","type":"file","file":"caipora_estilo_gibi.jpg","x":3020,"y":-385,"width":480,"height":480},
+		{"id":"caipora_concept_text","type":"text","text":"## 🐗 A Caipora (Criatura Ativa 2)\nProtetora das matas e dos animais da caça:\n- Montada no fiel caititu (porco-do-mato) com presas afiadas\n- Cachimbo de barro (pito) com fumaça mística de fumo de rolo\n- Vara de cipó / pau-ferro para desarme\n- Foco em emboscada a caçadores e exigência de oferendas","x":3020,"y":120,"width":480,"height":260}
 	],
 	"edges":[
 		{"id":"48a4bb44a449c4a7","fromNode":"727cd46246645d22","fromSide":"bottom","toNode":"b8abcaf1a7dd1292","toSide":"bottom"},
@@ -28,6 +32,8 @@
 		{"id":"edge_tropeiro","fromNode":"tropeiro_text_node","fromSide":"top","toNode":"tropeiro_hq_node","toSide":"bottom"},
 		{"id":"edge_goofy","fromNode":"goofy_troop_ref_node","fromSide":"top","toNode":"tropeiro_concept_node","toSide":"bottom"},
 		{"id":"edge_chico","fromNode":"tropeiro_chico_text","fromSide":"top","toNode":"tropeiro_chico_node","toSide":"bottom"},
-		{"id":"edge_curupira","fromNode":"curupira_concept_text","fromSide":"top","toNode":"curupira_concept_node","toSide":"bottom"}
+		{"id":"edge_curupira","fromNode":"curupira_concept_text","fromSide":"top","toNode":"curupira_concept_node","toSide":"bottom"},
+		{"id":"edge_mula","fromNode":"mula_concept_text","fromSide":"top","toNode":"mula_concept_node","toSide":"bottom"},
+		{"id":"edge_caipora","fromNode":"caipora_concept_text","fromSide":"top","toNode":"caipora_concept_node","toSide":"bottom"}
 	]
 }

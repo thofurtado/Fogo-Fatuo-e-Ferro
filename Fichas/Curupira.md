@@ -1,5 +1,8 @@
 # 🌿 Entidade Folclórica: O [[Curupira]]
 
+> ⚠️ **STATUS: RESERVA TÉCNICA (GUARDADO)**  
+> Esta entidade está em reserva técnica aguardando solução visual nítida para a anatomia de pés invertidos nos sprites 2D do Godot. Não será utilizada na mini-campanha ativa até nova definição.
+
 ![[curupira_estilo_gibi.jpg]]
 
 - **Domínio / Bioma:** Planalto de Piratininga e Litoral / Rotas de Serra (Mata fechada)
