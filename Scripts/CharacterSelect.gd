@@ -12,6 +12,12 @@ extends Control
 #            Apenas regiões 1, 4 e 6 disponíveis; 2, 3 e 5 travadas. -> Fade to black
 # 5. SHEET PREVIEW: Exibição da ficha pronta de personagem por alguns segundos. -> Fade to black
 # 6. TELA PRETA & PRÓLOGO: Breve silêncio e transição para o Prólogo (PrologoTropeiro.tscn).
+#
+# DISTRIBUIÇÃO ESPACIAL DAS TELAS (Refinada):
+# - Cartões informativos de texto posicionados no RODAPÉ de cada página.
+# - Botões de confirmação e de voltar para a tela anterior dispostos logo ACIMA
+#   do cartão informativo (fora da caixa de texto).
+# - Tipografia ampliada para conforto visual e leitura rápida.
 # ==============================================================================
 
 enum Step {
@@ -47,10 +53,11 @@ var selected_region_id: int = 4
 @onready var btn_origin_brasil = $PanelOrigin/ScrollContainer/VBoxContent/CardsContainer/CardBrasil
 @onready var btn_origin_europa = $PanelOrigin/ScrollContainer/VBoxContent/CardsContainer/CardEuropa
 @onready var btn_origin_africa = $PanelOrigin/ScrollContainer/VBoxContent/CardsContainer/CardAfrica
-@onready var origin_info_title = $PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox/OriginInfoTitle
-@onready var origin_info_desc = $PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox/OriginInfoDesc
-@onready var origin_info_status = $PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox/OriginInfoStatus
-@onready var btn_confirm_origin = $PanelOrigin/VBoxBottom/BtnConfirmOrigin
+@onready var btn_back_origin = $PanelOrigin/ActionBar/BtnBackOrigin
+@onready var btn_confirm_origin = $PanelOrigin/ActionBar/BtnConfirmOrigin
+@onready var origin_info_title = $PanelOrigin/FooterInfoPanel/Margin/VBox/OriginInfoTitle
+@onready var origin_info_status = $PanelOrigin/FooterInfoPanel/Margin/VBox/OriginInfoStatus
+@onready var origin_info_desc = $PanelOrigin/FooterInfoPanel/Margin/VBox/OriginInfoDesc
 
 # Elementos da Seleção de Arquétipo (Etapa 3)
 @onready var btn_class_tropeiro = $PanelClass/ScrollContainer/VBoxContent/TabsContainer/BtnClassTropeiro
@@ -65,10 +72,11 @@ var selected_region_id: int = 4
 @onready var class_status_badge = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader/ClassStatusBadge
 
 @onready var bandeira_grid = $PanelClass/ScrollContainer/VBoxContent/BandeiraPanel/Margin/VBox/BandeiraGrid
-@onready var class_passive_label = $PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox/PassiveLabel
-@onready var class_item_label = $PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox/ItemLabel
-@onready var class_desc_label = $PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox/DescLabel
-@onready var btn_confirm_class = $PanelClass/VBoxBottom/BtnConfirmClass
+@onready var btn_back_class = $PanelClass/ActionBar/BtnBackClass
+@onready var btn_confirm_class = $PanelClass/ActionBar/BtnConfirmClass
+@onready var class_passive_label = $PanelClass/FooterDetailsPanel/Margin/VBox/PassiveLabel
+@onready var class_item_label = $PanelClass/FooterDetailsPanel/Margin/VBox/ItemLabel
+@onready var class_desc_label = $PanelClass/FooterDetailsPanel/Margin/VBox/DescLabel
 
 # Elementos da Seleção de Região (Etapa 4)
 @onready var region_buttons = [
@@ -79,19 +87,20 @@ var selected_region_id: int = 4
 	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg5,
 	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg6
 ]
-@onready var region_info_title = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionTitle
-@onready var region_info_climate = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionClimate
-@onready var region_info_hazards = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionHazards
-@onready var region_info_totem = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionTotem
-@onready var region_info_desc = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionDesc
-@onready var btn_confirm_region = $PanelRegion/VBoxBottom/BtnConfirmRegion
+@onready var btn_back_region = $PanelRegion/ActionBar/BtnBackRegion
+@onready var btn_confirm_region = $PanelRegion/ActionBar/BtnConfirmRegion
+@onready var region_info_title = $PanelRegion/FooterRegionInfoPanel/Margin/VBox/RegionTitle
+@onready var region_info_climate = $PanelRegion/FooterRegionInfoPanel/Margin/VBox/RegionClimate
+@onready var region_info_hazards = $PanelRegion/FooterRegionInfoPanel/Margin/VBox/RegionHazards
+@onready var region_info_totem = $PanelRegion/FooterRegionInfoPanel/Margin/VBox/RegionTotem
+@onready var region_info_desc = $PanelRegion/FooterRegionInfoPanel/Margin/VBox/RegionDesc
 
 # Elementos do Preview da Ficha (Etapa 5)
+@onready var btn_back_sheet = $PanelSheetPreview/ActionBar/BtnBackSheet
+@onready var btn_confirm_sheet = $PanelSheetPreview/ActionBar/BtnConfirmSheet
 @onready var btn_advance_sheet = $PanelSheetPreview/BtnAdvanceSheet
-@onready var sheet_timer_label = $PanelSheetPreview/SheetBannerBottom/TimerLabel
+@onready var sheet_timer_label = $PanelSheetPreview/FooterBannerBottom/TimerLabel
 
-var splash_timer: SceneTreeTimer
-var sheet_timer: SceneTreeTimer
 var sheet_countdown: float = 3.5
 
 func _ready():
@@ -108,21 +117,26 @@ func _ready():
 	btn_origin_brasil.pressed.connect(func(): _select_origin("brasil"))
 	btn_origin_europa.pressed.connect(func(): _select_origin("europa"))
 	btn_origin_africa.pressed.connect(func(): _select_origin("africa"))
+	btn_back_origin.pressed.connect(_on_back_to_menu)
 	btn_confirm_origin.pressed.connect(_on_confirm_origin)
 	
 	# Conexões da Etapa 3 (Classe)
 	btn_class_tropeiro.pressed.connect(func(): _select_archetype("tropeiro"))
 	btn_class_nativo.pressed.connect(func(): _select_archetype("nativo"))
 	btn_class_desertor.pressed.connect(func(): _select_archetype("desertor"))
+	btn_back_class.pressed.connect(func(): _transition_to_step(Step.ORIGIN))
 	btn_confirm_class.pressed.connect(_on_confirm_class)
 	
 	# Conexões da Etapa 4 (Região)
 	for i in range(region_buttons.size()):
 		var reg_id = i + 1
 		region_buttons[i].pressed.connect(func(): _select_region(reg_id))
+	btn_back_region.pressed.connect(func(): _transition_to_step(Step.CLASS))
 	btn_confirm_region.pressed.connect(_on_confirm_region)
 	
 	# Conexões da Etapa 5 (Ficha Pronta)
+	btn_back_sheet.pressed.connect(func(): _transition_to_step(Step.REGION))
+	btn_confirm_sheet.pressed.connect(_on_advance_from_sheet)
 	btn_advance_sheet.pressed.connect(_on_advance_from_sheet)
 	
 	# Inicia valores padrão
@@ -143,7 +157,7 @@ func _process(delta: float):
 	if current_step == Step.SHEET_PREVIEW and not is_transitioning:
 		sheet_countdown -= delta
 		if sheet_timer_label:
-			sheet_timer_label.text = "Iniciando Prólogo em %.1fs... (Toque para avançar)" % max(0.0, sheet_countdown)
+			sheet_timer_label.text = "Iniciando Prólogo em %.1fs... (Toque para avançar agora)" % max(0.0, sheet_countdown)
 		if sheet_countdown <= 0.0:
 			_on_advance_from_sheet()
 
@@ -223,18 +237,17 @@ func _select_origin(origin_id: String):
 	_update_origin_ui()
 
 func _update_origin_ui():
-	# Estilização dos cartões de origem
 	var is_br = (selected_origin_id == "brasil")
 	var is_eu = (selected_origin_id == "europa")
 	var is_af = (selected_origin_id == "africa")
 	
-	btn_origin_brasil.modulate = Color(1.2, 1.15, 0.9) if is_br else Color(0.9, 0.9, 0.9)
+	btn_origin_brasil.modulate = Color(1.25, 1.15, 0.9) if is_br else Color(0.9, 0.9, 0.9)
 	btn_origin_europa.modulate = Color(0.65, 0.65, 0.65)
 	btn_origin_africa.modulate = Color(0.65, 0.65, 0.65)
 	
 	if is_br:
 		origin_info_title.text = "🌎 BRASIL (AMÉRICA PORTUGUESA - 1645)"
-		origin_info_desc.text = "Terra vasta de floresta equatorial, mata atlântica virgem, picadas de serra e rios bravios. Berço das nações originárias guerreiras e dos primeiros tropeiros e sertanistas da Capitania de São Vicente."
+		origin_info_desc.text = "Terra vasta de floresta equatorial, mata atlântica virgem, picadas de serra e rios bravios. Pátria de nações originárias guerreiras e dos primeiros tropeiros e sertanistas da Capitania de São Vicente."
 		origin_info_status.text = "✦ DISPONÍVEL NESTA VERSÃO ✦"
 		origin_info_status.modulate = Color(0.3, 0.9, 0.4)
 		btn_confirm_origin.disabled = false
@@ -261,6 +274,16 @@ func _on_confirm_origin():
 	if selected_origin_id == "brasil":
 		GameManager.selected_origin = "brasil"
 		_transition_to_step(Step.CLASS)
+
+func _on_back_to_menu():
+	if is_transitioning:
+		return
+	is_transitioning = true
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	var tween_out = create_tween()
+	tween_out.tween_property(transition_overlay, "color:a", 1.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	await tween_out.finished
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 # ==============================================================================
 # ETAPA 3: SELEÇÃO DE ARQUÉTIPO / CLASSE
@@ -343,18 +366,18 @@ func _populate_bandeira_grid(bandeira: Dictionary):
 	for item in attr_list:
 		var panel = PanelContainer.new()
 		var sb = StyleBoxFlat.new()
-		sb.bg_color = Color(0.12, 0.1, 0.08, 0.85)
+		sb.bg_color = Color(0.12, 0.1, 0.08, 0.9)
 		sb.border_width_left = 1
 		sb.border_width_top = 1
 		sb.border_width_right = 1
 		sb.border_width_bottom = 1
-		sb.border_color = Color(0.6, 0.5, 0.3, 0.7)
-		sb.corner_radius_top_left = 4
-		sb.corner_radius_top_right = 4
-		sb.corner_radius_bottom_left = 4
-		sb.corner_radius_bottom_right = 4
+		sb.border_color = Color(0.65, 0.55, 0.35, 0.8)
+		sb.corner_radius_top_left = 5
+		sb.corner_radius_top_right = 5
+		sb.corner_radius_bottom_right = 5
+		sb.corner_radius_bottom_left = 5
 		panel.add_theme_stylebox_override("panel", sb)
-		panel.custom_minimum_size = Vector2(120, 36)
+		panel.custom_minimum_size = Vector2(125, 40)
 		
 		var hbox = HBoxContainer.new()
 		hbox.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -362,8 +385,8 @@ func _populate_bandeira_grid(bandeira: Dictionary):
 		
 		var lbl_name = Label.new()
 		lbl_name.text = "%s %s:" % [item["letter"], item["name"]]
-		lbl_name.add_theme_color_override("font_color", Color(0.9, 0.82, 0.65))
-		lbl_name.add_theme_font_size_override("font_size", 12)
+		lbl_name.add_theme_color_override("font_color", Color(0.95, 0.88, 0.72))
+		lbl_name.add_theme_font_size_override("font_size", 13)
 		
 		var dots = ""
 		for d in range(5):
@@ -371,8 +394,8 @@ func _populate_bandeira_grid(bandeira: Dictionary):
 		
 		var lbl_val = Label.new()
 		lbl_val.text = "%d [%s]" % [item["val"], dots]
-		lbl_val.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35) if item["val"] >= 4 else Color(0.85, 0.85, 0.85))
-		lbl_val.add_theme_font_size_override("font_size", 12)
+		lbl_val.add_theme_color_override("font_color", Color(1.0, 0.88, 0.4) if item["val"] >= 4 else Color(0.9, 0.9, 0.9))
+		lbl_val.add_theme_font_size_override("font_size", 13)
 		
 		hbox.add_child(lbl_name)
 		hbox.add_child(lbl_val)
