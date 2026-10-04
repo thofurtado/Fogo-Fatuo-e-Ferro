@@ -1,4 +1,4 @@
-﻿extends Control
+extends Control
 
 @onready var cargo_title = $UILayer/CargoPanel/MarginContainer/VBoxContainer/CargoTitle
 @onready var cargo_stats = $UILayer/CargoPanel/MarginContainer/VBoxContainer/CargoStats
@@ -46,8 +46,8 @@ func _select_cargo(cargo_id: String):
 	btn_fumo.modulate = Color(1.2, 1.2, 1.2) if cargo_id == "fumo_reliquias" else Color(0.7, 0.7, 0.7)
 
 func _on_confirm_pressed():
-	# 1. Configura o Tropeiro no GameManager (índice 4 no catálogo)
-	GameManager.select_archetype(4)
+	# 1. Configura o Tropeiro no GameManager
+	GameManager.select_archetype_by_id("tropeiro")
 	GameManager.select_cargo(selected_cargo_id)
 	
 	var cargo = GameManager.current_cargo

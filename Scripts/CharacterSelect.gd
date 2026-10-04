@@ -1,57 +1,466 @@
-﻿extends Control
+extends Control
 
-@onready var title_label = $MainContainer/HeaderPanel/VBoxContainer/TitleLabel
-@onready var subtitle_label = $MainContainer/HeaderPanel/VBoxContainer/SubtitleLabel
-@onready var desc_label = $MainContainer/InfoPanel/MarginContainer/VBoxContainer/DescLabel
-@onready var stats_label = $MainContainer/InfoPanel/MarginContainer/VBoxContainer/StatsLabel
-@onready var passive_label = $MainContainer/InfoPanel/MarginContainer/VBoxContainer/PassiveLabel
-@onready var item_label = $MainContainer/InfoPanel/MarginContainer/VBoxContainer/ItemLabel
+# ==============================================================================
+# FLUXO COMPLETO DE CRIAÇÃO DE PERSONAGEM (FOGO-FÁTUO & FERRO - 1645)
+# ==============================================================================
+# Sequência canônica do Storyboard:
+# 1. SPLASH: Capa de abertura mascarando tempo de carregamento (~2.8s) -> Fade to black
+# 2. ORIGIN: Mapa-múndi 1645 (Apenas "Brasil" disponível; Europa e África travadas) -> Fade to black
+# 3. CLASS: Escolha de Arquétipo ("O Tropeiro" e "O Nativo" disponíveis; "O Desertor" travado com aviso de origem).
+#           Avatar exibido em destaque na caixa! Visualização da matriz B.A.N.D.E.I.R.A. -> Fade to black
+# 4. REGION: Mapa do Brasil dividido em 6 Macro-Regiões balanceadas (escala de 200² quadros).
+#            Apenas regiões 1, 4 e 6 disponíveis; 2, 3 e 5 travadas. -> Fade to black
+# 5. SHEET PREVIEW: Exibição da ficha pronta de personagem por alguns segundos. -> Fade to black
+# 6. TELA PRETA & PRÓLOGO: Breve silêncio e transição para o Prólogo (PrologoTropeiro.tscn).
+# ==============================================================================
 
-@onready var btn_prev = $MainContainer/NavContainer/BtnPrev
-@onready var btn_next = $MainContainer/NavContainer/BtnNext
-@onready var counter_label = $MainContainer/NavContainer/CounterLabel
-@onready var btn_confirm = $MainContainer/BtnConfirm
-@onready var btn_back = $BtnBack
+enum Step {
+	SPLASH,
+	ORIGIN,
+	CLASS,
+	REGION,
+	SHEET_PREVIEW
+}
 
-var current_idx: int = 0
+var current_step: Step = Step.SPLASH
+var is_transitioning: bool = false
+
+# Variáveis de Seleção
+var selected_origin_id: String = "brasil"
+var selected_archetype_id: String = "tropeiro"
+var selected_region_id: int = 4
+
+# Referências aos Painéis das Etapas
+@onready var panel_splash = $PanelSplash
+@onready var panel_origin = $PanelOrigin
+@onready var panel_class = $PanelClass
+@onready var panel_region = $PanelRegion
+@onready var panel_sheet = $PanelSheetPreview
+@onready var transition_overlay = $TransitionOverlay
+
+# Elementos do Painel Splash (Etapa 1)
+@onready var splash_loading_label = $PanelSplash/VBoxBottom/LoadingLabel
+@onready var splash_sub_label = $PanelSplash/VBoxBottom/SubLabel
+@onready var btn_skip_splash = $PanelSplash/BtnSkipSplash
+
+# Elementos da Seleção de Origem (Etapa 2)
+@onready var btn_origin_brasil = $PanelOrigin/ScrollContainer/VBoxContent/CardsContainer/CardBrasil
+@onready var btn_origin_europa = $PanelOrigin/ScrollContainer/VBoxContent/CardsContainer/CardEuropa
+@onready var btn_origin_africa = $PanelOrigin/ScrollContainer/VBoxContent/CardsContainer/CardAfrica
+@onready var origin_info_title = $PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox/OriginInfoTitle
+@onready var origin_info_desc = $PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox/OriginInfoDesc
+@onready var origin_info_status = $PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox/OriginInfoStatus
+@onready var btn_confirm_origin = $PanelOrigin/VBoxBottom/BtnConfirmOrigin
+
+# Elementos da Seleção de Arquétipo (Etapa 3)
+@onready var btn_class_tropeiro = $PanelClass/ScrollContainer/VBoxContent/TabsContainer/BtnClassTropeiro
+@onready var btn_class_nativo = $PanelClass/ScrollContainer/VBoxContent/TabsContainer/BtnClassNativo
+@onready var btn_class_desertor = $PanelClass/ScrollContainer/VBoxContent/TabsContainer/BtnClassDesertor
+
+@onready var avatar_rect = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/AvatarFrame/AvatarRect
+@onready var avatar_lock_overlay = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/AvatarFrame/LockOverlay
+@onready var avatar_lock_label = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/AvatarFrame/LockOverlay/LockText
+@onready var class_name_label = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader/ClassNameLabel
+@onready var class_title_label = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader/ClassTitleLabel
+@onready var class_status_badge = $PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader/ClassStatusBadge
+
+@onready var bandeira_grid = $PanelClass/ScrollContainer/VBoxContent/BandeiraPanel/Margin/VBox/BandeiraGrid
+@onready var class_passive_label = $PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox/PassiveLabel
+@onready var class_item_label = $PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox/ItemLabel
+@onready var class_desc_label = $PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox/DescLabel
+@onready var btn_confirm_class = $PanelClass/VBoxBottom/BtnConfirmClass
+
+# Elementos da Seleção de Região (Etapa 4)
+@onready var region_buttons = [
+	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg1,
+	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg2,
+	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg3,
+	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg4,
+	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg5,
+	$PanelRegion/ScrollContainer/VBoxContent/RegionGrid/BtnReg6
+]
+@onready var region_info_title = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionTitle
+@onready var region_info_climate = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionClimate
+@onready var region_info_hazards = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionHazards
+@onready var region_info_totem = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionTotem
+@onready var region_info_desc = $PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox/RegionDesc
+@onready var btn_confirm_region = $PanelRegion/VBoxBottom/BtnConfirmRegion
+
+# Elementos do Preview da Ficha (Etapa 5)
+@onready var btn_advance_sheet = $PanelSheetPreview/BtnAdvanceSheet
+@onready var sheet_timer_label = $PanelSheetPreview/SheetBannerBottom/TimerLabel
+
+var splash_timer: SceneTreeTimer
+var sheet_timer: SceneTreeTimer
+var sheet_countdown: float = 3.5
 
 func _ready():
-	btn_prev.pressed.connect(_on_prev)
-	btn_next.pressed.connect(_on_next)
-	btn_confirm.pressed.connect(_on_confirm)
-	btn_back.pressed.connect(_on_back)
-	_update_display()
-
-func _update_display():
-	var arch = GameManager.archetypes_catalog[current_idx]
-	title_label.text = arch["name"].to_upper()
-	subtitle_label.text = arch["title"]
-	desc_label.text = arch["desc"]
+	# Inicializa opacidade da transição no preto e faz fade-in
+	transition_overlay.color = Color(0, 0, 0, 1.0)
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	_hide_all_panels()
+	panel_splash.visible = true
 	
-	stats_label.text = "FORÇA: %d  |  DESTREZA: %d  |  LÁBIA: %d  |  MISTICISMO: %d\nVIDA MÁXIMA: %d   •   MANA: %d" % [
-		arch["forca"], arch["destreza"], arch["labia"], arch["misticismo"],
-		arch["vida_max"], arch["mana_max"]
+	# Conexões da Etapa 1 (Splash)
+	btn_skip_splash.pressed.connect(_on_skip_splash)
+	
+	# Conexões da Etapa 2 (Origem)
+	btn_origin_brasil.pressed.connect(func(): _select_origin("brasil"))
+	btn_origin_europa.pressed.connect(func(): _select_origin("europa"))
+	btn_origin_africa.pressed.connect(func(): _select_origin("africa"))
+	btn_confirm_origin.pressed.connect(_on_confirm_origin)
+	
+	# Conexões da Etapa 3 (Classe)
+	btn_class_tropeiro.pressed.connect(func(): _select_archetype("tropeiro"))
+	btn_class_nativo.pressed.connect(func(): _select_archetype("nativo"))
+	btn_class_desertor.pressed.connect(func(): _select_archetype("desertor"))
+	btn_confirm_class.pressed.connect(_on_confirm_class)
+	
+	# Conexões da Etapa 4 (Região)
+	for i in range(region_buttons.size()):
+		var reg_id = i + 1
+		region_buttons[i].pressed.connect(func(): _select_region(reg_id))
+	btn_confirm_region.pressed.connect(_on_confirm_region)
+	
+	# Conexões da Etapa 5 (Ficha Pronta)
+	btn_advance_sheet.pressed.connect(_on_advance_from_sheet)
+	
+	# Inicia valores padrão
+	_select_origin("brasil")
+	_select_archetype("tropeiro")
+	_select_region(4) # Região 4: Litoral e Rotas de Serra
+	
+	# Animação inicial de fade-in da capa
+	var tween = create_tween()
+	tween.tween_property(transition_overlay, "color:a", 0.0, 0.6).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	_start_splash_sequence()
+
+func _process(delta: float):
+	# Atualiza contador no preview da ficha se ativo
+	if current_step == Step.SHEET_PREVIEW and not is_transitioning:
+		sheet_countdown -= delta
+		if sheet_timer_label:
+			sheet_timer_label.text = "Iniciando Prólogo em %.1fs... (Toque para avançar)" % max(0.0, sheet_countdown)
+		if sheet_countdown <= 0.0:
+			_on_advance_from_sheet()
+
+func _hide_all_panels():
+	panel_splash.visible = false
+	panel_origin.visible = false
+	panel_class.visible = false
+	panel_region.visible = false
+	panel_sheet.visible = false
+
+# ==============================================================================
+# TRANSIÇÃO SUAVE (FADE TO BLACK TOTAL -> CARREGA PRÓXIMA TELA -> FADE IN)
+# ==============================================================================
+func _transition_to_step(next_step: Step):
+	if is_transitioning:
+		return
+	is_transitioning = true
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	
+	# 1. Fade para o preto total
+	var tween_out = create_tween()
+	tween_out.tween_property(transition_overlay, "color:a", 1.0, 0.45).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	await tween_out.finished
+	
+	# 2. Alterna telas enquanto tudo está 100% preto
+	_hide_all_panels()
+	current_step = next_step
+	
+	match next_step:
+		Step.ORIGIN:
+			panel_origin.visible = true
+			_update_origin_ui()
+		Step.CLASS:
+			panel_class.visible = true
+			_update_class_ui()
+		Step.REGION:
+			panel_region.visible = true
+			_update_region_ui()
+		Step.SHEET_PREVIEW:
+			panel_sheet.visible = true
+			sheet_countdown = 3.5
+	
+	# Pequeno respiro na tela preta para sensação de carregamento imersivo
+	await get_tree().create_timer(0.12).timeout
+	
+	# 3. Fade-in do preto para a nova tela
+	var tween_in = create_tween()
+	tween_in.tween_property(transition_overlay, "color:a", 0.0, 0.45).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	await tween_in.finished
+	
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	is_transitioning = false
+
+# ==============================================================================
+# ETAPA 1: SPLASH (CAPA MASCARANDO CARREGAMENTO)
+# ==============================================================================
+func _start_splash_sequence():
+	# Efeito de pulso suave no texto de carregamento
+	var pulse_tween = create_tween().set_loops()
+	pulse_tween.tween_property(splash_loading_label, "modulate:a", 0.35, 0.8).set_trans(Tween.TRANS_SINE)
+	pulse_tween.tween_property(splash_loading_label, "modulate:a", 1.0, 0.8).set_trans(Tween.TRANS_SINE)
+	
+	# Aguarda ~2.8 segundos antes de avançar para a Origem
+	await get_tree().create_timer(2.8).timeout
+	if current_step == Step.SPLASH and not is_transitioning:
+		_transition_to_step(Step.ORIGIN)
+
+func _on_skip_splash():
+	if current_step == Step.SPLASH and not is_transitioning:
+		_transition_to_step(Step.ORIGIN)
+
+# ==============================================================================
+# ETAPA 2: SELEÇÃO DE ORIGEM (MAPA-MÚNDI 1645)
+# ==============================================================================
+func _select_origin(origin_id: String):
+	selected_origin_id = origin_id
+	_update_origin_ui()
+
+func _update_origin_ui():
+	# Estilização dos cartões de origem
+	var is_br = (selected_origin_id == "brasil")
+	var is_eu = (selected_origin_id == "europa")
+	var is_af = (selected_origin_id == "africa")
+	
+	btn_origin_brasil.modulate = Color(1.2, 1.15, 0.9) if is_br else Color(0.9, 0.9, 0.9)
+	btn_origin_europa.modulate = Color(0.65, 0.65, 0.65)
+	btn_origin_africa.modulate = Color(0.65, 0.65, 0.65)
+	
+	if is_br:
+		origin_info_title.text = "🌎 BRASIL (AMÉRICA PORTUGUESA - 1645)"
+		origin_info_desc.text = "Terra vasta de floresta equatorial, mata atlântica virgem, picadas de serra e rios bravios. Berço das nações originárias guerreiras e dos primeiros tropeiros e sertanistas da Capitania de São Vicente."
+		origin_info_status.text = "✦ DISPONÍVEL NESTA VERSÃO ✦"
+		origin_info_status.modulate = Color(0.3, 0.9, 0.4)
+		btn_confirm_origin.disabled = false
+		btn_confirm_origin.text = "ESCOLHER ORIGEM: BRASIL ▶"
+		btn_confirm_origin.modulate = Color(1.0, 1.0, 1.0)
+	elif is_eu:
+		origin_info_title.text = "🏰 EUROPA (REINO DE PORTUGAL & PROVÍNCIAS UNIDAS)"
+		origin_info_desc.text = "Metrópoles coloniais distantes, armas de fogo avançadas, corsários holandeses e veteranos de guerra de Flandres. Requer a expansão de personagens além-mar (O Desertor da Coroa)."
+		origin_info_status.text = "🔒 BLOQUEADO (Indisponível nesta demo)"
+		origin_info_status.modulate = Color(0.9, 0.3, 0.3)
+		btn_confirm_origin.disabled = true
+		btn_confirm_origin.text = "🔒 ORIGEM INDISPONÍVEL"
+		btn_confirm_origin.modulate = Color(0.6, 0.6, 0.6)
+	elif is_af:
+		origin_info_title.text = "👑 ÁFRICA (COSTA OCIDENTAL / BANTOS & YORUBÁS)"
+		origin_info_desc.text = "Tradições ancestrais, mestres forjadores de ferro, curandeiros das ervas e guerreiros quilombolas de resistência. Requer a expansão de campanhas de Palmares."
+		origin_info_status.text = "🔒 BLOQUEADO (Indisponível nesta demo)"
+		origin_info_status.modulate = Color(0.9, 0.3, 0.3)
+		btn_confirm_origin.disabled = true
+		btn_confirm_origin.text = "🔒 ORIGEM INDISPONÍVEL"
+		btn_confirm_origin.modulate = Color(0.6, 0.6, 0.6)
+
+func _on_confirm_origin():
+	if selected_origin_id == "brasil":
+		GameManager.selected_origin = "brasil"
+		_transition_to_step(Step.CLASS)
+
+# ==============================================================================
+# ETAPA 3: SELEÇÃO DE ARQUÉTIPO / CLASSE
+# ==============================================================================
+func _select_archetype(arch_id: String):
+	selected_archetype_id = arch_id
+	_update_class_ui()
+
+func _update_class_ui():
+	# Destacar botão selecionado
+	btn_class_tropeiro.modulate = Color(1.25, 1.15, 0.8) if selected_archetype_id == "tropeiro" else Color(0.8, 0.8, 0.8)
+	btn_class_nativo.modulate = Color(1.25, 1.15, 0.8) if selected_archetype_id == "nativo" else Color(0.8, 0.8, 0.8)
+	btn_class_desertor.modulate = Color(1.1, 0.8, 0.8) if selected_archetype_id == "desertor" else Color(0.55, 0.55, 0.55)
+	
+	# Busca dados do arquétipo no GameManager
+	var arch_data: Dictionary = {}
+	for arch in GameManager.archetypes_catalog:
+		if arch["id"] == selected_archetype_id:
+			arch_data = arch
+			break
+	
+	if arch_data.is_empty():
+		return
+	
+	class_name_label.text = arch_data["name"].to_upper()
+	class_title_label.text = arch_data["title"]
+	class_passive_label.text = "✦ PASSIVA: " + arch_data["passive"]
+	class_item_label.text = "🎒 EQUIPAMENTO INICIAL: " + arch_data["initial_item"]
+	class_desc_label.text = arch_data["desc"]
+	
+	var is_available = arch_data.get("available", false)
+	
+	if is_available:
+		avatar_lock_overlay.visible = false
+		class_status_badge.text = "✦ DISPONÍVEL ✦"
+		class_status_badge.modulate = Color(0.3, 0.9, 0.4)
+		btn_confirm_class.disabled = false
+		btn_confirm_class.text = "CONFIRMAR ESTE PERSONAGEM ▶"
+		btn_confirm_class.modulate = Color(1.0, 1.0, 1.0)
+		
+		# Carrega avatar na caixa
+		var tex_path = arch_data.get("avatar_texture", "")
+		if tex_path != "" and ResourceLoader.exists(tex_path):
+			avatar_rect.texture = load(tex_path)
+			avatar_rect.visible = true
+			avatar_rect.modulate = Color(1, 1, 1, 1)
+		else:
+			avatar_rect.visible = false
+	else:
+		# Personagem TRAVADO / INDISPONÍVEL (O Desertor)
+		avatar_lock_overlay.visible = true
+		avatar_lock_label.text = "🔒 TRAVADO\n\nRequer Origem Europeia\n(Reino de Portugal)"
+		class_status_badge.text = "🔒 BLOQUEADO (Requer Origem Europeia)"
+		class_status_badge.modulate = Color(0.9, 0.3, 0.3)
+		btn_confirm_class.disabled = true
+		btn_confirm_class.text = "🔒 PERSONAGEM BLOQUEADO"
+		btn_confirm_class.modulate = Color(0.6, 0.6, 0.6)
+		avatar_rect.texture = null
+		avatar_rect.visible = false
+	
+	# Atualiza matriz B.A.N.D.E.I.R.A.
+	_populate_bandeira_grid(arch_data.get("bandeira", {}))
+
+func _populate_bandeira_grid(bandeira: Dictionary):
+	# Limpa filhos anteriores da grade
+	for child in bandeira_grid.get_children():
+		child.queue_free()
+	
+	var attr_list = [
+		{"letter": "B", "name": "Bravura", "val": bandeira.get("bravura", 0), "icon": "⚔️"},
+		{"letter": "A", "name": "Agilidade", "val": bandeira.get("agilidade", 0), "icon": "⚡"},
+		{"letter": "N", "name": "Navegação", "val": bandeira.get("navegacao", 0), "icon": "🧭"},
+		{"letter": "D", "name": "Destreza", "val": bandeira.get("destreza", 0), "icon": "🎯"},
+		{"letter": "E", "name": "Empenho", "val": bandeira.get("empenho", 0), "icon": "🎒"},
+		{"letter": "I", "name": "Instinto", "val": bandeira.get("instinto", 0), "icon": "👁️"},
+		{"letter": "R", "name": "Raciocínio", "val": bandeira.get("raciocinio", 0), "icon": "🧠"},
+		{"letter": "A", "name": "Astúcia", "val": bandeira.get("astucia", 0), "icon": "🎭"}
 	]
 	
-	passive_label.text = "✦ PASSIVA: " + arch["passive"]
-	item_label.text = "🎒 ITEM INICIAL: " + arch["initial_item"]
-	counter_label.text = "%d / %d" % [current_idx + 1, GameManager.archetypes_catalog.size()]
+	for item in attr_list:
+		var panel = PanelContainer.new()
+		var sb = StyleBoxFlat.new()
+		sb.bg_color = Color(0.12, 0.1, 0.08, 0.85)
+		sb.border_width_left = 1
+		sb.border_width_top = 1
+		sb.border_width_right = 1
+		sb.border_width_bottom = 1
+		sb.border_color = Color(0.6, 0.5, 0.3, 0.7)
+		sb.corner_radius_top_left = 4
+		sb.corner_radius_top_right = 4
+		sb.corner_radius_bottom_left = 4
+		sb.corner_radius_bottom_right = 4
+		panel.add_theme_stylebox_override("panel", sb)
+		panel.custom_minimum_size = Vector2(120, 36)
+		
+		var hbox = HBoxContainer.new()
+		hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		hbox.add_theme_constant_override("separation", 6)
+		
+		var lbl_name = Label.new()
+		lbl_name.text = "%s %s:" % [item["letter"], item["name"]]
+		lbl_name.add_theme_color_override("font_color", Color(0.9, 0.82, 0.65))
+		lbl_name.add_theme_font_size_override("font_size", 12)
+		
+		var dots = ""
+		for d in range(5):
+			dots += "●" if d < item["val"] else "○"
+		
+		var lbl_val = Label.new()
+		lbl_val.text = "%d [%s]" % [item["val"], dots]
+		lbl_val.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35) if item["val"] >= 4 else Color(0.85, 0.85, 0.85))
+		lbl_val.add_theme_font_size_override("font_size", 12)
+		
+		hbox.add_child(lbl_name)
+		hbox.add_child(lbl_val)
+		panel.add_child(hbox)
+		bandeira_grid.add_child(panel)
 
-func _on_prev():
-	current_idx = (current_idx - 1 + GameManager.archetypes_catalog.size()) % GameManager.archetypes_catalog.size()
-	_update_display()
+func _on_confirm_class():
+	# Apenas avança se a classe for permitida (Tropeiro ou Nativo)
+	if selected_archetype_id == "tropeiro" or selected_archetype_id == "nativo":
+		GameManager.select_archetype_by_id(selected_archetype_id)
+		_transition_to_step(Step.REGION)
 
-func _on_next():
-	current_idx = (current_idx + 1) % GameManager.archetypes_catalog.size()
-	_update_display()
+# ==============================================================================
+# ETAPA 4: SELEÇÃO DE MACRO-REGIÃO DO BRASIL (6 REGIÕES BALANCEADAS)
+# ==============================================================================
+func _select_region(region_id: int):
+	selected_region_id = region_id
+	_update_region_ui()
 
-func _on_confirm():
-	GameManager.select_archetype(current_idx)
-	if GameManager.current_archetype["id"] == "tropeiro":
-		get_tree().change_scene_to_file("res://Scenes/PrologoTropeiro.tscn")
+func _update_region_ui():
+	# Regiões permitidas nesta versão: 1, 4 e 6
+	var allowed_regions = [1, 4, 6]
+	
+	for i in range(region_buttons.size()):
+		var reg_id = i + 1
+		var btn = region_buttons[i]
+		var is_selected = (selected_region_id == reg_id)
+		var is_available = allowed_regions.has(reg_id)
+		
+		if is_available:
+			if is_selected:
+				btn.modulate = Color(1.3, 1.2, 0.8) # Destaque dourado
+			else:
+				btn.modulate = Color(1.0, 1.0, 1.0)
+		else:
+			# Travada / Bloqueada
+			btn.modulate = Color(0.5, 0.45, 0.45, 0.7)
+	
+	var reg_data = GameManager.regions_catalog.get(selected_region_id, {})
+	if reg_data.is_empty():
+		return
+	
+	region_info_title.text = "📍 " + reg_data["name"].to_upper()
+	region_info_climate.text = "🌦️ Clima & Terreno: " + reg_data["clima"]
+	region_info_hazards.text = "⚠️ Perigos Primários: " + reg_data["perigos"]
+	region_info_totem.text = "🏛️ Totem de Renascimento: " + reg_data["totem"]
+	region_info_desc.text = reg_data["desc"]
+	
+	var is_reg_available = allowed_regions.has(selected_region_id)
+	if is_reg_available:
+		btn_confirm_region.disabled = false
+		btn_confirm_region.text = "CONFIRMAR PONTO DE PARTIDA ▶"
+		btn_confirm_region.modulate = Color(1.0, 1.0, 1.0)
 	else:
-		get_tree().change_scene_to_file("res://Scenes/WorldRPG.tscn")
+		btn_confirm_region.disabled = true
+		btn_confirm_region.text = "🔒 REGIÃO BLOQUEADA NESTA VERSÃO"
+		btn_confirm_region.modulate = Color(0.6, 0.6, 0.6)
 
+func _on_confirm_region():
+	if [1, 4, 6].has(selected_region_id):
+		GameManager.selected_region_id = selected_region_id
+		_transition_to_step(Step.SHEET_PREVIEW)
 
-func _on_back():
-	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+# ==============================================================================
+# ETAPA 5: EXIBIÇÃO DA FICHA PRONTA E TRANSIÇÃO PARA O PRÓLOGO
+# ==============================================================================
+func _on_advance_from_sheet():
+	if current_step == Step.SHEET_PREVIEW and not is_transitioning:
+		_finish_creation_and_enter_prologue()
+
+func _finish_creation_and_enter_prologue():
+	if is_transitioning:
+		return
+	is_transitioning = true
+	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	
+	# Salva seleções finais no GameManager
+	GameManager.selected_origin = selected_origin_id
+	GameManager.select_archetype_by_id(selected_archetype_id)
+	GameManager.selected_region_id = selected_region_id
+	
+	# Transição suave para o preto total
+	var tween_out = create_tween()
+	tween_out.tween_property(transition_overlay, "color:a", 1.0, 0.7).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	await tween_out.finished
+	
+	# Pausa atmosférica de 1.2s no silêncio e na tela 100% preta
+	await get_tree().create_timer(1.2).timeout
+	
+	# Transição direta para o Prólogo (PrologoTropeiro.tscn)
+	get_tree().change_scene_to_file("res://Scenes/PrologoTropeiro.tscn")

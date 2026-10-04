@@ -1,79 +1,126 @@
-﻿extends Node
+extends Node
 
 # Singleton GameManager - Gerencia o estado global do RPG Fogo-Fátuo & Ferro
 
 signal character_selected(archetype_id)
 signal stat_changed(stat_name, new_val)
 signal item_collected(item_name)
+signal origin_selected(origin_id)
+signal region_selected(region_id)
 
-var current_archetype: Dictionary = {
-	"id": "nativo",
-	"name": "O Jovem Nativo",
-	"title": "A Resistência da Terra",
-	"forca": 2,
-	"destreza": 4,
-	"labia": 1,
-	"misticismo": 4,
-	"vida_max": 12,
-	"vida_atual": 12,
-	"mana_max": 10,
-	"mana_atual": 10,
-	"initial_item": "Amuleto de Semente Sagrada",
-	"passive": "Passo Leve: Imune a lentidão na mata fechada"
-}
+var selected_origin: String = "brasil"
+var selected_archetype_id: String = "tropeiro"
+var selected_region_id: int = 4
+
+var current_archetype: Dictionary = {}
 
 var archetypes_catalog: Array[Dictionary] = [
 	{
-		"id": "nativo",
-		"name": "O Jovem Nativo",
-		"title": "Resistência e Conhecimento da Terra",
-		"forca": 2, "destreza": 4, "labia": 1, "misticismo": 4,
-		"vida_max": 12, "mana_max": 10,
-		"initial_item": "Amuleto de Semente Sagrada",
-		"passive": "Passo Leve: Comunicação natural com as entidades.",
-		"desc": "Conhece cada folha e raiz da floresta. Luta para proteger os seus e a mata sagrada da pólvora e do ferro."
+		"id": "tropeiro",
+		"name": "O Tropeiro Paulista",
+		"title": "Senhor das Rotas e Mercador da Serra",
+		"origin": "brasil",
+		"available": true,
+		"avatar_texture": "res://Assets/Sprites/tropeiro_mula_estilo_gibi.jpg",
+		"bandeira": {
+			"bravura": 3, "agilidade": 2, "navegacao": 5, "destreza": 3,
+			"empenho": 4, "instinto": 3, "raciocinio": 3, "astucia": 5
+		},
+		"vida_max": 24, "mana_max": 10,
+		"initial_item": "Bruaca de Couro & Facão de Três Listras",
+		"passive": "Mula de Carga: Inventário dobrado e rotas comerciais seguras.",
+		"desc": "Conduz tropas de muares pelo barro e pedreiras da Serra do Mar. Mestre da barganha, conhece os atalhos e as oferendas certas para a mata."
 	},
 	{
-		"id": "fugitivo",
-		"name": "A Escravizada Fugitiva",
-		"title": "Astúcia e Sobrevivência Guerrilheira",
-		"forca": 4, "destreza": 3, "labia": 2, "misticismo": 2,
-		"vida_max": 14, "mana_max": 6,
-		"initial_item": "Corrente de Ferro Partida",
-		"passive": "Resiliência: Resistência física extrema e instinto de sobrevivência.",
-		"desc": "Quebrou os grilhões do cativeiro. Busca a liberdade nos quilombos e usa a astúcia para despistar milícias."
+		"id": "nativo",
+		"name": "Papa Pin (Batedor Nativo)",
+		"title": "A Resistência e Simbiose com a Terra",
+		"origin": "brasil",
+		"available": true,
+		"avatar_texture": "res://Assets/Sprites/curumim_caminhando.png",
+		"bandeira": {
+			"bravura": 3, "agilidade": 5, "navegacao": 5, "destreza": 5,
+			"empenho": 3, "instinto": 4, "raciocinio": 4, "astucia": 2
+		},
+		"vida_max": 20, "mana_max": 14,
+		"initial_item": "Arco Recurvo & Amuleto de Semente Sagrada",
+		"passive": "Passo Silencioso: Imune a emboscadas na mata e agilidade sobre-humana.",
+		"desc": "Lê o voo das aves e os murmúrios das águas. Defende as aldeias e a floresta sagrada contra a ganância da pólvora e do ferro."
 	},
 	{
 		"id": "desertor",
 		"name": "O Desertor da Coroa",
 		"title": "O Mestre do Ferro e da Pólvora",
-		"forca": 3, "destreza": 3, "labia": 2, "misticismo": 0,
-		"vida_max": 15, "mana_max": 4,
-		"initial_item": "Pistola de Pederneira Gasta",
-		"passive": "Ferreiro de Campanha: Opera armas de fogo e fortificações.",
-		"desc": "Virou as costas para a violência da Coroa. Carrega o peso do ferro com que feriu a terra, buscando redenção."
-	},
-	{
-		"id": "clerigo",
-		"name": "O Clérigo Renegado",
-		"title": "Fé em Crise e Erudição Mística",
-		"forca": 1, "destreza": 2, "labia": 4, "misticismo": 4,
-		"vida_max": 10, "mana_max": 14,
-		"initial_item": "Breviário com Ervas Medicinais",
-		"passive": "Sincretismo: Capacidade de ler códigos arcanos e realizar rituais.",
-		"desc": "Enviado para a catequese, descobriu que o sagrado na floresta desafia os dogmas da Igreja."
-	},
-	{
-		"id": "tropeiro",
-		"name": "O Tropeiro Itinerante",
-		"title": "Senhor das Rotas e Comerciante",
-		"forca": 2, "destreza": 2, "labia": 5, "misticismo": 2,
-		"vida_max": 12, "mana_max": 8,
-		"initial_item": "Bruaca de Couro & Fumo de Rolo",
-		"passive": "Mula de Carga: Inventário dobrado e rotas comerciais seguras.",
-		"desc": "Percorre as estradas reais e picadas de contrabando. Conhece o valor do ferro e a oferenda certa para os espíritos."
+		"origin": "europa",
+		"available": false,
+		"avatar_texture": "",
+		"bandeira": {
+			"bravura": 4, "agilidade": 2, "navegacao": 2, "destreza": 4,
+			"empenho": 4, "instinto": 3, "raciocinio": 3, "astucia": 2
+		},
+		"vida_max": 25, "mana_max": 6,
+		"initial_item": "Bacamarte Militar & Pederneira",
+		"passive": "Fogo de Campanha: Opera armas de pólvora e fortificações militares.",
+		"desc": "Virou as costas para a violência da Coroa. Carrega o peso das armas com que feriu a terra, buscando redenção no sertão."
 	}
 ]
+
+var regions_catalog: Dictionary = {
+	1: {
+		"id": 1,
+		"name": "1. Nordeste Açucareiro",
+		"available": true,
+		"clima": "Tropical Úmido (Canaviais e Costa)",
+		"perigos": "Guerra holandesa (WIC), milícias e capitães-do-mato.",
+		"totem": "Capela Litorânea de Taipa",
+		"desc": "Zona de guerra aberta e alta densidade militar. Engenhos em chamas, patrulhas de arcabuz e corsários no mar."
+	},
+	2: {
+		"id": 2,
+		"name": "2. Sertão do São Francisco",
+		"available": false,
+		"clima": "Semiárido / Caatinga Cinzenta",
+		"perigos": "Insolação, sede severa e cascavéis.",
+		"totem": "Lajedo Sagrado dos Índios Cariris",
+		"desc": "[BLOQUEADA NESTA DEMO] Terra de vaqueiros primitivos, currais sem cercas e desfiladeiros de pedra abrasadora."
+	},
+	3: {
+		"id": 3,
+		"name": "3. Planalto de Piratininga",
+		"available": false,
+		"clima": "Subtropical de Altitude / Campos Altos",
+		"perigos": "Bandeiras de apresamento e mamelucos armados.",
+		"totem": "Pouso Tropeiro da Serra",
+		"desc": "[BLOQUEADA NESTA DEMO] O berço vicentino das expedições armadas sertão adentro."
+	},
+	4: {
+		"id": 4,
+		"name": "4. Litoral e Rotas de Serra",
+		"available": true,
+		"clima": "Mata Atlântica de Encosta (Chuva e Barro)",
+		"perigos": "Precipícios escorregadios, neblina espessa e contrabando.",
+		"totem": "Rancho Tropeiro de Cumeeira",
+		"desc": "A espinha dorsal do tropeirismo. Picadas lamacentas entre o Porto de Santos e os campos do planalto. Ideal para o Tropeiro!"
+	},
+	5: {
+		"id": 5,
+		"name": "5. Pantanal e Rios Centrais",
+		"available": false,
+		"clima": "Inundável / Pântano e Capões",
+		"perigos": "Piranhas, febres da várzea e criaturas das águas.",
+		"totem": "Canoa Monóxila do Capão Seco",
+		"desc": "[BLOQUEADA NESTA DEMO] Expedições de monções fluviais e isolamento profundo nas águas do continente."
+	},
+	6: {
+		"id": 6,
+		"name": "6. Sul e Bacia do Prata",
+		"available": true,
+		"clima": "Pampas e Coxilhas (Vento Minuano)",
+		"perigos": "Patrulhas ibéricas disputadas e tempestades pampeiras.",
+		"totem": "Pórtico da Missão Jesuítica de Pedra",
+		"desc": "Grandes planícies abertas, reduções dos Sete Povos das Missões e tropas de gado selvagem."
+	}
+}
 
 var inventory: Array[String] = []
 var quest_curupira_amulet: bool = false
@@ -123,15 +170,25 @@ var cargos_catalog: Dictionary = {
 	}
 }
 
+func _ready():
+	select_archetype_by_id("tropeiro")
+
+func select_archetype_by_id(arch_id: String):
+	for arch in archetypes_catalog:
+		if arch["id"] == arch_id:
+			var chosen = arch.duplicate(true)
+			chosen["vida_atual"] = chosen["vida_max"]
+			chosen["mana_atual"] = chosen["mana_max"]
+			current_archetype = chosen
+			selected_archetype_id = arch_id
+			inventory.clear()
+			inventory.append(chosen["initial_item"])
+			character_selected.emit(arch_id)
+			return
+
 func select_archetype(index: int):
 	if index >= 0 and index < archetypes_catalog.size():
-		var chosen = archetypes_catalog[index].duplicate()
-		chosen["vida_atual"] = chosen["vida_max"]
-		chosen["mana_atual"] = chosen["mana_max"]
-		current_archetype = chosen
-		inventory.clear()
-		inventory.append(chosen["initial_item"])
-		character_selected.emit(chosen["id"])
+		select_archetype_by_id(archetypes_catalog[index]["id"])
 
 func select_cargo(cargo_id: String):
 	if cargos_catalog.has(cargo_id):
@@ -141,3 +198,21 @@ func select_cargo(cargo_id: String):
 func add_item(item_name: String):
 	inventory.append(item_name)
 	item_collected.emit(item_name)
+
+func get_bandeira_summary(arch: Dictionary) -> String:
+	if not arch.has("bandeira"):
+		return ""
+	var b = arch["bandeira"]
+	return "B: %d | A: %d | N: %d | D: %d | E: %d | I: %d | R: %d | A: %d" % [
+		b.get("bravura", 0), b.get("agilidade", 0), b.get("navegacao", 0), b.get("destreza", 0),
+		b.get("empenho", 0), b.get("instinto", 0), b.get("raciocinio", 0), b.get("astucia", 0)
+	]
+
+func get_bandeira_detailed(arch: Dictionary) -> String:
+	if not arch.has("bandeira"):
+		return ""
+	var b = arch["bandeira"]
+	return "⚔️ Bravura: %d   ⚡ Agilidade: %d   🧭 Navegação: %d   🎯 Destreza: %d\n🎒 Empenho: %d   👁️ Instinto: %d   🧠 Raciocínio: %d   🎭 Astúcia: %d" % [
+		b.get("bravura", 0), b.get("agilidade", 0), b.get("navegacao", 0), b.get("destreza", 0),
+		b.get("empenho", 0), b.get("instinto", 0), b.get("raciocinio", 0), b.get("astucia", 0)
+	]

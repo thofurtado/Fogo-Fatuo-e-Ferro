@@ -1,10 +1,15 @@
-﻿[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://df7s0qk2x61yv"]
 
-[ext_resource type="Script" path="res://Scripts/CharacterSelect.gd" id="1_select"]
-[ext_resource type="Texture2D" path="res://Assets/Backgrounds/poster_capa.jpg" id="2_bg"]
+[ext_resource type="Script" path="res://Scripts/CharacterSelect.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Assets/Backgrounds/tela_inicial_capa.png" id="2_capa"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/mapamundi_selecao_origem.jpg" id="3_mapamundi"]
+[ext_resource type="Texture2D" path="res://Assets/Backgrounds/poster_capa.jpg" id="4_posterbg"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/tropeiro_mula_estilo_gibi.jpg" id="5_tropeiro"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/mapa_brasil_regioes.jpg" id="6_mapabrasil"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/ficha_personagem_design.jpg" id="7_fichadesign"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
-bg_color = Color(0.1, 0.08, 0.06, 0.92)
+bg_color = Color(0.1, 0.08, 0.06, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -15,41 +20,55 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_info"]
-bg_color = Color(0.08, 0.07, 0.05, 0.94)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.4, 0.35, 0.25, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
-bg_color = Color(0.85, 0.25, 0.15, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.85, 0.5, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.07, 0.05, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.48, 0.32, 0.9)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back"]
-bg_color = Color(0.2, 0.18, 0.15, 0.9)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.14, 0.12, 0.09, 0.9)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.6, 0.55, 0.45, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_color = Color(0.65, 0.55, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_locked"]
+bg_color = Color(0.08, 0.08, 0.08, 0.75)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.3, 0.3, 0.7)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_confirm"]
+bg_color = Color(0.75, 0.22, 0.15, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.45, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_invisible"]
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -58,155 +77,786 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_select")
+script = ExtResource("1_script")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="PanelSplash" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_bg")
+
+[node name="TextureRect" type="TextureRect" parent="PanelSplash"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_capa")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="DarkOverlay" type="ColorRect" parent="."]
+[node name="DarkGradient" type="ColorRect" parent="PanelSplash"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.04, 0.03, 0.02, 0.88)
+
+[node name="VBoxBottom" type="VBoxContainer" parent="PanelSplash"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="LoadingLabel" type="Label" parent="PanelSplash/VBoxBottom"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 16
+text = "⏳ CARREGANDO CRÔNICAS DE 1645..."
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="PanelSplash/VBoxBottom"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 0.8)
+theme_override_font_sizes/font_size = 12
+text = "Preparando mapas e picadas coloniais... (Toque para avançar)"
+horizontal_alignment = 1
+
+[node name="BtnSkipSplash" type="Button" parent="PanelSplash"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.04, 0.03, 0.02, 0.82)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_invisible")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_invisible")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_invisible")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_invisible")
 
-[node name="BtnBack" type="Button" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 96.0
-offset_bottom = 48.0
-theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
-theme_override_font_sizes/font_size = 12
-theme_override_styles/normal = SubResource("StyleBoxFlat_back")
-text = "‹ VOLTAR"
-
-[node name="MainContainer" type="VBoxContainer" parent="."]
+[node name="PanelOrigin" type="Control" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -420.0
-offset_right = 250.0
-offset_bottom = 440.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
 
-[node name="HeaderPanel" type="PanelContainer" parent="MainContainer"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="PanelOrigin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mapamundi")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="PanelOrigin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.04, 0.03, 0.78)
+
+[node name="HeaderPanel" type="PanelContainer" parent="PanelOrigin"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 82.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_header")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/HeaderPanel"]
+[node name="VBox" type="VBoxContainer" parent="PanelOrigin/HeaderPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 12
-
-[node name="TitleLabel" type="Label" parent="MainContainer/HeaderPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
-theme_override_font_sizes/font_size = 20
-text = "O JOVEM NATIVO"
-horizontal_alignment = 1
-
-[node name="SubtitleLabel" type="Label" parent="MainContainer/HeaderPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
-theme_override_font_sizes/font_size = 13
-text = "Resistência e Conhecimento da Terra"
-horizontal_alignment = 1
-
-[node name="InfoPanel" type="PanelContainer" parent="MainContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_info")
-
-[node name="MarginContainer" type="MarginContainer" parent="MainContainer/InfoPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/InfoPanel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 14
-
-[node name="DescLabel" type="Label" parent="MainContainer/InfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.85, 0.8, 1)
-theme_override_font_sizes/font_size = 14
-text = "Conhece cada folha e raiz da floresta..."
-autowrap_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="MainContainer/InfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="StatsLabel" type="Label" parent="MainContainer/InfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.8, 0.4, 1)
-theme_override_font_sizes/font_size = 13
-text = "FORÇA: 2  |  DESTREZA: 4  |  LÁBIA: 1  |  MISTICISMO: 4"
-autowrap_mode = 2
-
-[node name="PassiveLabel" type="Label" parent="MainContainer/InfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.9, 0.6, 1)
-theme_override_font_sizes/font_size = 13
-text = "✦ PASSIVA: Passo Leve..."
-autowrap_mode = 2
-
-[node name="ItemLabel" type="Label" parent="MainContainer/InfoPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.7, 0.3, 1)
-theme_override_font_sizes/font_size = 13
-text = "🎒 ITEM INICIAL: Amuleto de Semente"
-autowrap_mode = 2
-
-[node name="NavContainer" type="HBoxContainer" parent="MainContainer"]
-layout_mode = 2
+theme_override_constants/separation = 2
 alignment = 1
 
-[node name="BtnPrev" type="Button" parent="MainContainer/NavContainer"]
-custom_minimum_size = Vector2(80, 40)
+[node name="Title" type="Label" parent="PanelOrigin/HeaderPanel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
 theme_override_font_sizes/font_size = 18
-text = "◀"
-
-[node name="CounterLabel" type="Label" parent="MainContainer/NavContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "1 / 5"
+text = "1. SELEÇÃO DE ORIGEM (1645)"
 horizontal_alignment = 1
 
-[node name="BtnNext" type="Button" parent="MainContainer/NavContainer"]
-custom_minimum_size = Vector2(80, 40)
+[node name="Subtitle" type="Label" parent="PanelOrigin/HeaderPanel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
-theme_override_font_sizes/font_size = 18
-text = "▶"
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Escolha o continente ancestral do seu personagem"
+horizontal_alignment = 1
 
-[node name="BtnConfirm" type="Button" parent="MainContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelOrigin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 92.0
+offset_right = -16.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContent" type="VBoxContainer" parent="PanelOrigin/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="CardsContainer" type="VBoxContainer" parent="PanelOrigin/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CardBrasil" type="Button" parent="PanelOrigin/ScrollContainer/VBoxContent/CardsContainer"]
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+text = "🌎 BRASIL (América Portuguesa)   [DISPONÍVEL]"
+
+[node name="CardEuropa" type="Button" parent="PanelOrigin/ScrollContainer/VBoxContent/CardsContainer"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_locked")
+text = "🔒 EUROPA (Reino de Portugal / Holanda)   [BLOQUEADO]"
+
+[node name="CardAfrica" type="Button" parent="PanelOrigin/ScrollContainer/VBoxContent/CardsContainer"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_locked")
+text = "🔒 ÁFRICA (Costa Ocidental / Bantos)   [BLOQUEADO]"
+
+[node name="InfoPanel" type="PanelContainer" parent="PanelOrigin/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="PanelOrigin/ScrollContainer/VBoxContent/InfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="VBox" type="VBoxContainer" parent="PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OriginInfoTitle" type="Label" parent="PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 15
+text = "🌎 BRASIL (AMÉRICA PORTUGUESA - 1645)"
+
+[node name="OriginInfoStatus" type="Label" parent="PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "✦ DISPONÍVEL NESTA VERSÃO ✦"
+
+[node name="HSeparator" type="HSeparator" parent="PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="OriginInfoDesc" type="Label" parent="PanelOrigin/ScrollContainer/VBoxContent/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.86, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "Terra vasta de floresta equatorial, mata atlântica virgem, picadas de serra e rios bravios..."
+autowrap_mode = 2
+
+[node name="VBoxBottom" type="VBoxContainer" parent="PanelOrigin"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -70.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BtnConfirmOrigin" type="Button" parent="PanelOrigin/VBoxBottom"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_confirm")
+text = "ESCOLHER ORIGEM: BRASIL ▶"
+
+[node name="PanelClass" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelClass"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_posterbg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="PanelClass"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.04, 0.03, 0.88)
+
+[node name="HeaderPanel" type="PanelContainer" parent="PanelClass"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="VBox" type="VBoxContainer" parent="PanelClass/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="PanelClass/HeaderPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 18
+text = "2. ESCOLHA DE ARQUÉTIPO"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="PanelClass/HeaderPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Origem: Brasil (América Portuguesa)"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelClass"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 86.0
+offset_right = -16.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContent" type="VBoxContainer" parent="PanelClass/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="TabsContainer" type="HBoxContainer" parent="PanelClass/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BtnClassTropeiro" type="Button" parent="PanelClass/ScrollContainer/VBoxContent/TabsContainer"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+text = "🤠 O Tropeiro"
+
+[node name="BtnClassNativo" type="Button" parent="PanelClass/ScrollContainer/VBoxContent/TabsContainer"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+text = "🏹 O Nativo"
+
+[node name="BtnClassDesertor" type="Button" parent="PanelClass/ScrollContainer/VBoxContent/TabsContainer"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_locked")
+text = "🔒 O Desertor"
+
+[node name="AvatarSection" type="HBoxContainer" parent="PanelClass/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="AvatarFrame" type="PanelContainer" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection"]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="AvatarRect" type="TextureRect" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection/AvatarFrame"]
+layout_mode = 2
+texture = ExtResource("5_tropeiro")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LockOverlay" type="ColorRect" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection/AvatarFrame"]
+visible = false
+layout_mode = 2
+color = Color(0.12, 0.05, 0.05, 0.88)
+
+[node name="LockText" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection/AvatarFrame/LockOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 11
+text = "🔒 TRAVADO
+Requer Origem Europeia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxHeader" type="VBoxContainer" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="ClassNameLabel" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "✦ ESCOLHER ESTE ARQUÉTIPO ✦"
+text = "O TROPEIRO PAULISTA"
+
+[node name="ClassTitleLabel" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 12
+text = "Senhor das Rotas e Mercador da Serra"
+
+[node name="ClassStatusBadge" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/AvatarSection/VBoxHeader"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "✦ DISPONÍVEL ✦"
+
+[node name="BandeiraPanel" type="PanelContainer" parent="PanelClass/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="PanelClass/ScrollContainer/VBoxContent/BandeiraPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="PanelClass/ScrollContainer/VBoxContent/BandeiraPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleBandeira" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/BandeiraPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "🛡️ MATRIZ DE ATRIBUTOS: B.A.N.D.E.I.R.A."
+
+[node name="BandeiraGrid" type="GridContainer" parent="PanelClass/ScrollContainer/VBoxContent/BandeiraPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="DetailsPanel" type="PanelContainer" parent="PanelClass/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="PanelClass/ScrollContainer/VBoxContent/DetailsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PassiveLabel" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = "✦ PASSIVA: Mula de Carga..."
+autowrap_mode = 2
+
+[node name="ItemLabel" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.75, 0.35, 1)
+theme_override_font_sizes/font_size = 12
+text = "🎒 EQUIPAMENTO INICIAL: Bruaca de Couro & Facão"
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="PanelClass/ScrollContainer/VBoxContent/DetailsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 12
+text = "Conduz tropas de muares pelo barro e pedreiras da Serra do Mar..."
+autowrap_mode = 2
+
+[node name="VBoxBottom" type="VBoxContainer" parent="PanelClass"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -68.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BtnConfirmClass" type="Button" parent="PanelClass/VBoxBottom"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_confirm")
+text = "CONFIRMAR ESTE PERSONAGEM ▶"
+
+[node name="PanelRegion" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelRegion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_mapabrasil")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="PanelRegion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.05, 0.04, 0.75)
+
+[node name="HeaderPanel" type="PanelContainer" parent="PanelRegion"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="VBox" type="VBoxContainer" parent="PanelRegion/HeaderPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="PanelRegion/HeaderPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 17
+text = "3. DIVISÃO DO MAPA (6 MACRO-REGIÕES)"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="PanelRegion/HeaderPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "Grade balanceada: 200² quadros por macro-região"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelRegion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 88.0
+offset_right = -16.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContent" type="VBoxContainer" parent="PanelRegion/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="RegionGrid" type="GridContainer" parent="PanelRegion/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="BtnReg1" type="Button" parent="PanelRegion/ScrollContainer/VBoxContent/RegionGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+text = "1. Nordeste Açucareiro
+[DISPONÍVEL]"
+
+[node name="BtnReg2" type="Button" parent="PanelRegion/ScrollContainer/VBoxContent/RegionGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_locked")
+text = "2. Sertão S. Francisco
+[BLOQUEADA]"
+
+[node name="BtnReg3" type="Button" parent="PanelRegion/ScrollContainer/VBoxContent/RegionGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_locked")
+text = "3. Planalto Piratininga
+[BLOQUEADA]"
+
+[node name="BtnReg4" type="Button" parent="PanelRegion/ScrollContainer/VBoxContent/RegionGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+text = "4. Litoral e Rotas Serra
+[DISPONÍVEL]"
+
+[node name="BtnReg5" type="Button" parent="PanelRegion/ScrollContainer/VBoxContent/RegionGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_locked")
+text = "5. Pantanal e Rios
+[BLOQUEADA]"
+
+[node name="BtnReg6" type="Button" parent="PanelRegion/ScrollContainer/VBoxContent/RegionGrid"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+text = "6. Sul e Bacia do Prata
+[DISPONÍVEL]"
+
+[node name="RegionInfoPanel" type="PanelContainer" parent="PanelRegion/ScrollContainer/VBoxContent"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Margin" type="MarginContainer" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RegionTitle" type="Label" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "📍 4. LITORAL E ROTAS DE SERRA"
+
+[node name="RegionClimate" type="Label" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 12
+text = "🌦️ Clima: Mata Atlântica de Encosta (Chuva e Barro)"
+
+[node name="RegionHazards" type="Label" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.5, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "⚠️ Perigos: Precipícios escorregadios, neblina espessa..."
+
+[node name="RegionTotem" type="Label" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.8, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "🏛️ Totem: Rancho Tropeiro de Cumeeira"
+
+[node name="HSeparator" type="HSeparator" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="RegionDesc" type="Label" parent="PanelRegion/ScrollContainer/VBoxContent/RegionInfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 12
+text = "A espinha dorsal do tropeirismo. Picadas lamacentas entre o Porto de Santos..."
+autowrap_mode = 2
+
+[node name="VBoxBottom" type="VBoxContainer" parent="PanelRegion"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -68.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BtnConfirmRegion" type="Button" parent="PanelRegion/VBoxBottom"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_confirm")
+text = "CONFIRMAR PONTO DE PARTIDA ▶"
+
+[node name="PanelSheetPreview" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelSheetPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_fichadesign")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SheetBannerTop" type="PanelContainer" parent="PanelSheetPreview"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="VBox" type="VBoxContainer" parent="PanelSheetPreview/SheetBannerTop"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="PanelSheetPreview/SheetBannerTop/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 17
+text = "✦ FICHA DO PERSONAGEM CONCLUÍDA ✦"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="PanelSheetPreview/SheetBannerTop/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "Registrada no Livro de Crônicas de 1645"
+horizontal_alignment = 1
+
+[node name="SheetBannerBottom" type="PanelContainer" parent="PanelSheetPreview"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -68.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="TimerLabel" type="Label" parent="PanelSheetPreview/SheetBannerBottom"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_font_sizes/font_size = 13
+text = "Iniciando Prólogo em 3.5s... (Toque para avançar)"
+horizontal_alignment = 1
+
+[node name="BtnAdvanceSheet" type="Button" parent="PanelSheetPreview"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_invisible")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_invisible")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_invisible")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_invisible")
+
+[node name="TransitionOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
