@@ -13,7 +13,9 @@
 		{"id": "tropeiro_concept_node", "type": "file", "file": "concept_tropeiro_mula.jpg", "x": 900, "y": -385, "width": 460, "height": 460},
 		{"id": "goofy_troop_ref_node", "type": "text", "text": "## 🤠 Modo Exploração: O Tropeiro & Sua Mula\nEstilo Gibi (Ziraldo & Maurício) com dinâmica de exploração, quebra-cabeças e interação de telas de **Goofy Troop (SNES / Capcom 1993)**.\n- Movimentar/empilhar fardos de carga e barris para abrir passagens\n- A mula segue a trilha e carrega o inventário dobrado\n- Uso de facão e laço para alcançar plataformas e jangadas", "x": 900, "y": 100, "width": 460, "height": 280},
 		{"id": "tropeiro_chico_node", "type": "file", "file": "tropeiro_mula_estilo_gibi.jpg", "x": 1420, "y": -385, "width": 460, "height": 460},
-		{"id": "tropeiro_chico_text", "type": "text", "text": "## 🌟 Padrão Oficial dos Sprites (Chico Bento / Canini)\nSilhueta limpa, proporções amigáveis (3.5 cabeças) e traço grosso de nanquim.\nZero poluição visual: perfeito para telas verticais 9:16 de celular e animações leves no Godot.", "x": 1420, "y": 100, "width": 460, "height": 260}
+		{"id": "tropeiro_chico_text", "type": "text", "text": "## 🌟 Padrão Oficial dos Sprites (Chico Bento / Canini)\nSilhueta limpa, proporções amigáveis (3.5 cabeças) e traço grosso de nanquim.\nZero poluição visual: perfeito para telas verticais 9:16 de celular e animações leves no Godot.", "x": 1420, "y": 100, "width": 460, "height": 260},
+		{"id": "curupira_concept_node", "type": "file", "file": "curupira_estilo_gibi.jpg", "x": 1940, "y": -385, "width": 480, "height": 480},
+		{"id": "curupira_concept_text", "type": "text", "text": "## 🔥 O Curupira: Protetor da Mata\nFiel à anatomia clássica do folclore nacional:\n- Pés invertidos com pegadas ao contrário no solo\n- Cabelos de fogo vivo e dentes verdes\n- Expressão séria, calma e vigilante (guardião místico da floresta)\n- Tacape de pau-brasil e companheiro caititu (porco-do-mato)", "x": 1940, "y": 120, "width": 480, "height": 260}
 	],
 	"edges": [
 		{"id": "48a4bb44a449c4a7", "fromNode": "727cd46246645d22", "fromSide": "bottom", "toNode": "b8abcaf1a7dd1292", "toSide": "bottom"},
@@ -22,6 +24,7 @@
 		{"id": "6223becc4b26bd47", "fromNode": "ce46124013a88ce6", "fromSide": "bottom", "toNode": "fb23c68d436e1377", "toSide": "bottom"},
 		{"id": "edge_tropeiro", "fromNode": "tropeiro_text_node", "fromSide": "top", "toNode": "tropeiro_hq_node", "toSide": "bottom"},
 		{"id": "edge_goofy", "fromNode": "goofy_troop_ref_node", "fromSide": "top", "toNode": "tropeiro_concept_node", "toSide": "bottom"},
-		{"id": "edge_chico", "fromNode": "tropeiro_chico_text", "fromSide": "top", "toNode": "tropeiro_chico_node", "toSide": "bottom"}
+		{"id": "edge_chico", "fromNode": "tropeiro_chico_text", "fromSide": "top", "toNode": "tropeiro_chico_node", "toSide": "bottom"},
+		{"id": "edge_curupira", "fromNode": "curupira_concept_text", "fromSide": "top", "toNode": "curupira_concept_node", "toSide": "bottom"}
 	]
 }

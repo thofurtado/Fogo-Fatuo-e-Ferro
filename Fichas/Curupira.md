@@ -1,8 +1,11 @@
 # 🌿 Entidade Folclórica: O [[Curupira]]
 
+![[curupira_estilo_gibi.jpg]]
+
 - **Domínio / Bioma:** Planalto de Piratininga e Litoral / Rotas de Serra (Mata fechada)
 - **Conceito:** O protetor de cabelos de fogo, dentes verdes e pés virados para trás. Não luta com força bruta; confunde, exaure e vira a própria floresta contra os invasores.
 - **Tipo de Batalha:** Visualização lateral 2D (Estilo JRPG / Super Mario RPG)
+
 
 ---
 
