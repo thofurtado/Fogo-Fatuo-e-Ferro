@@ -34,7 +34,6 @@ window/handheld/orientation=1
 [editor]
 
 movie_writer/movie_file="C:/Users/Johnny/Documents/GitHub/Fogo-Fatuo-e-Ferro/gameplay/Gameplay01.avi"
-movie_writer/fps=60
 
 [rendering]
 
