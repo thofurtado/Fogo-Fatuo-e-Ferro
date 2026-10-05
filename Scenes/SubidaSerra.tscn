@@ -321,6 +321,17 @@ texture = ExtResource("11_sign_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/PlacaGarganta"]
 shape = SubResource("CircleShape2D_interact")
 
+[node name="BauCachoeira" type="Area2D" parent="YSortContainer"]
+position = Vector2(490, 1620)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/BauCachoeira"]
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_chest_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/BauCachoeira"]
+shape = SubResource("CircleShape2D_interact")
+
 [node name="AltarCaipora" type="Area2D" parent="YSortContainer"]
 position = Vector2(490, 1050)
 

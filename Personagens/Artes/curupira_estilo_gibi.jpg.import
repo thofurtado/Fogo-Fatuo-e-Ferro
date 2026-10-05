@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gtxcp2kw6amk"
-path="res://.godot/imported/curupira_estilo_gibi.jpg-dd0bf4fc154bff39716087ff3ee32a92.ctex"
+path="res://.godot/imported/curupira_estilo_gibi.jpg-8806b735b4c5bc7761019366b865fcb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://curupira_estilo_gibi.jpg"
-dest_files=["res://.godot/imported/curupira_estilo_gibi.jpg-dd0bf4fc154bff39716087ff3ee32a92.ctex"]
+source_file="res://Personagens/Artes/curupira_estilo_gibi.jpg"
+dest_files=["res://.godot/imported/curupira_estilo_gibi.jpg-8806b735b4c5bc7761019366b865fcb8.ctex"]
 
 [params]
 

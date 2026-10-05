@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://daouoadu3negw"
-path="res://.godot/imported/hq_prologo.jpg-2d2006aaabf8618ce4353c502cb395ed.ctex"
+path="res://.godot/imported/hq_prologo.jpg-19d15c6304a57b7bb36e4dce9533d6c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hq_prologo.jpg"
-dest_files=["res://.godot/imported/hq_prologo.jpg-2d2006aaabf8618ce4353c502cb395ed.ctex"]
+source_file="res://Personagens/Artes/hq_prologo.jpg"
+dest_files=["res://.godot/imported/hq_prologo.jpg-19d15c6304a57b7bb36e4dce9533d6c6.ctex"]
 
 [params]
 

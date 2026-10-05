@@ -17,6 +17,7 @@ extends Node2D
 
 var current_interactable = null
 var chest_opened: bool = false
+var waterfall_chest_opened: bool = false
 var caipora_offering_done: bool = false
 
 func _ready():
@@ -39,6 +40,10 @@ func _ready():
 
 	$YSortContainer/PlacaGarganta.body_entered.connect(func(b): if b == player: register_target("placa_garganta", "MARCO DE MADEIRA", "Placa antiga de trilha. Pressione [E] para ler."))
 	$YSortContainer/PlacaGarganta.body_exited.connect(func(b): if b == player: unregister_target("placa_garganta"))
+
+	if $YSortContainer.has_node("BauCachoeira"):
+		$YSortContainer/BauCachoeira.body_entered.connect(func(b): if b == player: register_target("bau_cachoeira", "QUEDA D'ÁGUA DA CACHOEIRA DO VÉU", "O estrondo da água espirra neblina nas pedras. Pressione [E] para inspecionar as fendas."))
+		$YSortContainer/BauCachoeira.body_exited.connect(func(b): if b == player: unregister_target("bau_cachoeira"))
 
 	$YSortContainer/AltarCaipora.body_entered.connect(func(b): if b == player: register_target("altar_caipora", "ALTAR DO BAMBUZAL", "Tronco e pedras rituais da Caipora. Pressione [E] para deixar oferenda de Fumo."))
 	$YSortContainer/AltarCaipora.body_exited.connect(func(b): if b == player: unregister_target("altar_caipora"))
@@ -128,6 +133,19 @@ func _handle_interaction():
 			_show_dialogue("FOGUEIRA DE POUSO:", "Você bebe um café de milho quente e faz carinho nas orelhas da Bonita junto às brasas. Vida restaurada ao máximo e a mula descansou (+15% Afinidade)!")
 		"placa_garganta":
 			_show_dialogue("MARCO DA GARGANTA DAS ÁGUAS:", "« Cuidado viajante: A cachoeira esculpiu abismos nas pedras. Empurre os barris de cascalho para firmar a passagem sobre as poças de barro! »")
+		"bau_cachoeira":
+			if GameManager.boato_cachoeira_descoberto:
+				if not waterfall_chest_opened:
+					waterfall_chest_opened = true
+					GameManager.add_item("40 Patacas de Prata Jesuítas")
+					GameManager.add_item("Terço de Jacarandá Sagrado")
+					mula.add_affinity(20)
+					_update_hud()
+					_show_dialogue("BAÚ DA CACHOEIRA DO VÉU (BOATO CONFIRMADO!):", "Lembrando-se do segredo sussurrado na taverna de Santos, você enfia os braços nas fendas escuras atrás da cascata... e puxa o velho baú de ferro! Você encontrou 40 Patacas de Prata e um Terço de Jacarandá! (+20% Afinidade da Mula).")
+				else:
+					_show_dialogue("CACHOEIRA DO VÉU:", "A fenda atrás das pedras está vazia. Você já resgatou o tesouro do bandeirante.")
+			else:
+				_show_dialogue("CACHOEIRA DO VÉU:", "A água desce ruidosa e gelada pelas pedras escorregadias. Parece haver fendas profundas na rocha úmida, mas sem saber o que procurar, é perigoso colocar as mãos.")
 		"altar_caipora":
 			if not caipora_offering_done:
 				caipora_offering_done = true

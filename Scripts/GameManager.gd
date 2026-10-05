@@ -125,6 +125,7 @@ var regions_catalog: Dictionary = {
 var inventory: Array[String] = []
 var quest_curupira_amulet: bool = false
 var has_curupira_blessing: bool = false
+var boato_cachoeira_descoberto: bool = false
 
 var current_cargo: Dictionary = {}
 

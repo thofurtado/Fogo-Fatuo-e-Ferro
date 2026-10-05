@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jmrdbelf1lxb"
-path="res://.godot/imported/tropeiro_mula_estilo_gibi.jpg-921a13e635241548a636ae17852dc9ba.ctex"
+path="res://.godot/imported/tropeiro_mula_estilo_gibi.jpg-d4cb5cc97abdcd24265f3b90c505a830.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tropeiro_mula_estilo_gibi.jpg"
-dest_files=["res://.godot/imported/tropeiro_mula_estilo_gibi.jpg-921a13e635241548a636ae17852dc9ba.ctex"]
+source_file="res://Personagens/Artes/tropeiro_mula_estilo_gibi.jpg"
+dest_files=["res://.godot/imported/tropeiro_mula_estilo_gibi.jpg-d4cb5cc97abdcd24265f3b90c505a830.ctex"]
 
 [params]
 

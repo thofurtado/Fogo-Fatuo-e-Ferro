@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg8iwbqpijjri"
-path="res://.godot/imported/tropeiro_mula_concept_sheet.jpg-55c2f87df7599d355fa3b3b92b749a24.ctex"
+path="res://.godot/imported/tropeiro_mula_concept_sheet.jpg-2e00291290020905285b34d6d9b5853a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tropeiro_mula_concept_sheet.jpg"
-dest_files=["res://.godot/imported/tropeiro_mula_concept_sheet.jpg-55c2f87df7599d355fa3b3b92b749a24.ctex"]
+source_file="res://Personagens/Artes/tropeiro_mula_concept_sheet.jpg"
+dest_files=["res://.godot/imported/tropeiro_mula_concept_sheet.jpg-2e00291290020905285b34d6d9b5853a.ctex"]
 
 [params]
 

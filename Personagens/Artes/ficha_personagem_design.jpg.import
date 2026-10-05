@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m7awa0xdfag8"
-path="res://.godot/imported/ficha_personagem_design.jpg-f917120a6044141eb29d58cc0338c68c.ctex"
+path="res://.godot/imported/ficha_personagem_design.jpg-efa63e99f0216423714e7db5222a1f33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ficha_personagem_design.jpg"
-dest_files=["res://.godot/imported/ficha_personagem_design.jpg-f917120a6044141eb29d58cc0338c68c.ctex"]
+source_file="res://Personagens/Artes/ficha_personagem_design.jpg"
+dest_files=["res://.godot/imported/ficha_personagem_design.jpg-efa63e99f0216423714e7db5222a1f33.ctex"]
 
 [params]
 

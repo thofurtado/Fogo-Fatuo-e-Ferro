@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvpa6xle0jkio"
-path="res://.godot/imported/mula_sem_cabeca_estilo_gibi.jpg-2871d24d3f44e29a68eb713065442ce7.ctex"
+path="res://.godot/imported/mula_sem_cabeca_estilo_gibi.jpg-1ec60691e931b54146364830adb2d52e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mula_sem_cabeca_estilo_gibi.jpg"
-dest_files=["res://.godot/imported/mula_sem_cabeca_estilo_gibi.jpg-2871d24d3f44e29a68eb713065442ce7.ctex"]
+source_file="res://Personagens/Artes/mula_sem_cabeca_estilo_gibi.jpg"
+dest_files=["res://.godot/imported/mula_sem_cabeca_estilo_gibi.jpg-1ec60691e931b54146364830adb2d52e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcu8plxrrtipq"
-path="res://.godot/imported/curupira_pes_invertidos.jpg-0eced686f19c50280fc842c992fed958.ctex"
+uid="uid://cm2j5pw01rbba"
+path="res://.godot/imported/mapa_subida_serra_grid.jpg-dd8e1b2533adc2586dca1cc834ea3ea3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Personagens/Artes/curupira_pes_invertidos.jpg"
-dest_files=["res://.godot/imported/curupira_pes_invertidos.jpg-0eced686f19c50280fc842c992fed958.ctex"]
+source_file="res://Mapas/mapa_subida_serra_grid.jpg"
+dest_files=["res://.godot/imported/mapa_subida_serra_grid.jpg-dd8e1b2533adc2586dca1cc834ea3ea3.ctex"]
 
 [params]
 

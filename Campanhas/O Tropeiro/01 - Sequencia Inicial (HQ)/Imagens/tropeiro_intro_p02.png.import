@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcu8plxrrtipq"
-path="res://.godot/imported/curupira_pes_invertidos.jpg-0eced686f19c50280fc842c992fed958.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://d3p0hmmdl0q2v"
+valid=false
 
 [deps]
 
-source_file="res://Personagens/Artes/curupira_pes_invertidos.jpg"
-dest_files=["res://.godot/imported/curupira_pes_invertidos.jpg-0eced686f19c50280fc842c992fed958.ctex"]
+source_file="res://Campanhas/O Tropeiro/01 - Sequencia Inicial (HQ)/Imagens/tropeiro_intro_p02.png"
 
 [params]
 

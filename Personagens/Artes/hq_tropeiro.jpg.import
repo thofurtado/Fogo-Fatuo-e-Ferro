@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rpyp1piujb05"
-path="res://.godot/imported/hq_tropeiro.jpg-426e907ac69a34725e3ff0156bc84869.ctex"
+path="res://.godot/imported/hq_tropeiro.jpg-229812df3205a010bbae8ae8996e2ff4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hq_tropeiro.jpg"
-dest_files=["res://.godot/imported/hq_tropeiro.jpg-426e907ac69a34725e3ff0156bc84869.ctex"]
+source_file="res://Personagens/Artes/hq_tropeiro.jpg"
+dest_files=["res://.godot/imported/hq_tropeiro.jpg-229812df3205a010bbae8ae8996e2ff4.ctex"]
 
 [params]
 

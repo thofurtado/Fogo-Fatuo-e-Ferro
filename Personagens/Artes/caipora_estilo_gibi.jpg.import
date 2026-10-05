@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cebaytl3usygy"
-path="res://.godot/imported/caipora_estilo_gibi.jpg-82b19450e6b8f0a594af7206c8e66ea8.ctex"
+path="res://.godot/imported/caipora_estilo_gibi.jpg-67e0b7e041bf7fce1cd95c7fce14a1bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://caipora_estilo_gibi.jpg"
-dest_files=["res://.godot/imported/caipora_estilo_gibi.jpg-82b19450e6b8f0a594af7206c8e66ea8.ctex"]
+source_file="res://Personagens/Artes/caipora_estilo_gibi.jpg"
+dest_files=["res://.godot/imported/caipora_estilo_gibi.jpg-67e0b7e041bf7fce1cd95c7fce14a1bc.ctex"]
 
 [params]
 
