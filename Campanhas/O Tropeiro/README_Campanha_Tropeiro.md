@@ -18,4 +18,5 @@
     3. *Ato III:* A Encruzilhada da Meia-Noite (Primeiro contato tático com o Curupira ou a Mula sem Cabeça).
 * **Fichas e Referências:**
   * Ficha do Personagem: [[Fichas/Jogador - Tropeiro|Ficha Técnica do Tropeiro]]
+  * Mapa Tático da Subida: [[Excalidraw/Mapa_Subida_Serra_Grid|Mapa Tático com Grid (Level Design da Serra)]]
   * Dossiê Histórico: [[Docs/HISTORIA_E_AMBIENTACAO_1645|História e Ambientação de 1645]]
