@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d13dxt0yvtg42"
-valid=false
+uid="uid://d00ogrkwp6umg"
+path="res://.godot/imported/tropeiro_intro_p03.jpg-5aff0385c6431617529aef25acdfa768.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Backgrounds/tropeiro_intro_p01.png"
+source_file="res://Assets/Backgrounds/tropeiro_intro_p03.jpg"
+dest_files=["res://.godot/imported/tropeiro_intro_p03.jpg-5aff0385c6431617529aef25acdfa768.ctex"]
 
 [params]
 

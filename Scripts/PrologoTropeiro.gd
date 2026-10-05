@@ -22,9 +22,9 @@ var current_stage: Stage = Stage.PAGE_1_CAIS
 var selected_cargo_id: String = "sal_charque"
 
 # Texturas das Páginas de Quadrinhos
-const TEX_PAGE_1 = preload("res://Assets/Backgrounds/tropeiro_intro_p01.png")
-const TEX_PAGE_2 = preload("res://Assets/Backgrounds/tropeiro_intro_p02.png")
-const TEX_PAGE_3 = preload("res://Assets/Backgrounds/tropeiro_intro_p03.png")
+const TEX_PAGE_1 = preload("res://Assets/Backgrounds/tropeiro_intro_p01.jpg")
+const TEX_PAGE_2 = preload("res://Assets/Backgrounds/tropeiro_intro_p02.jpg")
+const TEX_PAGE_3 = preload("res://Assets/Backgrounds/tropeiro_intro_p03.jpg")
 
 # Nós da UI
 @onready var bg_rect: TextureRect = $BackgroundHQ

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://Scripts/PrologoTropeiro.gd" id="1_prologo"]
-[ext_resource type="Texture2D" path="res://Assets/Backgrounds/tropeiro_intro_p01.png" id="2_page1_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Backgrounds/tropeiro_intro_p01.jpg" id="2_page1_tex"]
 [ext_resource type="PackedScene" path="res://Scenes/DiceTray.tscn" id="3_dicetray"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_dark"]

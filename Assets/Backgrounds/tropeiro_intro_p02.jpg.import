@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl0wjy3f1hs0y"
-valid=false
+uid="uid://l0578vqh3t4d"
+path="res://.godot/imported/tropeiro_intro_p02.jpg-e88517d6b5d88c261f08b8270d0f520d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Campanhas/O Tropeiro/01 - Sequencia Inicial (HQ)/Imagens/tropeiro_intro_p03.png"
+source_file="res://Assets/Backgrounds/tropeiro_intro_p02.jpg"
+dest_files=["res://.godot/imported/tropeiro_intro_p02.jpg-e88517d6b5d88c261f08b8270d0f520d.ctex"]
 
 [params]
 

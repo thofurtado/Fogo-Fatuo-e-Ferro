@@ -55,7 +55,7 @@ Esta é a primeira tela interativa que abre a construção de personagem e defin
 Após a escolha da classe **Tropeiro**, a história engata na sequência em quadrinhos de introdução:
 
 ### 📄 Página 01: O Cenário & O Porto de Santos
-* **Arquivo da Imagem:** `![[tropeiro_intro_p01.png]]`
+* **Arquivo da Imagem:** `![[tropeiro_intro_p01.jpg]]`
 * **Legenda no Rodapé (Estilo Flavio Colin):**
   > *"Ano do Senhor de 1645. Enquanto o Norte queima em pólvora holandesa, no sopé da serra paulista o peso do ferro e do sal move a vida dos homens sem terra."*
 * **Áudio / Trilha Sugerida:** Som de ondas calmas no cais de Santos, gaivotas distantes e o sino tosco de uma capela ao longe.
@@ -64,7 +64,7 @@ Após a escolha da classe **Tropeiro**, a história engata na sequência em quad
 ---
 
 ### 📄 Página 02: A Apresentação da Dupla (O Tropeiro & A Mula Bonita)
-* **Arquivo da Imagem:** `![[tropeiro_intro_p02.png]]`
+* **Arquivo da Imagem:** `![[tropeiro_intro_p02.jpg]]`
 * **Legenda no Rodapé:**
   > *"Tião Caboclo mascava um talo de capim-santo encostado ao mourão de amarra. A algibeira trazia apenas vento e réis gastos de cobre, mas ao seu lado, as orelhas compridas da mulinha Bonita bufavam prontas para mais um paredão de serra."*
 * **Áudio / Trilha Sugerida:** Relincho carinhoso da mula, estalo do basto de couro cru e o bufo do animal cheirando o braço do tropeiro.
@@ -73,7 +73,7 @@ Após a escolha da classe **Tropeiro**, a história engata na sequência em quad
 ---
 
 ### 📄 Página 03: A Taverna do Pescador Torto & A Bandeja de Rolagem de Dados
-* **Arquivo da Imagem:** `![[tropeiro_intro_p03.png]]`
+* **Arquivo da Imagem:** `![[tropeiro_intro_p03.jpg]]`
 * **Cena no Godot:** `res://Scenes/PrologoTropeiro.tscn` (com componente `res://Scenes/DiceTray.tscn`)
 * **Legenda no Rodapé / Janela do Mestre:**
   > *"O salão está esfumaçado e cheio de sussurros. Role teus dados na bandeja de couro para ver o que teus olhos de tropeiro conseguem discernir entre as sombras da taverna."*
