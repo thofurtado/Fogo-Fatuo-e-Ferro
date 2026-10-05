@@ -62,5 +62,5 @@ func _on_confirm_pressed():
 	]
 
 func _on_enter_world_pressed():
-	# Troca direto para a cena do Rancho ao pé da serra
-	get_tree().change_scene_to_file("res://Scenes/RanchoTropeiro.tscn")
+	# Troca direto para a cena jogável da Subida da Serra de Paranapiacaba
+	get_tree().change_scene_to_file("res://Scenes/SubidaSerra.tscn")
