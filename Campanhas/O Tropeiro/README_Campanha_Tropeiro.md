@@ -13,8 +13,8 @@
   * Subpasta `Imagens/`: Onde ficam os arquivos gráficos exportados (`tropeiro_intro_p01.png`, etc.).
 * **`02 - Jornadas e Atos/`:**
   * Documentação das etapas de exploração:
-    1. *Ato I:* O Rancho do Pé da Serra (Tutorial de movimentação de barris, empilhamento e comandos da mula).
-    2. *Ato II:* A Subida pela Picada dos Tupiniquins (Pontes de corda quebradas, deslizamentos e travessia de jangadas).
+    1. *Ato I:* [[02 - Jornadas e Atos/Ato_01_A_Subida_da_Serra|Ato I: A Subida da Serra de Paranapiacaba (Cenário Jogável)]] (Pé da Serra, Garganta das Águas, Bambuzal da Caipora e Encruzilhada).
+    2. *Ato II:* A Picada dos Tupiniquins (Pontes de corda quebradas, deslizamentos e travessia de jangadas).
     3. *Ato III:* A Encruzilhada da Meia-Noite (Primeiro contato tático com o Curupira ou a Mula sem Cabeça).
 * **Fichas e Referências:**
   * Ficha do Personagem: [[Fichas/Jogador - Tropeiro|Ficha Técnica do Tropeiro]]
