@@ -2,7 +2,9 @@
 
 - **Origem / Povo:** Português
 - **Região de Início:** 1. Nordeste Açucareiro (Zona de Guerra dos Engenhos)
-- **Condição Social & Ofício:** Soldado Desertor da Coroa
+- **Condição Social & Ofício:** Soldado Desertor da Coroa (Sargento Lourenço)
+- **Companheiro Inseparável (Comitiva):** O cão de guerra **Chumbo** (Mastim colonial farejador).
+  - *Mecânica do Mastim:* Rosna alertando patrulhas na neblina; desvia disparos inimigos no combate corporal.
 - **Idiomas:** Português (Nativo), Tupi de Contato (Noções)
 
 ---

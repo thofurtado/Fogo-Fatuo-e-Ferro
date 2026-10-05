@@ -52,40 +52,59 @@ Esta é a primeira tela interativa que abre a construção de personagem e defin
 
 ## 🎞️ Decupagem da Sequência Narrativa (HQ / Prólogo do Tropeiro)
 
-Após a escolha do continente (América do Sul) e da classe **Tropeiro**, a história engata na sequência em quadrinhos de introdução:
+Após a escolha da classe **Tropeiro**, a história engata na sequência em quadrinhos de introdução:
 
-### 📄 Página 01: O Cenário & O Porto
+### 📄 Página 01: O Cenário & O Porto de Santos
 * **Arquivo da Imagem:** `![[tropeiro_intro_p01.png]]`
-* **Legenda no Rodapé (Corel):**
+* **Legenda no Rodapé (Estilo Flavio Colin):**
   > *"Ano do Senhor de 1645. Enquanto o Norte queima em pólvora holandesa, no sopé da serra paulista o peso do ferro e do sal move a vida dos homens sem terra."*
-* **Áudio / Trilha Sugerida:** Som de ondas calmas no porto batendo em cais de madeira, gaivotas distantes e o sino de uma capela ao longe.
-* **Notas de Direção:** Visão panorâmica do ancoradouro, fardos de carga, marinheiros e o vulto escuro e imponente da Serra do Mar encoberta por névoa ao fundo.
+* **Áudio / Trilha Sugerida:** Som de ondas calmas no cais de Santos, gaivotas distantes e o sino tosco de uma capela ao longe.
+* **Notas de Direção:** Visão panorâmica do ancoradouro, fardos de carga, marinheiros e o paredão imponente e escuro da Serra de Paranapiacaba coberto por mormaço ao fundo.
 
 ---
 
-### 📄 Página 02: A Apresentação da Dupla
+### 📄 Página 02: A Apresentação da Dupla (O Tropeiro & A Mula Bonita)
 * **Arquivo da Imagem:** `![[tropeiro_intro_p02.png]]`
-* **Legenda no Rodapé (Corel):**
-  > *(Aguardando seu texto e desenho do Corel)*
-* **Áudio / Trilha Sugerida:** Relincho baixo da mula, estalar de correias de couro e passos pesados em solo de lama e cascalho.
-* **Notas de Direção:** Plano aproximado do Tropeiro arrumando o arreio da sua fiel mula. Expressão experiente, chapéu de feltro desabado e facão embainhado na cintura.
+* **Legenda no Rodapé:**
+  > *"Tião Caboclo mascava um talo de capim-santo encostado ao mourão de amarra. A algibeira trazia apenas vento e réis gastos de cobre, mas ao seu lado, as orelhas compridas da mulinha Bonita bufavam prontas para mais um paredão de serra."*
+* **Áudio / Trilha Sugerida:** Relincho carinhoso da mula, estalo do basto de couro cru e o bufo do animal cheirando o braço do tropeiro.
+* **Mecânica Central de Comitiva:** A mula **Bonita** acompanha Tião em 100% da exploração. Possui o medidor vivo de **Afinidade com a Mula** (que dita a tolerância à carga, aviso de emboscadas e resolução de quebra-cabeças).
 
 ---
 
-### 📄 Página 03: O Conflito / A Escolha da Carga
+### 📄 Página 03: A Taverna do Pescador Torto & O Teste de Percepção
 * **Arquivo da Imagem:** `![[tropeiro_intro_p03.png]]`
-* **Legenda no Rodapé (Corel):**
-  > *(Aguardando seu texto e desenho do Corel)*
-* **Mecânica Interativa (No Jogo):** Ponto de decisão do jogador entre as 3 cargas:
-  1. **Sal & Charque:** Comércio oficial, peso moderado, menor risco da Coroa.
-  2. **Ferro & Pólvora:** Carga clandestina de alto lucro, pesadíssima, atrai a fúria dos capitães e das entidades da mata.
-  3. **Fumo & Relíquias:** Carga mística e leve, funciona como oferenda para abrir caminhos e acalmar espíritos.
+* **Legenda no Rodapé:**
+  > *"O sino de bronze tocou na porta de cedro. Mestre Bento, taverneiro atarracado com o avental manchado de cachaça e peixe, limpou um copo tosco: 'Êta, Tião! Achei que você já tinha subido com a tropa dos Pires! O que faz mascando água de maré?'"*
+* **🎲 Teste no HUD (B.A.N.D.E.I.R.A.):**
+  > 🎯 **`[TESTE DE INSTINTO + NAVEGAÇÃO — 8 D10s — DIFICULDADE 6]`**  
+  > *Tião corre os olhos pelo salão enfumaçado para identificar os 3 fretes em potencial na taverna.*
+* **Os 3 Clientes em Potencial de 1645:**
+  1. **O Feitor do Engenho São Jorge (Ferro & Pólvora):** Paga em patacas de prata legítimas. Carga pesadíssima (2 barris de pólvora e ferramentas de ferro forjado). Atrai salteadores de picada e exige muito da mula na lama.
+  2. **O Irmão Donato do Colégio Jesuíta (As Caixas Lacradas):** Carga leve de caixotes de cedro com selo carmesim da Companhia de Jesus. Paga média com salvo-conduto eclesiástico, mas o clérigo avisa que atrai assombrações da serra.
+  3. **O Mameluco Contrabandista do Descaminho (Fumo Proibido):** Paga altíssimo adiantado em ouro de lavagem por fardos de fumo de rolo e aguardente clandestina. Exige subir pela proibida *Picada dos Tupiniquins*, arriscando a ira da Caipora e patrulhas da Coroa.
 
 ---
 
-### 📄 Página 04: O Pé na Estrada & O Mistério da Serra
+### 📄 Página 04: A Grande Decisão da Partida
+Após fechar o frete, a interface apresenta 3 caminhos de partida ao jogador:
+
+1. **🌅 Descansar no estábulo e partir logo ao raiar do dia:**
+   * Tião alimenta a Bonita com milho e palha fresca e descansa ao som do mar.
+   * **Inicia no Modo Exploração de Dia:** Cores vibrantes estilo gibi/Maurício, visão límpida sem neblina.
+   * **Bônus:** +Vigor temporário (HP extra) e **+1 Ponto de Afinidade com a Mula** (a Bonita anda rápida e disposta!).
+2. **🌙 Carregar a mula e subir a serra agora mesmo, na calada da noite:**
+   * *"Quem tem pressa não espera o sol."* Tião amarra as bruacas e acende um tição de resina.
+   * **Inicia no Modo Exploração à Noite:** Neblina espessa da serra (*mormaço*), campo de visão reduzido ao círculo da tocha, penalidade de percepção.
+   * **Vantagem Tática:** Passa direto pelo posto fiscal da Coroa sem pagar pedágio colonial!
+3. **🕯️ Esperar mais um gole e ouvir o causo do Mestre Bento (A Caipora):**
+   * O taverneiro revela que a **Caipora** ronda os bambuzais da encosta punindo quem desrespeita a mata, e ensina o segredo de deixar oferenda de **Fumo de Rolo** na forquilha das árvores.
+   * Libera a compra de fumo de oferenda antes da partida e o segredo de sobrevivência folclórica!
+
+---
+
+### 📄 Página 05: O Pé na Estrada & O Mistério da Serra
 * **Arquivo da Imagem:** `![[tropeiro_intro_p04.png]]`
-* **Legenda no Rodapé (Corel):**
-  > *(Aguardando seu texto e desenho do Corel)*
-* **Áudio / Trilha Sugerida:** Trovoada abafada no cume da serra, vento nas folhagens e o primeiro brilho fugaz de fogo-fátuo azul entre os galhos.
-* **Transição:** Corte seco para o **Rancho do Pé da Serra**, onde se inicia o modo jogável de exploração e puzzle (estilo Goofy Troop / Chico Bento).
+* **Áudio / Trilha Sugerida:** Trovoada abafada no cume da serra, vento nas folhagens e o primeiro brilho azul de fogo-fátuo entre os galhos.
+* **Transição:** Corte seco para o **Rancho do Pé da Serra**, onde se inicia o modo jogável de exploração e quebra-cabeças com a mula (estilo *Goofy Troop*).
+

@@ -2,7 +2,9 @@
 
 - **Origem / Povo:** Nativo (Indígena)
 - **Região de Início:** 3. Planalto de Piratininga (Portas do Sertão)
-- **Condição Social & Ofício:** Batedor / Guia de Trilha (Indígena Livre)
+- **Condição Social & Ofício:** Batedor / Guia de Trilha (Abaeté / Papa Pin)
+- **Companheiro Inseparável (Comitiva):** O Gavião-da-Mata **Araraí** (ou Caititu xerimbabo).
+  - *Mecânica do Gavião:* Dissipa a névoa de guerra (*fog of war*) um raio à frente; pia alertando sobre emboscadas e batedores armados.
 - **Etnia & Idioma:** Tupi-Guarani local | Idioma Geral (Nheengatu/Tupi Antigo) e Português rudimentar
 
 ---

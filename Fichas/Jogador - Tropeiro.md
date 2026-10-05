@@ -15,7 +15,9 @@
 
 - **Origem / Região de Início:** 4. Litoral e Rotas da Serra (Porto de Santos / Encostas da Serra do Mar)
 - **Condição Social & Ofício:** Tropeiro Livre / Mestre das Tropas de Mulas
-- **Companheira Inseparável:** A Mula Cargueira (transporta bruacas, barris de pólvora, fumo e mantimentos)
+- **Companheira Inseparável (Comitiva):** A mulinha **Bonita** (transporta bruacas, barris de pólvora, fumo e mantimentos).
+  - *Mecânica de Afinidade:* Ações de descanso e trato aumentam a afinidade; a mula avisa de perigos e empurra obstáculos em puzzles.
+  - *Habilidade Especial Avançada:* Em momentos críticos da campanha, cavalga a lendária **Mula sem Cabeça** envolta em chamas.
 
 
 ---
