@@ -314,14 +314,12 @@ func _update_class_ui():
 	class_item_label.text = "🎒 EQUIPAMENTO INICIAL: " + arch_data["initial_item"]
 	class_desc_label.text = arch_data["desc"]
 	
-	var is_available = arch_data.get("available", false)
-	
-	if is_available:
+	if selected_archetype_id == "tropeiro":
 		avatar_lock_overlay.visible = false
-		class_status_badge.text = "✦ DISPONÍVEL ✦"
-		class_status_badge.modulate = Color(0.3, 0.9, 0.4)
+		class_status_badge.text = "✦ PRONTO PARA JOGAR (CAMPANHA DISPONÍVEL) ✦"
+		class_status_badge.modulate = Color(0.3, 0.95, 0.4)
 		btn_confirm_class.disabled = false
-		btn_confirm_class.text = "CONFIRMAR ESTE PERSONAGEM ▶"
+		btn_confirm_class.text = "CONFIRMAR O TROPEIRO (PRONTO) ▶"
 		btn_confirm_class.modulate = Color(1.0, 1.0, 1.0)
 		
 		# Carrega avatar na caixa
@@ -332,14 +330,31 @@ func _update_class_ui():
 			avatar_rect.modulate = Color(1, 1, 1, 1)
 		else:
 			avatar_rect.visible = false
-	else:
-		# Personagem TRAVADO / INDISPONÍVEL (O Desertor)
+	elif selected_archetype_id == "nativo":
+		# Papa Pin - CHEGANDO EM BREVE
 		avatar_lock_overlay.visible = true
-		avatar_lock_label.text = "🔒 TRAVADO\n\nRequer Origem Europeia\n(Reino de Portugal)"
-		class_status_badge.text = "🔒 BLOQUEADO (Requer Origem Europeia)"
-		class_status_badge.modulate = Color(0.9, 0.3, 0.3)
+		avatar_lock_label.text = "🔒 CHEGANDO EM BREVE\n\nCampanha das Florestas & Rios\n(Liberado no Próximo Ato)"
+		class_status_badge.text = "🔒 CHEGANDO EM BREVE (Campanha em Desenvolvimento)"
+		class_status_badge.modulate = Color(0.95, 0.65, 0.2)
 		btn_confirm_class.disabled = true
-		btn_confirm_class.text = "🔒 PERSONAGEM BLOQUEADO"
+		btn_confirm_class.text = "🔒 PERSONAGEM CHEGANDO EM BREVE"
+		btn_confirm_class.modulate = Color(0.6, 0.6, 0.6)
+		
+		var tex_path = arch_data.get("avatar_texture", "")
+		if tex_path != "" and ResourceLoader.exists(tex_path):
+			avatar_rect.texture = load(tex_path)
+			avatar_rect.visible = true
+			avatar_rect.modulate = Color(0.6, 0.6, 0.6, 0.7)
+		else:
+			avatar_rect.visible = false
+	else:
+		# O Desertor da Coroa - CHEGANDO EM BREVE
+		avatar_lock_overlay.visible = true
+		avatar_lock_label.text = "🔒 CHEGANDO EM BREVE\n\nCampanha Militar da Coroa\n(Requer Origem Europeia)"
+		class_status_badge.text = "🔒 CHEGANDO EM BREVE (Campanha em Desenvolvimento)"
+		class_status_badge.modulate = Color(0.95, 0.65, 0.2)
+		btn_confirm_class.disabled = true
+		btn_confirm_class.text = "🔒 PERSONAGEM CHEGANDO EM BREVE"
 		btn_confirm_class.modulate = Color(0.6, 0.6, 0.6)
 		avatar_rect.texture = null
 		avatar_rect.visible = false
@@ -403,9 +418,9 @@ func _populate_bandeira_grid(bandeira: Dictionary):
 		bandeira_grid.add_child(panel)
 
 func _on_confirm_class():
-	# Apenas avança se a classe for permitida (Tropeiro ou Nativo)
-	if selected_archetype_id == "tropeiro" or selected_archetype_id == "nativo":
-		GameManager.select_archetype_by_id(selected_archetype_id)
+	# Apenas avança se a classe for o Tropeiro (o único pronto nesta versão)
+	if selected_archetype_id == "tropeiro":
+		GameManager.select_archetype_by_id("tropeiro")
 		_transition_to_step(Step.REGION)
 
 # ==============================================================================
@@ -416,8 +431,8 @@ func _select_region(region_id: int):
 	_update_region_ui()
 
 func _update_region_ui():
-	# Regiões permitidas nesta versão: 1, 4 e 6
-	var allowed_regions = [1, 4, 6]
+	# Apenas a Região 4 (Litoral e Rotas de Serra) está pronta nesta demo
+	var allowed_regions = [4]
 	
 	for i in range(region_buttons.size()):
 		var reg_id = i + 1
@@ -447,16 +462,16 @@ func _update_region_ui():
 	var is_reg_available = allowed_regions.has(selected_region_id)
 	if is_reg_available:
 		btn_confirm_region.disabled = false
-		btn_confirm_region.text = "CONFIRMAR PONTO DE PARTIDA ▶"
+		btn_confirm_region.text = "CONFIRMAR ROTA DA SERRA (PRONTA) ▶"
 		btn_confirm_region.modulate = Color(1.0, 1.0, 1.0)
 	else:
 		btn_confirm_region.disabled = true
-		btn_confirm_region.text = "🔒 REGIÃO BLOQUEADA NESTA VERSÃO"
+		btn_confirm_region.text = "🔒 REGIÃO BLOQUEADA (CHEGANDO EM BREVE)"
 		btn_confirm_region.modulate = Color(0.6, 0.6, 0.6)
 
 func _on_confirm_region():
-	if [1, 4, 6].has(selected_region_id):
-		GameManager.selected_region_id = selected_region_id
+	if selected_region_id == 4:
+		GameManager.selected_region_id = 4
 		_transition_to_step(Step.SHEET_PREVIEW)
 
 # ==============================================================================
@@ -473,17 +488,16 @@ func _finish_creation_and_enter_prologue():
 	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	
 	# Salva seleções finais no GameManager
-	GameManager.selected_origin = selected_origin_id
-	GameManager.select_archetype_by_id(selected_archetype_id)
-	GameManager.selected_region_id = selected_region_id
+	GameManager.selected_origin = "brasil"
+	GameManager.select_archetype_by_id("tropeiro")
+	GameManager.selected_region_id = 4
 	
-	# Transição suave para o preto total
+	# Transição rápida de fade para preto (0.3s)
 	var tween_out = create_tween()
-	tween_out.tween_property(transition_overlay, "color:a", 1.0, 0.7).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween_out.tween_property(transition_overlay, "color:a", 1.0, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	await tween_out.finished
 	
-	# Pausa atmosférica de 1.2s no silêncio e na tela 100% preta
-	await get_tree().create_timer(1.2).timeout
-	
 	# Transição direta para o Prólogo (PrologoTropeiro.tscn)
-	get_tree().change_scene_to_file("res://Scenes/PrologoTropeiro.tscn")
+	var err = get_tree().change_scene_to_file("res://Scenes/PrologoTropeiro.tscn")
+	if err != OK:
+		push_error("Falha ao abrir PrologoTropeiro.tscn: " + str(err))

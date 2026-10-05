@@ -36,7 +36,7 @@ var archetypes_catalog: Array[Dictionary] = [
 		"name": "Papa Pin (Batedor Nativo)",
 		"title": "A Resistência e Simbiose com a Terra",
 		"origin": "brasil",
-		"available": true,
+		"available": false,
 		"avatar_texture": "res://Assets/Sprites/curumim_caminhando.png",
 		"bandeira": {
 			"bravura": 3, "agilidade": 5, "navegacao": 5, "destreza": 5,
@@ -45,7 +45,7 @@ var archetypes_catalog: Array[Dictionary] = [
 		"vida_max": 20, "mana_max": 14,
 		"initial_item": "Arco Recurvo & Amuleto de Semente Sagrada",
 		"passive": "Passo Silencioso: Imune a emboscadas na mata e agilidade sobre-humana.",
-		"desc": "Lê o voo das aves e os murmúrios das águas. Defende as aldeias e a floresta sagrada contra a ganância da pólvora e do ferro."
+		"desc": "[CHEGANDO EM BREVE] Lê o voo das aves e os murmúrios das águas. Defende as aldeias e a floresta sagrada contra a ganância da pólvora e do ferro."
 	},
 	{
 		"id": "desertor",
@@ -61,7 +61,7 @@ var archetypes_catalog: Array[Dictionary] = [
 		"vida_max": 25, "mana_max": 6,
 		"initial_item": "Bacamarte Militar & Pederneira",
 		"passive": "Fogo de Campanha: Opera armas de pólvora e fortificações militares.",
-		"desc": "Virou as costas para a violência da Coroa. Carrega o peso das armas com que feriu a terra, buscando redenção no sertão."
+		"desc": "[CHEGANDO EM BREVE] Virou as costas para a violência da Coroa. Carrega o peso das armas com que feriu a terra, buscando redenção no sertão."
 	}
 ]
 
@@ -69,11 +69,11 @@ var regions_catalog: Dictionary = {
 	1: {
 		"id": 1,
 		"name": "1. Nordeste Açucareiro",
-		"available": true,
+		"available": false,
 		"clima": "Tropical Úmido (Canaviais e Costa)",
 		"perigos": "Guerra holandesa (WIC), milícias e capitães-do-mato.",
 		"totem": "Capela Litorânea de Taipa",
-		"desc": "Zona de guerra aberta e alta densidade militar. Engenhos em chamas, patrulhas de arcabuz e corsários no mar."
+		"desc": "[CHEGANDO EM BREVE] Zona de guerra aberta e alta densidade militar. Engenhos em chamas, patrulhas de arcabuz e corsários no mar."
 	},
 	2: {
 		"id": 2,
@@ -100,7 +100,7 @@ var regions_catalog: Dictionary = {
 		"clima": "Mata Atlântica de Encosta (Chuva e Barro)",
 		"perigos": "Precipícios escorregadios, neblina espessa e contrabando.",
 		"totem": "Rancho Tropeiro de Cumeeira",
-		"desc": "A espinha dorsal do tropeirismo. Picadas lamacentas entre o Porto de Santos e os campos do planalto. Ideal para o Tropeiro!"
+		"desc": "✦ DISPONÍVEL (PRONTA) ✦ A espinha dorsal do tropeirismo. Picadas lamacentas entre o Porto de Santos e os campos do planalto. Ideal para o Tropeiro!"
 	},
 	5: {
 		"id": 5,
@@ -114,11 +114,11 @@ var regions_catalog: Dictionary = {
 	6: {
 		"id": 6,
 		"name": "6. Sul e Bacia do Prata",
-		"available": true,
+		"available": false,
 		"clima": "Pampas e Coxilhas (Vento Minuano)",
 		"perigos": "Patrulhas ibéricas disputadas e tempestades pampeiras.",
 		"totem": "Pórtico da Missão Jesuítica de Pedra",
-		"desc": "Grandes planícies abertas, reduções dos Sete Povos das Missões e tropas de gado selvagem."
+		"desc": "[CHEGANDO EM BREVE] Grandes planícies abertas, reduções dos Sete Povos das Missões e tropas de gado selvagem."
 	}
 }
 

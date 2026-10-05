@@ -37,7 +37,7 @@ const TEX_PAGE_3 = preload("res://Assets/Backgrounds/tropeiro_intro_p03.png")
 @onready var btn_page2_next: Button = $UILayer/Page2Container/Margin/VBox/BtnPage2Next
 
 @onready var page3_container: Control = $UILayer/Page3DiceContainer
-@onready var dice_tray: DiceTray = $UILayer/Page3DiceContainer/DiceTray
+@onready var dice_tray = $UILayer/Page3DiceContainer/DiceTray
 @onready var btn_roll_dice: Button = $UILayer/Page3DiceContainer/RollButtonContainer/BtnRollDice
 
 @onready var revelation_panel: PanelContainer = $UILayer/Page3DiceContainer/RevelationPanel
@@ -60,6 +60,7 @@ func _ready():
 	GameManager.select_archetype_by_id("tropeiro")
 	
 	fade_overlay.visible = false
+	fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	fade_overlay.color = Color(0, 0, 0, 0)
 	
 	# Conexões de botões

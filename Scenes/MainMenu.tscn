@@ -1,4 +1,4 @@
-﻿[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_menu"]
 [ext_resource type="Texture2D" path="res://Assets/Backgrounds/poster_capa.jpg" id="2_poster"]
@@ -66,37 +66,46 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -220.0
-offset_right = 180.0
-offset_bottom = -50.0
+offset_left = -200.0
+offset_top = -255.0
+offset_right = 200.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
 [node name="BtnStart" type="Button" parent="ButtonsContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "✦  INICIAR AVENTURA  ✦"
+text = "✦ NOVA JORNADA (CRIAÇÃO) ✦"
 
-[node name="BtnArchetypes" type="Button" parent="ButtonsContainer"]
+[node name="BtnPrologo" type="Button" parent="ButtonsContainer"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
+theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "OS 5 ARQUÉTIPOS INICIAIS"
+text = "🤠 JOGAR PRÓLOGO DO TROPEIRO ▶"
+
+[node name="BtnSubida" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🏔️ SUBIDA DA SERRA (EXPLORAÇÃO) ▶"
 
 [node name="BtnQuit" type="Button" parent="ButtonsContainer"]
-custom_minimum_size = Vector2(0, 36)
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.65, 0.6, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "SAIR DO JOGO"
