@@ -72,17 +72,28 @@ Após a escolha da classe **Tropeiro**, a história engata na sequência em quad
 
 ---
 
-### 📄 Página 03: A Taverna do Pescador Torto & O Teste de Percepção
+### 📄 Página 03: A Taverna do Pescador Torto & A Bandeja de Rolagem de Dados
 * **Arquivo da Imagem:** `![[tropeiro_intro_p03.png]]`
-* **Legenda no Rodapé:**
-  > *"O sino de bronze tocou na porta de cedro. Mestre Bento, taverneiro atarracado com o avental manchado de cachaça e peixe, limpou um copo tosco: 'Êta, Tião! Achei que você já tinha subido com a tropa dos Pires! O que faz mascando água de maré?'"*
-* **🎲 Teste no HUD (B.A.N.D.E.I.R.A.):**
-  > 🎯 **`[TESTE DE INSTINTO + NAVEGAÇÃO — 8 D10s — DIFICULDADE 6]`**  
-  > *Tião corre os olhos pelo salão enfumaçado para identificar os 3 fretes em potencial na taverna.*
-* **Os 3 Clientes em Potencial de 1645:**
-  1. **O Feitor do Engenho São Jorge (Ferro & Pólvora):** Paga em patacas de prata legítimas. Carga pesadíssima (2 barris de pólvora e ferramentas de ferro forjado). Atrai salteadores de picada e exige muito da mula na lama.
-  2. **O Irmão Donato do Colégio Jesuíta (As Caixas Lacradas):** Carga leve de caixotes de cedro com selo carmesim da Companhia de Jesus. Paga média com salvo-conduto eclesiástico, mas o clérigo avisa que atrai assombrações da serra.
-  3. **O Mameluco Contrabandista do Descaminho (Fumo Proibido):** Paga altíssimo adiantado em ouro de lavagem por fardos de fumo de rolo e aguardente clandestina. Exige subir pela proibida *Picada dos Tupiniquins*, arriscando a ira da Caipora e patrulhas da Coroa.
+* **Cena no Godot:** `res://Scenes/PrologoTropeiro.tscn` (com componente `res://Scenes/DiceTray.tscn`)
+* **Legenda no Rodapé / Janela do Mestre:**
+  > *"O salão está esfumaçado e cheio de sussurros. Role teus dados na bandeja de couro para ver o que teus olhos de tropeiro conseguem discernir entre as sombras da taverna."*
+* **🎲 Teste no HUD (Sistema B.A.N.D.E.I.R.A. / Storyteller):**
+  > 🎯 **`[TESTE DE PERCEPÇÃO: INSTINTO (3) + NAVEGAÇÃO (5) = 8 D10s — DIFICULDADE 6]`**  
+  > *Os 8 dados de osso quicam dinamicamente pelas bordas da bandeja de couro com física 2D, colisões elásticas e rotações até assentarem nos resultados finais.*
+
+* **🏆 As 3 Revelações Dinâmicas de Acordo com o Resultado dos Dados:**
+  1. **💀 Resultado Ruim / Falha (0 Sucessos Finais ou Falha Crítica):**
+     * **Narrativa:** A fumaça arde nos olhos de Tião e o burburinho o atordoa. Ele esbarra na mesa dos fundos e chama a atenção de **Baltazar 'Perna de Pau'** — notório contrabandista do descaminho ligado a revoltosos holandeses.
+     * **Carga Revelada:** `Caixotes de Ferro & Pólvora Holandesa` (A que traz mais complicações: 65 arrobas, risco 5/5 com patrulhas da Coroa, hostilidade de espíritos da mata pelo cheiro de pólvora e ferro).
+  2. **⚖️ Bom Resultado (1 a 2 Sucessos Finais):**
+     * **Narrativa:** O olhar experiente de tropeiro ignora as distrações e localiza o **Feitor Gaspar** da Fazenda Real no balcão, conferindo listas com o selo real da Capitania de São Vicente.
+     * **Carga Revelada:** `Sacas de Sal & Charque` (A mais segura: pagamento limpo e garantido pela Câmara, salvo-conduto oficial da guarda, risco 1/5).
+  3. **✨ Sucesso Absoluto (3+ Sucessos Finais):**
+     * **Narrativa:** O instinto afiado lê o salão inteiro num relance! Tião identifica **Frei Lourenço** da Companhia de Jesus no reservado dos fundos, escoltando caixas com relíquias e fumo aromático de oferenda — a opção mais rentável e abençoada!
+     * **Carga Revelada:** `Fumo de Rolo & Relíquias Sagradas` (Carga leve de 15 arrobas, pagamento em patacas de prata e oferenda automática para as entidades da floresta).
+     * **📜 BOATO SECRETO OUVIDO NA MESA AO LADO (EXCLUSIVO!):**
+       > *« Tião ouve dois marinheiros bêbados no balcão sussurrarem: "— ...juro pela Virgem! Na subida de Paranapiacaba, antes da Garganta das Águas, há uma fenda escondida atrás do salto d'água da Cachoeira do Véu... Um capitão bandeirante escondeu um baú de ferro enterrado cheio de patacas ali antes de morrer!" »*
+       > *(Ativa no `GameManager.boato_cachoeira_descoberto = true`, permitindo abrir o baú secreto atrás da cascata na cena jogável `SubidaSerra.tscn`!)*
 
 ---
 
