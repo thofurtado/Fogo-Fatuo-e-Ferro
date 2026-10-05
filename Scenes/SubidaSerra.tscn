@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=28 format=3]
 
 [ext_resource type="Script" path="res://Scripts/SubidaSerra.gd" id="1_scene"]
 [ext_resource type="Script" path="res://Scripts/TropeiroPlayer.gd" id="2_player"]
@@ -504,13 +504,3 @@ theme_override_font_sizes/font_size = 13
 text = "Itens..."
 autowrap_mode = 2
 
-[connection signal="body_entered" from="YSortContainer/RanchoFogueira" to="." binds= ["fogueira_rancho", "FOGUEIRA DE POUSO", "Brasas quentes de café de milho. Pressione [E] para descansar e tratar a mula."]]
-[connection signal="body_exited" from="YSortContainer/RanchoFogueira" to="." binds= ["fogueira_rancho"]]
-[connection signal="body_entered" from="YSortContainer/RanchoBau" to="." binds= ["bau_rancho", "BAÚ DO RANCHO", "Baú reforçado de ferro. Pressione [E] para abrir."]]
-[connection signal="body_exited" from="YSortContainer/RanchoBau" to="." binds= ["bau_rancho"]]
-[connection signal="body_entered" from="YSortContainer/PlacaGarganta" to="." binds= ["placa_garganta", "MARCO DE MADEIRA", "Placa antiga de trilha. Pressione [E] para ler."]]
-[connection signal="body_exited" from="YSortContainer/PlacaGarganta" to="." binds= ["placa_garganta"]]
-[connection signal="body_entered" from="YSortContainer/AltarCaipora" to="." binds= ["altar_caipora", "ALTAR DO BAMBUZAL", "Tronco e pedras rituais da Caipora. Pressione [E] para deixar oferenda de Fumo."]]
-[connection signal="body_exited" from="YSortContainer/AltarCaipora" to="." binds= ["altar_caipora"]]
-[connection signal="body_entered" from="YSortContainer/CruzeiroTopo" to="." binds= ["cruzeiro_topo", "A GRANDE ENCRUZILHADA", "Cruzeiro de pedra no cume da serra. Pressione [E] para contemplar o Planalto."]]
-[connection signal="body_exited" from="YSortContainer/CruzeiroTopo" to="." binds= ["cruzeiro_topo"]]

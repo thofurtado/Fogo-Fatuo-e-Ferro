@@ -30,6 +30,22 @@ func _ready():
 	# Diálogo inicial de chegada à subida
 	_show_dialogue("SUBIDA DA SERRA DE PARANAPIACABA (1645)", "O ar da serra é úmido e cheira a terra molhada. Diante de você ergue-se o paredão monumental da Serra do Mar. A mulinha Bonita bufa ao seu lado, atenta à trilha de lama. [WASD: Andar | E: Interagir | I: Inventário]")
 
+	# Conexões das áreas de interação
+	$YSortContainer/RanchoFogueira.body_entered.connect(func(b): if b == player: register_target("fogueira_rancho", "FOGUEIRA DE POUSO", "Brasas quentes de café de milho. Pressione [E] para descansar e tratar a mula."))
+	$YSortContainer/RanchoFogueira.body_exited.connect(func(b): if b == player: unregister_target("fogueira_rancho"))
+
+	$YSortContainer/RanchoBau.body_entered.connect(func(b): if b == player: register_target("bau_rancho", "BAÚ DO RANCHO", "Baú reforçado de ferro. Pressione [E] para abrir."))
+	$YSortContainer/RanchoBau.body_exited.connect(func(b): if b == player: unregister_target("bau_rancho"))
+
+	$YSortContainer/PlacaGarganta.body_entered.connect(func(b): if b == player: register_target("placa_garganta", "MARCO DE MADEIRA", "Placa antiga de trilha. Pressione [E] para ler."))
+	$YSortContainer/PlacaGarganta.body_exited.connect(func(b): if b == player: unregister_target("placa_garganta"))
+
+	$YSortContainer/AltarCaipora.body_entered.connect(func(b): if b == player: register_target("altar_caipora", "ALTAR DO BAMBUZAL", "Tronco e pedras rituais da Caipora. Pressione [E] para deixar oferenda de Fumo."))
+	$YSortContainer/AltarCaipora.body_exited.connect(func(b): if b == player: unregister_target("altar_caipora"))
+
+	$YSortContainer/CruzeiroTopo.body_entered.connect(func(b): if b == player: register_target("cruzeiro_topo", "A GRANDE ENCRUZILHADA", "Cruzeiro de pedra no cume da serra. Pressione [E] para contemplar o Planalto."))
+	$YSortContainer/CruzeiroTopo.body_exited.connect(func(b): if b == player: unregister_target("cruzeiro_topo"))
+
 func _process(_delta):
 	# Se apertar E ou Espaço e tiver interação pendente
 	if Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_E):

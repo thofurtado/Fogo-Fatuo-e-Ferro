@@ -50,17 +50,9 @@ func _on_confirm_pressed():
 	GameManager.select_archetype_by_id("tropeiro")
 	GameManager.select_cargo(selected_cargo_id)
 	
-	var cargo = GameManager.current_cargo
-	
-	# 2. CORTE SECO PARA TELA PRETA (Sem dissoluções, direto ao preto)
-	black_screen.visible = true
-	
-	black_screen_text.text = "ANO DE 1645 — CAPITANIA DE SÃO VICENTE\n\nA marcha serra acima se inicia com a carga de:\n【 %s 】" % cargo["name"].to_upper()
-	
-	black_screen_subtext.text = "Tempo estimado de travessia: %.1f Dias de subida íngreme.\nVelocidade da tropa: %d%% da velocidade normal.\n\nO som dos cascos ecoa contra o paredão de pedra da Serra do Mar..." % [
-		cargo["dias_viagem"], int(cargo["velocidade_micro"] * 100)
-	]
+	# Vai direto para o mundo jogável da Subida da Serra!
+	get_tree().change_scene_to_file("res://Scenes/SubidaSerra.tscn")
 
 func _on_enter_world_pressed():
-	# Troca direto para a cena jogável da Subida da Serra de Paranapiacaba
 	get_tree().change_scene_to_file("res://Scenes/SubidaSerra.tscn")
+
