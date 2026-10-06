@@ -9,8 +9,8 @@
 | Personagem | Região de Início | Comitiva / Companheiro | Ficha Completa | Arte / Conceito |
 | :--- | :--- | :--- | :--- | :--- |
 | **Tião Caboclo (O Tropeiro)** | 4. Litoral e Rotas de Serra | A mulinha **Bonita** (ou Carro de Boi) | [[Personagens/Fichas/Jogador - Tropeiro\|Ficha do Tropeiro]] | [[Personagens/Artes/tropeiro_mula_concept_sheet.jpg\|Concept Sheet]] / [[Personagens/Artes/tropeiro_mula_estilo_gibi.jpg\|Traço Gibi]] |
-| **Sargento Lourenço (O Desertor)** | 1. Nordeste Açucareiro | O mastim **Chumbo** (Cão de Guerra) | [[Personagens/Fichas/Jogador - Desertor\|Ficha do Desertor]] | Farda rasgada da Coroa & Bacamarte |
-| **Abaeté / Papa Pin (O Batedor Nativo)**| 3. Planalto de Piratininga | O gavião **Araraí** (ou Caititu xerimbabo)| [[Personagens/Fichas/Jogador - Nativo Batedor\|Ficha do Batedor]] | Arco de ipê negro e penas |
+| **Sargento Lourenço (O Desertor)** | 1. Nordeste Açucareiro | O mastim **Chumbo** (Cão de Guerra) | [[Personagens/Fichas/Jogador - Desertor\|Ficha do Desertor]] | [[Personagens/Artes/desertor_mastim_chumbo.jpg\|Traço Gibi]] |
+| **Abaeté / Papa Pin (O Batedor Nativo)**| 3. Planalto de Piratininga | O gavião **Araraí** (ou Caititu xerimbabo)| [[Personagens/Fichas/Jogador - Nativo Batedor\|Ficha do Batedor]] | [[Personagens/Artes/nativo_batedor_ararai.jpg\|Traço Gibi]] |
 
 ---
 
@@ -23,6 +23,6 @@
 ---
 
 ## 🎨 Galeria de Design e Interface
-* [[Personagens/Artes/ficha_personagem_design.jpg|Design Visual da Ficha de Personagem (Sistema B.A.N.D.E.I.R.A.)]]
+* [[Storyboard/ficha_personagem_design.jpg|Design Visual da Ficha de Personagem (Sistema B.A.N.D.E.I.R.A.)]]
 * [[Personagens/Artes/hq_tropeiro.jpg|Prancha em Nanquim do Tropeiro (Flávio Colin)]]
 * [[Personagens/Artes/hq_prologo.jpg|Arte do Prólogo em Xilogravura]]

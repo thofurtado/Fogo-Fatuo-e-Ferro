@@ -23,6 +23,10 @@
 		{"id":"mula_concept_text","type":"text","text":"## 👹 A Mula sem Cabeça (Criatura Ativa 1)\nTerror das estradas noturnas e encruzilhadas (1645):\n- Chamas de fogo-fátuo azul e alaranjado no lugar da cabeça\n- Cascos de ferro em brasa soltando fagulhas\n- Freio de ferro amaldiçoado com correntes\n- Estilo gibi sério: ameaçadora, rápida e sem tom infantil","x":2480,"y":120,"width":480,"height":260},
 		{"id":"caipora_concept_node","type":"file","file":"caipora_estilo_gibi.jpg","x":3020,"y":-385,"width":480,"height":480},
 		{"id":"caipora_concept_text","type":"text","text":"## 🐗 A Caipora (Criatura Ativa 2)\nProtetora das matas e dos animais da caça:\n- Montada no fiel caititu (porco-do-mato) com presas afiadas\n- Cachimbo de barro (pito) com fumaça mística de fumo de rolo\n- Vara de cipó / pau-ferro para desarme\n- Foco em emboscada a caçadores e exigência de oferendas","x":3020,"y":120,"width":480,"height":260},
+		{"id":"nativo_concept_node","type":"file","file":"Personagens/Artes/nativo_batedor_ararai.jpg","x":3560,"y":-385,"width":480,"height":480},
+		{"id":"nativo_concept_text","type":"text","text":"## 🏹 Abaeté & Araraí (O Batedor Nativo)\nProtagonista do Planalto de Piratininga:\n- Arco recurvo de ipê e aljava de flechas\n- Gavião-da-mata Araraí empoleirado no punho\n- Mecânica: dissipa fog-of-war e alerta emboscadas\n- Estilo gibi sério: traço limpo de nanquim e 3.5 cabeças","x":3560,"y":120,"width":480,"height":260},
+		{"id":"desertor_concept_node","type":"file","file":"Personagens/Artes/desertor_mastim_chumbo.jpg","x":4100,"y":-385,"width":480,"height":480},
+		{"id":"desertor_concept_text","type":"text","text":"## 🐕 Sargento Lourenço & Chumbo (O Desertor)\nProtagonista do Nordeste Açucareiro:\n- Farda rasgada da Coroa e bacamarte colonial\n- Mastim de guerra Chumbo com coleira de ferro\n- Mecânica: fareja patrulhas na névoa e absorve tiros corporais\n- Estilo gibi sério: veterano rude e companheiro fiel","x":4100,"y":120,"width":480,"height":260},
 		{"id":"a213a065d055d816","type":"text","text":"**primeira captura de video de uma gameplay (criando personagem)**","x":130,"y":-490,"width":341,"height":105},
 		{"id":"558c1d12e5beed34","type":"file","file":"primeira gameplay.mp4","x":590,"y":-1180,"width":310,"height":551}
 	],
@@ -37,6 +41,8 @@
 		{"id":"edge_curupira","fromNode":"curupira_concept_text","fromSide":"top","toNode":"curupira_concept_node","toSide":"bottom"},
 		{"id":"edge_mula","fromNode":"mula_concept_text","fromSide":"top","toNode":"mula_concept_node","toSide":"bottom"},
 		{"id":"edge_caipora","fromNode":"caipora_concept_text","fromSide":"top","toNode":"caipora_concept_node","toSide":"bottom"},
+		{"id":"edge_nativo","fromNode":"nativo_concept_text","fromSide":"top","toNode":"nativo_concept_node","toSide":"bottom"},
+		{"id":"edge_desertor","fromNode":"desertor_concept_text","fromSide":"top","toNode":"desertor_concept_node","toSide":"bottom"},
 		{"id":"7ada59ff5427f79d","fromNode":"a213a065d055d816","fromSide":"top","toNode":"558c1d12e5beed34","toSide":"bottom"},
 		{"id":"1bafca82e43eee5a","fromNode":"tropeiro_hq_node","fromSide":"right","toNode":"558c1d12e5beed34","toSide":"left"}
 	]

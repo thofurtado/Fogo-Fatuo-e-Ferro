@@ -7,6 +7,10 @@
   - *Mecânica do Mastim:* Rosna alertando patrulhas na neblina; desvia disparos inimigos no combate corporal.
 - **Idiomas:** Português (Nativo), Tupi de Contato (Noções)
 
+### 🎨 Design Oficial do Personagem & Comitiva (Traço Gibi / Canini & Maurício):
+![[desertor_mastim_chumbo.jpg]]
+*Sargento Lourenço com sua farda rasgada da Coroa, bacamarte colonial e seu mastim de guerra Chumbo.*
+
 ---
 
 ## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)

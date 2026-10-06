@@ -7,6 +7,10 @@
   - *Mecânica do Gavião:* Dissipa a névoa de guerra (*fog of war*) um raio à frente; pia alertando sobre emboscadas e batedores armados.
 - **Etnia & Idioma:** Tupi-Guarani local | Idioma Geral (Nheengatu/Tupi Antigo) e Português rudimentar
 
+### 🎨 Design Oficial do Personagem & Comitiva (Traço Gibi / Canini & Maurício):
+![[nativo_batedor_ararai.jpg]]
+*Abaeté com seu arco de ipê, aljava de flechas e o gavião-da-mata Araraí empoleirado no punho de couro.*
+
 ---
 
 ## 1. Matriz de Atributos: B.A.N.D.E.I.R.A. (Escala 1 a 5)
