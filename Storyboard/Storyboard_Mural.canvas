@@ -1,0 +1,72 @@
+{
+	"nodes": [
+		{
+			"id": "info_contorno",
+			"type": "text",
+			"text": "### 🎬 Arte 1: Contorno Total (Área Livre)\n- Proporção: **9:16 Vertical** (1080x1920)\n- Moldura com safe-areas de mobile e terços\n- Ideal para: **Cutscenes, poses, diálogos e UI**",
+			"x": -450,
+			"y": -220,
+			"width": 400,
+			"height": 180
+		},
+		{
+			"id": "img_contorno",
+			"type": "file",
+			"file": "Storyboard/storyboard_contorno.png",
+			"x": -450,
+			"y": 0,
+			"width": 400,
+			"height": 711
+		},
+		{
+			"id": "info_grid",
+			"type": "text",
+			"text": "### 🗺️ Arte 2: Quadriculado Proporcional\n- Grid: **18 colunas x 32 linhas** (60x60px)\n- Escala: **1 bloco = 1m²** (Humanoides = 1x1, Árvores = 3x3)\n- Ideal para: **Level design, caminhos, rios e totens**",
+			"x": 30,
+			"y": -220,
+			"width": 400,
+			"height": 180
+		},
+		{
+			"id": "img_grid",
+			"type": "file",
+			"file": "Storyboard/storyboard_quadriculado.png",
+			"x": 30,
+			"y": 0,
+			"width": 400,
+			"height": 711
+		},
+		{
+			"id": "notas_producao",
+			"type": "text",
+			"text": "### 📌 Anotações de Produção Visual\n- [ ] Testar traçado de estradas e rotas de tropeiro no grid\n- [ ] Definir pontos de emboscada (Mula sem Cabeça / Caipora)\n- [ ] Rascunhar primeira tela de transição narrativa\n\n> *Dica: Cole rascunhos, stickers ou conecte notas markdown diretamente neste mural!*",
+			"x": 480,
+			"y": 0,
+			"width": 320,
+			"height": 380
+		}
+	],
+	"edges": [
+		{
+			"id": "edge_c",
+			"fromNode": "info_contorno",
+			"fromSide": "bottom",
+			"toNode": "img_contorno",
+			"toSide": "top"
+		},
+		{
+			"id": "edge_g",
+			"fromNode": "info_grid",
+			"fromSide": "bottom",
+			"toNode": "img_grid",
+			"toSide": "top"
+		},
+		{
+			"id": "edge_notas",
+			"fromNode": "img_grid",
+			"fromSide": "right",
+			"toNode": "notas_producao",
+			"toSide": "left"
+		}
+	]
+}

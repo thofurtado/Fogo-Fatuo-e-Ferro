@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <style>
+      .coord { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; fill: #64748B; text-anchor: middle; dominant-baseline: central; }
+      .badgeText { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 700; fill: #334155; text-anchor: middle; dominant-baseline: central; }
+    </style>
+  </defs>
+  <!-- Fundo -->
+  <rect width="1080" height="1920" fill="#FFFFFF"/>
+  <line x1="60" y1="0" x2="60" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="120" y1="0" x2="120" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="180" y1="0" x2="180" y2="1920" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="240" y1="0" x2="240" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="300" y1="0" x2="300" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="360" y1="0" x2="360" y2="1920" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="420" y1="0" x2="420" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="480" y1="0" x2="480" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="540" y1="0" x2="540" y2="1920" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="600" y1="0" x2="600" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="660" y1="0" x2="660" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="720" y1="0" x2="720" y2="1920" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="780" y1="0" x2="780" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="840" y1="0" x2="840" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="900" y1="0" x2="900" y2="1920" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="960" y1="0" x2="960" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="1020" y1="0" x2="1020" y2="1920" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="60" x2="1080" y2="60" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="120" x2="1080" y2="120" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="180" x2="1080" y2="180" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="240" x2="1080" y2="240" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="300" x2="1080" y2="300" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="360" x2="1080" y2="360" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="420" x2="1080" y2="420" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="480" x2="1080" y2="480" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="540" x2="1080" y2="540" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="600" x2="1080" y2="600" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="660" x2="1080" y2="660" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="720" x2="1080" y2="720" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="780" x2="1080" y2="780" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="840" x2="1080" y2="840" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="900" x2="1080" y2="900" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="960" x2="1080" y2="960" stroke="#475569" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="0" y1="1020" x2="1080" y2="1020" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1080" x2="1080" y2="1080" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="1140" x2="1080" y2="1140" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1200" x2="1080" y2="1200" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1260" x2="1080" y2="1260" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="1320" x2="1080" y2="1320" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1380" x2="1080" y2="1380" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1440" x2="1080" y2="1440" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="1500" x2="1080" y2="1500" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1560" x2="1080" y2="1560" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1620" x2="1080" y2="1620" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="1680" x2="1080" y2="1680" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1740" x2="1080" y2="1740" stroke="#E2E8F0" stroke-width="1"/>
+  <line x1="0" y1="1800" x2="1080" y2="1800" stroke="#94A3B8" stroke-width="1.5"/>
+  <line x1="0" y1="1860" x2="1080" y2="1860" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="30" y="15" class="coord">1</text>
+  <text x="30" y="1905" class="coord">1</text>
+  <text x="90" y="15" class="coord">2</text>
+  <text x="90" y="1905" class="coord">2</text>
+  <text x="150" y="15" class="coord">3</text>
+  <text x="150" y="1905" class="coord">3</text>
+  <text x="210" y="15" class="coord">4</text>
+  <text x="210" y="1905" class="coord">4</text>
+  <text x="270" y="15" class="coord">5</text>
+  <text x="270" y="1905" class="coord">5</text>
+  <text x="330" y="15" class="coord">6</text>
+  <text x="330" y="1905" class="coord">6</text>
+  <text x="390" y="15" class="coord">7</text>
+  <text x="390" y="1905" class="coord">7</text>
+  <text x="450" y="15" class="coord">8</text>
+  <text x="450" y="1905" class="coord">8</text>
+  <text x="510" y="15" class="coord">9</text>
+  <text x="510" y="1905" class="coord">9</text>
+  <text x="570" y="15" class="coord">10</text>
+  <text x="570" y="1905" class="coord">10</text>
+  <text x="630" y="15" class="coord">11</text>
+  <text x="630" y="1905" class="coord">11</text>
+  <text x="690" y="15" class="coord">12</text>
+  <text x="690" y="1905" class="coord">12</text>
+  <text x="750" y="15" class="coord">13</text>
+  <text x="750" y="1905" class="coord">13</text>
+  <text x="810" y="15" class="coord">14</text>
+  <text x="810" y="1905" class="coord">14</text>
+  <text x="870" y="15" class="coord">15</text>
+  <text x="870" y="1905" class="coord">15</text>
+  <text x="930" y="15" class="coord">16</text>
+  <text x="930" y="1905" class="coord">16</text>
+  <text x="990" y="15" class="coord">17</text>
+  <text x="990" y="1905" class="coord">17</text>
+  <text x="1050" y="15" class="coord">18</text>
+  <text x="1050" y="1905" class="coord">18</text>
+  <text x="15" y="30" class="coord">1</text>
+  <text x="1065" y="30" class="coord">1</text>
+  <text x="15" y="90" class="coord">2</text>
+  <text x="1065" y="90" class="coord">2</text>
+  <text x="15" y="150" class="coord">3</text>
+  <text x="1065" y="150" class="coord">3</text>
+  <text x="15" y="210" class="coord">4</text>
+  <text x="1065" y="210" class="coord">4</text>
+  <text x="15" y="270" class="coord">5</text>
+  <text x="1065" y="270" class="coord">5</text>
+  <text x="15" y="330" class="coord">6</text>
+  <text x="1065" y="330" class="coord">6</text>
+  <text x="15" y="390" class="coord">7</text>
+  <text x="1065" y="390" class="coord">7</text>
+  <text x="15" y="450" class="coord">8</text>
+  <text x="1065" y="450" class="coord">8</text>
+  <text x="15" y="510" class="coord">9</text>
+  <text x="1065" y="510" class="coord">9</text>
+  <text x="15" y="570" class="coord">10</text>
+  <text x="1065" y="570" class="coord">10</text>
+  <text x="15" y="630" class="coord">11</text>
+  <text x="1065" y="630" class="coord">11</text>
+  <text x="15" y="690" class="coord">12</text>
+  <text x="1065" y="690" class="coord">12</text>
+  <text x="15" y="750" class="coord">13</text>
+  <text x="1065" y="750" class="coord">13</text>
+  <text x="15" y="810" class="coord">14</text>
+  <text x="1065" y="810" class="coord">14</text>
+  <text x="15" y="870" class="coord">15</text>
+  <text x="1065" y="870" class="coord">15</text>
+  <text x="15" y="930" class="coord">16</text>
+  <text x="1065" y="930" class="coord">16</text>
+  <text x="15" y="990" class="coord">17</text>
+  <text x="1065" y="990" class="coord">17</text>
+  <text x="15" y="1050" class="coord">18</text>
+  <text x="1065" y="1050" class="coord">18</text>
+  <text x="15" y="1110" class="coord">19</text>
+  <text x="1065" y="1110" class="coord">19</text>
+  <text x="15" y="1170" class="coord">20</text>
+  <text x="1065" y="1170" class="coord">20</text>
+  <text x="15" y="1230" class="coord">21</text>
+  <text x="1065" y="1230" class="coord">21</text>
+  <text x="15" y="1290" class="coord">22</text>
+  <text x="1065" y="1290" class="coord">22</text>
+  <text x="15" y="1350" class="coord">23</text>
+  <text x="1065" y="1350" class="coord">23</text>
+  <text x="15" y="1410" class="coord">24</text>
+  <text x="1065" y="1410" class="coord">24</text>
+  <text x="15" y="1470" class="coord">25</text>
+  <text x="1065" y="1470" class="coord">25</text>
+  <text x="15" y="1530" class="coord">26</text>
+  <text x="1065" y="1530" class="coord">26</text>
+  <text x="15" y="1590" class="coord">27</text>
+  <text x="1065" y="1590" class="coord">27</text>
+  <text x="15" y="1650" class="coord">28</text>
+  <text x="1065" y="1650" class="coord">28</text>
+  <text x="15" y="1710" class="coord">29</text>
+  <text x="1065" y="1710" class="coord">29</text>
+  <text x="15" y="1770" class="coord">30</text>
+  <text x="1065" y="1770" class="coord">30</text>
+  <text x="15" y="1830" class="coord">31</text>
+  <text x="1065" y="1830" class="coord">31</text>
+  <text x="15" y="1890" class="coord">32</text>
+  <text x="1065" y="1890" class="coord">32</text>
+  <line x1="0" y1="120" x2="1080" y2="120" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,4"/>
+  <line x1="0" y1="1800" x2="1080" y2="1800" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="3" y="3" width="1074" height="1914" fill="none" stroke="#1E293B" stroke-width="6"/>
+  <rect x="200" y="1872" width="680" height="36" rx="6" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1"/>
+  <text x="540" y="1890" class="badgeText">GRID T&#193;TICO: 18x32 BLOCOS (1 BLOCO = 1m&#178; = 60x60px) | PROPOR&#199;&#195;O 9:16</text>
+</svg>
