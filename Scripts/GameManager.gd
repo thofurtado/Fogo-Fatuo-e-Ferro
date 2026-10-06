@@ -11,6 +11,7 @@ signal region_selected(region_id)
 var selected_origin: String = "brasil"
 var selected_archetype_id: String = "tropeiro"
 var selected_region_id: int = 4
+var periodo_partida: String = "noite"
 
 var current_archetype: Dictionary = {}
 

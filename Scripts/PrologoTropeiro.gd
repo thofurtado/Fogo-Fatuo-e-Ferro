@@ -15,7 +15,8 @@ extends Control
 enum Stage {
 	PAGE_1_CAIS,
 	PAGE_2_TAVERNA,
-	PAGE_3_DICE_ROLL
+	PAGE_3_DICE_ROLL,
+	PAGE_4_ESTALAGEM
 }
 
 var current_stage: Stage = Stage.PAGE_1_CAIS
@@ -25,6 +26,7 @@ var selected_cargo_id: String = "sal_charque"
 const TEX_PAGE_1 = preload("res://Assets/Backgrounds/tropeiro_intro_p01.jpg")
 const TEX_PAGE_2 = preload("res://Assets/Backgrounds/tropeiro_intro_p02.jpg")
 const TEX_PAGE_3 = preload("res://Assets/Backgrounds/tropeiro_intro_p03.jpg")
+const TEX_PAGE_4 = preload("res://Assets/Backgrounds/tropeiro_intro_p04.jpg")
 
 # Nós da UI
 @onready var bg_rect: TextureRect = $BackgroundHQ
@@ -55,6 +57,19 @@ const TEX_PAGE_3 = preload("res://Assets/Backgrounds/tropeiro_intro_p03.jpg")
 @onready var cargo_desc: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox/CargoDesc
 @onready var btn_start_journey: Button = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/BtnStartJourney
 
+# Nós da Página 4 (Estalagem & Exploração Urbana)
+@onready var page4_container: PanelContainer = $UILayer/Page4EstalagemContainer
+@onready var cargo_badge_estalagem: Label = $UILayer/Page4EstalagemContainer/Margin/VBox/CargoBadge
+@onready var btn_partir_noite: Button = $UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons/BtnPartirNoite
+@onready var btn_partir_dia: Button = $UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons/BtnPartirDia
+@onready var btn_explorar_cidade: Button = $UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons/BtnExplorarCidade
+
+@onready var city_modal: PanelContainer = $UILayer/CityExplorationModal
+@onready var modal_feedback: Label = $UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalFeedback
+@onready var btn_visit_store: Button = $UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons/BtnVisitStore
+@onready var btn_visit_square: Button = $UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons/BtnVisitSquare
+@onready var btn_return_estalagem: Button = $UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons/BtnReturnEstalagem
+
 func _ready():
 	# Assegura que o Tropeiro está selecionado
 	GameManager.select_archetype_by_id("tropeiro")
@@ -76,6 +91,15 @@ func _ready():
 	
 	btn_start_journey.pressed.connect(_on_start_journey_pressed)
 	
+	# Conexões da Página 4 (Estalagem & Exploração)
+	btn_partir_noite.pressed.connect(_on_partir_noite_pressed)
+	btn_partir_dia.pressed.connect(_on_partir_dia_pressed)
+	btn_explorar_cidade.pressed.connect(_on_explorar_cidade_pressed)
+	
+	btn_visit_store.pressed.connect(_on_visit_store_pressed)
+	btn_visit_square.pressed.connect(_on_visit_square_pressed)
+	btn_return_estalagem.pressed.connect(_on_return_estalagem_pressed)
+	
 	# Inicializa na Página 1
 	_go_to_stage(Stage.PAGE_1_CAIS)
 
@@ -88,20 +112,35 @@ func _go_to_stage(target_stage: Stage):
 			page1_container.visible = true
 			page2_container.visible = false
 			page3_container.visible = false
+			page4_container.visible = false
+			city_modal.visible = false
 		Stage.PAGE_2_TAVERNA:
 			bg_rect.texture = TEX_PAGE_2
 			page1_container.visible = false
 			page2_container.visible = true
 			page3_container.visible = false
+			page4_container.visible = false
+			city_modal.visible = false
 		Stage.PAGE_3_DICE_ROLL:
 			bg_rect.texture = TEX_PAGE_3
 			page1_container.visible = false
 			page2_container.visible = false
 			page3_container.visible = true
+			page4_container.visible = false
+			city_modal.visible = false
 			revelation_panel.visible = false
 			btn_roll_dice.visible = true
 			btn_roll_dice.disabled = false
 			dice_tray.setup_dice(8)
+		Stage.PAGE_4_ESTALAGEM:
+			bg_rect.texture = TEX_PAGE_4
+			page1_container.visible = false
+			page2_container.visible = false
+			page3_container.visible = false
+			page4_container.visible = true
+			city_modal.visible = false
+			var cargo = GameManager.cargos_catalog[selected_cargo_id]
+			cargo_badge_estalagem.text = "📦 Carga Pronta: %s (%s) — Pagamento: %d Réis" % [cargo["name"], cargo["category"], cargo["lucro_reis"]]
 
 func _on_page1_next():
 	_fade_transition(func():
@@ -203,11 +242,36 @@ func _select_cargo(cargo_id: String):
 	tab_fumo.modulate = Color(1.2, 1.2, 1.2) if cargo_id == "fumo_reliquias" else Color(0.65, 0.65, 0.65)
 
 func _on_start_journey_pressed():
-	# Grava seleções no GameManager
+	# Grava seleções no GameManager e vai para o pátio da estalagem (Página 4)
+	GameManager.select_cargo(selected_cargo_id)
+	_fade_transition(func():
+		_go_to_stage(Stage.PAGE_4_ESTALAGEM)
+	)
+
+func _on_partir_noite_pressed():
+	GameManager.periodo_partida = "noite"
+	_iniciar_subida()
+
+func _on_partir_dia_pressed():
+	GameManager.periodo_partida = "dia"
+	_iniciar_subida()
+
+func _iniciar_subida():
 	GameManager.select_archetype_by_id("tropeiro")
 	GameManager.select_cargo(selected_cargo_id)
-	
-	# Transição suave para a cena da montanha (SubidaSerra.tscn)
 	_fade_transition(func():
 		get_tree().change_scene_to_file("res://Scenes/SubidaSerra.tscn")
 	)
+
+func _on_explorar_cidade_pressed():
+	modal_feedback.text = "Escolha um local da vila para visitar:"
+	city_modal.visible = true
+
+func _on_visit_store_pressed():
+	modal_feedback.text = "🏬 Venda do Mestre Bento: Tu compraste fumo aromático de rolo e provisões de farinha com parte do adiantamento! (+1 Fumo de Oferenda adicionado à bruaca)"
+
+func _on_visit_square_pressed():
+	modal_feedback.text = "⛪ Praça da Matriz & Pelourinho: Viajantes sussurram sobre névoa densa e assobios folclóricos perto da Cachoeira do Véu... A serra não perdoa descuidos!"
+
+func _on_return_estalagem_pressed():
+	city_modal.visible = false

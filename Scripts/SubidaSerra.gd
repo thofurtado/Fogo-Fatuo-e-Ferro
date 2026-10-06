@@ -28,8 +28,16 @@ func _ready():
 	GameManager.select_archetype_by_id("tropeiro")
 	_update_hud()
 	
-	# Diálogo inicial de chegada à subida
-	_show_dialogue("SUBIDA DA SERRA DE PARANAPIACABA (1645)", "O ar da serra é úmido e cheira a terra molhada. Diante de você ergue-se o paredão monumental da Serra do Mar. A mulinha Bonita bufa ao seu lado, atenta à trilha de lama. [WASD: Andar | E: Interagir | I: Inventário]")
+	# Iluminação e clima atmosférico conforme escolha na Estalagem (Noite x Alvorada)
+	var modulate_node = CanvasModulate.new()
+	if GameManager.periodo_partida == "noite":
+		modulate_node.color = Color(0.42, 0.48, 0.75, 1.0) # Luz noturna azulada
+		add_child(modulate_node)
+		_show_dialogue("SUBIDA DA SERRA — PARTIDA NOTURNA (1645)", "A noite serasteira envolve a mata em trevas e névoa densa. Apenas as tochas e o luar prateado revelam os contornos das pedras. A mulinha Bonita bufa atenta com as orelhas em pé, farejando os assobios na escuridão. [WASD: Andar | E: Interagir | I: Inventário]")
+	else:
+		modulate_node.color = Color(1.0, 0.98, 0.92, 1.0) # Luz límpida da manhã
+		add_child(modulate_node)
+		_show_dialogue("SUBIDA DA SERRA — PARTIDA NA ALVORADA (1645)", "A claridade da manhã dissipa a neblina do litoral. Diante de você, o paredão colossal da Serra do Mar e a subida de Paranapiacaba estão visíveis e límpidos. A mulinha Bonita segue firme na trilha! [WASD: Andar | E: Interagir | I: Inventário]")
 
 	# Conexões das áreas de interação
 	$YSortContainer/RanchoFogueira.body_entered.connect(func(b): if b == player: register_target("fogueira_rancho", "FOGUEIRA DE POUSO", "Brasas quentes de café de milho. Pressione [E] para descansar e tratar a mula."))

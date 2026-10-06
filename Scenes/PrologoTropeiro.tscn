@@ -438,7 +438,152 @@ custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_start")
-text = "AMARRAR CARGA & SUBIR A SERRA ▶"
+text = "IR PARA A ESTALAGEM & PREPARAR CARGA ▶"
+
+[node name="Page4EstalagemContainer" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -340.0
+offset_right = -14.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
+
+[node name="Margin" type="MarginContainer" parent="UILayer/Page4EstalagemContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="UILayer/Page4EstalagemContainer/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EstalagemHeader" type="Label" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "🌙 PÁTIO DA ESTALAGEM — CARGA PRONTA (1645)"
+horizontal_alignment = 1
+
+[node name="EstalagemDesc" type="Label" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
+theme_override_font_sizes/font_size = 11
+text = "Um certo tempo depois... As bruacas estão firmemente estivadas no lombo da Bonita. A Serra do Mar ergue-se como um titã sob o luar prateado. Como deseja iniciar a jornada?"
+autowrap_mode = 2
+
+[node name="CargoBadge" type="Label" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.82, 0.35, 1)
+theme_override_font_sizes/font_size = 10
+text = "📦 Carga Atual: Sal & Charque (Oficial)"
+horizontal_alignment = 1
+
+[node name="ActionButtons" type="VBoxContainer" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnPartirNoite" type="Button" parent="UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
+text = "🌙 1. CARREGAR E PARTIR AGORA (Noite c/ Névoa)"
+
+[node name="BtnPartirDia" type="Button" parent="UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
+text = "☀️ 2. PERNOITAR E SAIR NA MANHÃ (Claridade do Dia)"
+
+[node name="BtnExplorarCidade" type="Button" parent="UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_tab")
+text = "🏘️ 3. EXPLORAR A VILA DE SANTOS ANTES DE SUBIR"
+
+[node name="CityExplorationModal" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -220.0
+offset_right = 230.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
+
+[node name="ModalMargin" type="MarginContainer" parent="UILayer/CityExplorationModal"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ModalVBox" type="VBoxContainer" parent="UILayer/CityExplorationModal/ModalMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ModalTitle" type="Label" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "🏘️ RECONHECIMENTO DA VILA DE SANTOS (1645)"
+horizontal_alignment = 1
+
+[node name="ModalDesc" type="Label" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.86, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "Antes de enfrentar as escarpas da serra, Tião pode andar pelos becos do porto para recolher provisões ou ouvir boatos nas esquinas."
+autowrap_mode = 2
+
+[node name="ModalFeedback" type="Label" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 10
+text = "Escolha um local para visitar:"
+autowrap_mode = 2
+
+[node name="ModalButtons" type="VBoxContainer" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnVisitStore" type="Button" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
+text = "🏬 1. Venda ou Mercearia (Comprar Mantimentos)"
+
+[node name="BtnVisitSquare" type="Button" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
+text = "⛪ 2. Praça da Matriz & Pelourinho (Ouvir Boatos)"
+
+[node name="BtnReturnEstalagem" type="Button" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_start")
+text = "↩️ 3. Voltar para a Estalagem & Preparar Subida"
 
 [node name="FadeOverlay" type="ColorRect" parent="UILayer"]
 visible = false
