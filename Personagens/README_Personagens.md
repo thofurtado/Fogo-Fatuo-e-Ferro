@@ -11,6 +11,8 @@
 | **Tião Caboclo (O Tropeiro)** | 4. Litoral e Rotas de Serra | A mulinha **Bonita** (ou Carro de Boi) | [[Personagens/Fichas/Jogador - Tropeiro\|Ficha do Tropeiro]] | [[Personagens/Artes/tropeiro_mula_concept_sheet.jpg\|Concept Sheet]] / [[Personagens/Artes/tropeiro_mula_estilo_gibi.jpg\|Traço Gibi]] |
 | **Sargento Lourenço (O Desertor)** | 1. Nordeste Açucareiro | O mastim **Chumbo** (Cão de Guerra) | [[Personagens/Fichas/Jogador - Desertor\|Ficha do Desertor]] | [[Personagens/Artes/desertor_mastim_chumbo.jpg\|Traço Gibi]] |
 | **Abaeté / Papa Pin (O Batedor Nativo)**| 3. Planalto de Piratininga | O gavião **Araraí** (ou Caititu xerimbabo)| [[Personagens/Fichas/Jogador - Nativo Batedor\|Ficha do Batedor]] | [[Personagens/Artes/nativo_batedor_ararai.jpg\|Traço Gibi]] |
+| **Acaiô (O Escravizado Fugitivo)** | 1. Nordeste Açucareiro / Engenhos | O rato de tulha **Quirino** | [[Personagens/Fichas/Jogador - Escravizado Fugitivo\|Ficha do Fugitivo]] | [[Personagens/Artes/quilombola_rato_quirino.jpg\|Traço Gibi]] |
+| **O Clérigo (Jesuíta / Franciscano)** | 6. Sul / 1. Nordeste / 4. Litoral | A coruja **Suindara** / O pombo **Serafim** | [[Personagens/Fichas/Jogador - Clerigo\|Ficha do Clérigo]] | [[Personagens/Artes/clerigo_jesuita_coruja.jpg\|Jesuíta]] / [[Personagens/Artes/clerigo_franciscano_pombo.jpg\|Franciscano]] |
 
 ---
 

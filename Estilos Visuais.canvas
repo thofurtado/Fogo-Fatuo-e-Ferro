@@ -27,6 +27,12 @@
 		{"id":"nativo_concept_text","type":"text","text":"## 🏹 Abaeté & Araraí (O Batedor Nativo)\nProtagonista do Planalto de Piratininga:\n- Arco recurvo de ipê e aljava de flechas\n- Gavião-da-mata Araraí empoleirado no punho\n- Mecânica: dissipa fog-of-war e alerta emboscadas\n- Estilo gibi sério: traço limpo de nanquim e 3.5 cabeças","x":3560,"y":120,"width":480,"height":260},
 		{"id":"desertor_concept_node","type":"file","file":"Personagens/Artes/desertor_mastim_chumbo.jpg","x":4100,"y":-385,"width":480,"height":480},
 		{"id":"desertor_concept_text","type":"text","text":"## 🐕 Sargento Lourenço & Chumbo (O Desertor)\nProtagonista do Nordeste Açucareiro:\n- Farda rasgada da Coroa e bacamarte colonial\n- Mastim de guerra Chumbo com coleira de ferro\n- Mecânica: fareja patrulhas na névoa e absorve tiros corporais\n- Estilo gibi sério: veterano rude e companheiro fiel","x":4100,"y":120,"width":480,"height":260},
+		{"id":"quilombola_concept_node","type":"file","file":"Personagens/Artes/quilombola_rato_quirino.jpg","x":4640,"y":-385,"width":480,"height":480},
+		{"id":"quilombola_concept_text","type":"text","text":"## ✊ Acaiô & Quirino (O Escravizado Fugitivo)\nProtagonista do Nordeste Açucareiro / Palmares:\n- Grilhão quebrado no punho e túnica rústica\n- Rato Quirino no ombro (mecânica de roedores estilo Plague Tale)\n- Olho clínico de higiene e imunidade a vetores urbanos\n- Estilo gibi sério: guerreiro altivo e inteligente","x":4640,"y":120,"width":480,"height":260},
+		{"id":"clerigo_jesuita_node","type":"file","file":"Personagens/Artes/clerigo_jesuita_coruja.jpg","x":5180,"y":-385,"width":480,"height":480},
+		{"id":"clerigo_jesuita_text","type":"text","text":"## 🦉 Padre Bento & Suindara (O Clérigo Jesuíta)\nVertente Regional: Sul (Missões) e Planalto:\n- Batina escura de viagem, óculos, cajado e remédios no cinto\n- Coruja Suindara no braço: revela o plano espiritual\n- Papel: proteção contra assombrações e expulsão de maldições\n- Estilo gibi sério: intelectual e sábio de fronteira","x":5180,"y":120,"width":480,"height":260},
+		{"id":"clerigo_franciscano_node","type":"file","file":"Personagens/Artes/clerigo_franciscano_pombo.jpg","x":5720,"y":-385,"width":480,"height":480},
+		{"id":"clerigo_franciscano_text","type":"text","text":"## 🕊️ Frei Bernardino & Serafim (O Clérigo Franciscano)\nVertente Regional: Nordeste e Litoral:\n- Hábito marrom de nós, sandálias e sorriso apaziguador\n- Pombo mensageiro Serafim: comunicação entre vilas\n- Papel: diplomacia, cura de ferimentos e acalma feras\n- Estilo gibi sério: humildade e proteção pacífica","x":5720,"y":120,"width":480,"height":260},
 		{"id":"a213a065d055d816","type":"text","text":"**primeira captura de video de uma gameplay (criando personagem)**","x":130,"y":-490,"width":341,"height":105},
 		{"id":"558c1d12e5beed34","type":"file","file":"primeira gameplay.mp4","x":590,"y":-1180,"width":310,"height":551}
 	],
@@ -43,6 +49,9 @@
 		{"id":"edge_caipora","fromNode":"caipora_concept_text","fromSide":"top","toNode":"caipora_concept_node","toSide":"bottom"},
 		{"id":"edge_nativo","fromNode":"nativo_concept_text","fromSide":"top","toNode":"nativo_concept_node","toSide":"bottom"},
 		{"id":"edge_desertor","fromNode":"desertor_concept_text","fromSide":"top","toNode":"desertor_concept_node","toSide":"bottom"},
+		{"id":"edge_quilombola","fromNode":"quilombola_concept_text","fromSide":"top","toNode":"quilombola_concept_node","toSide":"bottom"},
+		{"id":"edge_jesuita","fromNode":"clerigo_jesuita_text","fromSide":"top","toNode":"clerigo_jesuita_node","toSide":"bottom"},
+		{"id":"edge_franciscano","fromNode":"clerigo_franciscano_text","fromSide":"top","toNode":"clerigo_franciscano_node","toSide":"bottom"},
 		{"id":"7ada59ff5427f79d","fromNode":"a213a065d055d816","fromSide":"top","toNode":"558c1d12e5beed34","toSide":"bottom"},
 		{"id":"1bafca82e43eee5a","fromNode":"tropeiro_hq_node","fromSide":"right","toNode":"558c1d12e5beed34","toSide":"left"}
 	]
