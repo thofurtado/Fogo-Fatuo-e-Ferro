@@ -4,7 +4,7 @@
 
 O sistema **B.A.N.D.E.I.R.A.** é a matriz primária universal de atributos de **Fogo-Fátuo & Ferro**. Ele define as capacidades físicas, de sobrevivência, intelectuais, sociais e místicas de todos os personagens jogáveis, NPCs e entidades folclóricas.
 
-![[ficha_personagem_design.jpg]]
+![[Assets/Sprites/ficha_personagem_design.jpg]]
 
 ---
 

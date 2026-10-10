@@ -164,3 +164,9 @@ func _handle_interaction():
 				_show_dialogue("ALTAR DA CAIPORA:", "As cinzas de fumo aromático repousam em paz. A floresta está calma e a passagem está aberta.")
 		"cruzeiro_topo":
 			_show_dialogue("A GRANDE ENCRUZILHADA DA SERRA:", "Você superou a subida de Paranapiacaba! Diante de você abre-se o Planalto de Piratininga. As rotas dos tropeiros, batedores e desertores se cruzam sob o olhar do Fogo-Fátuo...")
+
+func on_player_fell_ledge(hp_loss: int, aff_loss: int):
+	if mula:
+		mula.add_affinity(-aff_loss)
+	_update_hud()
+	_show_dialogue("⚠️ QUEDA NA ESCARPA!", "Você escorregou pelo despenhadeiro de pedra da serra! Cascalho e poeira voaram morro abaixo. A mula Bonita relinchou sobressaltada com o salto abrupto! (-%d HP | -%d%% Afinidade da Mula). Cuidado com o barranco: siga as curvas calçadas da trilha para subir em segurança!" % [hp_loss, aff_loss])

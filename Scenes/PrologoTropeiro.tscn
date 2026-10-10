@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://Scripts/PrologoTropeiro.gd" id="1_prologo"]
 [ext_resource type="Texture2D" path="res://Assets/Backgrounds/tropeiro_intro_p01.jpg" id="2_page1_tex"]
 [ext_resource type="PackedScene" path="res://Scenes/DiceTray.tscn" id="3_dicetray"]
+[ext_resource type="PackedScene" path="res://Scenes/HQDialogueBox.tscn" id="4_hqdialogue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_dark"]
 bg_color = Color(0.07, 0.05, 0.04, 0.94)
@@ -43,32 +44,6 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rumor"]
-bg_color = Color(0.18, 0.14, 0.08, 0.96)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.95, 0.82, 0.35, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_size = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cargo_box"]
-bg_color = Color(0.12, 0.09, 0.07, 0.9)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.6, 0.5, 0.35, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_tab"]
 bg_color = Color(0.15, 0.12, 0.1, 0.9)
 border_width_left = 1
@@ -80,32 +55,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_tab_active"]
-bg_color = Color(0.6, 0.4, 0.12, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.9, 0.5, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_start"]
-bg_color = Color(0.18, 0.5, 0.22, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.85, 1, 0.65, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0.5)
-shadow_size = 6
 
 [node name="PrologoTropeiro" type="Control"]
 layout_mode = 3
@@ -129,48 +78,34 @@ stretch_mode = 6
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
+[node name="HQDialogue" parent="UILayer" instance=ExtResource("4_hqdialogue")]
+
 [node name="Page1Container" type="PanelContainer" parent="UILayer"]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 14.0
-offset_top = -290.0
+offset_top = -68.0
 offset_right = -14.0
-offset_bottom = -16.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
 
 [node name="Margin" type="MarginContainer" parent="UILayer/Page1Container"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
 
 [node name="VBox" type="VBoxContainer" parent="UILayer/Page1Container/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="Title" type="Label" parent="UILayer/Page1Container/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
-theme_override_font_sizes/font_size = 14
-text = "📜 CAPÍTULO I — O CAIS DE SANTOS (1645)"
-horizontal_alignment = 1
-
-[node name="Text" type="Label" parent="UILayer/Page1Container/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
-theme_override_font_sizes/font_size = 12
-text = "O salitre do mar da Capitania de São Vicente mistura-se ao suor dos marinheiros e ao cheiro de peixe seco. Diante de ti, além dos telhados coloniais, ergue-se a colossal muralha verde da Serra de Paranapiacaba.
-
-A mulinha 'Bonita' bufa na calçada de pedra. Para subir o planalto até São Paulo de Piratininga, tu precisas de uma carga paga. E o único lugar para achar serviço é na taverna do cais..."
-autowrap_mode = 2
 
 [node name="BtnPage1Next" type="Button" parent="UILayer/Page1Container/Margin/VBox"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
@@ -184,48 +119,25 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 14.0
-offset_top = -320.0
+offset_top = -68.0
 offset_right = -14.0
-offset_bottom = -16.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
 
 [node name="Margin" type="MarginContainer" parent="UILayer/Page2Container"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
 
 [node name="VBox" type="VBoxContainer" parent="UILayer/Page2Container/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="Title" type="Label" parent="UILayer/Page2Container/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
-theme_override_font_sizes/font_size = 14
-text = "🍺 A TAVERNA DO PESCADOR TORTO"
-horizontal_alignment = 1
-
-[node name="Speaker" type="Label" parent="UILayer/Page2Container/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.75, 0.4, 1)
-theme_override_font_sizes/font_size = 12
-text = "Mestre Bento (Taverneiro Manco):"
-
-[node name="Text" type="Label" parent="UILayer/Page2Container/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
-theme_override_font_sizes/font_size = 11
-text = "« — Entrai, tropeiro... tirai a poeira dos pés e cuidai das vossas algibeiras. Há três homens neste salão com prata viva e pressa de mandar carga morro acima antes da chuva.
-
-Mas nesta serra, tropeiro, cada ouro cobra seu preço na balança do Diabo. Uns trazem o ferro da guerra; outros trazem o sal da Câmara... e outros guardam segredos santos. Olhai bem antes de dar vossa palavra! »"
-autowrap_mode = 2
 
 [node name="BtnPage2Next" type="Button" parent="UILayer/Page2Container/Margin/VBox"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
@@ -241,204 +153,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NarratorPanel" type="PanelContainer" parent="UILayer/Page3DiceContainer"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 14.0
-offset_top = 16.0
-offset_right = -14.0
-offset_bottom = 146.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
-
-[node name="Margin" type="MarginContainer" parent="UILayer/Page3DiceContainer/NarratorPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 8
-
-[node name="VBox" type="VBoxContainer" parent="UILayer/Page3DiceContainer/NarratorPanel/Margin"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="NarratorTitle" type="Label" parent="UILayer/Page3DiceContainer/NarratorPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
-theme_override_font_sizes/font_size = 13
-text = "📜 A VOZ DO MESTRE — TESTE DE PERCEPÇÃO"
-horizontal_alignment = 1
-
-[node name="NarratorSub" type="Label" parent="UILayer/Page3DiceContainer/NarratorPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.85, 0.75, 0.5, 1)
-theme_override_font_sizes/font_size = 11
-text = "Instinto (3) + Navegação (5)  ➔  8 D10s  |  Dificuldade: 6"
-horizontal_alignment = 1
-
-[node name="NarratorPrompt" type="Label" parent="UILayer/Page3DiceContainer/NarratorPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.88, 0.8, 1)
-theme_override_font_sizes/font_size = 11
-text = "O salão está esfumaçado e cheio de sussurros. Role teus dados na bandeja de couro para ver o que teus olhos de tropeiro conseguem discernir entre as sombras da taverna."
-autowrap_mode = 2
-
 [node name="DiceTray" parent="UILayer/Page3DiceContainer" instance=ExtResource("3_dicetray")]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 14.0
-offset_top = 154.0
+offset_top = 160.0
 offset_right = -14.0
-offset_bottom = 354.0
+offset_bottom = 360.0
 grow_horizontal = 2
 
 [node name="RollButtonContainer" type="CenterContainer" parent="UILayer/Page3DiceContainer"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 14.0
-offset_top = 360.0
-offset_right = -14.0
-offset_bottom = 410.0
-grow_horizontal = 2
-
-[node name="BtnRollDice" type="Button" parent="UILayer/Page3DiceContainer/RollButtonContainer"]
-custom_minimum_size = Vector2(360, 44)
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
-text = "🎲 ROLAR 8 D10s (INSTINTO + NAVEGAÇÃO)"
-
-[node name="RevelationPanel" type="PanelContainer" parent="UILayer/Page3DiceContainer"]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 14.0
-offset_top = -600.0
+offset_top = -78.0
 offset_right = -14.0
-offset_bottom = -12.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
 
-[node name="Margin" type="MarginContainer" parent="UILayer/Page3DiceContainer/RevelationPanel"]
+[node name="BtnRollDice" type="Button" parent="UILayer/Page3DiceContainer/RollButtonContainer"]
+custom_minimum_size = Vector2(360, 48)
 layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
-
-[node name="VBox" type="VBoxContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin"]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="OutcomeBadge" type="Label" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
 theme_override_font_sizes/font_size = 14
-text = "✨ RESULTADO DA ROLAGEM"
-horizontal_alignment = 1
-
-[node name="OutcomeNarrative" type="Label" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
-theme_override_font_sizes/font_size = 11
-text = "Narrativa do que os olhos do tropeiro discerniram no salão..."
-autowrap_mode = 2
-
-[node name="RumorBox" type="PanelContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox"]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rumor")
-
-[node name="RumorMargin" type="MarginContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/RumorBox"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 6
-
-[node name="RumorText" type="Label" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/RumorBox/RumorMargin"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
-theme_override_font_sizes/font_size = 11
-text = "📜 BOATO REVELADO (Mesa ao lado): Marinheiros bêbados sussurram que na subida da serra há um baú de ferro escondido atrás da Cachoeira do Véu!"
-autowrap_mode = 2
-
-[node name="CargoTabs" type="HBoxContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="TabSal" type="Button" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoTabs"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_tab")
-text = "1. Sal & Charque"
-
-[node name="TabFerro" type="Button" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoTabs"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_tab")
-text = "2. Ferro & Pólvora"
-
-[node name="TabFumo" type="Button" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoTabs"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_tab")
-text = "3. Fumo & Relíquias"
-
-[node name="CargoCard" type="PanelContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_cargo_box")
-
-[node name="CargoMargin" type="MarginContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 8
-
-[node name="CargoVBox" type="VBoxContainer" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="CargoTitle" type="Label" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
-theme_override_font_sizes/font_size = 12
-text = "📦 CARGA DO CONTRATANTE"
-horizontal_alignment = 1
-
-[node name="CargoStats" type="Label" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.9, 0.85, 1)
-theme_override_font_sizes/font_size = 10
-text = "💰 200 Réis | ⚖️ 40 Arrobas | ⏳ 2 Dias | ⚔️ Risco 1/5"
-horizontal_alignment = 1
-
-[node name="CargoDesc" type="Label" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.78, 0.72, 1)
-theme_override_font_sizes/font_size = 10
-text = "Descrição detalhada dos impactos narrativos e mecânicos da marcha."
-autowrap_mode = 2
-
-[node name="BtnStartJourney" type="Button" parent="UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_start")
-text = "IR PARA A ESTALAGEM & PREPARAR CARGA ▶"
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
+text = "🎲 ROLAR 8 D10s (INSTINTO + NAVEGAÇÃO)"
 
 [node name="Page4EstalagemContainer" type="PanelContainer" parent="UILayer"]
 visible = false
@@ -447,43 +191,29 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 14.0
-offset_top = -340.0
+offset_top = -200.0
 offset_right = -14.0
-offset_bottom = -16.0
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
 
 [node name="Margin" type="MarginContainer" parent="UILayer/Page4EstalagemContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="UILayer/Page4EstalagemContainer/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="EstalagemHeader" type="Label" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
-theme_override_font_sizes/font_size = 14
-text = "🌙 PÁTIO DA ESTALAGEM — CARGA PRONTA (1645)"
-horizontal_alignment = 1
-
-[node name="EstalagemDesc" type="Label" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
-theme_override_font_sizes/font_size = 11
-text = "Um certo tempo depois... As bruacas estão firmemente estivadas no lombo da Bonita. A Serra do Mar ergue-se como um titã sob o luar prateado. Como deseja iniciar a jornada?"
-autowrap_mode = 2
+theme_override_constants/separation = 6
 
 [node name="CargoBadge" type="Label" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.82, 0.35, 1)
-theme_override_font_sizes/font_size = 10
-text = "📦 Carga Atual: Sal & Charque (Oficial)"
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_font_sizes/font_size = 12
+text = "📦 Carga Escolhida: Sal & Charque (Oficial)"
 horizontal_alignment = 1
 
 [node name="ActionButtons" type="VBoxContainer" parent="UILayer/Page4EstalagemContainer/Margin/VBox"]
@@ -491,27 +221,27 @@ layout_mode = 2
 theme_override_constants/separation = 6
 
 [node name="BtnPartirNoite" type="Button" parent="UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons"]
-custom_minimum_size = Vector2(0, 36)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
-text = "🌙 1. CARREGAR E PARTIR AGORA (Noite c/ Névoa)"
+text = "🌙 1. AMARRAR E PARTIR AGORA (Noite c/ Névoa)"
 
 [node name="BtnPartirDia" type="Button" parent="UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons"]
-custom_minimum_size = Vector2(0, 36)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
-text = "☀️ 2. PERNOITAR E SAIR NA MANHÃ (Claridade do Dia)"
+text = "☀️ 2. PERNOITAR E SAIR NA MANHÃ (Claridade)"
 
 [node name="BtnExplorarCidade" type="Button" parent="UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons"]
-custom_minimum_size = Vector2(0, 36)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_tab")
-text = "🏘️ 3. EXPLORAR A VILA DE SANTOS ANTES DE SUBIR"
+text = "🏘️ 3. RECONHECER A VILA DE SANTOS ANTES"
 
 [node name="CityExplorationModal" type="PanelContainer" parent="UILayer"]
 visible = false
@@ -548,17 +278,17 @@ horizontal_alignment = 1
 
 [node name="ModalDesc" type="Label" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88, 0.86, 0.8, 1)
+theme_override_colors/font_color = Color(0.9, 0.88, 0.82, 1)
 theme_override_font_sizes/font_size = 11
-text = "Antes de enfrentar as escarpas da serra, Tião pode andar pelos becos do porto para recolher provisões ou ouvir boatos nas esquinas."
+text = "Tu caminhas pelas ruelas de pedra e lama da vila litorânea sob o luar. Barulhos de ferreiros ainda martelando e marinheiros negociando fumo da Bahia ecoam pelas esquinas."
 autowrap_mode = 2
 
 [node name="ModalFeedback" type="Label" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.45, 0.95, 0.55, 1)
-theme_override_font_sizes/font_size = 10
-text = "Escolha um local para visitar:"
-autowrap_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.95, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "Escolha um local para visitar antes de iniciar a marcha:"
+horizontal_alignment = 1
 
 [node name="ModalButtons" type="VBoxContainer" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox"]
 layout_mode = 2
@@ -569,21 +299,23 @@ custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
-text = "🏬 1. Venda ou Mercearia (Comprar Mantimentos)"
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
+text = "⚖️ 1. VENDA DE SECOS & MOLHADOS (Comprar Provisões)"
 
 [node name="BtnVisitSquare" type="Button" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
-text = "⛪ 2. Praça da Matriz & Pelourinho (Ouvir Boatos)"
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_gold_hover")
+text = "⛪ 2. LARGO DA MATRIZ (Ouvir Boatos e Avisos de Trilha)"
 
 [node name="BtnReturnEstalagem" type="Button" parent="UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
-theme_override_styles/normal = SubResource("StyleBoxFlat_start")
-text = "↩️ 3. Voltar para a Estalagem & Preparar Subida"
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_tab")
+text = "↩️ RETORNAR À ESTALAGEM & PREPARAR PARTIDA"
 
 [node name="FadeOverlay" type="ColorRect" parent="UILayer"]
 visible = false
@@ -593,4 +325,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)

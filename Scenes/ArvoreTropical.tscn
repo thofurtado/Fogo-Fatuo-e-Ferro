@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_tropical.png" id="1_tree"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_trunk"]
+radius = 20.0
+
+[node name="ArvoreTropical" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -85)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("1_tree")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_trunk")

@@ -3,6 +3,9 @@
 > **Repositório Central de Cartografia do Jogo**  
 > Todos os mapas gerais, mapas regionais e grids táticos de exploração reunidos em um só lugar.
 
+> 📐 **Guia Oficial de Sprites e Grid:**  
+> Consulte **[[Mapas/GUIA_SPRITES_E_CONSTRUCOES_GRID|Guia Rápido de Componentes, Construções & Grid (1645)]]** para o dicionário completo de códigos (`B11` Igreja, `B03` Taverna, `R03` Pontes, `W03` Mangue, etc.) para desenhar no CorelDRAW.
+
 ---
 
 ## 🧭 Índice dos Mapas do Projeto
@@ -31,3 +34,12 @@
   * 🇧🇷 América do Sul (Povos Originários e Caboclos da Terra)
   * 👑 Europa (Exploradores, Soldados e Desertores)
   * 🛡️ África (Quilombolas, Ferreiros e Líderes Livres)
+
+### 5. [[Mapas/mapa_brasil_rotas_1645_sketch.jpg|Mapa Geral do Brasil e Grandes Rotas (1645)]]
+* **Uso:** Visão macro do território brasileiro em 1645 com o Peabiru, Caminho dos Currais, costa açucareira e rios em traço limpo preto sobre branco.
+
+### 6. [[Mapas/mapa_caminho4_serra_do_mar_1645.jpg|Planta-Baixa Tática: Região 4 — O Caminho da Serra (1645)]]
+* **Orientação:** 9:16 Vertical (Mobile-First)
+* **Uso:** Blueprint cartográfico direto para importar no CorelDRAW e sobrepor o grid.
+* **Trajeto:** Porto de Santos ➜ Mangues e Rios (Cubatão, Cobras, Bertioga) com pontes de troncos ➜ Subida sinuosa em zigue-zague da Serra de Paranapiacaba ➜ Cachoeiras e escarpas ➜ Cruzeiro da Serra (1645) e Encruzilhada para Piratininga.
+

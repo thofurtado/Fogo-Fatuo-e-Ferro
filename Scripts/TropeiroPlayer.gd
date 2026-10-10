@@ -7,8 +7,31 @@ class_name TropeiroPlayer
 var facing_direction: Vector2 = Vector2.DOWN
 var is_moving: bool = false
 var bob_timer: float = 0.0
+var is_falling_ledge: bool = false
+
+func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
+	if is_falling_ledge:
+		return
+	is_falling_ledge = true
+	velocity = Vector2.ZERO
+	
+	# Hop animation no sprite (arco de salto na pedra)
+	var hop = create_tween()
+	hop.tween_property(sprite, "position:y", -18.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	hop.tween_property(sprite, "position:y", 0.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	# Movimento para baixo até o nível inferior
+	var move = create_tween()
+	move.tween_property(self, "position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	await move.finished
+	
+	is_falling_ledge = false
+	if on_finished.is_valid():
+		on_finished.call()
 
 func _physics_process(delta):
+	if is_falling_ledge:
+		return
 	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
 		input_vector.x += 1

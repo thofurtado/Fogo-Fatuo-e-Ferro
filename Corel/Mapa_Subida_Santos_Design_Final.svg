@@ -1,0 +1,465 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 2048" width="1920px" height="2048px">
+<defs>
+  <style>
+    .grid-line { stroke: #D8CAA8; stroke-width: 1; stroke-opacity: 0.6; }
+    .screen-line { stroke: #8C5A28; stroke-width: 3; stroke-dasharray: 8,6; }
+    .water-fill { fill: #348ABA; }
+    .water-shallow { stroke: #6EB6DA; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .water-deep { stroke: #348ABA; stroke-width: 28; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .mangrove-fill { fill: #768750; fill-opacity: 0.55; }
+    .trail-outer { stroke: #78320A; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .trail-inner { stroke: #E6731E; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .granite-wall { fill: #413C3A; stroke: #73695F; stroke-width: 2; }
+    .escarpa-shelf { fill: #73695F; stroke: #FFD700; stroke-width: 1; }
+    .escarpa-block { stroke: #1E1914; stroke-width: 4; stroke-linecap: square; }
+    .tree-base { fill: #26582A; stroke: #143214; stroke-width: 1; }
+    .tree-top { fill: #44843C; }
+    .sprite-box { fill: #191614; stroke: #E1BE50; stroke-width: 2; }
+    .sprite-code { fill: #FFD700; font-family: Arial, sans-serif; font-weight: bold; font-size: 11px; }
+    .sprite-desc { fill: #FFFFFF; font-family: Arial, sans-serif; font-size: 9px; }
+    .screen-label { fill: #F5DC96; font-family: Arial, sans-serif; font-weight: bold; font-size: 12px; }
+    .side-title { fill: #F0CD78; font-family: Arial, sans-serif; font-weight: bold; font-size: 15px; }
+    .side-sec { fill: #D7A550; font-family: Arial, sans-serif; font-weight: bold; font-size: 12px; }
+    .side-item { fill: #EAEAEA; font-family: Arial, sans-serif; font-size: 10px; }
+    .side-detail { fill: #AAAAAA; font-family: Arial, sans-serif; font-size: 9px; }
+  </style>
+</defs>
+<rect width="1536" height="2048" fill="#F6EEDE" />
+<g id="Camada_Grade">
+  <line x1="0" y1="0" x2="0" y2="2048" class="grid-line" />
+  <line x1="32" y1="0" x2="32" y2="2048" class="grid-line" />
+  <line x1="64" y1="0" x2="64" y2="2048" class="grid-line" />
+  <line x1="96" y1="0" x2="96" y2="2048" class="grid-line" />
+  <line x1="128" y1="0" x2="128" y2="2048" class="grid-line" />
+  <line x1="160" y1="0" x2="160" y2="2048" class="grid-line" />
+  <line x1="192" y1="0" x2="192" y2="2048" class="grid-line" />
+  <line x1="224" y1="0" x2="224" y2="2048" class="grid-line" />
+  <line x1="256" y1="0" x2="256" y2="2048" class="grid-line" />
+  <line x1="288" y1="0" x2="288" y2="2048" class="grid-line" />
+  <line x1="320" y1="0" x2="320" y2="2048" class="grid-line" />
+  <line x1="352" y1="0" x2="352" y2="2048" class="grid-line" />
+  <line x1="384" y1="0" x2="384" y2="2048" class="grid-line" />
+  <line x1="416" y1="0" x2="416" y2="2048" class="grid-line" />
+  <line x1="448" y1="0" x2="448" y2="2048" class="grid-line" />
+  <line x1="480" y1="0" x2="480" y2="2048" class="grid-line" />
+  <line x1="512" y1="0" x2="512" y2="2048" class="grid-line" />
+  <line x1="544" y1="0" x2="544" y2="2048" class="grid-line" />
+  <line x1="576" y1="0" x2="576" y2="2048" class="grid-line" />
+  <line x1="608" y1="0" x2="608" y2="2048" class="grid-line" />
+  <line x1="640" y1="0" x2="640" y2="2048" class="grid-line" />
+  <line x1="672" y1="0" x2="672" y2="2048" class="grid-line" />
+  <line x1="704" y1="0" x2="704" y2="2048" class="grid-line" />
+  <line x1="736" y1="0" x2="736" y2="2048" class="grid-line" />
+  <line x1="768" y1="0" x2="768" y2="2048" class="grid-line" />
+  <line x1="800" y1="0" x2="800" y2="2048" class="grid-line" />
+  <line x1="832" y1="0" x2="832" y2="2048" class="grid-line" />
+  <line x1="864" y1="0" x2="864" y2="2048" class="grid-line" />
+  <line x1="896" y1="0" x2="896" y2="2048" class="grid-line" />
+  <line x1="928" y1="0" x2="928" y2="2048" class="grid-line" />
+  <line x1="960" y1="0" x2="960" y2="2048" class="grid-line" />
+  <line x1="992" y1="0" x2="992" y2="2048" class="grid-line" />
+  <line x1="1024" y1="0" x2="1024" y2="2048" class="grid-line" />
+  <line x1="1056" y1="0" x2="1056" y2="2048" class="grid-line" />
+  <line x1="1088" y1="0" x2="1088" y2="2048" class="grid-line" />
+  <line x1="1120" y1="0" x2="1120" y2="2048" class="grid-line" />
+  <line x1="1152" y1="0" x2="1152" y2="2048" class="grid-line" />
+  <line x1="1184" y1="0" x2="1184" y2="2048" class="grid-line" />
+  <line x1="1216" y1="0" x2="1216" y2="2048" class="grid-line" />
+  <line x1="1248" y1="0" x2="1248" y2="2048" class="grid-line" />
+  <line x1="1280" y1="0" x2="1280" y2="2048" class="grid-line" />
+  <line x1="1312" y1="0" x2="1312" y2="2048" class="grid-line" />
+  <line x1="1344" y1="0" x2="1344" y2="2048" class="grid-line" />
+  <line x1="1376" y1="0" x2="1376" y2="2048" class="grid-line" />
+  <line x1="1408" y1="0" x2="1408" y2="2048" class="grid-line" />
+  <line x1="1440" y1="0" x2="1440" y2="2048" class="grid-line" />
+  <line x1="1472" y1="0" x2="1472" y2="2048" class="grid-line" />
+  <line x1="1504" y1="0" x2="1504" y2="2048" class="grid-line" />
+  <line x1="1536" y1="0" x2="1536" y2="2048" class="grid-line" />
+  <line x1="0" y1="0" x2="1536" y2="0" class="grid-line" />
+  <line x1="0" y1="32" x2="1536" y2="32" class="grid-line" />
+  <line x1="0" y1="64" x2="1536" y2="64" class="grid-line" />
+  <line x1="0" y1="96" x2="1536" y2="96" class="grid-line" />
+  <line x1="0" y1="128" x2="1536" y2="128" class="grid-line" />
+  <line x1="0" y1="160" x2="1536" y2="160" class="grid-line" />
+  <line x1="0" y1="192" x2="1536" y2="192" class="grid-line" />
+  <line x1="0" y1="224" x2="1536" y2="224" class="grid-line" />
+  <line x1="0" y1="256" x2="1536" y2="256" class="grid-line" />
+  <line x1="0" y1="288" x2="1536" y2="288" class="grid-line" />
+  <line x1="0" y1="320" x2="1536" y2="320" class="grid-line" />
+  <line x1="0" y1="352" x2="1536" y2="352" class="grid-line" />
+  <line x1="0" y1="384" x2="1536" y2="384" class="grid-line" />
+  <line x1="0" y1="416" x2="1536" y2="416" class="grid-line" />
+  <line x1="0" y1="448" x2="1536" y2="448" class="grid-line" />
+  <line x1="0" y1="480" x2="1536" y2="480" class="grid-line" />
+  <line x1="0" y1="512" x2="1536" y2="512" class="grid-line" />
+  <line x1="0" y1="544" x2="1536" y2="544" class="grid-line" />
+  <line x1="0" y1="576" x2="1536" y2="576" class="grid-line" />
+  <line x1="0" y1="608" x2="1536" y2="608" class="grid-line" />
+  <line x1="0" y1="640" x2="1536" y2="640" class="grid-line" />
+  <line x1="0" y1="672" x2="1536" y2="672" class="grid-line" />
+  <line x1="0" y1="704" x2="1536" y2="704" class="grid-line" />
+  <line x1="0" y1="736" x2="1536" y2="736" class="grid-line" />
+  <line x1="0" y1="768" x2="1536" y2="768" class="grid-line" />
+  <line x1="0" y1="800" x2="1536" y2="800" class="grid-line" />
+  <line x1="0" y1="832" x2="1536" y2="832" class="grid-line" />
+  <line x1="0" y1="864" x2="1536" y2="864" class="grid-line" />
+  <line x1="0" y1="896" x2="1536" y2="896" class="grid-line" />
+  <line x1="0" y1="928" x2="1536" y2="928" class="grid-line" />
+  <line x1="0" y1="960" x2="1536" y2="960" class="grid-line" />
+  <line x1="0" y1="992" x2="1536" y2="992" class="grid-line" />
+  <line x1="0" y1="1024" x2="1536" y2="1024" class="grid-line" />
+  <line x1="0" y1="1056" x2="1536" y2="1056" class="grid-line" />
+  <line x1="0" y1="1088" x2="1536" y2="1088" class="grid-line" />
+  <line x1="0" y1="1120" x2="1536" y2="1120" class="grid-line" />
+  <line x1="0" y1="1152" x2="1536" y2="1152" class="grid-line" />
+  <line x1="0" y1="1184" x2="1536" y2="1184" class="grid-line" />
+  <line x1="0" y1="1216" x2="1536" y2="1216" class="grid-line" />
+  <line x1="0" y1="1248" x2="1536" y2="1248" class="grid-line" />
+  <line x1="0" y1="1280" x2="1536" y2="1280" class="grid-line" />
+  <line x1="0" y1="1312" x2="1536" y2="1312" class="grid-line" />
+  <line x1="0" y1="1344" x2="1536" y2="1344" class="grid-line" />
+  <line x1="0" y1="1376" x2="1536" y2="1376" class="grid-line" />
+  <line x1="0" y1="1408" x2="1536" y2="1408" class="grid-line" />
+  <line x1="0" y1="1440" x2="1536" y2="1440" class="grid-line" />
+  <line x1="0" y1="1472" x2="1536" y2="1472" class="grid-line" />
+  <line x1="0" y1="1504" x2="1536" y2="1504" class="grid-line" />
+  <line x1="0" y1="1536" x2="1536" y2="1536" class="grid-line" />
+  <line x1="0" y1="1568" x2="1536" y2="1568" class="grid-line" />
+  <line x1="0" y1="1600" x2="1536" y2="1600" class="grid-line" />
+  <line x1="0" y1="1632" x2="1536" y2="1632" class="grid-line" />
+  <line x1="0" y1="1664" x2="1536" y2="1664" class="grid-line" />
+  <line x1="0" y1="1696" x2="1536" y2="1696" class="grid-line" />
+  <line x1="0" y1="1728" x2="1536" y2="1728" class="grid-line" />
+  <line x1="0" y1="1760" x2="1536" y2="1760" class="grid-line" />
+  <line x1="0" y1="1792" x2="1536" y2="1792" class="grid-line" />
+  <line x1="0" y1="1824" x2="1536" y2="1824" class="grid-line" />
+  <line x1="0" y1="1856" x2="1536" y2="1856" class="grid-line" />
+  <line x1="0" y1="1888" x2="1536" y2="1888" class="grid-line" />
+  <line x1="0" y1="1920" x2="1536" y2="1920" class="grid-line" />
+  <line x1="0" y1="1952" x2="1536" y2="1952" class="grid-line" />
+  <line x1="0" y1="1984" x2="1536" y2="1984" class="grid-line" />
+  <line x1="0" y1="2016" x2="1536" y2="2016" class="grid-line" />
+  <line x1="0" y1="2048" x2="1536" y2="2048" class="grid-line" />
+</g>
+<g id="Camada_Hidrografia">
+  <rect x="0" y="1824" width="1536" height="224" class="water-fill" />
+  <rect x="0" y="1472" width="384" height="352" class="mangrove-fill" />
+  <path d="M 448,320 C 416,512 480,768 512,1024 S 576,1280 480,1440 S 320,1568 192,1696 S 160,1824 160,1824" class="water-deep" />
+  <path d="M 448,320 C 416,512 480,768 512,1024 S 576,1280 480,1440 S 320,1568 192,1696 S 160,1824 160,1824" class="water-shallow" />
+  <path d="M 1152,256 C 1216,576 1184,896 1248,1216 S 1312,1472 1344,1664 S 1312,1824 1312,1824" class="water-deep" />
+  <path d="M 1152,256 C 1216,576 1184,896 1248,1216 S 1312,1472 1344,1664 S 1312,1824 1312,1824" class="water-shallow" />
+</g>
+<g id="Camada_Paredoes">
+  <rect x="384" y="576" width="64" height="512" class="granite-wall" />
+  <rect x="1088" y="576" width="64" height="512" class="granite-wall" />
+</g>
+<g id="Camada_Escarpas_Rampas">
+  <rect x="544" y="1142" width="512" height="20" class="escarpa-shelf" />
+  <line x1="544" y1="1162" x2="1056" y2="1162" class="escarpa-block" />
+  <polygon points="568,1157 563,1148 573,1148" fill="#FFD700" />
+  <polygon points="600,1157 595,1148 605,1148" fill="#FFD700" />
+  <polygon points="632,1157 627,1148 637,1148" fill="#FFD700" />
+  <polygon points="664,1157 659,1148 669,1148" fill="#FFD700" />
+  <polygon points="696,1157 691,1148 701,1148" fill="#FFD700" />
+  <polygon points="728,1157 723,1148 733,1148" fill="#FFD700" />
+  <polygon points="760,1157 755,1148 765,1148" fill="#FFD700" />
+  <polygon points="792,1157 787,1148 797,1148" fill="#FFD700" />
+  <polygon points="824,1157 819,1148 829,1148" fill="#FFD700" />
+  <polygon points="856,1157 851,1148 861,1148" fill="#FFD700" />
+  <polygon points="888,1157 883,1148 893,1148" fill="#FFD700" />
+  <polygon points="920,1157 915,1148 925,1148" fill="#FFD700" />
+  <polygon points="952,1157 947,1148 957,1148" fill="#FFD700" />
+  <polygon points="984,1157 979,1148 989,1148" fill="#FFD700" />
+  <polygon points="1016,1157 1011,1148 1021,1148" fill="#FFD700" />
+  <polygon points="1048,1157 1043,1148 1053,1148" fill="#FFD700" />
+  <rect x="512" y="982" width="512" height="20" class="escarpa-shelf" />
+  <line x1="512" y1="1002" x2="1024" y2="1002" class="escarpa-block" />
+  <polygon points="536,997 531,988 541,988" fill="#FFD700" />
+  <polygon points="568,997 563,988 573,988" fill="#FFD700" />
+  <polygon points="600,997 595,988 605,988" fill="#FFD700" />
+  <polygon points="632,997 627,988 637,988" fill="#FFD700" />
+  <polygon points="664,997 659,988 669,988" fill="#FFD700" />
+  <polygon points="696,997 691,988 701,988" fill="#FFD700" />
+  <polygon points="728,997 723,988 733,988" fill="#FFD700" />
+  <polygon points="760,997 755,988 765,988" fill="#FFD700" />
+  <polygon points="792,997 787,988 797,988" fill="#FFD700" />
+  <polygon points="824,997 819,988 829,988" fill="#FFD700" />
+  <polygon points="856,997 851,988 861,988" fill="#FFD700" />
+  <polygon points="888,997 883,988 893,988" fill="#FFD700" />
+  <polygon points="920,997 915,988 925,988" fill="#FFD700" />
+  <polygon points="952,997 947,988 957,988" fill="#FFD700" />
+  <polygon points="984,997 979,988 989,988" fill="#FFD700" />
+  <polygon points="1016,997 1011,988 1021,988" fill="#FFD700" />
+  <rect x="544" y="822" width="448" height="20" class="escarpa-shelf" />
+  <line x1="544" y1="842" x2="992" y2="842" class="escarpa-block" />
+  <polygon points="568,837 563,828 573,828" fill="#FFD700" />
+  <polygon points="600,837 595,828 605,828" fill="#FFD700" />
+  <polygon points="632,837 627,828 637,828" fill="#FFD700" />
+  <polygon points="664,837 659,828 669,828" fill="#FFD700" />
+  <polygon points="696,837 691,828 701,828" fill="#FFD700" />
+  <polygon points="728,837 723,828 733,828" fill="#FFD700" />
+  <polygon points="760,837 755,828 765,828" fill="#FFD700" />
+  <polygon points="792,837 787,828 797,828" fill="#FFD700" />
+  <polygon points="824,837 819,828 829,828" fill="#FFD700" />
+  <polygon points="856,837 851,828 861,828" fill="#FFD700" />
+  <polygon points="888,837 883,828 893,828" fill="#FFD700" />
+  <polygon points="920,837 915,828 925,828" fill="#FFD700" />
+  <polygon points="952,837 947,828 957,828" fill="#FFD700" />
+  <polygon points="984,837 979,828 989,828" fill="#FFD700" />
+  <rect x="512" y="662" width="512" height="20" class="escarpa-shelf" />
+  <line x1="512" y1="682" x2="1024" y2="682" class="escarpa-block" />
+  <polygon points="536,677 531,668 541,668" fill="#FFD700" />
+  <polygon points="568,677 563,668 573,668" fill="#FFD700" />
+  <polygon points="600,677 595,668 605,668" fill="#FFD700" />
+  <polygon points="632,677 627,668 637,668" fill="#FFD700" />
+  <polygon points="664,677 659,668 669,668" fill="#FFD700" />
+  <polygon points="696,677 691,668 701,668" fill="#FFD700" />
+  <polygon points="728,677 723,668 733,668" fill="#FFD700" />
+  <polygon points="760,677 755,668 765,668" fill="#FFD700" />
+  <polygon points="792,677 787,668 797,668" fill="#FFD700" />
+  <polygon points="824,677 819,668 829,668" fill="#FFD700" />
+  <polygon points="856,677 851,668 861,668" fill="#FFD700" />
+  <polygon points="888,677 883,668 893,668" fill="#FFD700" />
+  <polygon points="920,677 915,668 925,668" fill="#FFD700" />
+  <polygon points="952,677 947,668 957,668" fill="#FFD700" />
+  <polygon points="984,677 979,668 989,668" fill="#FFD700" />
+  <polygon points="1016,677 1011,668 1021,668" fill="#FFD700" />
+  <rect x="576" y="502" width="384" height="20" class="escarpa-shelf" />
+  <line x1="576" y1="522" x2="960" y2="522" class="escarpa-block" />
+  <polygon points="600,517 595,508 605,508" fill="#FFD700" />
+  <polygon points="632,517 627,508 637,508" fill="#FFD700" />
+  <polygon points="664,517 659,508 669,508" fill="#FFD700" />
+  <polygon points="696,517 691,508 701,508" fill="#FFD700" />
+  <polygon points="728,517 723,508 733,508" fill="#FFD700" />
+  <polygon points="760,517 755,508 765,508" fill="#FFD700" />
+  <polygon points="792,517 787,508 797,508" fill="#FFD700" />
+  <polygon points="824,517 819,508 829,508" fill="#FFD700" />
+  <polygon points="856,517 851,508 861,508" fill="#FFD700" />
+  <polygon points="888,517 883,508 893,508" fill="#FFD700" />
+  <polygon points="920,517 915,508 925,508" fill="#FFD700" />
+  <polygon points="952,517 947,508 957,508" fill="#FFD700" />
+  <rect x="608" y="342" width="320" height="20" class="escarpa-shelf" />
+  <line x1="608" y1="362" x2="928" y2="362" class="escarpa-block" />
+  <polygon points="632,357 627,348 637,348" fill="#FFD700" />
+  <polygon points="664,357 659,348 669,348" fill="#FFD700" />
+  <polygon points="696,357 691,348 701,348" fill="#FFD700" />
+  <polygon points="728,357 723,348 733,348" fill="#FFD700" />
+  <polygon points="760,357 755,348 765,348" fill="#FFD700" />
+  <polygon points="792,357 787,348 797,348" fill="#FFD700" />
+  <polygon points="824,357 819,348 829,348" fill="#FFD700" />
+  <polygon points="856,357 851,348 861,348" fill="#FFD700" />
+  <polygon points="888,357 883,348 893,348" fill="#FFD700" />
+  <polygon points="920,357 915,348 925,348" fill="#FFD700" />
+</g>
+<g id="Camada_Trilha_Laranja">
+  <polyline points="912,1744 912,1616 800,1504 672,1408 576,1296 608,1216 1056,1184 1056,1120 512,1024 512,960 1024,864 1024,800 512,704 512,640 768,576 960,544 960,480 608,384 608,320 768,224 768,64" class="trail-outer" />
+  <polyline points="912,1744 912,1616 800,1504 672,1408 576,1296 608,1216 1056,1184 1056,1120 512,1024 512,960 1024,864 1024,800 512,704 512,640 768,576 960,544 960,480 608,384 608,320 768,224 768,64" class="trail-inner" />
+  <rect x="552" y="1280" width="28" height="36" fill="#8C5A28" stroke="#32190A" stroke-width="2" />
+</g>
+<g id="Camada_Caixas_Sprites">
+  <g id="Sprite__J_">
+    <rect x="898" y="1730" width="60" height="60" fill="#191614" stroke="#FFD700" stroke-width="2" />
+    <text x="902" y="1744" class="sprite-code">[J]</text>
+    <text x="902" y="1756" class="sprite-desc">Partida</text>
+  </g>
+  <g id="Sprite__R_1_">
+    <rect x="834" y="1826" width="92" height="60" fill="#191614" stroke="#F4A460" stroke-width="2" />
+    <text x="838" y="1840" class="sprite-code">[R.1]</text>
+    <text x="838" y="1852" class="sprite-desc">Cais do Porto</text>
+  </g>
+  <g id="Sprite__R_2_">
+    <rect x="1026" y="1826" width="92" height="60" fill="#191614" stroke="#F4A460" stroke-width="2" />
+    <text x="1030" y="1840" class="sprite-code">[R.2]</text>
+    <text x="1030" y="1852" class="sprite-desc">Trapiche</text>
+  </g>
+  <g id="Sprite__B_1_">
+    <rect x="866" y="1602" width="92" height="60" fill="#191614" stroke="#E1BE50" stroke-width="2" />
+    <text x="870" y="1616" class="sprite-code">[B.1]</text>
+    <text x="870" y="1628" class="sprite-desc">Taverna Central</text>
+  </g>
+  <g id="Sprite__B_2_">
+    <rect x="738" y="1538" width="92" height="60" fill="#191614" stroke="#E1BE50" stroke-width="2" />
+    <text x="742" y="1552" class="sprite-code">[B.2]</text>
+    <text x="742" y="1564" class="sprite-desc">Casa de Taipa</text>
+  </g>
+  <g id="Sprite__B_3_">
+    <rect x="1026" y="1570" width="92" height="60" fill="#191614" stroke="#E1BE50" stroke-width="2" />
+    <text x="1030" y="1584" class="sprite-code">[B.3]</text>
+    <text x="1030" y="1596" class="sprite-desc">Armazem de Sal</text>
+  </g>
+  <g id="Sprite__B_4_">
+    <rect x="1154" y="1666" width="92" height="60" fill="#191614" stroke="#E1BE50" stroke-width="2" />
+    <text x="1158" y="1680" class="sprite-code">[B.4]</text>
+    <text x="1158" y="1692" class="sprite-desc">Sobrado Pedra</text>
+  </g>
+  <g id="Sprite__B_5_">
+    <rect x="706" y="1698" width="60" height="60" fill="#191614" stroke="#E1BE50" stroke-width="2" />
+    <text x="710" y="1712" class="sprite-code">[B.5]</text>
+    <text x="710" y="1724" class="sprite-desc">Cabana Ribeira</text>
+  </g>
+  <g id="Sprite__P_1_">
+    <rect x="546" y="1282" width="60" height="60" fill="#191614" stroke="#00FFFF" stroke-width="2" />
+    <text x="550" y="1296" class="sprite-code">[P.1]</text>
+    <text x="550" y="1308" class="sprite-desc">Ponte Rio</text>
+  </g>
+  <g id="Sprite__F_1_">
+    <rect x="610" y="1314" width="60" height="60" fill="#191614" stroke="#FF4500" stroke-width="2" />
+    <text x="614" y="1328" class="sprite-code">[F.1]</text>
+    <text x="614" y="1340" class="sprite-desc">Fogueira</text>
+  </g>
+  <g id="Sprite__B_6_">
+    <rect x="674" y="1282" width="92" height="60" fill="#191614" stroke="#E1BE50" stroke-width="2" />
+    <text x="678" y="1296" class="sprite-code">[B.6]</text>
+    <text x="678" y="1308" class="sprite-desc">Rancho Pouso</text>
+  </g>
+  <g id="Sprite__T_1_">
+    <rect x="610" y="1378" width="60" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="614" y="1392" class="sprite-code">[T.1]</text>
+    <text x="614" y="1404" class="sprite-desc">Bau Pouso</text>
+  </g>
+  <g id="Sprite__M_1_">
+    <rect x="674" y="1378" width="60" height="28" fill="#191614" stroke="#D3D3D3" stroke-width="2" />
+    <text x="678" y="1392" class="sprite-code">[M.1]</text>
+    <text x="678" y="1404" class="sprite-desc">Marco Trilha</text>
+  </g>
+  <g id="Sprite__C_1_">
+    <rect x="418" y="706" width="92" height="92" fill="#191614" stroke="#00BFFF" stroke-width="2" />
+    <text x="422" y="720" class="sprite-code">[C.1]</text>
+    <text x="422" y="732" class="sprite-desc">Cachoeira do Veu</text>
+  </g>
+  <g id="Sprite__A_1_">
+    <rect x="738" y="578" width="92" height="60" fill="#191614" stroke="#32CD32" stroke-width="2" />
+    <text x="742" y="592" class="sprite-code">[A.1]</text>
+    <text x="742" y="604" class="sprite-desc">Altar Caipora</text>
+  </g>
+  <g id="Sprite__M_2_">
+    <rect x="738" y="194" width="92" height="60" fill="#191614" stroke="#FFFFFF" stroke-width="2" />
+    <text x="742" y="208" class="sprite-code">[M.2]</text>
+    <text x="742" y="220" class="sprite-desc">Cruzeiro Cume</text>
+  </g>
+  <g id="Sprite__S_1_">
+    <rect x="546" y="1122" width="92" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="550" y="1136" class="sprite-code">[S.1]</text>
+    <text x="550" y="1148" class="sprite-desc">Escarpa 1 (150m)</text>
+  </g>
+  <g id="Sprite__S_2_">
+    <rect x="514" y="962" width="92" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="518" y="976" class="sprite-code">[S.2]</text>
+    <text x="518" y="988" class="sprite-desc">Escarpa 2 (300m)</text>
+  </g>
+  <g id="Sprite__S_3_">
+    <rect x="546" y="802" width="92" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="550" y="816" class="sprite-code">[S.3]</text>
+    <text x="550" y="828" class="sprite-desc">Escarpa 3 (450m)</text>
+  </g>
+  <g id="Sprite__S_4_">
+    <rect x="514" y="642" width="92" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="518" y="656" class="sprite-code">[S.4]</text>
+    <text x="518" y="668" class="sprite-desc">Escarpa 4 (600m)</text>
+  </g>
+  <g id="Sprite__S_5_">
+    <rect x="578" y="482" width="92" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="582" y="496" class="sprite-code">[S.5]</text>
+    <text x="582" y="508" class="sprite-desc">Escarpa 5 (720m)</text>
+  </g>
+  <g id="Sprite__S_6_">
+    <rect x="610" y="322" width="92" height="28" fill="#191614" stroke="#FFFF00" stroke-width="2" />
+    <text x="614" y="336" class="sprite-code">[S.6]</text>
+    <text x="614" y="348" class="sprite-desc">Escarpa 6 (800m)</text>
+  </g>
+</g>
+<g id="Camada_Enquadramento_Telas">
+  <line x1="512" y1="0" x2="512" y2="2048" class="screen-line" />
+  <line x1="1024" y1="0" x2="1024" y2="2048" class="screen-line" />
+  <line x1="0" y1="1024" x2="1536" y2="1024" class="screen-line" />
+  <rect x="0" y="0" width="1536" height="2048" fill="none" stroke="#3C2819" stroke-width="4" />
+  <rect x="32" y="32" width="280" height="24" fill="#23190F" stroke="#FFD700" stroke-width="1.5" />
+  <text x="40" y="48" class="screen-label">TELA 1: Garganta Oeste & Paredao</text>
+  <rect x="544" y="32" width="280" height="24" fill="#23190F" stroke="#FFD700" stroke-width="1.5" />
+  <text x="552" y="48" class="screen-label">TELA 2: Escarpas da Serra & Cume</text>
+  <rect x="1056" y="32" width="280" height="24" fill="#23190F" stroke="#FFD700" stroke-width="1.5" />
+  <text x="1064" y="48" class="screen-label">TELA 3: Encosta Leste & Rio Direito</text>
+  <rect x="32" y="1056" width="280" height="24" fill="#23190F" stroke="#FFD700" stroke-width="1.5" />
+  <text x="40" y="1072" class="screen-label">TELA 4: Foz do Cubatao & Manguezal</text>
+  <rect x="544" y="1056" width="280" height="24" fill="#23190F" stroke="#FFD700" stroke-width="1.5" />
+  <text x="552" y="1072" class="screen-label">TELA 5: Piacaguera & Pe da Serra</text>
+  <rect x="1056" y="1056" width="280" height="24" fill="#23190F" stroke="#FFD700" stroke-width="1.5" />
+  <text x="1064" y="1072" class="screen-label">TELA 6: Vila de Santos & Porto</text>
+</g>
+<g id="Camada_Legenda_Sidebar">
+  <rect x="1536" y="0" width="384" height="2048" fill="#201C19" />
+  <line x1="1536" y1="0" x2="1536" y2="2048" stroke="#FFD700" stroke-width="3" />
+  <text x="1552" y="36" class="side-title">MAPA DA SUBIDA DE SANTOS (1645)</text>
+  <line x1="1552" y1="46" x2="1904" y2="46" stroke="#FFD700" stroke-width="1" />
+  <text x="1552" y="64" class="side-item">&#8226; Proporcao: 3 Telas Largura x 2 Altura</text>
+  <text x="1552" y="80" class="side-item">&#8226; Resolucao da Grade: 48 x 64 Quadros</text>
+  <text x="1552" y="96" class="side-item">&#8226; 1 Tela = 16 x 32 Quadros (Mobile 9:16)</text>
+  <text x="1552" y="112" class="side-item">&#8226; Extensao: Santos -> Serra de Paranapiacaba</text>
+  <text x="1552" y="145" class="side-sec">1. HIDROGRAFIA & MARGEM</text>
+  <text x="1552" y="167" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">MAR</text>
+  <text x="1604" y="167" class="side-item">Estuario de Santos (Sul)</text>
+  <text x="1604" y="181" class="side-detail">Limite costeiro sul, mar e atracadouro.</text>
+  <text x="1552" y="201" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">RIO-E</text>
+  <text x="1604" y="201" class="side-item">Rio Cubatao (Oeste)</text>
+  <text x="1604" y="215" class="side-detail">Desce da serra, cruza Piacaguera e mangue.</text>
+  <text x="1552" y="235" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">RIO-D</text>
+  <text x="1604" y="235" class="side-item">Canal de Santos (Leste)</text>
+  <text x="1604" y="249" class="side-detail">Nasce na serra e abraca a vila a direita.</text>
+  <text x="1552" y="269" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[P.1]</text>
+  <text x="1604" y="269" class="side-item">Ponte de Piacaguera</text>
+  <text x="1604" y="283" class="side-detail">Travessia obrigatoria sobre o Rio CubatÃ£o.</text>
+  <text x="1552" y="303" class="side-sec">2. VILA & PORTO DE SANTOS</text>
+  <text x="1552" y="325" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[J]</text>
+  <text x="1604" y="325" class="side-item">Partida do Tropeiro</text>
+  <text x="1604" y="339" class="side-detail">Inicio com a Mula Bonita e carga de sal.</text>
+  <text x="1552" y="359" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[R.1]</text>
+  <text x="1604" y="359" class="side-item">Cais do Porto Principal</text>
+  <text x="1604" y="373" class="side-detail">Decks de madeira, amarras e canoas.</text>
+  <text x="1552" y="393" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[R.2]</text>
+  <text x="1604" y="393" class="side-item">Trapiche Ribeirinho</text>
+  <text x="1604" y="407" class="side-detail">Pouso pesqueiro e saida para o canal.</text>
+  <text x="1552" y="427" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[B.1]</text>
+  <text x="1604" y="427" class="side-item">Taverna da Estalagem</text>
+  <text x="1604" y="441" class="side-detail">Praca central e contratacao da tropa.</text>
+  <text x="1552" y="461" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[B.2]</text>
+  <text x="1604" y="461" class="side-item">Fazenda / Olaria Colonial</text>
+  <text x="1604" y="475" class="side-detail">Construcao de taipa de pilao e cerca.</text>
+  <text x="1552" y="495" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[B.3]</text>
+  <text x="1604" y="495" class="side-item">Armazem Real de Sal</text>
+  <text x="1604" y="509" class="side-detail">Entreposto de charque e fardos comerciais.</text>
+  <text x="1552" y="529" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[B.4]</text>
+  <text x="1604" y="529" class="side-item">Sobrado de Pedra e Cal</text>
+  <text x="1604" y="543" class="side-detail">Residencia nobre com telhas mouriscas.</text>
+  <text x="1552" y="563" class="side-sec">3. POUSO DA BOCA DA SERRA</text>
+  <text x="1552" y="585" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[F.1]</text>
+  <text x="1604" y="585" class="side-item">Fogueira de Pouso</text>
+  <text x="1604" y="599" class="side-detail">Cafe tropeiro: cura vida e acalma a mula.</text>
+  <text x="1552" y="619" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[B.6]</text>
+  <text x="1604" y="619" class="side-item">Rancho de Piacaguera</text>
+  <text x="1604" y="633" class="side-detail">Abrigo coberto de palha e pau-a-pique.</text>
+  <text x="1552" y="653" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[T.1]</text>
+  <text x="1604" y="653" class="side-item">Bau de Suprimentos</text>
+  <text x="1604" y="667" class="side-detail">Feijao Tropeiro, Facao e Fumo de Rolo.</text>
+  <text x="1552" y="687" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[M.1]</text>
+  <text x="1604" y="687" class="side-item">Marco da Garganta</text>
+  <text x="1604" y="701" class="side-detail">Placa historica alertando perigo da serra.</text>
+  <text x="1552" y="721" class="side-sec">4. ESCARPAS & MECANICA DE QUEDA</text>
+  <text x="1552" y="743" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[S.1-6]</text>
+  <text x="1604" y="743" class="side-item">Escarpas em Patamares</text>
+  <text x="1604" y="757" class="side-detail">6 cotas de subida em ziguezague.</text>
+  <text x="1556" y="777" fill="#FFD700" font-size="9px">Subida: Paredao de granito bloqueado.</text>
+  <text x="1556" y="791" fill="#FFA500" font-size="9px">Queda: Salto na rampa com penalidade!</text>
+  <text x="1556" y="805" fill="#FFA07A" font-size="9px">(-3 HP e -5% Afinidade da Mula)</text>
+  <text x="1552" y="829" class="side-sec">5. PONTOS NOTAVEIS DA SERRA</text>
+  <text x="1552" y="851" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[C.1]</text>
+  <text x="1604" y="851" class="side-item">Cachoeira do Veu</text>
+  <text x="1604" y="865" class="side-detail">Fenda secreta com 40 Patacas jesuitas.</text>
+  <text x="1552" y="885" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[A.1]</text>
+  <text x="1604" y="885" class="side-item">Altar da Caipora</text>
+  <text x="1604" y="899" class="side-detail">Bambuzal sagrado: oferenda de fumo (+25%).</text>
+  <text x="1552" y="919" fill="#FFD700" font-family="Consolas" font-weight="bold" font-size="10px">[M.2]</text>
+  <text x="1604" y="919" class="side-item">Cruzeiro do Cume</text>
+  <text x="1604" y="933" class="side-detail">Marco do topo: entrada do Planalto (Fim).</text>
+</g>
+</svg>

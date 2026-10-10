@@ -88,8 +88,15 @@ O atlas modular b?sico de *Fogo-F?tuo & Ferro* divide-se nos seguintes conjuntos
    * Paredes de pau-a-pique com amarra??o de cip? aparente.
    * Portas de t?buas largas com ferrolhos de ferro forjado.
    * Alpendres de pouso sustentados por esteios de aroeira.
-4. **Adere?os e Props de Explora??o:**
-   * Ba? de carga tropeiro com cantoneiras de ferro (anim?vel: fechado / aberto).
-   * Fogueira com pedras de rio e caldeir?o de feij?o tropeiro fumegando.
-   * Altares de pedra ind?gena e totens ancestrais de prote??o.
-   * Labaredas de Fogo-F?tuo (azuis e esverdeadas).
+4. **Adereços e Props de Exploração:**
+   * Baú de carga tropeiro com cantoneiras de ferro (animável: fechado / aberto).
+   * Fogueira com pedras de rio e caldeirão de feijão tropeiro fumegando.
+   * Altares de pedra indígena e totens ancestrais de proteção.
+   * Labaredas de Fogo-Fátuo (azuis e esverdeadas).
+
+---
+
+## 5. Dicionário Oficial de Códigos de Grid (Blueprint Matrix)
+Para a tabela completa de códigos padronizados para plantas-baixas em CorelDRAW e geração no Godot (`B11` Igreja Matriz, `B03` Taverna, `B05` Trapiche, `R03` Pontes de Tronco, `W03` Manguezais, `T10` Jequitibás), consulte:  
+👉 **[Mapas/GUIA_SPRITES_E_CONSTRUCOES_GRID.md](Mapas/GUIA_SPRITES_E_CONSTRUCOES_GRID.md)**.
+

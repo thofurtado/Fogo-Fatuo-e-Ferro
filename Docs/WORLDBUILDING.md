@@ -51,6 +51,10 @@ Toda região explorável na Godot 4 deve ser projetada combinando **duas Wildern
 * **`[Pouso de Tropeiros e Contrabando]`**: Restos de fogueiras de pedra, marcas entalhadas nos troncos com códigos de rotas, abrigo de chuva e possibilidade de encontrar comerciantes neutros ou salteadores.
 * **`[Águas Profundas da Iara]`**: Riachos límpidos com flora deslumbrante e orquídeas raras. À noite, o canto hipnótico exige teste de Força de Vontade (Misticismo) para não se atirar nas correntezas.
 * **`[Quilombo Oculto]`**: Zona fortificada por armadilhas naturais de bambu e espinhos. Amigável para o *Fugitivo* e o *Tropeiro*; extremamente hostil para o *Desertor* que ainda use fardamento da Coroa.
+* **`[Vestígio Ancestral / Terra Preta]`**: Clareira em solo antrópico de alta fertilidade e pomar milenar abandonado. Recuperação rápida de vigor e sementes medicinais raras. (Ver [VESTIGIOS_ANCESTRAIS_E_TERRA_PRETA.md](VESTIGIOS_ANCESTRAIS_E_TERRA_PRETA.md)).
+* **`[Estrada Antiga / Peabiru]`**: Trecho da malha viária transcontinental pré-colombiana de pedras ajustadas. Viagem 25% mais rápida, porém com patrulhas frequentes de capitães-do-mato.
+* **`[Sambaqui Profanado]`**: Colina cerimonial milenar de conchas sendo desmontada para virar cal de fortes e engenhos. Zona de alta tensão espiritual e penalidade moral.
+
 
 ---
 

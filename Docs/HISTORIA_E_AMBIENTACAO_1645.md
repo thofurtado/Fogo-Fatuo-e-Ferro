@@ -84,3 +84,14 @@ Frases em tom ritmado, com sabedoria de estrada e ditados populares:
 
 ### Cena 3: O Nativo Potiguara nas Matas de Pernambuco (1645)
 > **Guerreiro Potiguara:** *"Ouvimos os trovões dos canhões em Tabocas. O homem de ferro holandês queima a cana; o homem de ferro português queima a aldeia. Para nós, ferro é ferro: rasga a casca da terra sagrada. Se quiser passar pela picada das orquídeas, deixe o arcabuz no chão e prove que tem sangue da terra."*
+
+---
+
+## 5. A Megaengenharia dos Povos Originários & O Peabiru
+Para o dossiê detalhado sobre como a floresta domesticada, os caminhos milenares (Peabiru), os sambaquis profanados e a Terra Preta Antropogênica se manifestam no mapa de 1645 (desmistificando a "Estrada Real" e o mito da terra virgem), consulte **[VESTIGIOS_ANCESTRAIS_E_TERRA_PRETA.md](VESTIGIOS_ANCESTRAIS_E_TERRA_PRETA.md)**.
+
+---
+
+## 6. O Códice de Memórias & Fontes Primárias Documentadas
+Para a diretriz oficial de ancoragem histórica e o catálogo de memórias reais (Atas da Câmara de SP de 1645, a Guerra Pires x Camargos, o pânico holandês em Santos, a expulsão dos jesuítas e a fundação de Taubaté com suas instituições custodiadoras e acervos), consulte **[CODICE_HISTORICO_E_MEMORIAS_1645.md](CODICE_HISTORICO_E_MEMORIAS_1645.md)**.
+

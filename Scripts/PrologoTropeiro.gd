@@ -3,13 +3,11 @@ extends Control
 # ==============================================================================
 # PRÓLOGO INTERATIVO DO TROPEIRO (1645) — HISTÓRIA EM QUADRINHOS & ROLAGEM
 # ==============================================================================
-# Sequência narrativa no estilo Xilogravura / Quadrinhos de Flávio Colin:
-# - Página 1: O Cais de Santos (1645) e a mulinha Bonita
-# - Página 2: A Taverna do Pescador Torto e o aviso de Mestre Bento
-# - Página 3: Teste de Percepção (Instinto 3 + Navegação 5 = 8 D10s) na Bandeja
-#   * Falha / Ruim (<= 0): Contrabandista de Pólvora & Ferro (Mais complicações)
-#   * Bom Resultado (1-2): Capataz da Fazenda Real / Sal & Charque (Carga mais segura)
-#   * Sucesso Absoluto (3+): Padre Jesuíta / Fumo & Relíquias + BOATO DA CACHOEIRA!
+# Reformulado para padrão Mobile (9:16) com leitura limpa e dinâmica:
+# - Narrador: Caixa vertical à direita (5-6 linhas).
+# - Diálogo: Rodapé da página (2-3 linhas por vez).
+# - Toque em qualquer lugar da tela avança a leitura.
+# - Sem painéis gigantes cobrindo a arte!
 # ==============================================================================
 
 enum Stage {
@@ -31,6 +29,7 @@ const TEX_PAGE_4 = preload("res://Assets/Backgrounds/tropeiro_intro_p04.jpg")
 # Nós da UI
 @onready var bg_rect: TextureRect = $BackgroundHQ
 @onready var fade_overlay: ColorRect = $UILayer/FadeOverlay
+@onready var hq_dialogue: HQDialogueBox = $UILayer/HQDialogue
 
 @onready var page1_container: PanelContainer = $UILayer/Page1Container
 @onready var btn_page1_next: Button = $UILayer/Page1Container/Margin/VBox/BtnPage1Next
@@ -42,22 +41,6 @@ const TEX_PAGE_4 = preload("res://Assets/Backgrounds/tropeiro_intro_p04.jpg")
 @onready var dice_tray = $UILayer/Page3DiceContainer/DiceTray
 @onready var btn_roll_dice: Button = $UILayer/Page3DiceContainer/RollButtonContainer/BtnRollDice
 
-@onready var revelation_panel: PanelContainer = $UILayer/Page3DiceContainer/RevelationPanel
-@onready var outcome_badge: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/OutcomeBadge
-@onready var outcome_narrative: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/OutcomeNarrative
-@onready var rumor_box: PanelContainer = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/RumorBox
-@onready var rumor_text: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/RumorBox/RumorMargin/RumorText
-
-@onready var tab_sal: Button = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoTabs/TabSal
-@onready var tab_ferro: Button = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoTabs/TabFerro
-@onready var tab_fumo: Button = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoTabs/TabFumo
-
-@onready var cargo_title: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox/CargoTitle
-@onready var cargo_stats: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox/CargoStats
-@onready var cargo_desc: Label = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/CargoCard/CargoMargin/CargoVBox/CargoDesc
-@onready var btn_start_journey: Button = $UILayer/Page3DiceContainer/RevelationPanel/Margin/VBox/BtnStartJourney
-
-# Nós da Página 4 (Estalagem & Exploração Urbana)
 @onready var page4_container: PanelContainer = $UILayer/Page4EstalagemContainer
 @onready var cargo_badge_estalagem: Label = $UILayer/Page4EstalagemContainer/Margin/VBox/CargoBadge
 @onready var btn_partir_noite: Button = $UILayer/Page4EstalagemContainer/Margin/VBox/ActionButtons/BtnPartirNoite
@@ -71,7 +54,6 @@ const TEX_PAGE_4 = preload("res://Assets/Backgrounds/tropeiro_intro_p04.jpg")
 @onready var btn_return_estalagem: Button = $UILayer/CityExplorationModal/ModalMargin/ModalVBox/ModalButtons/BtnReturnEstalagem
 
 func _ready():
-	# Assegura que o Tropeiro está selecionado
 	GameManager.select_archetype_by_id("tropeiro")
 	
 	fade_overlay.visible = false
@@ -85,13 +67,6 @@ func _ready():
 	
 	dice_tray.roll_completed.connect(_on_dice_roll_completed)
 	
-	tab_sal.pressed.connect(func(): _select_cargo("sal_charque"))
-	tab_ferro.pressed.connect(func(): _select_cargo("ferro_polvora"))
-	tab_fumo.pressed.connect(func(): _select_cargo("fumo_reliquias"))
-	
-	btn_start_journey.pressed.connect(_on_start_journey_pressed)
-	
-	# Conexões da Página 4 (Estalagem & Exploração)
 	btn_partir_noite.pressed.connect(_on_partir_noite_pressed)
 	btn_partir_dia.pressed.connect(_on_partir_dia_pressed)
 	btn_explorar_cidade.pressed.connect(_on_explorar_cidade_pressed)
@@ -100,27 +75,47 @@ func _ready():
 	btn_visit_square.pressed.connect(_on_visit_square_pressed)
 	btn_return_estalagem.pressed.connect(_on_return_estalagem_pressed)
 	
-	# Inicializa na Página 1
 	_go_to_stage(Stage.PAGE_1_CAIS)
 
-func _go_to_stage(target_stage: Stage):
-	current_stage = target_stage
+func _go_to_stage(new_stage: Stage):
+	current_stage = new_stage
+	hq_dialogue.stop()
 	
 	match current_stage:
 		Stage.PAGE_1_CAIS:
 			bg_rect.texture = TEX_PAGE_1
-			page1_container.visible = true
+			page1_container.visible = false
 			page2_container.visible = false
 			page3_container.visible = false
 			page4_container.visible = false
 			city_modal.visible = false
+			
+			hq_dialogue.play_sequence([
+				{ "type": "narrator", "title": "📜 CAPÍTULO I — O CAIS DE SANTOS", "text": "O salitre do mar da Capitania de São Vicente mistura-se ao suor dos marinheiros e ao cheiro de peixe seco." },
+				{ "type": "narrator", "title": "📜 CAPÍTULO I — O CAIS DE SANTOS", "text": "Diante de ti, além dos telhados coloniais, ergue-se a colossal muralha verde da Serra de Paranapiacaba." },
+				{ "type": "dialogue", "speaker": "Tropeiro Tião:", "text": "« — Aguenta firme, Bonita... Para subir o planalto até São Paulo de Piratininga, precisamos de uma carga paga. »" },
+				{ "type": "dialogue", "speaker": "Tropeiro Tião:", "text": "« — E o único lugar para achar serviço a essa hora é na taverna do cais... »" }
+			])
+			await hq_dialogue.sequence_completed
+			page1_container.visible = true
+			
 		Stage.PAGE_2_TAVERNA:
 			bg_rect.texture = TEX_PAGE_2
 			page1_container.visible = false
-			page2_container.visible = true
+			page2_container.visible = false
 			page3_container.visible = false
 			page4_container.visible = false
 			city_modal.visible = false
+			
+			hq_dialogue.play_sequence([
+				{ "type": "narrator", "title": "🍺 A TAVERNA DO PESCADOR TORTO", "text": "A porta de madeira range e a fumaça de cachimbo te engole. O salão ferve de marujos e mercadores." },
+				{ "type": "dialogue", "speaker": "Mestre Bento (Taverneiro):", "text": "« — Entrai, tropeiro... tirai a poeira dos pés e cuidai das vossas algibeiras. »" },
+				{ "type": "dialogue", "speaker": "Mestre Bento (Taverneiro):", "text": "« — Há três homens neste salão com prata viva e pressa de mandar carga morro acima antes da chuva. »" },
+				{ "type": "dialogue", "speaker": "Mestre Bento (Taverneiro):", "text": "« — Uns trazem o ferro da guerra; outros trazem o sal da Câmara... e outros guardam segredos santos. Olhai bem antes de dar vossa palavra! »" }
+			])
+			await hq_dialogue.sequence_completed
+			page2_container.visible = true
+			
 		Stage.PAGE_3_DICE_ROLL:
 			bg_rect.texture = TEX_PAGE_3
 			page1_container.visible = false
@@ -128,19 +123,46 @@ func _go_to_stage(target_stage: Stage):
 			page3_container.visible = true
 			page4_container.visible = false
 			city_modal.visible = false
-			revelation_panel.visible = false
 			btn_roll_dice.visible = true
 			btn_roll_dice.disabled = false
 			dice_tray.setup_dice(8)
+			
+			hq_dialogue.play_sequence([
+				{ "type": "narrator", "title": "🎲 TESTE DE PERCEPÇÃO", "text": "O salão está esfumaçado e cheio de sussurros.\n\nRola os teus dados na bandeja de couro para ver o que teus olhos de tropeiro conseguem discernir entre as sombras." }
+			])
+			
 		Stage.PAGE_4_ESTALAGEM:
 			bg_rect.texture = TEX_PAGE_4
 			page1_container.visible = false
 			page2_container.visible = false
 			page3_container.visible = false
-			page4_container.visible = true
+			page4_container.visible = false
 			city_modal.visible = false
+			
 			var cargo = GameManager.cargos_catalog[selected_cargo_id]
-			cargo_badge_estalagem.text = "📦 Carga Pronta: %s (%s) — Pagamento: %d Réis" % [cargo["name"], cargo["category"], cargo["lucro_reis"]]
+			cargo_badge_estalagem.text = "📦 Carga Escolhida: %s (%s) — Pagamento: %d Réis" % [cargo["name"], cargo["category"], cargo["lucro_reis"]]
+			
+			var client_sequence = []
+			if selected_cargo_id == "fumo_reliquias":
+				client_sequence = [
+					{ "type": "dialogue", "speaker": "Frei Lourenço:", "text": "« — A paz de Cristo, meu filho. Disseram-me que tua mula Bonita tem casco duro para vencer a serra. »" },
+					{ "type": "dialogue", "speaker": "Frei Lourenço:", "text": "« — Levo fumo de oferenda e santos de marfim para o Colégio de Piratininga. Pago trinta patacas de prata se as relíquias chegarem secas. »" },
+					{ "type": "narrator", "title": "📜 BOATO REVELADO", "text": "Enquanto o padre contava suas orações, teus ouvidos apanharam o sussurro de marujos na mesa ao lado: juram haver um baú de ferro escondido atrás da Cachoeira do Véu!" }
+				]
+			elif selected_cargo_id == "sal_charque":
+				client_sequence = [
+					{ "type": "dialogue", "speaker": "Feitor Gaspar:", "text": "« — Salve, tropeiro. A Câmara de São Vicente precisa de cinco bruacas de sal e charque no planalto com urgência. »" },
+					{ "type": "dialogue", "speaker": "Feitor Gaspar:", "text": "« — Carga oficial da Coroa. Trago salvo-conduto contra patrulhas e pagamento garantido pelos cofres públicos na chegada. »" }
+				]
+			else: # ferro_polvora
+				client_sequence = [
+					{ "type": "dialogue", "speaker": "Baltazar Perna de Pau:", "text": "« — Nem penses em recusar, tropeiro... Meus caixotes de pólvora e ferro sobem a serra nas tuas bruacas hoje! »" },
+					{ "type": "dialogue", "speaker": "Baltazar Perna de Pau:", "text": "« — Se a patrulha da Coroa farejar a carga, o couro é teu. Leva tudo intacto até o alto e terás 40 patacas... ou não passas do pé da serra! »" }
+				]
+				
+			hq_dialogue.play_sequence(client_sequence)
+			await hq_dialogue.sequence_completed
+			page4_container.visible = true
 
 func _on_page1_next():
 	_fade_transition(func():
@@ -168,110 +190,72 @@ func _fade_transition(callback: Callable):
 func _on_roll_dice_pressed():
 	btn_roll_dice.disabled = true
 	btn_roll_dice.visible = false
-	
-	# Parada de dados: Instinto (3) + Navegação (5) = 8 D10s. Dificuldade padrão = 6.
+	hq_dialogue.stop()
 	dice_tray.roll_dice(8, 6)
 
 func _on_dice_roll_completed(result: Dictionary):
 	var finais = result.get("sucessos_finais", 0)
-	var sucessos = result.get("sucessos_brutos", 0)
-	var uns = result.get("uns_rolados", 0)
+	var outcome_sequence = []
 	
-	# Avalia os três patamares exigidos pelo design narrativo:
 	if finais <= 0:
-		# 1. RESULTADO RUIM: Revela o contrabandista que traz complicações (Pólvora Holandesa)
 		selected_cargo_id = "ferro_polvora"
-		outcome_badge.text = "💀 RESULTADO RUIM (0 Sucessos Finais)"
-		outcome_badge.add_theme_color_override("font_color", Color(1.0, 0.35, 0.35))
-		
-		outcome_narrative.text = "A fumaça acre do salão arde em teus olhos e o barulho de risadas e copos quebrando te desorienta. Tu tropeças sem querer na mesa dos fundos, onde bebe Baltazar 'Perna de Pau' — notório contrabandista de guerra ligado a piratas e revoltosos.\n\nEle te agarra com mão de ferro: '— Nem penses em recusar, tropeiro... Meus caixotes de pólvora e ferro sobem a serra nas tuas bruacas hoje, ou tu e tua mulinha não saem vivos desta vila!' "
-		
-		rumor_box.visible = false
 		GameManager.boato_cachoeira_descoberto = false
-		btn_start_journey.text = "AMARRAR A PÓLVORA & ENCARAR O PERIGO ▶"
-		
+		outcome_sequence = [
+			{ "type": "narrator", "title": "💀 RESULTADO RUIM (0 Sucessos)", "text": "A fumaça acre arde em teus olhos e o barulho de copos te desorienta. Tu tropeças sem querer na mesa dos fundos..." },
+			{ "type": "narrator", "title": "💀 RESULTADO RUIM (0 Sucessos)", "text": "Ali bebe Baltazar 'Perna de Pau', notório contrabandista ligado a revoltosos... Ele te agarra com mão de ferro para uma missão perigosa!" }
+		]
 	elif finais >= 1 and finais <= 2:
-		# 2. BOM RESULTADO: Revela a carga mais segura (Sal & Charque da Fazenda Real)
 		selected_cargo_id = "sal_charque"
-		outcome_badge.text = "⚖️ BOM RESULTADO (%d Sucesso%s)" % [finais, "s" if finais > 1 else ""]
-		outcome_badge.add_theme_color_override("font_color", Color(0.45, 0.95, 0.55))
-		
-		outcome_narrative.text = "Teu tirocínio e tirocínio tropeiro filtram a algazarra da taverna. Tu notas a postura ereta do Feitor Gaspar no canto do balcão, conferindo listas com o selo real da Capitania de São Vicente.\n\nUm funcionário da Coroa procurando mulas de confiança para abastecer o Colégio e os ranchos do planalto. Carga segura, salvo-conduto oficial contra patrulhas e pagamento garantido pelos cofres públicos."
-		
-		rumor_box.visible = false
 		GameManager.boato_cachoeira_descoberto = false
-		btn_start_journey.text = "AMARRAR O SAL & INICIAR A SUBIDA SEGURA ▶"
-		
+		outcome_sequence = [
+			{ "type": "narrator", "title": "⚖️ BOM RESULTADO (%d Sucesso%s)" % [finais, "s" if finais > 1 else ""], "text": "Teus ouvidos tropeiros filtram a algazarra da taverna. Tu notas a postura ereta do Feitor Gaspar no balcão..." },
+			{ "type": "narrator", "title": "⚖️ BOM RESULTADO (%d Sucesso%s)" % [finais, "s" if finais > 1 else ""], "text": "Um homem da Coroa com o selo real, procurando mulas de confiança para abastecer o planalto com sal e charque com salvo-conduto." }
+		]
 	else:
-		# 3. SUCESSO ABSOLUTO (3+ Sucessos): Revela a melhor opção (Jesuíta) + BOATO SECRETO!
 		selected_cargo_id = "fumo_reliquias"
-		outcome_badge.text = "✨ SUCESSO ABSOLUTO (%d Sucessos Finais!)" % finais
-		outcome_badge.add_theme_color_override("font_color", Color(1.0, 0.88, 0.25))
-		
-		outcome_narrative.text = "Teus sentidos afiados dominam a taverna por inteiro! No reservado dos fundos, tu localizas Frei Lourenço da Companhia de Jesus, escoltando caixas com fumo aromático de oferenda e relíquias santas — a comitiva mais rentável de Santos.\n\nCarga leve (15 arrobas), pagamento generoso em patacas de prata e oferendas naturais que acalmam as entidades da serra."
-		
-		rumor_box.visible = true
-		rumor_text.text = "📜 BOATO REVELADO (Mesa ao Lado):\n« Enquanto Frei Lourenço contava suas orações, teus ouvidos apanharam o sussurro de dois marujos bêbados no balcão: '— ...juro pela Virgem! Na subida de Paranapiacaba, antes da Garganta das Águas, há uma reentrância na pedra atrás da Cachoeira do Véu... Um capitão bandeirante escondeu um baú forrado de ferro cheio de patacas ali antes de morrer!' »"
-		
 		GameManager.boato_cachoeira_descoberto = true
-		btn_start_journey.text = "AMARRAR RELÍQUIAS & SUBIR COM O SEGREDO ▶"
+		outcome_sequence = [
+			{ "type": "narrator", "title": "✨ SUCESSO ABSOLUTO (%d Sucessos!)" % finais, "text": "Teus sentidos afiados dominam a taverna por inteiro! No reservado dos fundos, uma figura de preto se destaca..." },
+			{ "type": "narrator", "title": "✨ SUCESSO ABSOLUTO (%d Sucessos!)" % finais, "text": "É Frei Lourenço da Companhia de Jesus, escoltando fumo aromático e relicários santos — a comitiva mais rentável de Santos!" }
+		]
+		
+	hq_dialogue.play_sequence(outcome_sequence)
+	await hq_dialogue.sequence_completed
 	
-	_select_cargo(selected_cargo_id)
-	
-	# Revela o painel com animação de subida suave
-	revelation_panel.visible = true
-	revelation_panel.modulate.a = 0.0
-	var tween = create_tween()
-	tween.tween_property(revelation_panel, "modulate:a", 1.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
-func _select_cargo(cargo_id: String):
-	selected_cargo_id = cargo_id
-	var cargo = GameManager.cargos_catalog[cargo_id]
-	
-	cargo_title.text = "📦 " + cargo["name"].to_upper() + " — " + cargo["category"]
-	
-	cargo_stats.text = "💰 Pagamento: %d Réis | ⚖️ Peso: %s | ⏳ Subida: %.1f Dias | ⚔️ Risco da Coroa: %d/5" % [
-		cargo["lucro_reis"], cargo["peso"], cargo["dias_viagem"], cargo["risco_patrulha"]
-	]
-	
-	cargo_desc.text = cargo["desc"] + "\n🌿 Efeito Espiritual: " + cargo["reacao_folclore"]
-	
-	# Estilo visual de seleção nas abas
-	tab_sal.modulate = Color(1.2, 1.2, 1.2) if cargo_id == "sal_charque" else Color(0.65, 0.65, 0.65)
-	tab_ferro.modulate = Color(1.2, 1.2, 1.2) if cargo_id == "ferro_polvora" else Color(0.65, 0.65, 0.65)
-	tab_fumo.modulate = Color(1.2, 1.2, 1.2) if cargo_id == "fumo_reliquias" else Color(0.65, 0.65, 0.65)
-
-func _on_start_journey_pressed():
-	# Grava seleções no GameManager e vai para o pátio da estalagem (Página 4)
-	GameManager.select_cargo(selected_cargo_id)
+	# Transição automática para a conversa na mesa / estalagem
 	_fade_transition(func():
 		_go_to_stage(Stage.PAGE_4_ESTALAGEM)
 	)
 
 func _on_partir_noite_pressed():
-	GameManager.periodo_partida = "noite"
-	_iniciar_subida()
+	GameManager.partida_noite = true
+	_iniciar_subida_serra()
 
 func _on_partir_dia_pressed():
-	GameManager.periodo_partida = "dia"
-	_iniciar_subida()
-
-func _iniciar_subida():
-	GameManager.select_archetype_by_id("tropeiro")
-	GameManager.select_cargo(selected_cargo_id)
-	_fade_transition(func():
-		get_tree().change_scene_to_file("res://Scenes/SubidaSerra.tscn")
-	)
+	GameManager.partida_noite = false
+	_iniciar_subida_serra()
 
 func _on_explorar_cidade_pressed():
-	modal_feedback.text = "Escolha um local da vila para visitar:"
 	city_modal.visible = true
+	modal_feedback.text = "Escolha um local para visitar antes de subir a serra:"
+	modal_feedback.add_theme_color_override("font_color", Color(0.4, 0.95, 0.6))
 
 func _on_visit_store_pressed():
-	modal_feedback.text = "🏬 Venda do Mestre Bento: Tu compraste fumo aromático de rolo e provisões de farinha com parte do adiantamento! (+1 Fumo de Oferenda adicionado à bruaca)"
+	var cargo = GameManager.cargos_catalog[selected_cargo_id]
+	cargo["refeicoes_extras"] = 3
+	modal_feedback.text = "✔️ Compraste fumo de mascar, rapadura e cordas extras na venda de secos e molhados (+3 Rações)."
+	modal_feedback.add_theme_color_override("font_color", Color(1.0, 0.88, 0.35))
+	btn_visit_store.disabled = true
 
 func _on_visit_square_pressed():
-	modal_feedback.text = "⛪ Praça da Matriz & Pelourinho: Viajantes sussurram sobre névoa densa e assobios folclóricos perto da Cachoeira do Véu... A serra não perdoa descuidos!"
+	modal_feedback.text = "✔️ No Largo da Matriz, um pescador idoso te avisou: 'Na subida da serra, se o Boitatá aparecer, não corra nem olhe para trás!'"
+	modal_feedback.add_theme_color_override("font_color", Color(1.0, 0.88, 0.35))
+	btn_visit_square.disabled = true
 
 func _on_return_estalagem_pressed():
 	city_modal.visible = false
+
+func _iniciar_subida_serra():
+	_fade_transition(func():
+		get_tree().change_scene_to_file("res://Scenes/SubidaSerra.tscn")
+	)

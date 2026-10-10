@@ -1,0 +1,31 @@
+[gd_resource type="TileSet" format=3 uid="uid://j60kdcnnlrhm"]
+
+[ext_resource type="Texture2D" uid="uid://bwuu7jdn8m6mo" path="res://Assets/Sprites/tileset_gibi_32x32.png" id="1_tex"]
+[ext_resource type="PackedScene" path="res://Scenes/ArvoreTropical.tscn" id="2_tree_trop"]
+[ext_resource type="PackedScene" path="res://Scenes/ArvoreJequitiba.tscn" id="3_tree_jeq"]
+[ext_resource type="PackedScene" path="res://Scenes/BlocoGranito.tscn" id="4_granite_block"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gibi"]
+texture = ExtResource("1_tex")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_objects"]
+scenes/1/scene = ExtResource("2_tree_trop")
+scenes/2/scene = ExtResource("3_tree_jeq")
+scenes/3/scene = ExtResource("4_granite_block")
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_gibi")
+sources/1 = SubResource("TileSetScenesCollectionSource_objects")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_jequitiba.png" id="1_jeq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_trunk_big"]
+radius = 32.0
+
+[node name="ArvoreJequitiba" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -180)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_jeq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_trunk_big")
