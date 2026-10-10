@@ -71,51 +71,52 @@ func _gerar_escarpas_unidirecionais():
 		if not layer:
 			continue
 		var all_cells = layer.get_used_cells()
-		var ledge_cells = []
+		var raw_cells = []
 		var cell_set = {}
 		for c in all_cells:
 			if layer.get_cell_atlas_coords(c) == Vector2i(5, 0):
-				ledge_cells.append(c)
+				raw_cells.append(c)
 				cell_set[c] = true
-		
-		# Ordena células de cima para baixo (Y) e esquerda para direita (X)
-		ledge_cells.sort_custom(func(a, b):
+				
+		if raw_cells.is_empty():
+			continue
+
+		# 1. Filtra APENAS células que são o TOPO de uma escarpa
+		# (ou seja, células que NÃO têm outro bloco (5,0) logo acima em y - 1)
+		var top_cells = []
+		for c in raw_cells:
+			if not cell_set.has(Vector2i(c.x, c.y - 1)):
+				top_cells.append(c)
+
+		# Ordena por Y (de cima para baixo) e depois por X (da esquerda para direita)
+		top_cells.sort_custom(func(a, b):
 			if a.y != b.y: return a.y < b.y
 			return a.x < b.x
 		)
-		
+
+		# 2. Para cada célula de topo, calcula a profundidade vertical da coluna
+		var column_info = {}
+		for c in top_cells:
+			var h = 1
+			while cell_set.has(Vector2i(c.x, c.y + h)):
+				h += 1
+			column_info[c] = h
+
+		# 3. Agrupa células vizinhas no mesmo Y que tenham a mesma altura de queda
 		var processed = {}
-		for c in ledge_cells:
+		for c in top_cells:
 			if processed.has(c):
 				continue
-			
-			# Encontra a largura contínua na linha horizontal
+			var h = column_info[c]
 			var start_x = c.x
 			var end_x = c.x
-			while cell_set.has(Vector2i(end_x + 1, c.y)) and not processed.has(Vector2i(end_x + 1, c.y)):
+			while cell_set.has(Vector2i(end_x + 1, c.y)) and not cell_set.has(Vector2i(end_x + 1, c.y - 1)) and column_info.get(Vector2i(end_x + 1, c.y), 0) == h:
 				end_x += 1
 				
-			# Verifica se há blocos empilhados verticalmente embaixo (barranco de 2 ou mais blocos)
-			var height = 1
-			var check_y = c.y + 1
-			while true:
-				var row_matches = true
-				for x in range(start_x, end_x + 1):
-					if not cell_set.has(Vector2i(x, check_y)) or processed.has(Vector2i(x, check_y)):
-						row_matches = false
-						break
-				if row_matches:
-					height += 1
-					check_y += 1
-				else:
-					break
-					
-			# Marca todas as células cobertas como processadas
-			for h in range(height):
-				for x in range(start_x, end_x + 1):
-					processed[Vector2i(x, c.y + h)] = true
-					
-			_criar_ledge_instancia(start_x, end_x, c.y, height, layer, ledge_scene, ledges_container)
+			for x in range(start_x, end_x + 1):
+				processed[Vector2i(x, c.y)] = true
+				
+			_criar_ledge_instancia(start_x, end_x, c.y, h, layer, ledge_scene, ledges_container)
 
 func _criar_ledge_instancia(start_x: int, end_x: int, y: int, height: int, layer: TileMapLayer, ledge_scene: PackedScene, container: Node2D):
 	var ledge = ledge_scene.instantiate() as EscarpmentLedge

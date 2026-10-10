@@ -12,10 +12,30 @@ class_name MulaBonita
 var affinity: int = 100
 var is_moving: bool = false
 var bob_timer: float = 0.0
+var is_falling_ledge: bool = false
 
 # Histórico de passos do condutor para fazer curvas sem cortar quina de paredes
 var breadcrumbs: Array[Vector2] = []
 const BREADCRUMB_INTERVAL: float = 18.0
+
+func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
+	if is_falling_ledge:
+		return
+	is_falling_ledge = true
+	velocity = Vector2.ZERO
+	
+	# Pulinho animado da Mula descendo a pedra
+	var hop = create_tween()
+	hop.tween_property(sprite, "position:y", -14.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	hop.tween_property(sprite, "position:y", 0.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	var move = create_tween()
+	move.tween_property(self, "position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	await move.finished
+	
+	is_falling_ledge = false
+	if on_finished.is_valid():
+		on_finished.call()
 
 func _ready():
 	if rein_line:
@@ -29,19 +49,7 @@ func _physics_process(delta):
 	var target_pos = follow_target.global_position
 	var direct_dist = global_position.distance_to(target_pos)
 	
-	# Grava rastro de passos do Tropeiro para fazer as curvas da trilha
-	if breadcrumbs.is_empty() or breadcrumbs.back().distance_to(target_pos) >= BREADCRUMB_INTERVAL:
-		breadcrumbs.append(target_pos)
-		if breadcrumbs.size() > 20:
-			breadcrumbs.pop_front()
-	
-	# O alvo imediato da mula é o ponto de rastro por onde o Tropeiro passou
-	while breadcrumbs.size() > 1 and global_position.distance_to(breadcrumbs[0]) < 20.0:
-		breadcrumbs.pop_front()
-		
-	var move_target = breadcrumbs[0] if not breadcrumbs.is_empty() else target_pos
-	
-	# Linha visual da rédea elástica
+	# Linha visual da rédea elástica (sempre atualizada, mesmo durante o salto)
 	if rein_line:
 		rein_line.clear_points()
 		rein_line.add_point(Vector2.ZERO)
@@ -54,6 +62,22 @@ func _physics_process(delta):
 		else:
 			rein_line.width = 2.0
 			rein_line.default_color = Color(0.45, 0.28, 0.15, 0.85)
+
+	# Se estiver executando o salto de escarpa, a física normal pausa para o tween
+	if is_falling_ledge:
+		return
+		
+	# Grava rastro de passos do Tropeiro para fazer as curvas da trilha
+	if breadcrumbs.is_empty() or breadcrumbs.back().distance_to(target_pos) >= BREADCRUMB_INTERVAL:
+		breadcrumbs.append(target_pos)
+		if breadcrumbs.size() > 20:
+			breadcrumbs.pop_front()
+	
+	# O alvo imediato da mula é o ponto de rastro por onde o Tropeiro passou
+	while breadcrumbs.size() > 1 and global_position.distance_to(breadcrumbs[0]) < 20.0:
+		breadcrumbs.pop_front()
+		
+	var move_target = breadcrumbs[0] if not breadcrumbs.is_empty() else target_pos
 		
 	if direct_dist > follow_distance:
 		var dir = (move_target - global_position).normalized()

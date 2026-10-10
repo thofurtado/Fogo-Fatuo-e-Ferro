@@ -38,6 +38,9 @@ func _on_drop_area_body_entered(body):
 		# Só ativa a queda se o jogador estiver descendo (acima da borda da escarpa)
 		if body.global_position.y < global_position.y + 6.0:
 			_execute_drop(body)
+	elif body is MulaBonita and not body.is_falling_ledge:
+		if body.global_position.y < global_position.y + 6.0:
+			_execute_drop_mula(body)
 
 func _execute_drop(player: TropeiroPlayer):
 	player_dropped.emit(self)
@@ -45,6 +48,10 @@ func _execute_drop(player: TropeiroPlayer):
 	player.drop_down_ledge(target_y, func():
 		_apply_penalty()
 	)
+
+func _execute_drop_mula(mula: MulaBonita):
+	var target_y = mula.global_position.y + drop_distance
+	mula.drop_down_ledge(target_y)
 
 func _apply_penalty():
 	var gm = get_node_or_null("/root/GameManager")
