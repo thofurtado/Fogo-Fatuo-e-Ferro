@@ -133,7 +133,9 @@ func _preencher_tudo_grama():
 	print("Pronto! Fundo verde completo. Agora escolha o pincel de Barro, Água ou Escarpa e pinte à vontade!")
 
 func _limpar_mapa():
-	var layer = $ChaoTileMap as TileMapLayer
-	if layer:
-		layer.clear()
-		print("Mapa limpo!")
+	for layer_name in ["ChaoTileMap", "EscarpasTileMap", "ObjetosTileMap"]:
+		var layer = get_node_or_null(layer_name) as TileMapLayer
+		if layer:
+			layer.clear()
+			layer.position = Vector2.ZERO
+	print("✦ Todas as camadas de pintura foram limpas e alinhadas em (0, 0)! Tela 100% nova.")
