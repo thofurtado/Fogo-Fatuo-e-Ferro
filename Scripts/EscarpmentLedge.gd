@@ -1,8 +1,16 @@
 extends Node2D
 class_name EscarpmentLedge
 
-@export var ledge_width: float = 80.0
-@export var ledge_height: float = 24.0
+@export var ledge_width: float = 80.0:
+	set(val):
+		ledge_width = val
+		_setup_shapes()
+
+@export var ledge_height: float = 24.0:
+	set(val):
+		ledge_height = val
+		_setup_shapes()
+
 @export var drop_distance: float = 46.0
 @export var penalty_hp: int = 3
 @export var penalty_affinity: int = 5
@@ -18,21 +26,35 @@ func _ready():
 	_setup_shapes()
 	if drop_area:
 		drop_area.collision_mask = 0xFFFFFFFF
-		drop_area.body_entered.connect(_on_drop_area_body_entered)
+		if not drop_area.body_entered.is_connected(_on_drop_area_body_entered):
+			drop_area.body_entered.connect(_on_drop_area_body_entered)
 
 func _setup_shapes():
+	if not is_inside_tree():
+		return
+	if not solid_shape:
+		solid_shape = get_node_or_null("StaticBody2D/CollisionShape2D")
+	if not drop_shape:
+		drop_shape = get_node_or_null("DropTriggerArea/CollisionShape2D")
+	if not solid_body:
+		solid_body = get_node_or_null("StaticBody2D")
+	if not drop_area:
+		drop_area = get_node_or_null("DropTriggerArea")
+
 	if solid_shape and solid_shape.shape is RectangleShape2D:
 		solid_shape.shape = solid_shape.shape.duplicate()
 		var rect_shape = solid_shape.shape as RectangleShape2D
 		var wall_h = max(16.0, ledge_height - 16.0)
 		rect_shape.size = Vector2(ledge_width, wall_h)
-		solid_body.position = Vector2(0, (wall_h / 2.0) - 2.0)
+		if solid_body:
+			solid_body.position = Vector2(0, (wall_h / 2.0) - 2.0)
 		
 	if drop_shape and drop_shape.shape is RectangleShape2D:
 		drop_shape.shape = drop_shape.shape.duplicate()
 		var trigger_shape = drop_shape.shape as RectangleShape2D
-		trigger_shape.size = Vector2(max(10.0, ledge_width - 6.0), 12.0)
-		drop_area.position = Vector2(0, -8)
+		trigger_shape.size = Vector2(max(10.0, ledge_width), 16.0)
+		if drop_area:
+			drop_area.position = Vector2(0, -8)
 
 func _on_drop_area_body_entered(body):
 	# Apenas corpos móveis (Player, Mula, criaturas, seguidores, NPCs)

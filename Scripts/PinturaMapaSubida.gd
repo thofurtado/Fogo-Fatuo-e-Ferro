@@ -213,6 +213,7 @@ func _criar_ledge_instancia(start_x: int, end_x: int, y: int, height: int, layer
 		ledge.get_node("NinePatchRect").visible = false
 		
 	container.add_child(ledge)
+	ledge._setup_shapes()
 	print("✦ Escarpa Unidirecional ativada: Linha Y=%d (Altura: %d blocos / %d px), Colunas %d a %d (Largura: %d px)" % [
 		y, height, int(height_px), start_x, end_x, int(width)
 	])
