@@ -1,76 +1,79 @@
 # Direção Visual — Fogo-Fátuo & Ferro
 
-**Status:** proposta de consolidação, v0.1
-**Escopo:** identidade visual geral; não altera nem substitui os assets existentes.
+**Status:** direção confirmada pelo usuário
+**Decisão central:** quadrinhos/xilogravura nas cutscenes; pixel art 16-bit nas partes jogáveis.
 
 ## Princípio de direção
 
-**Uma aventura brasileira de quadrinhos, colorida e legível à primeira vista, atravessada por uma narrativa de xilogravura áspera.** A natureza deve parecer viva e antiga; o ferro, pesado e invasivo; o sobrenatural, belo o bastante para atrair e estranho o bastante para inquietar.
+**Um RPG brasileiro de sobrevivência cuja narrativa parece uma página impressa de gibi e cujo mundo jogável ganha vida como um RPG 16-bit.** A mata é viva e antiga; o ferro é pesado e invasivo; o sobrenatural atrai e inquieta.
 
-A identidade se organiza em dois registros já descritos no [GDD de visão](GDD_VISAO_GERAL.md):
+A mudança de técnica visual acompanha a função da cena. Personagens, símbolos, materiais e identidade permanecem reconhecíveis ao passar de uma linguagem para a outra.
 
-1. **Narrativa, diálogos e cutscenes — nanquim/xilogravura:** preto, branco e papel; contraste alto; sombras em hachura; enquadramentos de página de gibi; ritmo dramático. A referência a Flávio Colin orienta o contraste e a gravidade, não uma cópia literal do traço.
-2. **Exploração, menus e leitura do mundo — gibi brasileiro colorido:** desenho de contorno limpo e expressivo, formas simplificadas e cores vivas sobre uma base terrosa. Manter a personalidade de HQ nacional sem transformar o elenco ou o folclore em caricatura infantil.
+## Dois registros visuais
 
-## Gramática visual compartilhada
+### Cutscenes e diálogos — quadrinhos/xilogravura
 
-- **Contorno:** nanquim escuro, espesso o bastante para sobreviver à escala de celular; variar o peso para separar silhueta, plano e detalhe.
-- **Forma:** silhuetas reconhecíveis antes dos detalhes. Personagens principais seguem a proporção de cerca de **3,5 cabeças** registrada nas folhas de conceito; postura e expressão são firmes, calmas ou vigilantes, nunca cômicas por padrão.
-- **Textura:** hachura, pontilhado, papel e marcas de impressão aparecem com intenção — sobretudo em cutscenes, mapas e superfícies — sem cobrir informação de jogo.
-- **Materiais narrativos:** papel, madeira, couro, barro e ferro podem inspirar molduras, placas e painéis. A interface deve parecer parte do mundo, não um HUD genérico de fantasia.
-- **Coerência entre modos:** conservar personagens, símbolos, proporções e códigos de cor nos dois registros; muda a técnica de representação, não a identidade do mundo.
+- Preto, branco e papel; contraste alto, nanquim, hachuras e sombras profundas.
+- Enquadramento de página de gibi, ritmo de painéis e expressões claras, com gravidade dramática.
+- Referências brasileiras de quadrinhos guiam a energia e a expressividade; a xilogravura dá peso histórico e tensão ao prólogo.
+- A cor pode aparecer apenas como acento de transição quando a cena passa ao jogo — por exemplo, uma chama de fogo-fátuo que ganha cor. A cena narrativa permanece majoritariamente monocromática.
+
+### Partes jogáveis — pixel art 16-bit
+
+- A exploração, mapas navegáveis e combate usam a mesma linguagem pixelada top-down; o combate não vira um terceiro estilo.
+- Compor o mundo com tiles legíveis, silhuetas claras, clusters de pixels e animações econômicas. O guia de tilemap registra 32×32 px como base de produção.
+- Priorizar leitura à escala de celular: personagem, obstáculos, rota e perigos devem ser distinguíveis sem depender de microdetalhes.
+- As referências de RPGs 16-bit orientam escala, ritmo e clareza, sem copiar personagens, tiles ou telas de jogos existentes.
+- Menus navegáveis, HUD, inventário e seleção de regiões acompanham o pixel art. Papel, madeira, couro e ferro podem aparecer nas molduras e ícones, sem inserir quadros ilustrados de gibi dentro do campo de jogo.
+
+## Gramática compartilhada
+
+- **Silhueta:** cada personagem ou criatura precisa continuar reconhecível nas versões de cutscene e de gameplay. As folhas existentes usam cerca de **3,5 cabeças** como proporção de referência para personagens principais.
+- **Materiais:** distinguir fibra, madeira, tecido, couro, barro e ferro pela forma e por pequenas áreas de cor; não depender de textura minúscula.
+- **Motivo recorrente:** o contraste entre Fogo-Fátuo e Ferro organiza a cor, a iluminação, os efeitos e os símbolos de interface.
+- **Expressão:** protagonistas firmes, calmos ou vigilantes; entidades folclóricas misteriosas e ameaçadoras, não mascotes cômicos.
+- **Continuidade:** manter figurino, acessórios, proporções e cores-chave entre sprites e ilustrações de cutscene; muda o meio, não a identidade do personagem.
 
 ## Paleta de trabalho
 
-A paleta-base já aparece em [TILEMAP_RPG_GIBI.md](TILEMAP_RPG_GIBI.md). Tratar os códigos abaixo como tokens iniciais a validar contra os assets, não como uma nova obrigação de recolorir tudo.
+Os códigos abaixo vêm do [guia de tilemap](TILEMAP_RPG_GIBI.md) e são referências iniciais para o gameplay pixelado, a validar contra os assets existentes.
 
 | Uso | Cor de referência | Função |
 |---|---|---|
-| Tinta / contorno | `#171916` | Silhuetas, texto e contraste estrutural |
-| Papel / luz quente | `#DEC085` | Pergaminho, trilha clara, áreas de leitura |
-| Mata viva | `#4E9B3D` | Vegetação legível durante a exploração |
+| Tinta / sombra profunda | `#171916` | Contorno em pixels, silhueta e contraste |
+| Papel / luz quente | `#DEC085` | Interfaces, trilha clara e áreas de leitura |
+| Mata viva | `#4E9B3D` | Vegetação durante a exploração |
 | Mata em sombra | `#2E6822` | Profundidade e bloqueio visual |
 | Terra / rota | `#C28B52` | Caminhos, poeira e superfícies quentes |
-| Barro e ferro oxidado | `#8C5329` / `#BA4829` | Construções, couro, perigo físico e desgaste |
+| Barro / ferro oxidado | `#8C5329` / `#BA4829` | Construções, couro, metal gasto e perigo físico |
 | Água profunda | `#1A3B4D` | Brejo, noite e zonas de risco |
 | Fogo-fátuo | `#2DD8C1` | Sinal sobrenatural e foco de navegação |
 | Contraste místico | `#3F2263` | Sombra anômala, usado com parcimônia |
 
-O fogo-fátuo pode combinar núcleo turquesa com pequenas bordas de brasa alaranjada, como sugerem os conceitos existentes. Não usar ciano como cor decorativa genérica: ele deve sinalizar fenômeno ou interação sobrenatural.
+O fogo-fátuo pode combinar núcleo turquesa com pequenas bordas de brasa alaranjada, como sugerem os conceitos existentes. Ciano não deve ser uma cor decorativa genérica: indica fenômeno ou interação sobrenatural.
 
-## Personagens, criaturas e cenários
+## Mapas, telas e leitura mobile
 
-- **Personagens jogáveis:** leitura imediata por silhueta, roupa, ferramenta e postura. Distinguir os arquétipos por materiais e acessórios — arco e fibras, corrente rompida, metal e pólvora, objetos de devoção, bruacas e carga — sem depender de texto para reconhecê-los.
-- **Folclore:** tratar entidades como forças da mata, não mascotes. O Curupira, a Caipora e a Mula sem Cabeça podem ter contornos atraentes e expressivos, mas devem preservar presença, escala e tensão. O fogo azul/verde e o ferro em brasa são sinais visuais raros e fortes.
-- **Mundo:** cada região precisa de uma assinatura ambiental própria (vegetação, relevo, água, arquitetura e clima), mantendo a mesma espessura de linha e o mesmo sistema de leitura. Evitar que toda mata vire o mesmo bloco de verde.
-- **Exploração modular:** a especificação de 32×32 px, base dos objetos, copas separadas e ordenação por profundidade de [TILEMAP_RPG_GIBI.md](TILEMAP_RPG_GIBI.md) serve como regra de produção para o mundo caminhável. Reservar hachura e microdetalhe para elementos grandes; em tiles pequenos, priorizar massa, contraste e borda legível.
+- **Mapa de exploração:** pixel art top-down com trilhas e marcos ambientais claros. A especificação técnica de 32×32 px, base dos objetos, copas separadas e ordenação por profundidade continua como referência de implementação.
+- **Mapa regional navegável:** tratado como tela de jogo pixelada, com regiões, rotas e seleção legíveis. Um mapa ilustrado em papel/xilogravura pertence a uma cutscene ou peça narrativa, não à tela interativa.
+- **Combate:** cenário, atores e efeitos em pixel art 16-bit. Dados e resultados podem aparecer em moldura de papel/tinta ou ferro gravado, com contraste suficiente e sem esconder o campo de ação.
+- **Menus e HUD:** priorizar personagem, rota, estado e escolha antes dos ornamentos; botões e alvos de toque adequados a uma mão em 9:16.
+- **Tipografia e acessibilidade:** preservar a família de fonte principal do projeto salvo decisão explícita; usar tamanhos e contrastes legíveis. Vida, perigo e seleção não devem depender apenas da cor.
 
-## Interface e composição mobile
+## Personagens em dois meios
 
-- **Formato principal:** retrato 9:16; o projeto já trabalha próximo dessa proporção em `project.godot`. Projetar primeiro para toque com uma mão e textos curtos.
-- **Hierarquia:** personagem e rota antes dos adornos; diálogos e escolhas com contraste alto; controles próximos das zonas alcançáveis pelo polegar; informações secundárias podem ocupar áreas laterais em telas largas.
-- **Acabamento:** painéis com cantos e bordas mais firmes, aparência de papel, madeira ou chapa, e poucos ornamentos repetidos. Substituir emojis usados como placeholders por pictogramas desenhados quando os ícones entrarem em produção.
-- **Tipografia:** priorizar legibilidade e hierarquia de pesos/tamanhos; não trocar a família de fonte principal sem decisão explícita do projeto. Evitar fontes decorativas em parágrafos, diálogos longos e dados de combate.
-- **Acessibilidade:** não codificar vida, perigo ou seleção apenas pela cor; somar forma, ícone, posição ou rótulo. Conferir textos e alvos de toque no tamanho real de tela.
+Cada personagem principal tem uma representação de gameplay em pixel art 16-bit e uma versão ilustrada para cutscenes quando a narrativa precisar de close, gesto ou expressão. Manter nos dois meios as mesmas âncoras visuais — chapéu, poncho, facão e bruacas para o Tropeiro; forma equina, correntes, fogo-fátuo e cascos em brasa para a Mula sem Cabeça — ajustando o detalhe à escala de cada meio.
 
-## Combate: compatibilizar as referências
-
-O quadro [Estilos Visuais.canvas](../Estilos%20Visuais.canvas) menciona *Super Mario World* para o combate e uma rolagem de dados sobreposta; o guia de tilemap cita RPGs de 16 bits. Para não criar um terceiro estilo incompatível com o sistema dual do GDD, esta proposta usa essas referências pela **clareza de leitura, escala de tile e ritmo da ação**, mantendo contorno e paleta do mundo de exploração. Dados e resultados podem surgir como uma camada de papel/tinta ou ferro gravado, sem cobrir a ação nem converter toda a batalha em pixel art.
-
-Se a intenção for que o combate seja realmente pixel art separado, isso deve ser decidido antes de produzir sprites e animações — não inferido apenas da referência no canvas.
-
-## Transição entre registros
-
-A passagem da cutscene monocromática para a exploração colorida pode acontecer por um detalhe recorrente — uma brasa, um traço turquesa ou uma marca no papel — que ganha cor e se torna elemento do mundo. O restante da cena permanece em preto e branco até a transição, preservando o contraste dramático do GDD.
+As entidades folclóricas são forças da mata e devem preservar presença e tensão. Representações de povos e grupos históricos devem evitar caricaturas e manter dignidade, contexto e distinção entre arquétipos.
 
 ## Critérios de consistência
 
-Antes de aprovar uma nova peça visual, conferir: **(1)** lê bem em 9:16 e em miniatura; **(2)** sua silhueta funciona sem textura; **(3)** pertence claramente ao registro narrativo ou ao de exploração; **(4)** usa cor sobrenatural só quando há motivo diegético; **(5)** mantém expressão séria e respeitosa; **(6)** combina com os assets já existentes em linha, escala e contraste.
+Antes de aprovar uma peça visual, conferir: **(1)** está no registro correto — quadrinhos para cutscene ou pixel art para gameplay; **(2)** lê bem em 9:16 e em miniatura; **(3)** a silhueta funciona sem textura; **(4)** o código de cor do sobrenatural tem motivo diegético; **(5)** personagem e criatura mantêm identidade entre meios; **(6)** a interface não cobre rota, personagem ou ação.
 
 ## Base consultada
 
 - [GDD de visão geral](GDD_VISAO_GERAL.md)
-- [Guia de tilemap e gibi](TILEMAP_RPG_GIBI.md)
+- [Guia de tilemap](TILEMAP_RPG_GIBI.md), com adendo de linguagem visual 16-bit
 - [Quadro de referências visuais](../Estilos%20Visuais.canvas)
 - `Assets/Backgrounds/poster_capa.jpg`, `hq_prologo.jpg`, `mata_dia.jpg` e `mata_noite.jpg`
 - `Assets/Sprites/tropeiro_mula_concept_sheet.jpg`, `mula_sem_cabeca_estilo_gibi.jpg` e `mapa_brasil_regioes.jpg`
