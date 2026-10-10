@@ -10,10 +10,29 @@ var is_moving: bool = false
 var bob_timer: float = 0.0
 var is_falling_ledge: bool = false
 
+# Mecânica de água / riacho
+var water_zones_count: int = 0
+var in_water: bool = false
+var water_slow_factor: float = 1.0
+var water_sink_depth: float = 0.0
+
 func _ready():
 	var cam = get_node_or_null("Camera2D") as Camera2D
 	if cam:
 		cam.zoom = camera_zoom
+
+func enter_water_zone(slow_factor: float = 0.35, sink_depth: float = 3.5):
+	water_zones_count += 1
+	in_water = true
+	water_slow_factor = slow_factor
+	water_sink_depth = sink_depth
+
+func exit_water_zone():
+	water_zones_count = max(0, water_zones_count - 1)
+	if water_zones_count == 0:
+		in_water = false
+		water_slow_factor = 1.0
+		water_sink_depth = 0.0
 
 func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	if is_falling_ledge:
@@ -22,9 +41,10 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	velocity = Vector2.ZERO
 	
 	# Hop animation no sprite (arco de salto na pedra)
+	var base_y = water_sink_depth if in_water else 0.0
 	var hop = create_tween()
-	hop.tween_property(sprite, "position:y", -18.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	hop.tween_property(sprite, "position:y", 0.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	hop.tween_property(sprite, "position:y", base_y - 18.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	hop.tween_property(sprite, "position:y", base_y, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	# Movimento para baixo até o nível inferior
 	var move = create_tween()
@@ -48,10 +68,12 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W):
 		input_vector.y -= 1
 		
+	var effective_speed = speed * water_slow_factor
+		
 	if input_vector != Vector2.ZERO:
 		input_vector = input_vector.normalized()
 		facing_direction = input_vector
-		velocity = input_vector * speed
+		velocity = input_vector * effective_speed
 		is_moving = true
 		
 		# Vira o sprite horizontalmente
@@ -60,7 +82,7 @@ func _physics_process(delta):
 		elif input_vector.x < -0.1:
 			sprite.flip_h = true
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, speed * 10.0 * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, effective_speed * 10.0 * delta)
 		is_moving = false
 		
 	# Move com colisão
@@ -71,13 +93,15 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider is CharacterBody2D and collider.is_in_group("pushable"):
-			collider.velocity = -collision.get_normal() * (speed * 0.6)
+			collider.velocity = -collision.get_normal() * (effective_speed * 0.6)
 			collider.move_and_slide()
 			
-	# Animação sutil de passos (bobbing com ritmo cadenciado)
+	# Animação sutil de passos (bobbing com ritmo cadenciado + imersão visual na água)
 	if is_moving:
-		bob_timer += delta * 10.0
-		sprite.position.y = sin(bob_timer) * 2.0
+		var bob_freq = 6.0 if in_water else 10.0
+		bob_timer += delta * bob_freq
+		var bob_offset = sin(bob_timer) * (1.2 if in_water else 2.0)
+		sprite.position.y = bob_offset + (water_sink_depth if in_water else 0.0)
 	else:
 		bob_timer = 0.0
-		sprite.position.y = 0.0
+		sprite.position.y = (water_sink_depth if in_water else 0.0)

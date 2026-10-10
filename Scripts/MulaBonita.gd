@@ -14,9 +14,28 @@ var is_moving: bool = false
 var bob_timer: float = 0.0
 var is_falling_ledge: bool = false
 
+# Mecânica de água / riacho
+var water_zones_count: int = 0
+var in_water: bool = false
+var water_slow_factor: float = 1.0
+var water_sink_depth: float = 0.0
+
 # Histórico de passos do condutor para fazer curvas sem cortar quina de paredes
 var breadcrumbs: Array[Vector2] = []
 const BREADCRUMB_INTERVAL: float = 18.0
+
+func enter_water_zone(slow_factor: float = 0.35, sink_depth: float = 3.5):
+	water_zones_count += 1
+	in_water = true
+	water_slow_factor = slow_factor
+	water_sink_depth = sink_depth
+
+func exit_water_zone():
+	water_zones_count = max(0, water_zones_count - 1)
+	if water_zones_count == 0:
+		in_water = false
+		water_slow_factor = 1.0
+		water_sink_depth = 0.0
 
 func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	if is_falling_ledge:
@@ -25,9 +44,10 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	velocity = Vector2.ZERO
 	
 	# Pulinho animado da Mula descendo a pedra
+	var base_y = water_sink_depth if in_water else 0.0
 	var hop = create_tween()
-	hop.tween_property(sprite, "position:y", -14.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	hop.tween_property(sprite, "position:y", 0.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	hop.tween_property(sprite, "position:y", base_y - 14.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	hop.tween_property(sprite, "position:y", base_y, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	var move = create_tween()
 	move.tween_property(self, "global_position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
@@ -93,7 +113,8 @@ func _physics_process(delta):
 			if direct_dist > 170.0:
 				global_position = global_position.move_toward(move_target, 6.0)
 		
-		velocity = velocity.move_toward(dir * (max_speed * tension), max_speed * 6.0 * delta)
+		var effective_speed = max_speed * water_slow_factor
+		velocity = velocity.move_toward(dir * (effective_speed * tension), effective_speed * 6.0 * delta)
 		move_and_slide()
 		is_moving = true
 		
@@ -103,18 +124,21 @@ func _physics_process(delta):
 		elif velocity.x < -5.0:
 			sprite.flip_h = true
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, max_speed * 8.0 * delta)
+		var effective_speed = max_speed * water_slow_factor
+		velocity = velocity.move_toward(Vector2.ZERO, effective_speed * 8.0 * delta)
 		if velocity.length() < 10.0:
 			is_moving = false
 			velocity = Vector2.ZERO
 		
-	# Efeito sutil de passos (bobbing)
+	# Efeito sutil de passos (bobbing + afundamento na água)
 	if is_moving:
-		bob_timer += delta * (velocity.length() / max_speed) * 10.0
-		sprite.position.y = sin(bob_timer) * 1.8
+		var bob_freq = 6.0 if in_water else 10.0
+		bob_timer += delta * (velocity.length() / max_speed) * bob_freq
+		var bob_offset = sin(bob_timer) * (1.2 if in_water else 1.8)
+		sprite.position.y = bob_offset + (water_sink_depth if in_water else 0.0)
 	else:
 		bob_timer = 0.0
-		sprite.position.y = 0.0
+		sprite.position.y = (water_sink_depth if in_water else 0.0)
 
 func add_affinity(amount: int):
 	affinity = clamp(affinity + amount, 0, 150)

@@ -59,6 +59,62 @@ func _ready():
 		if has_node("MolduraGuias"):
 			$MolduraGuias.visible = false
 		_gerar_escarpas_unidirecionais()
+		_gerar_zonas_de_agua_dos_tiles()
+
+func _gerar_zonas_de_agua_dos_tiles():
+	var water_scene = preload("res://Scenes/ZonaDeAgua.tscn")
+	var water_container = Node2D.new()
+	water_container.name = "AutoZonasAguaContainer"
+	add_child(water_container)
+	
+	for layer_name in ["AguaTileMap", "ChaoTileMap"]:
+		var layer = get_node_or_null(layer_name) as TileMapLayer
+		if not layer:
+			continue
+		var all_cells = layer.get_used_cells()
+		var water_cells = []
+		for c in all_cells:
+			if layer.get_cell_atlas_coords(c) == Vector2i(2, 0):
+				water_cells.append(c)
+				
+		if water_cells.is_empty():
+			continue
+			
+		var row_groups = {}
+		for c in water_cells:
+			if not row_groups.has(c.y):
+				row_groups[c.y] = []
+			row_groups[c.y].append(c.x)
+			
+		for y in row_groups.keys():
+			var xs = row_groups[y]
+			xs.sort()
+			var start_x = xs[0]
+			var prev_x = xs[0]
+			for i in range(1, xs.size()):
+				if xs[i] == prev_x + 1:
+					prev_x = xs[i]
+				else:
+					_instanciar_zona_agua_tile(start_x, prev_x, y, layer, water_scene, water_container)
+					start_x = xs[i]
+					prev_x = xs[i]
+			_instanciar_zona_agua_tile(start_x, prev_x, y, layer, water_scene, water_container)
+
+func _instanciar_zona_agua_tile(start_x: int, end_x: int, y: int, layer: TileMapLayer, water_scene: PackedScene, container: Node2D):
+	var water = water_scene.instantiate() as ZonaDeAgua
+	var count = end_x - start_x + 1
+	var width = count * 32.0
+	var height = 32.0
+	
+	var center_x = layer.position.x + (start_x * 32.0) + (width / 2.0)
+	var center_y = layer.position.y + (y * 32.0) + 16.0
+	
+	water.position = Vector2(center_x, center_y)
+	water.tamanho = Vector2(width, height)
+	water.fator_velocidade = 0.35
+	water.afundar_pes_px = 3.5
+	water.mostrar_visual_agua = false
+	container.add_child(water)
 
 func _gerar_escarpas_unidirecionais():
 	var ledge_scene = preload("res://Scenes/EscarpmentLedge.tscn")

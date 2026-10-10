@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ddiknpkj1v6nk" path="res://Scripts/MulaBonita.gd" id="5_mula_script"]
 [ext_resource type="Texture2D" uid="uid://dvq3i8lt60xb7" path="res://Assets/Sprites/tiao_caboclo.png" id="6_player_tex"]
 [ext_resource type="Texture2D" uid="uid://csioyp5882w2l" path="res://Assets/Sprites/mula_bonita.png" id="7_mula_tex"]
+[ext_resource type="PackedScene" path="res://Scenes/ZonaDeAgua.tscn" id="8_zona_agua"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player_feet"]
 radius = 14.0
@@ -127,6 +128,13 @@ tile_set = ExtResource("3_tileset")
 y_sort_enabled = true
 tile_set = ExtResource("3_tileset")
 
+[node name="ZonasDeAgua" type="Node2D" parent="." unique_id=987123456]
+z_index = -1
+
+[node name="RioTrechoExemplo" parent="ZonasDeAgua" instance=ExtResource("8_zona_agua")]
+position = Vector2(1104, 1680)
+tamanho = Vector2(240, 72)
+
 [node name="YSortContainer" type="Node2D" parent="." unique_id=1857000020]
 y_sort_enabled = true
 
@@ -199,4 +207,4 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
 theme_override_font_sizes/font_size = 14
-text = "🤠 TESTE DA SUBIDA DA SERRA | [WASD]: Mover Tropeiro | [G]: Ligar/Desligar Gabarito | Mula Bonita na Rédea"
+text = "🤠 SUBIDA DA SERRA | [WASD]: Mover | [G]: Gabarito | [H]: Réguas | 🌊 Rio/Água: Reduz Velocidade"
