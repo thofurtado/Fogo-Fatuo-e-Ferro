@@ -127,6 +127,11 @@ tile_set = ExtResource("3_tileset")
 y_sort_enabled = true
 tile_set = ExtResource("3_tileset")
 
+[node name="GatilhosTileMap" type="TileMapLayer" parent="." unique_id=741852963]
+modulate = Color(1, 1, 1, 0.7)
+z_index = 5
+tile_set = ExtResource("3_tileset")
+
 [node name="YSortContainer" type="Node2D" parent="." unique_id=1857000020]
 y_sort_enabled = true
 

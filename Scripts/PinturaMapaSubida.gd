@@ -44,6 +44,13 @@ extends Node2D
 		if has_node("MolduraGuias"):
 			$MolduraGuias.visible = val
 
+@export_group("Gatilhos e Efeitos Transparentes")
+@export var mostrar_gatilhos_no_editor: bool = true:
+	set(val):
+		mostrar_gatilhos_no_editor = val
+		if has_node("GatilhosTileMap"):
+			$GatilhosTileMap.visible = val
+
 @onready var chao_layer: TileMapLayer = $ChaoTileMap
 
 func _ready():
@@ -58,6 +65,9 @@ func _ready():
 			$GabaritoReferencia.modulate.a = 0.35
 		if has_node("MolduraGuias"):
 			$MolduraGuias.visible = false
+		# No jogo, oculta a camada de gatilhos visuais para exibir apenas as pinturas limpas
+		if has_node("GatilhosTileMap"):
+			$GatilhosTileMap.visible = false
 		_gerar_escarpas_unidirecionais()
 		_gerar_zonas_de_agua_dos_tiles()
 
@@ -67,14 +77,15 @@ func _gerar_zonas_de_agua_dos_tiles():
 	water_container.name = "AutoZonasAguaContainer"
 	add_child(water_container)
 	
-	for layer_name in ["ChaoTileMap", "EscarpasTileMap", "ObjetosTileMap", "AguaTileMap"]:
+	for layer_name in ["GatilhosTileMap", "ChaoTileMap", "EscarpasTileMap", "ObjetosTileMap", "AguaTileMap"]:
 		var layer = get_node_or_null(layer_name) as TileMapLayer
 		if not layer:
 			continue
 		var all_cells = layer.get_used_cells()
 		var water_cells = []
 		for c in all_cells:
-			if layer.get_cell_atlas_coords(c) == Vector2i(2, 0):
+			var coords = layer.get_cell_atlas_coords(c)
+			if coords == Vector2i(2, 0) or coords == Vector2i(2, 1):
 				water_cells.append(c)
 				
 		if water_cells.is_empty():
@@ -123,7 +134,7 @@ func _gerar_escarpas_unidirecionais():
 	ledges_container.name = "AutoLedgesContainer"
 	add_child(ledges_container)
 	
-	for layer_name in ["EscarpasTileMap", "ChaoTileMap"]:
+	for layer_name in ["GatilhosTileMap", "EscarpasTileMap", "ChaoTileMap"]:
 		var layer = get_node_or_null(layer_name) as TileMapLayer
 		if not layer:
 			continue
@@ -131,7 +142,8 @@ func _gerar_escarpas_unidirecionais():
 		var raw_cells = []
 		var cell_set = {}
 		for c in all_cells:
-			if layer.get_cell_atlas_coords(c) == Vector2i(5, 0):
+			var coords = layer.get_cell_atlas_coords(c)
+			if coords == Vector2i(5, 0) or coords == Vector2i(5, 1):
 				raw_cells.append(c)
 				cell_set[c] = true
 				
@@ -139,7 +151,7 @@ func _gerar_escarpas_unidirecionais():
 			continue
 
 		# 1. Filtra APENAS células que são o TOPO de uma escarpa
-		# (ou seja, células que NÃO têm outro bloco (5,0) logo acima em y - 1)
+		# (ou seja, células que NÃO têm outro bloco de escarpa logo acima em y - 1)
 		var top_cells = []
 		for c in raw_cells:
 			if not cell_set.has(Vector2i(c.x, c.y - 1)):
@@ -175,6 +187,13 @@ func _gerar_escarpas_unidirecionais():
 				
 			_criar_ledge_instancia(start_x, end_x, c.y, h, layer, ledge_scene, ledges_container)
 
+		# Se foi pintado no Chao ou Escarpas com a seta (5,0), substitui no jogo por rocha pura (3,0)
+		# para que a seta amarela NUNCA apareça durante a partida!
+		if layer_name != "GatilhosTileMap":
+			for c in raw_cells:
+				if layer.get_cell_atlas_coords(c) == Vector2i(5, 0):
+					layer.set_cell(c, 0, Vector2i(3, 0))
+
 func _criar_ledge_instancia(start_x: int, end_x: int, y: int, height: int, layer: TileMapLayer, ledge_scene: PackedScene, container: Node2D):
 	var ledge = ledge_scene.instantiate() as EscarpmentLedge
 	var count = end_x - start_x + 1
@@ -209,6 +228,10 @@ func _unhandled_input(event):
 				if has_node("MolduraGuias"):
 					$MolduraGuias.visible = not $MolduraGuias.visible
 					print("Réguas e Moldura visibilidade: ", $MolduraGuias.visible)
+			elif event.keycode == KEY_T:
+				if has_node("GatilhosTileMap"):
+					$GatilhosTileMap.visible = not $GatilhosTileMap.visible
+					print("Camada de Gatilhos visibilidade: ", $GatilhosTileMap.visible)
 
 
 func _preencher_tudo_grama():
@@ -223,7 +246,7 @@ func _preencher_tudo_grama():
 	print("Pronto! Fundo verde completo. Agora escolha o pincel de Barro, Água ou Escarpa e pinte à vontade!")
 
 func _limpar_mapa():
-	for layer_name in ["ChaoTileMap", "EscarpasTileMap", "ObjetosTileMap"]:
+	for layer_name in ["ChaoTileMap", "EscarpasTileMap", "ObjetosTileMap", "GatilhosTileMap"]:
 		var layer = get_node_or_null(layer_name) as TileMapLayer
 		if layer:
 			layer.clear()
