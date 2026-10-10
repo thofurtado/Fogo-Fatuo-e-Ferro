@@ -67,7 +67,7 @@ func _gerar_zonas_de_agua_dos_tiles():
 	water_container.name = "AutoZonasAguaContainer"
 	add_child(water_container)
 	
-	for layer_name in ["AguaTileMap", "ChaoTileMap"]:
+	for layer_name in ["ChaoTileMap", "EscarpasTileMap", "ObjetosTileMap", "AguaTileMap"]:
 		var layer = get_node_or_null(layer_name) as TileMapLayer
 		if not layer:
 			continue
@@ -110,11 +110,11 @@ func _instanciar_zona_agua_tile(start_x: int, end_x: int, y: int, layer: TileMap
 	var center_y = layer.position.y + (y * 32.0) + 16.0
 	
 	water.position = Vector2(center_x, center_y)
-	water.tamanho = Vector2(width, height)
 	water.fator_velocidade = 0.35
 	water.afundar_pes_px = 3.5
 	water.mostrar_visual_agua = false
 	container.add_child(water)
+	water.tamanho = Vector2(width, height)
 
 func _gerar_escarpas_unidirecionais():
 	var ledge_scene = preload("res://Scenes/EscarpmentLedge.tscn")
