@@ -187,12 +187,20 @@ func _gerar_escarpas_unidirecionais():
 				
 			_criar_ledge_instancia(start_x, end_x, c.y, h, layer, ledge_scene, ledges_container)
 
-		# Se foi pintado no Chao ou Escarpas com a seta (5,0), substitui no jogo por rocha pura (3,0)
-		# para que a seta amarela NUNCA apareça durante a partida!
+		# Se foi pintado no Chao ou Escarpas com a seta (5,0), substitui no jogo por rocha pura (3,1)
+		# para que a seta amarela NUNCA apareça durante a partida e o salto funcione suavemente!
 		if layer_name != "GatilhosTileMap":
 			for c in raw_cells:
 				if layer.get_cell_atlas_coords(c) == Vector2i(5, 0):
-					layer.set_cell(c, 0, Vector2i(3, 0))
+					layer.set_cell(c, 0, Vector2i(3, 1))
+
+		# Se uma escarpa estiver sobre o ChaoTileMap em um bloco de rocha solida (3,0),
+		# converte esse degrau para (3,1) (rocha de escarpa) para que o salto funcione suavemente!
+		var chao = get_node_or_null("ChaoTileMap") as TileMapLayer
+		if chao:
+			for c in raw_cells:
+				if chao.get_cell_atlas_coords(c) == Vector2i(3, 0):
+					chao.set_cell(c, 0, Vector2i(3, 1))
 
 func _criar_ledge_instancia(start_x: int, end_x: int, y: int, height: int, layer: TileMapLayer, ledge_scene: PackedScene, container: Node2D):
 	var ledge = ledge_scene.instantiate() as EscarpmentLedge
