@@ -4,7 +4,7 @@ class_name MulaBonita
 @export var follow_target: Node2D
 @export var follow_distance: float = 46.0
 @export var max_leash_distance: float = 110.0
-@export var max_speed: float = 220.0
+@export var max_speed: float = 150.0
 
 @onready var sprite = $Sprite2D
 @onready var rein_line = $ReinLine
@@ -30,7 +30,7 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	hop.tween_property(sprite, "position:y", 0.0, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	var move = create_tween()
-	move.tween_property(self, "position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	move.tween_property(self, "global_position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	await move.finished
 	
 	is_falling_ledge = false
@@ -110,8 +110,8 @@ func _physics_process(delta):
 		
 	# Efeito sutil de passos (bobbing)
 	if is_moving:
-		bob_timer += delta * (velocity.length() / max_speed) * 12.0
-		sprite.position.y = sin(bob_timer) * 2.0
+		bob_timer += delta * (velocity.length() / max_speed) * 10.0
+		sprite.position.y = sin(bob_timer) * 1.8
 	else:
 		bob_timer = 0.0
 		sprite.position.y = 0.0

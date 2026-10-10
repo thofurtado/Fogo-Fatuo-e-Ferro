@@ -17,6 +17,7 @@ signal player_dropped(ledge)
 func _ready():
 	_setup_shapes()
 	if drop_area:
+		drop_area.collision_mask = 0xFFFFFFFF
 		drop_area.body_entered.connect(_on_drop_area_body_entered)
 
 func _setup_shapes():
@@ -34,24 +35,61 @@ func _setup_shapes():
 		drop_area.position = Vector2(0, -8)
 
 func _on_drop_area_body_entered(body):
-	if body is TropeiroPlayer and not body.is_falling_ledge:
-		# Só ativa a queda se o jogador estiver descendo (acima da borda da escarpa)
-		if body.global_position.y < global_position.y + 6.0:
-			_execute_drop(body)
-	elif body is MulaBonita and not body.is_falling_ledge:
-		if body.global_position.y < global_position.y + 6.0:
-			_execute_drop_mula(body)
+	# Apenas corpos móveis (Player, Mula, criaturas, seguidores, NPCs)
+	if not (body is CharacterBody2D or body is RigidBody2D or body.has_method("drop_down_ledge")):
+		return
+		
+	# Evita reativar se já estiver executando salto
+	if ("is_falling_ledge" in body and body.is_falling_ledge) or (body.has_meta("is_falling_ledge") and body.get_meta("is_falling_ledge")):
+		return
+		
+	# Só ativa o salto se a criatura estiver acima da escarpa descendo em direção a ela
+	if body.global_position.y < global_position.y + 8.0:
+		_process_drop(body)
 
-func _execute_drop(player: TropeiroPlayer):
-	player_dropped.emit(self)
-	var target_y = player.global_position.y + drop_distance
-	player.drop_down_ledge(target_y, func():
-		_apply_penalty()
-	)
+func _process_drop(body: Node2D):
+	var target_y = body.global_position.y + drop_distance
+	
+	if body is TropeiroPlayer:
+		player_dropped.emit(self)
+		body.drop_down_ledge(target_y, func():
+			_apply_penalty()
+		)
+	elif body.has_method("drop_down_ledge"):
+		# Qualquer criatura com rotina própria (ex: MulaBonita ou futuros companheiros)
+		body.drop_down_ledge(target_y)
+	else:
+		# Salto genérico para qualquer criatura ou NPC sem método customizado
+		_execute_generic_creature_drop(body, target_y)
 
-func _execute_drop_mula(mula: MulaBonita):
-	var target_y = mula.global_position.y + drop_distance
-	mula.drop_down_ledge(target_y)
+func _execute_generic_creature_drop(body: Node2D, target_y: float):
+	if "is_falling_ledge" in body:
+		body.is_falling_ledge = true
+	body.set_meta("is_falling_ledge", true)
+	
+	if "velocity" in body:
+		body.velocity = Vector2.ZERO
+		
+	# Procura representação visual (sprite) para realizar o arco no ar
+	var sprite_node: Node2D = null
+	for child in body.get_children():
+		if child is Sprite2D or child is AnimatedSprite2D:
+			sprite_node = child
+			break
+			
+	if sprite_node:
+		var orig_y = sprite_node.position.y
+		var hop = create_tween()
+		hop.tween_property(sprite_node, "position:y", orig_y - 14.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		hop.tween_property(sprite_node, "position:y", orig_y, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		
+	var move = create_tween()
+	move.tween_property(body, "global_position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	await move.finished
+	
+	if "is_falling_ledge" in body:
+		body.is_falling_ledge = false
+	body.set_meta("is_falling_ledge", false)
 
 func _apply_penalty():
 	var gm = get_node_or_null("/root/GameManager")

@@ -144,6 +144,7 @@ position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_player_feet")
 
 [node name="Camera2D" type="Camera2D" parent="YSortContainer/Player" unique_id=321478146]
+zoom = Vector2(1.35, 1.35)
 limit_left = 0
 limit_top = 0
 limit_right = 1920

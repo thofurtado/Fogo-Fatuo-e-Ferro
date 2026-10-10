@@ -1,13 +1,19 @@
 extends CharacterBody2D
 class_name TropeiroPlayer
 
-@export var speed: float = 200.0
+@export var speed: float = 130.0
+@export var camera_zoom: Vector2 = Vector2(1.35, 1.35)
 @onready var sprite = $Sprite2D
 
 var facing_direction: Vector2 = Vector2.DOWN
 var is_moving: bool = false
 var bob_timer: float = 0.0
 var is_falling_ledge: bool = false
+
+func _ready():
+	var cam = get_node_or_null("Camera2D") as Camera2D
+	if cam:
+		cam.zoom = camera_zoom
 
 func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	if is_falling_ledge:
@@ -22,7 +28,7 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	
 	# Movimento para baixo até o nível inferior
 	var move = create_tween()
-	move.tween_property(self, "position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	move.tween_property(self, "global_position:y", target_y, 0.40).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	await move.finished
 	
 	is_falling_ledge = false
@@ -68,10 +74,10 @@ func _physics_process(delta):
 			collider.velocity = -collision.get_normal() * (speed * 0.6)
 			collider.move_and_slide()
 			
-	# Animação sutil de passos (bobbing)
+	# Animação sutil de passos (bobbing com ritmo cadenciado)
 	if is_moving:
-		bob_timer += delta * 12.0
-		sprite.position.y = sin(bob_timer) * 2.5
+		bob_timer += delta * 10.0
+		sprite.position.y = sin(bob_timer) * 2.0
 	else:
 		bob_timer = 0.0
 		sprite.position.y = 0.0
