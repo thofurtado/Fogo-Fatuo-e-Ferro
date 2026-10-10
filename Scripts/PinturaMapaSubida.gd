@@ -99,6 +99,7 @@ func _gerar_zonas_de_agua_dos_tiles():
 					start_x = xs[i]
 					prev_x = xs[i]
 			_instanciar_zona_agua_tile(start_x, prev_x, y, layer, water_scene, water_container)
+		print("✦ Zonas de Água/Lama ativadas: %d blocos em %s configurados com física de travessia lenta!" % [water_cells.size(), layer_name])
 
 func _instanciar_zona_agua_tile(start_x: int, end_x: int, y: int, layer: TileMapLayer, water_scene: PackedScene, container: Node2D):
 	var water = water_scene.instantiate() as ZonaDeAgua
