@@ -18,6 +18,32 @@ extends Node2D
 		if has_node("GabaritoReferencia"):
 			$GabaritoReferencia.modulate.a = val
 
+@export_group("Enquadramento do Gabarito de Fundo")
+@export_range(0.2, 4.0, 0.05) var escala_horizontal_gabarito: float = 1.0:
+	set(val):
+		escala_horizontal_gabarito = val
+		if has_node("GabaritoReferencia"):
+			$GabaritoReferencia.scale.x = val
+
+@export_range(0.2, 4.0, 0.05) var escala_vertical_gabarito: float = 1.0:
+	set(val):
+		escala_vertical_gabarito = val
+		if has_node("GabaritoReferencia"):
+			$GabaritoReferencia.scale.y = val
+
+@export var deslocamento_gabarito: Vector2 = Vector2.ZERO:
+	set(val):
+		deslocamento_gabarito = val
+		if has_node("GabaritoReferencia"):
+			$GabaritoReferencia.position = val
+
+@export_group("Réguas e Moldura de Jogo (1920x2048)")
+@export var mostrar_reguas: bool = true:
+	set(val):
+		mostrar_reguas = val
+		if has_node("MolduraGuias"):
+			$MolduraGuias.visible = val
+
 @onready var chao_layer: TileMapLayer = $ChaoTileMap
 
 func _ready():
@@ -30,6 +56,8 @@ func _ready():
 		if has_node("GabaritoReferencia"):
 			$GabaritoReferencia.visible = true
 			$GabaritoReferencia.modulate.a = 0.35
+		if has_node("MolduraGuias"):
+			$MolduraGuias.visible = false
 		_gerar_escarpas_unidirecionais()
 
 func _gerar_escarpas_unidirecionais():
@@ -119,6 +147,10 @@ func _unhandled_input(event):
 				if has_node("GabaritoReferencia"):
 					$GabaritoReferencia.visible = not $GabaritoReferencia.visible
 					print("Gabarito visibilidade: ", $GabaritoReferencia.visible)
+			elif event.keycode == KEY_H:
+				if has_node("MolduraGuias"):
+					$MolduraGuias.visible = not $MolduraGuias.visible
+					print("Réguas e Moldura visibilidade: ", $MolduraGuias.visible)
 
 
 func _preencher_tudo_grama():
