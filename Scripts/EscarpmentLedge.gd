@@ -23,8 +23,9 @@ func _setup_shapes():
 	if solid_shape and solid_shape.shape is RectangleShape2D:
 		solid_shape.shape = solid_shape.shape.duplicate()
 		var rect_shape = solid_shape.shape as RectangleShape2D
-		rect_shape.size = Vector2(ledge_width, 16.0)
-		solid_body.position = Vector2(0, 6)
+		var wall_h = max(16.0, ledge_height - 16.0)
+		rect_shape.size = Vector2(ledge_width, wall_h)
+		solid_body.position = Vector2(0, (wall_h / 2.0) - 2.0)
 		
 	if drop_shape and drop_shape.shape is RectangleShape2D:
 		drop_shape.shape = drop_shape.shape.duplicate()

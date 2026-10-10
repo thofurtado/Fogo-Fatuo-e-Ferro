@@ -42,41 +42,75 @@ func _gerar_escarpas_unidirecionais():
 		var layer = get_node_or_null(layer_name) as TileMapLayer
 		if not layer:
 			continue
-		var cells = layer.get_used_cells()
-		var rows = {}
-		for c in cells:
+		var all_cells = layer.get_used_cells()
+		var ledge_cells = []
+		var cell_set = {}
+		for c in all_cells:
 			if layer.get_cell_atlas_coords(c) == Vector2i(5, 0):
-				if not rows.has(c.y):
-					rows[c.y] = []
-				rows[c.y].append(c.x)
+				ledge_cells.append(c)
+				cell_set[c] = true
 		
-		for y in rows.keys():
-			var xs = rows[y]
-			xs.sort()
-			var start_x = xs[0]
-			var prev_x = xs[0]
-			for i in range(1, xs.size()):
-				var x = xs[i]
-				if x == prev_x + 1:
-					prev_x = x
+		# Ordena células de cima para baixo (Y) e esquerda para direita (X)
+		ledge_cells.sort_custom(func(a, b):
+			if a.y != b.y: return a.y < b.y
+			return a.x < b.x
+		)
+		
+		var processed = {}
+		for c in ledge_cells:
+			if processed.has(c):
+				continue
+			
+			# Encontra a largura contínua na linha horizontal
+			var start_x = c.x
+			var end_x = c.x
+			while cell_set.has(Vector2i(end_x + 1, c.y)) and not processed.has(Vector2i(end_x + 1, c.y)):
+				end_x += 1
+				
+			# Verifica se há blocos empilhados verticalmente embaixo (barranco de 2 ou mais blocos)
+			var height = 1
+			var check_y = c.y + 1
+			while true:
+				var row_matches = true
+				for x in range(start_x, end_x + 1):
+					if not cell_set.has(Vector2i(x, check_y)) or processed.has(Vector2i(x, check_y)):
+						row_matches = false
+						break
+				if row_matches:
+					height += 1
+					check_y += 1
 				else:
-					_criar_ledge_instancia(start_x, prev_x, y, layer, ledge_scene, ledges_container)
-					start_x = x
-					prev_x = x
-			_criar_ledge_instancia(start_x, prev_x, y, layer, ledge_scene, ledges_container)
+					break
+					
+			# Marca todas as células cobertas como processadas
+			for h in range(height):
+				for x in range(start_x, end_x + 1):
+					processed[Vector2i(x, c.y + h)] = true
+					
+			_criar_ledge_instancia(start_x, end_x, c.y, height, layer, ledge_scene, ledges_container)
 
-func _criar_ledge_instancia(start_x: int, end_x: int, y: int, layer: TileMapLayer, ledge_scene: PackedScene, container: Node2D):
+func _criar_ledge_instancia(start_x: int, end_x: int, y: int, height: int, layer: TileMapLayer, ledge_scene: PackedScene, container: Node2D):
 	var ledge = ledge_scene.instantiate() as EscarpmentLedge
 	var count = end_x - start_x + 1
 	var width = count * 32.0
+	var height_px = height * 32.0
+	
 	var center_x = layer.position.x + (start_x * 32.0) + (width / 2.0)
 	var center_y = layer.position.y + (y * 32.0) + 16.0
+	
 	ledge.position = Vector2(center_x, center_y)
 	ledge.ledge_width = width
+	ledge.ledge_height = height_px
+	ledge.drop_distance = height_px + 14.0 # 1 bloco: 46px; 2 blocos: 78px
+	ledge.penalty_hp = 3 if height == 1 else 6 # Maior altura = maior risco/impacto
+	
 	if ledge.has_node("NinePatchRect"):
 		ledge.get_node("NinePatchRect").visible = false
+		
 	container.add_child(ledge)
-	print("✦ Escarpa Unidirecional ativada: Linha Y=%d, Colunas %d a %d (Largura: %d px)" % [y, start_x, end_x, int(width)])
+	print("✦ Escarpa Unidirecional ativada: Linha Y=%d (Altura: %d blocos / %d px), Colunas %d a %d (Largura: %d px)" % [
+		y, height, int(height_px), start_x, end_x, int(width)
+	])
 
 func _unhandled_input(event):
 	if not Engine.is_editor_hint():
