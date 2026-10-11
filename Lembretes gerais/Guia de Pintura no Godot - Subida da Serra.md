@@ -76,14 +76,17 @@ A cena está organizada em 3 camadas (*TileMapLayers*):
 
 ---
 
-### 2. Coleção de Objetos Sólidos & Árvores — `Fonte 1 (Scenes Collection)`
+### 2. Coleção de Objetos Sólidos & Construções — `Fonte 1 (Scenes Collection)`
 No painel inferior do Godot, na aba **TileSet**, na coluna esquerda onde ficam as fontes de imagem, você verá o ícone de **Cenas / Objetos**:
 1. 🌴 **Árvore Tropical:** Árvore média com copa ampla. Tem colisão redonda na base do tronco e Y-Sort (o herói passa por trás das folhas e na frente das raízes).
 2. 🌳 **Árvore Jequitibá:** Árvore monumental para marcos da mata fechada, com raiz sólida de 9m² de bloqueio.
 3. 🪨 **Bloco de Granito (64×32):** Matacão de pedra duplo para estreitar desfiladeiros e fechar passagens.
+4. 🏡 **Casa Colonial (`CasaColonial.tscn`):** Habitação térrea simples de taipa caiada com alicerce de conchas e telhado de barro.
+5. 🍻 **Taverna de Santos (`TavernaSantos.tscn`):** Estalagem portuária para comércio, dados e fumo de rolo.
+6. ⛪ **Igreja Matriz de Santos (`IgrejaMatrizSantos.tscn`):** Templo colonial com torre sineira e portal em arco para o Largo da Matriz.
 
-> 🖌️ **Como carimbar árvores no mapa:**  
+> 🖌️ **Como carimbar árvores e construções no mapa:**  
 > 1. Selecione a camada **`ObjetosTileMap`**.  
 > 2. No painel inferior **TileSet**, clique na fonte **1 (Scenes Collection)**.  
-> 3. Clique na árvore e carimbe diretamente com o botão esquerdo do mouse sobre a tela!
+> 3. Clique no item desejado (Árvore, Casa, Taverna ou Igreja) e carimbe diretamente com o botão esquerdo do mouse sobre a tela!
 

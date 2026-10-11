@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" path="res://Scenes/ArvoreTropical.tscn" id="2_tree_trop"]
 [ext_resource type="PackedScene" path="res://Scenes/ArvoreJequitiba.tscn" id="3_tree_jeq"]
 [ext_resource type="PackedScene" path="res://Scenes/BlocoGranito.tscn" id="4_granite_block"]
+[ext_resource type="PackedScene" path="res://Scenes/CasaColonial.tscn" id="5_casa"]
+[ext_resource type="PackedScene" path="res://Scenes/TavernaSantos.tscn" id="6_taverna"]
+[ext_resource type="PackedScene" path="res://Scenes/IgrejaMatrizSantos.tscn" id="7_igreja"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gibi"]
 texture = ExtResource("1_tex")
@@ -26,6 +29,9 @@ texture_region_size = Vector2i(32, 32)
 scenes/1/scene = ExtResource("2_tree_trop")
 scenes/2/scene = ExtResource("3_tree_jeq")
 scenes/3/scene = ExtResource("4_granite_block")
+scenes/4/scene = ExtResource("5_casa")
+scenes/5/scene = ExtResource("6_taverna")
+scenes/6/scene = ExtResource("7_igreja")
 
 [resource]
 tile_size = Vector2i(32, 32)
