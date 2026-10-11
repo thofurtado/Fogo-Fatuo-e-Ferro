@@ -24,8 +24,9 @@ func _ready():
 	dialogue_box.visible = false
 	inventory_panel.visible = false
 	
-	# Garante que a comitiva do Tropeiro está ativa
-	GameManager.select_archetype_by_id("tropeiro")
+	# Garante que a comitiva do Tropeiro está ativa (se não veio pelo prólogo)
+	if GameManager.current_archetype.is_empty():
+		GameManager.select_archetype_by_id("tropeiro")
 	_update_hud()
 	
 	# Iluminação e clima atmosférico conforme escolha na Estalagem (Noite x Alvorada)

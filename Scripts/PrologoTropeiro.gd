@@ -238,10 +238,14 @@ func _on_dice_roll_completed(result: Dictionary):
 
 func _on_partir_noite_pressed():
 	GameManager.partida_noite = true
+	GameManager.periodo_partida = "noite"
+	GameManager.select_cargo(selected_cargo_id)
 	_iniciar_subida_serra()
 
 func _on_partir_dia_pressed():
 	GameManager.partida_noite = false
+	GameManager.periodo_partida = "dia"
+	GameManager.select_cargo(selected_cargo_id)
 	_iniciar_subida_serra()
 
 func _on_explorar_cidade_pressed():

@@ -12,6 +12,7 @@ var selected_origin: String = "brasil"
 var selected_archetype_id: String = "tropeiro"
 var selected_region_id: int = 4
 var periodo_partida: String = "noite"
+var partida_noite: bool = true
 
 var current_archetype: Dictionary = {}
 
