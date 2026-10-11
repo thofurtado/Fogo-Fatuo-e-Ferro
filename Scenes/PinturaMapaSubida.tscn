@@ -125,6 +125,7 @@ tile_set = ExtResource("3_tileset")
 
 [node name="ObjetosTileMap" type="TileMapLayer" parent="." unique_id=1284244015]
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAdADcAAQAAAAAABjAoADcAAQAAAAAABTAyADYAAQAAAAAABDA=")
 tile_set = ExtResource("3_tileset")
 
 [node name="GatilhosTileMap" type="TileMapLayer" parent="." unique_id=741852963]
