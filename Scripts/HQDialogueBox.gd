@@ -125,9 +125,16 @@ func _finish_typewriter_instantly():
 	if dialogue_container.visible:
 		_show_prompt(dialogue_prompt)
 
+var _last_advance_frame: int = -1
+
 func _on_touch_pressed():
 	if not _is_active:
 		return
+	var cur_frame = Engine.get_process_frames()
+	if cur_frame == _last_advance_frame:
+		return
+	_last_advance_frame = cur_frame
+
 	if _is_typing:
 		# Primeiro toque pula o efeito de máquina de escrever
 		_finish_typewriter_instantly()
@@ -135,9 +142,22 @@ func _on_touch_pressed():
 		# Segundo toque avança para a próxima linha
 		_advance_queue()
 
-func _unhandled_input(event: InputEvent):
+func _input(event: InputEvent):
 	if not _is_active:
 		return
-	if event.is_action_pressed("ui_accept") or (event is InputEventKey and event.pressed and not event.echo):
+	
+	var should_advance: bool = false
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		should_advance = true
+	elif event is InputEventScreenTouch and event.is_pressed():
+		should_advance = true
+	elif event.is_action_pressed("ui_accept"):
+		should_advance = true
+	elif event is InputEventKey and event.is_pressed() and not event.is_echo():
+		if event.keycode in [KEY_SPACE, KEY_ENTER, KEY_KP_ENTER]:
+			should_advance = true
+			
+	if should_advance:
 		_on_touch_pressed()
 		get_viewport().set_input_as_handled()
+

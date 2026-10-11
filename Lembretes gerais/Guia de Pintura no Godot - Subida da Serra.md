@@ -84,9 +84,14 @@ No painel inferior do Godot, na aba **TileSet**, na coluna esquerda onde ficam a
 4. 🏡 **Casa Colonial (`CasaColonial.tscn`):** Habitação térrea simples de taipa caiada com alicerce de conchas e telhado de barro.
 5. 🍻 **Taverna de Santos (`TavernaSantos.tscn`):** Estalagem portuária para comércio, dados e fumo de rolo.
 6. ⛪ **Igreja Matriz de Santos (`IgrejaMatrizSantos.tscn`):** Templo colonial com torre sineira e portal em arco para o Largo da Matriz.
+7. 🏰 **Forte de Artilharia (`ForteArtilharia.tscn`):** Reduto costeiro com muralhas de pedra e canhões de bronze.
+8. ⚖️ **Câmara e Cadeia (`CamaraCadeia.tscn`):** Sobrado com grades de ferro no térreo e câmara no piso superior.
+9. 🏕️ **Rancho de Pouso (`RanchoPouso.tscn`):** Abrigo de tropeiros com telhado de sapé, fogueira e curral de muares.
+10. 📦 **Armazém da Coroa (`ArmazemCoroa.tscn`):** Depósito da alfândega com sacas de açúcar e barricas no cais.
+11. ⚒️ **Ferraria Colonial (`FerrariaColonial.tscn`):** Forja a carvão com bigorna e ferramentas para ferrar mulas.
 
 > 🖌️ **Como carimbar árvores e construções no mapa:**  
 > 1. Selecione a camada **`ObjetosTileMap`**.  
 > 2. No painel inferior **TileSet**, clique na fonte **1 (Scenes Collection)**.  
-> 3. Clique no item desejado (Árvore, Casa, Taverna ou Igreja) e carimbe diretamente com o botão esquerdo do mouse sobre a tela!
+> 3. Clique no item desejado (Árvore, Casa, Taverna, Forte, etc.) e carimbe diretamente com o botão esquerdo do mouse sobre a tela!
 

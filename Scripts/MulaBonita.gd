@@ -4,7 +4,7 @@ class_name MulaBonita
 @export var follow_target: Node2D
 @export var follow_distance: float = 46.0
 @export var max_leash_distance: float = 110.0
-@export var max_speed: float = 150.0
+@export var max_speed: float = 115.0
 
 @onready var sprite = $Sprite2D
 @onready var rein_line = $ReinLine
@@ -132,9 +132,9 @@ func _physics_process(delta):
 		
 	# Efeito sutil de passos (bobbing + afundamento na água)
 	if is_moving:
-		var bob_freq = 6.0 if in_water else 10.0
+		var bob_freq = 4.5 if in_water else 7.5
 		bob_timer += delta * (velocity.length() / max_speed) * bob_freq
-		var bob_offset = sin(bob_timer) * (1.2 if in_water else 1.8)
+		var bob_offset = sin(bob_timer) * (1.0 if in_water else 1.5)
 		sprite.position.y = bob_offset + (water_sink_depth if in_water else 0.0)
 	else:
 		bob_timer = 0.0

@@ -190,6 +190,7 @@ func _fade_transition(callback: Callable):
 func _on_roll_dice_pressed():
 	btn_roll_dice.disabled = true
 	btn_roll_dice.visible = false
+	btn_roll_dice.release_focus()
 	hq_dialogue.stop()
 	dice_tray.roll_dice(8, 6)
 

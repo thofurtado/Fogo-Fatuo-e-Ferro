@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name TropeiroPlayer
 
-@export var speed: float = 130.0
+@export var speed: float = 95.0
 @export var camera_zoom: Vector2 = Vector2(1.35, 1.35)
 @onready var sprite = $Sprite2D
 
@@ -98,9 +98,9 @@ func _physics_process(delta):
 			
 	# Animação sutil de passos (bobbing com ritmo cadenciado + imersão visual na água)
 	if is_moving:
-		var bob_freq = 6.0 if in_water else 10.0
+		var bob_freq = 4.5 if in_water else 7.5
 		bob_timer += delta * bob_freq
-		var bob_offset = sin(bob_timer) * (1.2 if in_water else 2.0)
+		var bob_offset = sin(bob_timer) * (1.0 if in_water else 1.6)
 		sprite.position.y = bob_offset + (water_sink_depth if in_water else 0.0)
 	else:
 		bob_timer = 0.0

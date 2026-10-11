@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" path="res://Scenes/CasaColonial.tscn" id="5_casa"]
 [ext_resource type="PackedScene" path="res://Scenes/TavernaSantos.tscn" id="6_taverna"]
 [ext_resource type="PackedScene" path="res://Scenes/IgrejaMatrizSantos.tscn" id="7_igreja"]
+[ext_resource type="PackedScene" path="res://Scenes/ForteArtilharia.tscn" id="8_forte"]
+[ext_resource type="PackedScene" path="res://Scenes/CamaraCadeia.tscn" id="9_cadeia"]
+[ext_resource type="PackedScene" path="res://Scenes/RanchoPouso.tscn" id="10_rancho"]
+[ext_resource type="PackedScene" path="res://Scenes/ArmazemCoroa.tscn" id="11_armazem"]
+[ext_resource type="PackedScene" path="res://Scenes/FerrariaColonial.tscn" id="12_ferraria"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gibi"]
 texture = ExtResource("1_tex")
@@ -32,6 +37,11 @@ scenes/3/scene = ExtResource("4_granite_block")
 scenes/4/scene = ExtResource("5_casa")
 scenes/5/scene = ExtResource("6_taverna")
 scenes/6/scene = ExtResource("7_igreja")
+scenes/7/scene = ExtResource("8_forte")
+scenes/8/scene = ExtResource("9_cadeia")
+scenes/9/scene = ExtResource("10_rancho")
+scenes/10/scene = ExtResource("11_armazem")
+scenes/11/scene = ExtResource("12_ferraria")
 
 [resource]
 tile_size = Vector2i(32, 32)
