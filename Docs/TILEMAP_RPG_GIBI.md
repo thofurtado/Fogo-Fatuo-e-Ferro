@@ -100,3 +100,12 @@ O atlas modular b?sico de *Fogo-F?tuo & Ferro* divide-se nos seguintes conjuntos
 Para a tabela completa de códigos padronizados para plantas-baixas em CorelDRAW e geração no Godot (`B11` Igreja Matriz, `B03` Taverna, `B05` Trapiche, `R03` Pontes de Tronco, `W03` Manguezais, `T10` Jequitibás), consulte:  
 👉 **[Mapas/GUIA_SPRITES_E_CONSTRUCOES_GRID.md](Mapas/GUIA_SPRITES_E_CONSTRUCOES_GRID.md)**.
 
+
+
+## Atualização de direção visual — 2026-10-10
+
+A decisão visual confirmada pelo usuário é: **quadrinhos/xilogravura em preto e branco para cutscenes e diálogos; pixel art 16-bit para exploração, mapas interativos e combate**. O nome histórico deste documento não significa que o mundo jogável deva usar ilustrações completas de gibi.
+
+Para os tiles jogáveis, interpretar contornos e hachuras como clusters de pixels e padrões seletivos compatíveis com a grade, sem degradês borrados nem microdetalhes ilegíveis. Os requisitos de TileMapLayer, tiles 32×32, base dos objetos e ordenação por profundidade continuam válidos. A interface navegável segue o mesmo registro pixelado, com papel, madeira e ferro apenas como motivos de moldura e material.
+
+Esta atualização prevalece sobre as referências anteriores deste documento que estendiam a estética de gibi ao mapa jogável. As cenas narrativas ilustradas permanecem no registro de quadrinhos/xilogravura descrito no GDD.

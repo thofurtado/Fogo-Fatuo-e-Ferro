@@ -11,10 +11,12 @@
 
 ### 2. Identidade Visual (Sistema Dual)
 
-O jogo utiliza dois estilos visuais bem marcados para separar momentos narrativos de momentos de exploração:
+O jogo alterna dois registros visuais para separar a narrativa ilustrada dos trechos jogáveis:
 
-* **Modo Quadrinhos / Cutscenes (Decisões e Diálogos):** Estilo de xilogravura e nanquim em preto e branco de alto contraste (pesadamente inspirado no traço clássico de *Flavio Colin*), focado em hachuras, sombras profundas e atmosfera dramática de revista de época.
-* **Modo Exploração (Mundo Aberto e Telas de Menu):** Estilo de arte vibrante, limpo e expressivo inspirado na estética de HQs clássicas brasileiras (como *Ziraldo / Turma do Pererê* e *Mauricio de Sousa*), trazendo cores vivas e identidade para a interface e caminhada no mapa.
+* **Modo Quadrinhos / Cutscenes (Decisões e Diálogos):** Estilo de gibi e xilogravura em preto e branco de alto contraste, com nanquim, hachuras, sombras profundas e atmosfera dramática de revista de época. As referências de quadrinhos brasileiros pertencem a esse registro narrativo.
+* **Modo Jogável (Exploração, Mapas Interativos e Combate):** Pixel art 16-bit top-down, organizada em tiles legíveis e animações econômicas. O mundo explorável e as batalhas usam a mesma linguagem pixelada; o combate pode destacar a rolagem de dados em uma camada de interface sem encobrir os sprites ou o campo de ação.
+
+Menus navegáveis, HUD, inventário e seleção de regiões acompanham o registro 16-bit. Molduras e painéis podem evocar papel, madeira e ferro para manter a ligação temática com a narrativa, sem transformar essas telas em páginas de quadrinhos.
 
 ---
 
