@@ -12,6 +12,8 @@ func _ready():
 	if btn_subida:
 		btn_subida.pressed.connect(_on_subida_pressed)
 	btn_quit.pressed.connect(_on_quit_pressed)
+	# quit() nao faz nada no navegador
+	btn_quit.visible = not OS.has_feature("web")
 
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes/CharacterSelect.tscn")

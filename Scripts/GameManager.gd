@@ -173,6 +173,12 @@ var cargos_catalog: Dictionary = {
 }
 
 func _ready():
+	# Navegador nao tem fonte de emoji/simbolos do sistema: embute fallback na fonte padrao
+	if OS.has_feature("web"):
+		ThemeDB.fallback_font.fallbacks = [
+			load("res://Assets/Fonts/NotoEmoji.ttf"),
+			load("res://Assets/Fonts/NotoSansSymbols2-Regular.ttf"),
+		]
 	select_archetype_by_id("tropeiro")
 
 func select_archetype_by_id(arch_id: String):
