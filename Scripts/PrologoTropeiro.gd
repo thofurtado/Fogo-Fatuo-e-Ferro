@@ -98,6 +98,7 @@ func _go_to_stage(new_stage: Stage):
 			])
 			await hq_dialogue.sequence_completed
 			page1_container.visible = true
+			btn_page1_next.grab_focus()
 			
 		Stage.PAGE_2_TAVERNA:
 			bg_rect.texture = TEX_PAGE_2
@@ -115,6 +116,7 @@ func _go_to_stage(new_stage: Stage):
 			])
 			await hq_dialogue.sequence_completed
 			page2_container.visible = true
+			btn_page2_next.grab_focus()
 			
 		Stage.PAGE_3_DICE_ROLL:
 			bg_rect.texture = TEX_PAGE_3
@@ -123,13 +125,16 @@ func _go_to_stage(new_stage: Stage):
 			page3_container.visible = true
 			page4_container.visible = false
 			city_modal.visible = false
-			btn_roll_dice.visible = true
+			btn_roll_dice.visible = false
 			btn_roll_dice.disabled = false
 			dice_tray.setup_dice(8)
 			
 			hq_dialogue.play_sequence([
 				{ "type": "narrator", "title": "🎲 TESTE DE PERCEPÇÃO", "text": "O salão está esfumaçado e cheio de sussurros.\n\nRola os teus dados na bandeja de couro para ver o que teus olhos de tropeiro conseguem discernir entre as sombras." }
 			])
+			await hq_dialogue.sequence_completed
+			btn_roll_dice.visible = true
+			btn_roll_dice.grab_focus()
 			
 		Stage.PAGE_4_ESTALAGEM:
 			bg_rect.texture = TEX_PAGE_4
@@ -163,6 +168,7 @@ func _go_to_stage(new_stage: Stage):
 			hq_dialogue.play_sequence(client_sequence)
 			await hq_dialogue.sequence_completed
 			page4_container.visible = true
+			btn_partir_noite.grab_focus()
 
 func _on_page1_next():
 	_fade_transition(func():
@@ -176,6 +182,7 @@ func _on_page2_next():
 
 func _fade_transition(callback: Callable):
 	fade_overlay.visible = true
+	fade_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	var tween = create_tween()
 	tween.tween_property(fade_overlay, "color:a", 1.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	await tween.finished
@@ -186,6 +193,7 @@ func _fade_transition(callback: Callable):
 	tween_in.tween_property(fade_overlay, "color:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	await tween_in.finished
 	fade_overlay.visible = false
+	fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _on_roll_dice_pressed():
 	btn_roll_dice.disabled = true

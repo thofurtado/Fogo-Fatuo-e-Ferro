@@ -37,6 +37,9 @@ func _ready():
 	narrator_container.visible = false
 	dialogue_container.visible = false
 	touch_overlay.visible = false
+	touch_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	visible = false
 
 func is_dialogue_active() -> bool:
 	return _is_active
@@ -48,6 +51,8 @@ func is_dialogue_active() -> bool:
 func play_sequence(sequence: Array):
 	_queue = sequence.duplicate(true)
 	_is_active = true
+	visible = true
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	touch_overlay.visible = true
 	touch_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	_advance_queue()
@@ -62,13 +67,19 @@ func stop():
 	narrator_container.visible = false
 	dialogue_container.visible = false
 	touch_overlay.visible = false
+	touch_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	visible = false
 
 func _advance_queue():
 	if _queue.is_empty():
 		_is_active = false
 		touch_overlay.visible = false
+		touch_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		narrator_container.visible = false
 		dialogue_container.visible = false
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		visible = false
 		emit_signal("sequence_completed")
 		return
 
