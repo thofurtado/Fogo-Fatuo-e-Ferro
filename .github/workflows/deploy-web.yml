@@ -1,0 +1,64 @@
+name: Deploy Web
+
+# PR: so exporta (verifica que o build web nao quebrou).
+# push em master / manual: exporta e publica na Vercel (producao).
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-web-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    container: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar export templates
+        run: |
+          # a imagem guarda os templates em /root; em container o HOME pode ser outro
+          if [ "$HOME" != "/root" ]; then
+            mkdir -p "$HOME/.local/share/godot"
+            cp -r /root/.local/share/godot/export_templates "$HOME/.local/share/godot/"
+          fi
+
+      - name: Exportar Web
+        run: |
+          mkdir -p build/web
+          # primeira passada importa as texturas (.godot/ nao vai pro git); pode sair != 0 sem ser erro real
+          godot --headless --path . --import || true
+          godot --headless --path . --export-release "Web" build/web/index.html
+          # o export as vezes sai com 0 mesmo falhando: confere os artefatos
+          for f in index.html index.js index.wasm index.pck; do
+            test -s "build/web/$f" || { echo "faltou build/web/$f"; exit 1; }
+          done
+          du -sh build/web/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: build/web
+
+  deploy:
+    needs: export
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web
+          path: build/web
+
+      # Cache da Vercel ja e max-age=0, must-revalidate por padrao: o Godot nao poe hash
+      # nos nomes, entao nao sobrescrever isso com cache longo.
+      - name: Publicar na Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx --yes vercel@latest deploy build/web --prod --yes --token "$VERCEL_TOKEN"
