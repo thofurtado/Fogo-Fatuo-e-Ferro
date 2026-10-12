@@ -3,10 +3,12 @@ class_name MulaSemCabecaController
 
 signal attack_requested(target: Node2D, damage: int)
 signal defeated(enemy: Node2D)
+signal health_changed(current: int, maximum: int)
 
 enum State { IDLE, CHASE, WINDUP, CHARGE, RECOVER, STAGGER, DEFEATED }
 
 @export var player_group: StringName = &"player"
+@export_range(1, 100, 1) var max_health: int = 12
 @export_range(1, 100, 1) var health: int = 12
 @export_range(1.0, 400.0, 1.0) var chase_speed: float = 90.0
 @export_range(1.0, 600.0, 1.0) var charge_speed: float = 230.0
@@ -36,6 +38,10 @@ var hit_already_this_charge: bool = false
 
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	add_to_group("enemy")
+	max_health = maxi(1, max_health)
+	health = clampi(health, 1, max_health)
+	health_changed.emit(health, max_health)
 	if detection_area != null:
 		detection_area.body_entered.connect(_on_detection_body_entered)
 		detection_area.body_exited.connect(_on_detection_body_exited)
@@ -111,6 +117,7 @@ func take_damage(amount: int, source_position: Vector2 = Vector2.ZERO) -> void:
 		return
 
 	health = maxi(0, health - amount)
+	health_changed.emit(health, max_health)
 	if health == 0:
 		_change_state(State.DEFEATED)
 		return

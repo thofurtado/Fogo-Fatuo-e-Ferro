@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/MulaSemCabecaController.gd" id="1_controller"]
+
+[sub_resource type="CapsuleShape2D" id="BodyCapsule"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="CircleShape2D" id="DetectionCircle"]
+radius = 180.0
+
+[sub_resource type="RectangleShape2D" id="ChargeRectangle"]
+size = Vector2(36, 28)
+
+[node name="MulaSemCabeca" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_controller")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("BodyCapsule")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("DetectionCircle")
+
+[node name="ChargeHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeHitbox"]
+shape = SubResource("ChargeRectangle")
