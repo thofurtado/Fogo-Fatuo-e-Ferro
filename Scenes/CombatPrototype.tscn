@@ -1,0 +1,160 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://Scripts/CombatPrototype.gd" id="1_prototype"]
+[ext_resource type="Script" path="res://Scripts/TropeiroTilemapController.gd" id="2_tropeiro"]
+[ext_resource type="PackedScene" path="res://Scenes/MulaSemCabeca.tscn" id="3_mula"]
+[ext_resource type="Script" path="res://Scripts/CombatSystem.gd" id="4_combat"]
+
+[sub_resource type="RectangleShape2D" id="TropeiroBodyShape"]
+size = Vector2(18, 20)
+
+[sub_resource type="RectangleShape2D" id="TropeiroAttackShape"]
+size = Vector2(38, 28)
+
+[sub_resource type="StyleBoxFlat" id="CombatHudStyle"]
+bg_color = Color(0.06, 0.07, 0.06, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.62, 0.31, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="CombatPrototype" type="Node2D"]
+script = ExtResource("1_prototype")
+
+[node name="ArenaFloor" type="Polygon2D" parent="."]
+z_index = -10
+polygon = PackedVector2Array(-460, -600, 460, -600, 460, 600, -460, 600)
+color = Color(0.17, 0.23, 0.16, 1)
+
+[node name="ArenaPath" type="Polygon2D" parent="."]
+z_index = -9
+polygon = PackedVector2Array(-460, -42, 460, -42, 460, 42, -460, 42)
+color = Color(0.34, 0.28, 0.19, 1)
+
+[node name="YSortWorld" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tropeiro" type="CharacterBody2D" parent="YSortWorld"]
+position = Vector2(-70, 0)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_tropeiro")
+
+[node name="DebugSilhouette" type="Polygon2D" parent="YSortWorld/Tropeiro"]
+position = Vector2(0, -24)
+polygon = PackedVector2Array(-12, 2, -11, -15, -5, -27, 5, -27, 11, -15, 12, 2, 6, 7, -6, 7)
+color = Color(0.61, 0.39, 0.2, 1)
+
+[node name="DebugName" type="Label" parent="YSortWorld/Tropeiro"]
+offset_left = -64.0
+offset_top = -76.0
+offset_right = 64.0
+offset_bottom = -56.0
+theme_override_colors/font_color = Color(1, 0.91, 0.67, 1)
+theme_override_font_sizes/font_size = 11
+text = "TROPEIRO · PROTÓTIPO"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortWorld/Tropeiro"]
+position = Vector2(0, -12)
+shape = SubResource("TropeiroBodyShape")
+
+[node name="AttackArea" type="Area2D" parent="YSortWorld/Tropeiro"]
+collision_layer = 8
+collision_mask = 4
+monitoring = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortWorld/Tropeiro/AttackArea"]
+shape = SubResource("TropeiroAttackShape")
+
+[node name="Camera2D" type="Camera2D" parent="YSortWorld/Tropeiro"]
+zoom = Vector2(1, 1)
+position_smoothing_enabled = true
+
+[node name="MulaSemCabeca" parent="YSortWorld" instance=ExtResource("3_mula")]
+position = Vector2(100, 0)
+
+[node name="DebugSilhouette" type="Polygon2D" parent="YSortWorld/MulaSemCabeca"]
+position = Vector2(0, -29)
+polygon = PackedVector2Array(-19, 5, -20, -8, -13, -24, -5, -31, 11, -31, 19, -19, 19, -6, 13, 5, 5, 9, -9, 9)
+color = Color(0.22, 0.1, 0.07, 1)
+
+[node name="DebugFlame" type="Polygon2D" parent="YSortWorld/MulaSemCabeca"]
+position = Vector2(0, -64)
+polygon = PackedVector2Array(0, -13, 8, -1, 6, 8, 0, 14, -7, 8, -8, 0)
+color = Color(1, 0.41, 0.09, 1)
+
+[node name="DebugName" type="Label" parent="YSortWorld/MulaSemCabeca"]
+offset_left = -80.0
+offset_top = -102.0
+offset_right = 80.0
+offset_bottom = -82.0
+theme_override_colors/font_color = Color(1, 0.65, 0.35, 1)
+theme_override_font_sizes/font_size = 11
+text = "MULA SEM CABEÇA · TESTE"
+horizontal_alignment = 1
+
+[node name="CombatSystem" type="Node" parent="."]
+script = ExtResource("4_combat")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="PanelContainer" parent="UILayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 184.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("CombatHudStyle")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/HUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/HUD/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.79, 0.45, 1)
+theme_override_font_sizes/font_size = 15
+text = "FOGO-FÁTUO & FERRO — ARENA DE COMBATE"
+
+[node name="PlayerHealth" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.84, 0.73, 1)
+text = "Tropeiro — Vida: 24 / 24"
+
+[node name="MulaHealth" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.62, 0.38, 1)
+text = "Mula sem Cabeça — Vida: 12 / 12"
+
+[node name="MulaState" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.83, 0.66, 1)
+text = "Estado da Mula: IDLE"
+
+[node name="Event" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.9, 0.83, 1)
+text = "Aproxime-se da Mula; pressione J para atacar."
+autowrap_mode = 2
+
+[node name="Controls" type="Label" parent="UILayer/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.69, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "Mover: WASD/setas  ·  Atacar: J  ·  Reiniciar: R  ·  formas visíveis: Debug > Visible Collision Shapes"
+autowrap_mode = 2

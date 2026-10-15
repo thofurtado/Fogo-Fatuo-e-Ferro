@@ -69,6 +69,8 @@ O `CombatSystem` só roteia dano e bloqueia fogo amigo; a vida pertence aos ator
 
 `Scripts/MulaSemCabecaController.gd` define estas transições:
 
+Cada mudança emite `state_changed(previous_state, new_state)`; `get_state_name()` fornece o nome legível para HUD e depuração. Isso mantém a máquina de jogo independente da animação: quando os frames finais existirem, associe os nomes de estado aos clipes de `SpriteFrames`.
+
 ```text
 IDLE → CHASE → WINDUP → CHARGE → RECOVER → CHASE ou IDLE
                          qualquer estado vivo → STAGGER → CHASE ou IDLE
@@ -95,7 +97,15 @@ A perseguição inicial é direta. `move_and_slide()` evita atravessar árvores 
 4. Crie ou importe os clipes nomeados no recurso `SpriteFrames`. A ausência de animações não impede o movimento; clipes ausentes simplesmente não são tocados.
 5. Rode a cena, visualize formas físicas, teste WASD/setas, **J** para atacar, percepção, aviso da investida, um único dano por golpe, recuperação e derrota; conecte `health_changed` ao HUD.
 
-O ambiente desta tarefa não tem o executável Godot de linha de comando disponível. Portanto, os scripts foram preparados e revisados estaticamente, mas precisam ser abertos e executados no Editor Godot 4.7 para validação de sintaxe/runtime e ajuste visual dos shapes.
+## Arena de combate de teste
+
+Abra `Scenes/CombatPrototype.tscn` e use **F6 (Run Current Scene)**; `project.godot` continua iniciando em `MainMenu.tscn`. A arena reúne o Tropeiro, a instância da Mula, `CombatSystem`, as camadas de colisão e um HUD que mostra vida, estado atual e o último evento. Controles: **WASD/setas** para mover, **J** para atacar e **R** para reiniciar. Em **Debug > Visible Collision Shapes**, confira corpo, área de detecção, ataque do jogador e hitbox da investida.
+
+As silhuetas coloridas desta arena são placeholders de depuração, não arte final. A sequência observada esperada é `IDLE → CHASE → WINDUP → CHARGE → RECOVER`; receber dano introduz `STAGGER`, e vida zero leva a `DEFEATED`. Os valores iniciais ajustáveis no Inspector são detecção de 180 px, perseguição de 90 px/s, investida de 230 px/s, preparação de 0,55 s, investida de 0,45 s, recuperação de 0,8 s e dano de 3.
+
+## Validação
+
+Validado em Godot 4.7.2 headless: importação do projeto e execução de `CombatPrototype.tscn` sem erros; smoke test confirmou `CHASE`, `WINDUP`, `CHARGE`, `RECOVER`, dano da investida à vida do Tropeiro, dano do Tropeiro à Mula e transição para `DEFEATED`. O ajuste visual final das hitboxes ainda deve ser conferido no Editor com **Visible Collision Shapes**.
 
 ## Referências oficiais
 

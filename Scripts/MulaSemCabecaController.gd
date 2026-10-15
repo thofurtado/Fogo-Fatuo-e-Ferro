@@ -4,8 +4,10 @@ class_name MulaSemCabecaController
 signal attack_requested(target: Node2D, damage: int)
 signal defeated(enemy: Node2D)
 signal health_changed(current: int, maximum: int)
+signal state_changed(previous_state: int, new_state: int)
 
 enum State { IDLE, CHASE, WINDUP, CHARGE, RECOVER, STAGGER, DEFEATED }
+const STATE_NAMES: Array[String] = ["IDLE", "CHASE", "WINDUP", "CHARGE", "RECOVER", "STAGGER", "DEFEATED"]
 
 @export var player_group: StringName = &"player"
 @export_range(1, 100, 1) var max_health: int = 12
@@ -128,11 +130,17 @@ func take_damage(amount: int, source_position: Vector2 = Vector2.ZERO) -> void:
 	_change_state(State.STAGGER)
 
 
+func get_state_name() -> String:
+	return STATE_NAMES[current_state]
+
+
 func _change_state(next_state: State) -> void:
 	if current_state == State.DEFEATED or current_state == next_state:
 		return
 
+	var previous_state := current_state
 	current_state = next_state
+	state_changed.emit(previous_state, current_state)
 	if next_state != State.CHARGE:
 		_set_charge_hitbox_enabled(false)
 
