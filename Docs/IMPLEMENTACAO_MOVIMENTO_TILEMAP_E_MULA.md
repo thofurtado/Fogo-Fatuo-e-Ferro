@@ -103,9 +103,27 @@ Abra `Scenes/CombatPrototype.tscn` e use **F6 (Run Current Scene)**; `project.go
 
 As silhuetas coloridas desta arena são placeholders de depuração, não arte final. A sequência observada esperada é `IDLE → CHASE → WINDUP → CHARGE → RECOVER`; receber dano introduz `STAGGER`, e vida zero leva a `DEFEATED`. Os valores iniciais ajustáveis no Inspector são detecção de 180 px, perseguição de 90 px/s, investida de 230 px/s, preparação de 0,55 s, investida de 0,45 s, recuperação de 0,8 s e dano de 3.
 
+### Balancear a dificuldade
+
+Na árvore da cena, selecione `YSortWorld/MulaSemCabeca` e ajuste o grupo **Investida — balanceamento** no Inspector. Na arena, salve `CombatPrototype.tscn` para manter os valores de teste como overrides da instância; altere `MulaSemCabeca.tscn` apenas quando quiser mudar o padrão de todas as instâncias.
+
+| Perfil inicial | `windup_seconds` | `charge_speed` | `charge_seconds` | `recover_seconds` | `charge_damage` |
+|---|---:|---:|---:|---:|---:|
+| Mais acessível | 0,85 s | 180 px/s | 0,35 s | 1,0 s | 2 |
+| Base atual | 0,55 s | 230 px/s | 0,45 s | 0,8 s | 3 |
+| Mais difícil | 0,35 s | 290 px/s | 0,55 s | 0,5 s | 4 |
+
+Com 24 de vida no Tropeiro, dano 2/3/4 equivale a aproximadamente 8%/12,5%/16,7% da vida por acerto. A Mula tem 12 de vida e o golpe do Tropeiro causa 3: quatro acertos derrotam a Mula, enquanto oito investidas de dano 3 derrotariam o Tropeiro sem cura. Se a Mula parecer injusta, aumente primeiro `windup_seconds` e `recover_seconds`; se estiver inofensiva, aumente `charge_damage` ou reduza a recuperação. `charge_trigger_distance` maior inicia o aviso mais cedo, não encurta o tempo de reação.
+
+### Windup e confirmação de acerto do Tropeiro
+
+`TropeiroTilemapController` expõe `attack_windup` (padrão 0,18 s) e emite `attack_windup_started(direction)` ao receber **J**; ao terminar o windup, emite `attack_window_started(direction)` e abre a hitbox pelo tempo de `attack_window`. A direção fica travada durante a antecipação e o golpe. Na `CombatPrototype.tscn`, o primeiro sinal toca `Assets/SFX/tropeiro_windup.wav` e desenha um indicador âmbar; o segundo desenha o arco de golpe. Só `CombatSystem.attack_applied` do Tropeiro toca `tropeiro_hit.wav` e cria o clarão no alvo, portanto ataques que erram não dão feedback de impacto.
+
+Os dois WAVs e as formas geométricas são placeholders leves de protótipo; volume dos sons está nos nós `WindupAudio` e `HitAudio`. Os efeitos foram conectados à arena isolada, não à cena principal nem a uma cena definitiva do Tropeiro. Ao escolher a cena de personagem de produção, reaproveite os dois sinais e mova os players de áudio/feedback para ela.
+
 ## Validação
 
-Validado em Godot 4.7.2 headless: importação do projeto e execução de `CombatPrototype.tscn` sem erros; smoke test confirmou `CHASE`, `WINDUP`, `CHARGE`, `RECOVER`, dano da investida à vida do Tropeiro, dano do Tropeiro à Mula e transição para `DEFEATED`. O ajuste visual final das hitboxes ainda deve ser conferido no Editor com **Visible Collision Shapes**.
+Validado em Godot 4.7.2 headless: importação dos scripts/WAVs e execução de `CombatPrototype.tscn` sem erros; smoke test confirmou as transições da Mula, os sinais `attack_windup_started`/`attack_window_started`, dano nos dois sentidos e derrota. Áudio e hitboxes ainda devem ser conferidos no Editor em execução real; use **Debug > Visible Collision Shapes** para o ajuste visual final.
 
 ## Referências oficiais
 

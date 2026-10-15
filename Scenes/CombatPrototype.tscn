@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://Scripts/CombatPrototype.gd" id="1_prototype"]
 [ext_resource type="Script" path="res://Scripts/TropeiroTilemapController.gd" id="2_tropeiro"]
 [ext_resource type="PackedScene" path="res://Scenes/MulaSemCabeca.tscn" id="3_mula"]
 [ext_resource type="Script" path="res://Scripts/CombatSystem.gd" id="4_combat"]
+[ext_resource type="AudioStream" path="res://Assets/SFX/tropeiro_windup.wav" id="5_windup_sfx"]
+[ext_resource type="AudioStream" path="res://Assets/SFX/tropeiro_hit.wav" id="6_hit_sfx"]
 
 [sub_resource type="RectangleShape2D" id="TropeiroBodyShape"]
 size = Vector2(18, 20)
@@ -76,6 +78,10 @@ shape = SubResource("TropeiroAttackShape")
 zoom = Vector2(1, 1)
 position_smoothing_enabled = true
 
+[node name="WindupAudio" type="AudioStreamPlayer2D" parent="YSortWorld/Tropeiro"]
+stream = ExtResource("5_windup_sfx")
+volume_db = -10.0
+
 [node name="MulaSemCabeca" parent="YSortWorld" instance=ExtResource("3_mula")]
 position = Vector2(100, 0)
 
@@ -101,6 +107,10 @@ horizontal_alignment = 1
 
 [node name="CombatSystem" type="Node" parent="."]
 script = ExtResource("4_combat")
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="YSortWorld"]
+stream = ExtResource("6_hit_sfx")
+volume_db = -8.0
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -156,5 +166,5 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.69, 0.6, 1)
 theme_override_font_sizes/font_size = 11
-text = "Mover: WASD/setas  ·  Atacar: J  ·  Reiniciar: R  ·  formas visíveis: Debug > Visible Collision Shapes"
+text = "Mover: WASD/setas  ·  Atacar: J (windup/impacto)  ·  Reiniciar: R  ·  formas: Debug > Visible Collision Shapes"
 autowrap_mode = 2

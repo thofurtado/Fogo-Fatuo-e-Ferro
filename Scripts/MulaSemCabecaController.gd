@@ -10,19 +10,27 @@ enum State { IDLE, CHASE, WINDUP, CHARGE, RECOVER, STAGGER, DEFEATED }
 const STATE_NAMES: Array[String] = ["IDLE", "CHASE", "WINDUP", "CHARGE", "RECOVER", "STAGGER", "DEFEATED"]
 
 @export var player_group: StringName = &"player"
+
+@export_group("Vida")
 @export_range(1, 100, 1) var max_health: int = 12
 @export_range(1, 100, 1) var health: int = 12
+
+@export_group("Perseguição")
 @export_range(1.0, 400.0, 1.0) var chase_speed: float = 90.0
+@export_range(1.0, 4000.0, 1.0) var braking: float = 1600.0
+
+@export_group("Investida — balanceamento")
 @export_range(1.0, 600.0, 1.0) var charge_speed: float = 230.0
 @export_range(1.0, 300.0, 1.0) var charge_trigger_distance: float = 112.0
 @export_range(0.05, 3.0, 0.05) var windup_seconds: float = 0.55
 @export_range(0.05, 2.0, 0.05) var charge_seconds: float = 0.45
 @export_range(0.05, 3.0, 0.05) var recover_seconds: float = 0.8
-@export_range(0.05, 2.0, 0.05) var stagger_seconds: float = 0.4
 @export_range(0, 100, 1) var charge_damage: int = 3
 @export_range(0.0, 80.0, 1.0) var hitbox_forward_offset: float = 28.0
+
+@export_group("Reação a dano")
+@export_range(0.05, 2.0, 0.05) var stagger_seconds: float = 0.4
 @export_range(0.0, 1000.0, 1.0) var stagger_knockback: float = 110.0
-@export_range(1.0, 4000.0, 1.0) var braking: float = 1600.0
 
 @onready var detection_area = get_node_or_null("DetectionArea") as Area2D
 @onready var charge_hitbox = get_node_or_null("ChargeHitbox") as Area2D

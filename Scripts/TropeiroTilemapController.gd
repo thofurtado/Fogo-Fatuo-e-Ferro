@@ -2,17 +2,25 @@ extends CharacterBody2D
 class_name TropeiroTilemapController
 
 signal attack_requested(target: Node2D, damage: int)
+signal attack_windup_started(direction: Vector2)
+signal attack_window_started(direction: Vector2)
 signal health_changed(current: int, maximum: int)
 signal died
 
+@export_group("Movimento")
 @export_range(1.0, 500.0, 1.0) var move_speed: float = 160.0
 @export_range(1.0, 3000.0, 1.0) var acceleration: float = 1400.0
 @export_range(1.0, 4000.0, 1.0) var braking: float = 1800.0
 @export var movement_enabled: bool = true
+
+@export_group("Vida")
 @export_range(1, 100, 1) var max_health: int = 24
 @export var sync_health_with_game_manager: bool = true
+
+@export_group("Combate — Tropeiro")
 @export_range(1, 50, 1) var attack_damage: int = 3
 @export_range(0.05, 1.0, 0.05) var attack_cooldown: float = 0.35
+@export_range(0.0, 1.0, 0.01) var attack_windup: float = 0.18
 @export_range(0.05, 0.5, 0.01) var attack_window: float = 0.12
 @export_range(0.0, 100.0, 1.0) var attack_area_offset: float = 26.0
 @export var attack_keycode: int = KEY_J
@@ -23,7 +31,9 @@ signal died
 var facing_direction: StringName = &"down"
 var current_health: int = 24
 var attack_cooldown_left: float = 0.0
+var attack_windup_left: float = 0.0
 var attack_window_left: float = 0.0
+var attack_direction: Vector2 = Vector2.DOWN
 var attack_hit_targets: Dictionary = {}
 
 
@@ -43,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	if not movement_enabled or current_health <= 0:
 		direction = Vector2.ZERO
 
-	if direction != Vector2.ZERO:
+	if direction != Vector2.ZERO and attack_windup_left <= 0.0 and attack_window_left <= 0.0:
 		_update_facing(direction)
 
 	var target_velocity := direction * move_speed
@@ -52,10 +62,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	attack_cooldown_left = maxf(0.0, attack_cooldown_left - delta)
-	if attack_window_left > 0.0:
-		_update_attack_area_position()
-		_scan_attack_targets()
-		attack_window_left = maxf(0.0, attack_window_left - delta)
+	if not movement_enabled or current_health <= 0:
+		attack_windup_left = 0.0
+		attack_window_left = 0.0
+	else:
+		if attack_windup_left > 0.0:
+			attack_windup_left = maxf(0.0, attack_windup_left - delta)
+			if attack_windup_left <= 0.0:
+				_begin_attack_window()
+		if attack_window_left > 0.0:
+			_update_attack_area_position()
+			_scan_attack_targets()
+			attack_window_left = maxf(0.0, attack_window_left - delta)
 	_update_animation()
 
 
@@ -68,6 +86,8 @@ func set_movement_enabled(enabled: bool) -> void:
 	movement_enabled = enabled
 	if not enabled:
 		velocity = Vector2.ZERO
+		attack_windup_left = 0.0
+		attack_window_left = 0.0
 
 
 func request_attack() -> void:
@@ -75,9 +95,14 @@ func request_attack() -> void:
 	if current_health <= 0 or not movement_enabled or attack_area == null or attack_cooldown_left > 0.0:
 		return
 	attack_cooldown_left = attack_cooldown
-	attack_window_left = attack_window
+	attack_windup_left = attack_windup
+	attack_window_left = 0.0
 	attack_hit_targets.clear()
+	attack_direction = _facing_vector()
 	_update_attack_area_position()
+	attack_windup_started.emit(attack_direction)
+	if attack_windup_left <= 0.0:
+		_begin_attack_window()
 
 
 func take_damage(amount: int, _source_position: Vector2 = Vector2.ZERO) -> void:
@@ -89,6 +114,8 @@ func take_damage(amount: int, _source_position: Vector2 = Vector2.ZERO) -> void:
 	if current_health == 0:
 		movement_enabled = false
 		velocity = Vector2.ZERO
+		attack_windup_left = 0.0
+		attack_window_left = 0.0
 		died.emit()
 
 
@@ -125,17 +152,25 @@ func _update_facing(direction: Vector2) -> void:
 func _update_attack_area_position() -> void:
 	if attack_area == null:
 		return
-	var facing_vector := Vector2.DOWN
+	var direction := attack_direction if attack_windup_left > 0.0 or attack_window_left > 0.0 else _facing_vector()
+	attack_area.position = direction * attack_area_offset
+
+
+func _facing_vector() -> Vector2:
 	match facing_direction:
 		&"up":
-			facing_vector = Vector2.UP
-		&"down":
-			facing_vector = Vector2.DOWN
+			return Vector2.UP
 		&"left":
-			facing_vector = Vector2.LEFT
+			return Vector2.LEFT
 		&"right":
-			facing_vector = Vector2.RIGHT
-	attack_area.position = facing_vector * attack_area_offset
+			return Vector2.RIGHT
+	return Vector2.DOWN
+
+
+func _begin_attack_window() -> void:
+	attack_windup_left = 0.0
+	attack_window_left = attack_window
+	attack_window_started.emit(attack_direction)
 
 
 func _scan_attack_targets() -> void:
