@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var player = $YSortContainer/Player
 @onready var mula = $YSortContainer/MulaBonita
+@onready var mula_inimiga: MulaSemCabecaController = $YSortContainer/MulaSemCabeca
+@onready var combat_system: CombatSystem = $CombatSystem
 
 @onready var hud_hero_name = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/HeroLabel
 @onready var hud_hp = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/HpLabel
@@ -14,6 +16,10 @@ extends Node2D
 
 @onready var inventory_panel = $UILayer/InventoryPanel
 @onready var inventory_text = $UILayer/InventoryPanel/MarginContainer/VBoxContainer/ItemListLabel
+@onready var combat_hud = $UILayer/CombatHUD
+@onready var enemy_health_label = $UILayer/CombatHUD/MarginContainer/VBoxContainer/EnemyHealth
+@onready var enemy_state_label = $UILayer/CombatHUD/MarginContainer/VBoxContainer/EnemyState
+@onready var combat_message_label = $UILayer/CombatHUD/MarginContainer/VBoxContainer/CombatMessage
 
 var current_interactable = null
 var chest_opened: bool = false
@@ -27,7 +33,19 @@ func _ready():
 	# Garante que a comitiva do Tropeiro está ativa (se não veio pelo prólogo)
 	if GameManager.current_archetype.is_empty():
 		GameManager.select_archetype_by_id("tropeiro")
+	if player.has_method("refresh_health_from_game_manager"):
+		player.refresh_health_from_game_manager()
 	_update_hud()
+	combat_hud.visible = false
+	player.health_changed.connect(_on_player_health_changed)
+	player.died.connect(_on_player_died)
+	mula_inimiga.health_changed.connect(_on_enemy_health_changed)
+	mula_inimiga.state_changed.connect(_on_enemy_state_changed)
+	mula_inimiga.defeated.connect(_on_enemy_defeated)
+	combat_system.attack_applied.connect(_on_combat_attack_applied)
+	if player.current_health <= 0:
+		_on_player_died()
+	_refresh_combat_hud()
 	
 	# Iluminação e clima atmosférico conforme escolha na Estalagem (Noite x Alvorada)
 	var modulate_node = CanvasModulate.new()
@@ -70,6 +88,11 @@ func _unhandled_input(event):
 		if event.keycode == KEY_I:
 			inventory_panel.visible = !inventory_panel.visible
 			_refresh_inventory()
+		elif event.keycode == KEY_R and player.current_health <= 0:
+			var arch = GameManager.current_archetype
+			arch["vida_atual"] = arch["vida_max"]
+			GameManager.current_archetype = arch
+			get_tree().reload_current_scene()
 		elif event.keycode == KEY_ESCAPE or event.keycode == KEY_SPACE:
 			if dialogue_box.visible:
 				dialogue_box.visible = false
@@ -77,7 +100,9 @@ func _unhandled_input(event):
 func _update_hud():
 	var arch = GameManager.current_archetype
 	hud_hero_name.text = "🤠 " + arch["name"]
-	hud_hp.text = "♥ HP: %d/%d" % [arch["vida_atual"], arch["vida_max"]]
+	var player_hp: int = player.current_health if player and "current_health" in player else int(arch["vida_atual"])
+	var player_max_hp: int = player.max_health if player and "max_health" in player else int(arch["vida_max"])
+	hud_hp.text = "♥ HP: %d/%d" % [player_hp, player_max_hp]
 	
 	var aff = mula.affinity if mula else 100
 	var status = "Dócil"
@@ -91,6 +116,38 @@ func _update_hud():
 		hud_cargo.text = "📦 " + GameManager.current_cargo["name"]
 	else:
 		hud_cargo.text = "📦 Carga: Fardo de Sal & Charque"
+
+func _on_player_health_changed(_current: int, _maximum: int):
+	_update_hud()
+
+func _on_player_died():
+	combat_hud.visible = true
+	combat_message_label.text = "O Tropeiro caiu. Pressione R para recomeçar."
+
+func _on_enemy_health_changed(_current: int, _maximum: int):
+	_refresh_combat_hud()
+
+func _on_enemy_state_changed(_previous_state: int, _new_state: int):
+	_refresh_combat_hud()
+	if mula_inimiga.get_state_name() == "WINDUP":
+		combat_message_label.text = "A Mula sem Cabeça prepara a investida!"
+
+func _on_enemy_defeated(_enemy: Node2D):
+	combat_hud.visible = true
+	combat_message_label.text = "A Mula sem Cabeça foi derrotada."
+
+func _on_combat_attack_applied(attacker: Node, target: Node2D, damage: int):
+	combat_hud.visible = true
+	var attacker_name := "Tropeiro" if attacker == player else "Mula sem Cabeça"
+	var target_name := "Mula sem Cabeça" if target == mula_inimiga else "Tropeiro"
+	combat_message_label.text = "%s acertou %s: %d de dano." % [attacker_name, target_name, damage]
+
+func _refresh_combat_hud():
+	if not is_instance_valid(mula_inimiga):
+		return
+	enemy_health_label.text = "MULA SEM CABEÇA  —  HP %d/%d" % [mula_inimiga.health, mula_inimiga.max_health]
+	enemy_state_label.text = "Estado: %s" % mula_inimiga.get_state_name()
+	combat_hud.visible = mula_inimiga.get_state_name() != "IDLE" or mula_inimiga.health < mula_inimiga.max_health
 
 func _refresh_inventory():
 	var text = "🎒 ITENS NA ALGIBEIRA:\n"
@@ -137,6 +194,7 @@ func _handle_interaction():
 		"fogueira_rancho":
 			var arch = GameManager.current_archetype
 			arch["vida_atual"] = arch["vida_max"]
+			player.refresh_health_from_game_manager()
 			mula.add_affinity(15)
 			_update_hud()
 			_show_dialogue("FOGUEIRA DE POUSO:", "Você bebe um café de milho quente e faz carinho nas orelhas da Bonita junto às brasas. Vida restaurada ao máximo e a mula descansou (+15% Afinidade)!")
@@ -169,5 +227,7 @@ func _handle_interaction():
 func on_player_fell_ledge(hp_loss: int, aff_loss: int):
 	if mula:
 		mula.add_affinity(-aff_loss)
+	if player and player.has_method("refresh_health_from_game_manager"):
+		player.refresh_health_from_game_manager()
 	_update_hud()
 	_show_dialogue("⚠️ QUEDA NA ESCARPA!", "Você escorregou pelo despenhadeiro de pedra da serra! Cascalho e poeira voaram morro abaixo. A mula Bonita relinchou sobressaltada com o salto abrupto! (-%d HP | -%d%% Afinidade da Mula). Cuidado com o barranco: siga as curvas calçadas da trilha para subir em segurança!" % [hp_loss, aff_loss])

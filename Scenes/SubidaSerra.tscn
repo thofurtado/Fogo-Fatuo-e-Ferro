@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3]
+[gd_scene load_steps=36 format=3]
 
 [ext_resource type="Script" path="res://Scripts/SubidaSerra.gd" id="1_scene"]
 [ext_resource type="Script" path="res://Scripts/TropeiroPlayer.gd" id="2_player"]
@@ -19,9 +19,18 @@
 [ext_resource type="Texture2D" path="res://Assets/Sprites/bloco_granito.png" id="17_granite_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/cais_madeira.png" id="18_cais_tex"]
 [ext_resource type="PackedScene" path="res://Scenes/EscarpmentLedge.tscn" id="19_ledge_scene"]
+[ext_resource type="PackedScene" path="res://Scenes/MulaSemCabeca.tscn" id="20_mula_scene"]
+[ext_resource type="Script" path="res://Scripts/CombatSystem.gd" id="21_combat_system"]
+[ext_resource type="Script" path="res://Scripts/CombatFeedback.gd" id="22_combat_feedback"]
+[ext_resource type="Script" path="res://Scripts/CombatTestLogger.gd" id="23_combat_logger"]
+[ext_resource type="AudioStream" path="res://Assets/SFX/tropeiro_windup.wav" id="24_windup_sfx"]
+[ext_resource type="AudioStream" path="res://Assets/SFX/tropeiro_hit.wav" id="25_hit_sfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player_feet"]
 radius = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_attack"]
+size = Vector2(40, 28)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mula"]
 radius = 11.0
@@ -451,6 +460,8 @@ y_sort_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="YSortContainer"]
 position = Vector2(1214, 1904)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("2_player")
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Player"]
@@ -461,6 +472,13 @@ texture = ExtResource("5_tiao_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Player"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_player_feet")
+
+[node name="AttackArea" type="Area2D" parent="YSortContainer/Player"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Player/AttackArea"]
+shape = SubResource("RectangleShape2D_player_attack")
 
 [node name="Camera2D" type="Camera2D" parent="YSortContainer/Player"]
 position_smoothing_enabled = true
@@ -489,6 +507,20 @@ texture = ExtResource("6_mula_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/MulaBonita"]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_mula")
+
+[node name="MulaSemCabeca" parent="YSortContainer" instance=ExtResource("20_mula_scene")]
+position = Vector2(930, 900)
+player_collision_mask = 2
+
+[node name="PlaceholderBody" type="Polygon2D" parent="YSortContainer/MulaSemCabeca"]
+position = Vector2(0, -14)
+polygon = PackedVector2Array(-24, -7, -22, -20, -12, -27, 8, -26, 20, -19, 25, -6, 18, 4, -18, 4)
+color = Color(0.12, 0.16, 0.23, 1)
+
+[node name="PlaceholderFlame" type="Polygon2D" parent="YSortContainer/MulaSemCabeca"]
+position = Vector2(0, -47)
+polygon = PackedVector2Array(-8, 9, -7, -2, -2, -15, 1, -7, 7, -18, 9, -3, 7, 9)
+color = Color(0.2, 0.78, 1, 0.95)
 
 [node name="SantosCais01" type="Sprite2D" parent="YSortContainer"]
 position = Vector2(1005, 1945)
@@ -1008,3 +1040,61 @@ theme_override_font_sizes/font_size = 13
 text = "Itens..."
 autowrap_mode = 3
 
+[node name="CombatSystem" type="Node" parent="."]
+script = ExtResource("21_combat_system")
+
+[node name="CombatFeedback" type="Node2D" parent="."]
+script = ExtResource("22_combat_feedback")
+player_path = NodePath("../YSortContainer/Player")
+enemy_path = NodePath("../YSortContainer/MulaSemCabeca")
+combat_system_path = NodePath("../CombatSystem")
+world_layer_path = NodePath("../YSortContainer")
+
+[node name="WindupAudio" type="AudioStreamPlayer2D" parent="CombatFeedback"]
+stream = ExtResource("24_windup_sfx")
+volume_db = -5.0
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="CombatFeedback"]
+stream = ExtResource("25_hit_sfx")
+volume_db = -4.0
+
+[node name="CombatTestLogger" type="Node" parent="."]
+script = ExtResource("23_combat_logger")
+player_path = NodePath("../YSortContainer/Player")
+enemy_path = NodePath("../YSortContainer/MulaSemCabeca")
+combat_system_path = NodePath("../CombatSystem")
+session_tag = "subida_serra"
+start_on_ready = true
+
+[node name="CombatHUD" type="PanelContainer" parent="UILayer"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = -12.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/CombatHUD"]
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/CombatHUD/MarginContainer"]
+
+[node name="EnemyHealth" type="Label" parent="UILayer/CombatHUD/MarginContainer/VBoxContainer"]
+theme_override_colors/font_color = Color(0.2, 0.72, 0.95, 1)
+theme_override_font_sizes/font_size = 12
+text = "MULA SEM CABEÇA — HP 12/12"
+
+[node name="EnemyState" type="Label" parent="UILayer/CombatHUD/MarginContainer/VBoxContainer"]
+theme_override_font_sizes/font_size = 11
+text = "Estado: IDLE"
+
+[node name="CombatMessage" type="Label" parent="UILayer/CombatHUD/MarginContainer/VBoxContainer"]
+theme_override_font_sizes/font_size = 11
+text = "Pressione J para atacar. F8 alterna logs."
+autowrap_mode = 3

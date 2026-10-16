@@ -10,6 +10,7 @@ enum State { IDLE, CHASE, WINDUP, CHARGE, RECOVER, STAGGER, DEFEATED }
 const STATE_NAMES: Array[String] = ["IDLE", "CHASE", "WINDUP", "CHARGE", "RECOVER", "STAGGER", "DEFEATED"]
 
 @export var player_group: StringName = &"player"
+@export_range(1, 65535, 1) var player_collision_mask: int = 2
 
 @export_group("Vida")
 @export_range(1, 100, 1) var max_health: int = 12
@@ -53,9 +54,11 @@ func _ready() -> void:
 	health = clampi(health, 1, max_health)
 	health_changed.emit(health, max_health)
 	if detection_area != null:
+		detection_area.collision_mask = player_collision_mask
 		detection_area.body_entered.connect(_on_detection_body_entered)
 		detection_area.body_exited.connect(_on_detection_body_exited)
 	if charge_hitbox != null:
+		charge_hitbox.collision_mask = player_collision_mask
 		charge_hitbox.monitoring = false
 		charge_hitbox.body_entered.connect(_on_charge_hitbox_body_entered)
 	_set_charge_hitbox_enabled(false)
