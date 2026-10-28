@@ -14,6 +14,7 @@ func _ready():
 	btn_quit.pressed.connect(_on_quit_pressed)
 	# quit() nao faz nada no navegador
 	btn_quit.visible = not OS.has_feature("web")
+	btn_start.grab_focus()
 
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes/CharacterSelect.tscn")

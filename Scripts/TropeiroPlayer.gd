@@ -5,6 +5,8 @@ class_name TropeiroPlayer
 @export var camera_zoom: Vector2 = Vector2(1.35, 1.35)
 @onready var sprite = $Sprite2D
 
+var virtual_direction: Vector2 = Vector2.ZERO
+var input_blocked: bool = false
 var facing_direction: Vector2 = Vector2.DOWN
 var is_moving: bool = false
 var bob_timer: float = 0.0
@@ -58,20 +60,16 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 func _physics_process(delta):
 	if is_falling_ledge:
 		return
-	var input_vector = Vector2.ZERO
-	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
-		input_vector.x += 1
-	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A):
-		input_vector.x -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S):
-		input_vector.y += 1
-	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W):
-		input_vector.y -= 1
-		
+	var input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_vector.x += int(Input.is_key_pressed(KEY_D)) - int(Input.is_key_pressed(KEY_A))
+	input_vector.y += int(Input.is_key_pressed(KEY_S)) - int(Input.is_key_pressed(KEY_W))
+	input_vector += virtual_direction
+	if input_blocked:
+		input_vector = Vector2.ZERO
 	var effective_speed = speed * water_slow_factor
 		
 	if input_vector != Vector2.ZERO:
-		input_vector = input_vector.normalized()
+		input_vector = input_vector.limit_length(1.0)
 		facing_direction = input_vector
 		velocity = input_vector * effective_speed
 		is_moving = true

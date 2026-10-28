@@ -912,32 +912,34 @@ theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/TopHUD/MarginContainer"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
-alignment = 1
+[node name="HBoxContainer" type="GridContainer" parent="UILayer/TopHUD/MarginContainer/VBoxContainer"]
+columns = 2
 
 [node name="HeroLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
-theme_override_font_sizes/font_size = 13
+size_flags_horizontal = 3
+clip_text = true
+theme_override_font_sizes/font_size = 16
 text = "ðŸ¤  Tropeiro"
 
-[node name="VSeparator1" type="VSeparator" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
-
 [node name="HpLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+size_flags_horizontal = 3
+clip_text = true
 theme_override_colors/font_color = Color(0.95, 0.3, 0.3, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 text = "â™¥ HP: 20/20"
 
-[node name="VSeparator2" type="VSeparator" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
-
 [node name="AffinityLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+size_flags_horizontal = 3
+clip_text = true
 theme_override_colors/font_color = Color(0.4, 0.85, 0.4, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 text = "ðŸ´ Mula: 100% [DÃ³cil]"
 
-[node name="VSeparator3" type="VSeparator" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
-
 [node name="CargoLabel" type="Label" parent="UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+size_flags_horizontal = 3
+clip_text = true
 theme_override_colors/font_color = Color(0.95, 0.85, 0.4, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 16
 text = "ðŸ“¦ Carga"
 
 [node name="DialogueBox" type="PanelContainer" parent="UILayer"]

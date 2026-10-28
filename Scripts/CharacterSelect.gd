@@ -104,6 +104,7 @@ var selected_region_id: int = 4
 var sheet_countdown: float = 3.5
 
 func _ready():
+	_apply_focus_style(self)
 	# Inicializa opacidade da transição no preto e faz fade-in
 	transition_overlay.color = Color(0, 0, 0, 1.0)
 	transition_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -210,6 +211,22 @@ func _transition_to_step(next_step: Step):
 	
 	transition_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	is_transitioning = false
+	match next_step:
+		Step.ORIGIN: btn_confirm_origin.grab_focus()
+		Step.CLASS: btn_class_tropeiro.grab_focus()
+		Step.REGION: region_buttons[3].grab_focus()
+		Step.SHEET_PREVIEW: btn_confirm_sheet.grab_focus()
+
+func _apply_focus_style(node: Node):
+	if node is Button and node != btn_skip_splash and node != btn_advance_sheet:
+		var outline = StyleBoxFlat.new()
+		outline.bg_color = Color.TRANSPARENT
+		outline.border_color = Color(1.0, 0.82, 0.35)
+		outline.set_border_width_all(3)
+		outline.set_corner_radius_all(5)
+		node.add_theme_stylebox_override("focus", outline)
+	for child in node.get_children():
+		_apply_focus_style(child)
 
 # ==============================================================================
 # ETAPA 1: SPLASH (CAPA MASCARANDO CARREGAMENTO)
