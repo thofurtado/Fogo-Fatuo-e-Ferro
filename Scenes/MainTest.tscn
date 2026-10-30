@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/FogoFatuo.gd" id="4_fogo"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/player.png" id="5_player_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/tiao_caboclo.png" id="6_tiao_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_tropical.png" id="7_tree_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/jequitiba.tres" id="7_tree_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/fogo_fatuo.png" id="8_fogo_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/porteira.png" id="9_porteira_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/tile_terra.png" id="10_terra_tex"]
@@ -89,15 +89,15 @@ script = ExtResource("4_fogo")
 texture = ExtResource("8_fogo_tex")
 
 [node name="Arvore1" type="Sprite2D" parent="."]
-position = Vector2(160, 200)
+position = Vector2(0, -117.500)
 texture = ExtResource("7_tree_tex")
 
 [node name="Arvore2" type="Sprite2D" parent="."]
-position = Vector2(920, 240)
+position = Vector2(0, -117.500)
 texture = ExtResource("7_tree_tex")
 
 [node name="Arvore3" type="Sprite2D" parent="."]
-position = Vector2(880, 520)
+position = Vector2(0, -117.500)
 texture = ExtResource("7_tree_tex")
 
 [node name="NPC" type="Area2D" parent="."]

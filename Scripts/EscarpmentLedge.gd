@@ -30,6 +30,7 @@ func _ready():
 			drop_area.body_entered.connect(_on_drop_area_body_entered)
 
 func _setup_shapes():
+	queue_redraw()
 	if not is_inside_tree():
 		return
 	if not solid_shape:
@@ -55,6 +56,22 @@ func _setup_shapes():
 		trigger_shape.size = Vector2(max(10.0, ledge_width), 16.0)
 		if drop_area:
 			drop_area.position = Vector2(0, -8)
+
+# A low, uneven earth/stone lip marks the drop without exposing editor glyphs.
+func _draw():
+	var half_width = ledge_width * 0.5
+	var bottom = clampf(ledge_height * 0.35, 6.0, 12.0)
+	var outline = PackedVector2Array([
+		Vector2(-half_width, -1), Vector2(-half_width + 7, -5),
+		Vector2(half_width - 5, -4), Vector2(half_width, 0),
+		Vector2(half_width - 3, bottom - 1), Vector2(-half_width + 2, bottom)
+	])
+	draw_colored_polygon(outline, Color(0.55, 0.42, 0.28))
+	draw_line(Vector2(-half_width + 7, -4), Vector2(half_width - 5, -3), Color(0.42, 0.47, 0.25), 2)
+	var x = -half_width + 17
+	while x < half_width - 7:
+		draw_line(Vector2(x, 1), Vector2(x + 6, bottom - 2), Color(0.61, 0.49, 0.32), 2)
+		x += 31
 
 func _on_drop_area_body_entered(body):
 	# Apenas corpos móveis (Player, Mula, criaturas, seguidores, NPCs)
