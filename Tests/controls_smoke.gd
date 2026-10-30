@@ -6,11 +6,13 @@ func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
+	root.get_node("GameManager").serra_save_enabled = false
 	var scene = load("res://Scenes/SubidaSerra.tscn").instantiate()
 	root.add_child(scene)
 	await process_frame
 	var player = scene.get_node("YSortContainer/Player")
 	var mula = scene.get_node("YSortContainer/MulaBonita")
+	scene._dismiss_dialogue()
 	scene.current_interactable = {"id": "fogueira_rancho"}
 	var initial_affinity: int = mula.affinity
 	var interaction = InputEventKey.new()
@@ -52,7 +54,8 @@ func _run() -> void:
 	touch_action.pressed = true
 	var affinity_before_touch: int = mula.affinity
 	scene._input(touch_action)
-	assert(mula.affinity == affinity_before_touch + 15, "Segundo toque deve interagir")
+	assert(mula.affinity == affinity_before_touch, "Descansar novamente não deve multiplicar afinidade")
+	assert(scene.mission.camp_rested, "Toque de interação deve descansar a comitiva")
 	assert(player.virtual_direction == Vector2.RIGHT, "Segundo toque não deve interromper movimento")
 	touch_move.pressed = false
 	scene._input(touch_move)

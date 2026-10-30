@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name MulaBonita
 
 @export var follow_target: Node2D
-@export var follow_distance: float = 46.0
+@export var follow_distance: float = 60.0
 @export var max_leash_distance: float = 110.0
 @export var max_speed: float = 115.0
 
@@ -12,6 +12,7 @@ class_name MulaBonita
 var affinity: int = 100
 var is_moving: bool = false
 var bob_timer: float = 0.0
+var sprite_ground_y: float = -16.0
 var is_falling_ledge: bool = false
 
 # Mecânica de água / riacho
@@ -44,7 +45,7 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	velocity = Vector2.ZERO
 	
 	# Pulinho animado da Mula descendo a pedra
-	var base_y = water_sink_depth if in_water else 0.0
+	var base_y = sprite_ground_y + (water_sink_depth if in_water else 0.0)
 	var hop = create_tween()
 	hop.tween_property(sprite, "position:y", base_y - 14.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	hop.tween_property(sprite, "position:y", base_y, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
@@ -58,6 +59,11 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 		on_finished.call()
 
 func _ready():
+	collision_layer = 2
+	sprite_ground_y = sprite.position.y
+	var animator = preload("res://Scripts/DirectionalAnimator.gd").new()
+	animator.frames = preload("res://Assets/Sprites/Characters/mule_walk.tres")
+	add_child(animator)
 	if rein_line:
 		rein_line.width = 2.0
 		rein_line.default_color = Color(0.45, 0.28, 0.15, 0.85)
@@ -135,10 +141,10 @@ func _physics_process(delta):
 		var bob_freq = 4.5 if in_water else 7.5
 		bob_timer += delta * (velocity.length() / max_speed) * bob_freq
 		var bob_offset = sin(bob_timer) * (1.0 if in_water else 1.5)
-		sprite.position.y = bob_offset + (water_sink_depth if in_water else 0.0)
+		sprite.position.y = sprite_ground_y + bob_offset + (water_sink_depth if in_water else 0.0)
 	else:
 		bob_timer = 0.0
-		sprite.position.y = (water_sink_depth if in_water else 0.0)
+		sprite.position.y = sprite_ground_y + (water_sink_depth if in_water else 0.0)
 
 func add_affinity(amount: int):
 	affinity = clamp(affinity + amount, 0, 150)

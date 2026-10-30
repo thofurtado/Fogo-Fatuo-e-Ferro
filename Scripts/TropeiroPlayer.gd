@@ -1,15 +1,17 @@
 extends CharacterBody2D
 class_name TropeiroPlayer
 
-@export var speed: float = 95.0
-@export var camera_zoom: Vector2 = Vector2(1.35, 1.35)
+@export var speed: float = 120.0
+@export var camera_zoom: Vector2 = Vector2(1.15, 1.15)
 @onready var sprite = $Sprite2D
 
 var virtual_direction: Vector2 = Vector2.ZERO
+var travel_speed_factor: float = 1.0
 var input_blocked: bool = false
 var facing_direction: Vector2 = Vector2.DOWN
 var is_moving: bool = false
 var bob_timer: float = 0.0
+var sprite_ground_y: float = -18.0
 var is_falling_ledge: bool = false
 
 # Mecânica de água / riacho
@@ -19,9 +21,15 @@ var water_slow_factor: float = 1.0
 var water_sink_depth: float = 0.0
 
 func _ready():
+	sprite_ground_y = sprite.position.y
+	var animator = preload("res://Scripts/DirectionalAnimator.gd").new()
+	animator.is_player = true
+	animator.frames = preload("res://Assets/Sprites/Characters/hero_walk.tres")
+	add_child(animator)
 	var cam = get_node_or_null("Camera2D") as Camera2D
 	if cam:
 		cam.zoom = camera_zoom
+		cam.position.y = -70
 
 func enter_water_zone(slow_factor: float = 0.35, sink_depth: float = 3.5):
 	water_zones_count += 1
@@ -43,7 +51,7 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	velocity = Vector2.ZERO
 	
 	# Hop animation no sprite (arco de salto na pedra)
-	var base_y = water_sink_depth if in_water else 0.0
+	var base_y = sprite_ground_y + (water_sink_depth if in_water else 0.0)
 	var hop = create_tween()
 	hop.tween_property(sprite, "position:y", base_y - 18.0, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	hop.tween_property(sprite, "position:y", base_y, 0.24).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
@@ -66,7 +74,8 @@ func _physics_process(delta):
 	input_vector += virtual_direction
 	if input_blocked:
 		input_vector = Vector2.ZERO
-	var effective_speed = speed * water_slow_factor
+		velocity = Vector2.ZERO
+	var effective_speed = speed * water_slow_factor * travel_speed_factor
 		
 	if input_vector != Vector2.ZERO:
 		input_vector = input_vector.limit_length(1.0)
@@ -99,7 +108,7 @@ func _physics_process(delta):
 		var bob_freq = 4.5 if in_water else 7.5
 		bob_timer += delta * bob_freq
 		var bob_offset = sin(bob_timer) * (1.0 if in_water else 1.6)
-		sprite.position.y = bob_offset + (water_sink_depth if in_water else 0.0)
+		sprite.position.y = sprite_ground_y + bob_offset + (water_sink_depth if in_water else 0.0)
 	else:
 		bob_timer = 0.0
-		sprite.position.y = (water_sink_depth if in_water else 0.0)
+		sprite.position.y = sprite_ground_y + (water_sink_depth if in_water else 0.0)

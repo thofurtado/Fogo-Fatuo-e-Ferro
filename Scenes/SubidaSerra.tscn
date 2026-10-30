@@ -448,7 +448,7 @@ limit_right = 1716
 limit_bottom = 2240
 
 [node name="MulaBonita" type="CharacterBody2D" parent="YSortContainer" node_paths=PackedStringArray("follow_target")]
-position = Vector2(1214, 1950)
+position = Vector2(1214, 1972)
 script = ExtResource("3_mula")
 follow_target = NodePath("../Player")
 
@@ -553,7 +553,7 @@ texture = ExtResource("12_altar_tex")
 shape = SubResource("CircleShape2D_interact")
 
 [node name="CruzeiroTopo" type="Area2D" parent="YSortContainer"]
-position = Vector2(1062, 518)
+position = Vector2(1062, 430)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/CruzeiroTopo"]
 position = Vector2(0, -37.200)
 scale = Vector2(0.16, 0.16)

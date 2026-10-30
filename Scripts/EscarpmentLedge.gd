@@ -83,7 +83,7 @@ func _on_drop_area_body_entered(body):
 		return
 		
 	# Só ativa o salto se a criatura estiver acima da escarpa descendo em direção a ela
-	if body.global_position.y < global_position.y + 8.0:
+	if body.global_position.y < global_position.y + 8.0 and (not "velocity" in body or body.velocity.y > 8.0):
 		_process_drop(body)
 
 func _process_drop(body: Node2D):
@@ -135,7 +135,7 @@ func _apply_penalty():
 	if gm and "current_archetype" in gm:
 		var arch = gm.current_archetype
 		if arch and arch.has("vida_atual"):
-			arch["vida_atual"] = max(1, arch["vida_atual"] - penalty_hp)
+			arch["vida_atual"] = max(0, arch["vida_atual"] - penalty_hp)
 	
 	var parent_scene = get_tree().current_scene
 	if parent_scene and parent_scene.has_method("on_player_fell_ledge"):

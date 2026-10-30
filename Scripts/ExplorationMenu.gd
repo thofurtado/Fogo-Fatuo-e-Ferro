@@ -13,8 +13,11 @@ func _ready():
 	layer = 20
 	pause_button = Button.new()
 	pause_button.text = "Pausa"
-	pause_button.position = Vector2(450, 76)
-	pause_button.size = Vector2(106, 72)
+	pause_button.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	pause_button.offset_left = -122
+	pause_button.offset_right = -16
+	pause_button.offset_top = 76
+	pause_button.offset_bottom = 148
 	pause_button.focus_mode = Control.FOCUS_NONE
 	pause_button.pressed.connect(_toggle_pause)
 	add_child(pause_button)
@@ -24,8 +27,8 @@ func _ready():
 	background.bg_color = Color(0.07, 0.09, 0.07, 0.97)
 	background.content_margin_left = 48
 	background.content_margin_right = 48
-	background.content_margin_top = 180
-	background.content_margin_bottom = 100
+	background.content_margin_top = 64
+	background.content_margin_bottom = 24
 	panel.add_theme_stylebox_override("panel", background)
 	add_child(panel)
 	var items = VBoxContainer.new()
@@ -48,7 +51,7 @@ func _ready():
 	volume.value_changed.connect(func(value): AudioServer.set_bus_volume_db(0, linear_to_db(maxf(value / 100.0, 0.0001))))
 	items.add_child(volume)
 	fullscreen_button = _button(items, "Alternar tela cheia", _toggle_fullscreen)
-	menu_button = _button(items, "Voltar ao menu (sem salvar)", _return_to_menu)
+	menu_button = _button(items, "Voltar ao menu (último checkpoint)", _return_to_menu)
 	panel.hide()
 
 func _button(parent: Control, text: String, callback: Callable) -> Button:
@@ -97,6 +100,8 @@ func _set_touch_volume(x: float):
 	volume.value = clampf((x - rect.position.x) / rect.size.x, 0, 1) * 100
 
 func _toggle_pause():
+	if get_parent().mission and get_parent().mission.finished:
+		return
 	var paused = not panel.visible
 	panel.visible = paused
 	pause_button.visible = not paused
