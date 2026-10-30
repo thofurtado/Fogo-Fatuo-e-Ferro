@@ -11,10 +11,60 @@ func _ready():
 	for node in ground.get_children():
 		if node is Polygon2D or node is ColorRect or node.name in ["MudTrailBase","MudTrailInner"]:
 			node.material = grain
+		if node is Polygon2D and node.name != "OceanEstuary":
+			var transition = ShaderMaterial.new()
+			transition.shader = preload("res://Assets/Shaders/terrain_transition.gdshader")
+			var edges = PackedVector2Array(node.polygon)
+			var count = edges.size()
+			edges.resize(32)
+			transition.set_shader_parameter("edge_points", edges)
+			transition.set_shader_parameter("edge_count", count)
+			transition.set_shader_parameter("feather", 30.0 if node.name == "SantosGround" else 22.0)
+			node.material = transition
+	var trail_material = ShaderMaterial.new()
+	trail_material.shader = preload("res://Assets/Shaders/trail_surface.gdshader")
+	var trail_points = PackedVector2Array(ground.get_node("MudTrailBase").points)
+	trail_material.set_shader_parameter("point_count",trail_points.size())
+	trail_points.resize(40)
+	trail_material.set_shader_parameter("path_points",trail_points)
+	ground.get_node("MudTrailBase").material = trail_material
+	ground.get_node("MudTrailInner").hide()
 	var water = ShaderMaterial.new()
 	water.shader = preload("res://Assets/Shaders/river_surface.gdshader")
 	for name in ["OceanEstuary","RioCubatao","CachoeiraVeu"]:
 		ground.get_node(NodePath(name)).material = water
+	# A narrow earth bank ties the water to the land instead of a hard blue cutout.
+	var river_bank = Line2D.new()
+	river_bank.points = ground.get_node("RioCubatao").points
+	river_bank.width = 54
+	river_bank.default_color = Color(0.33,0.36,0.23)
+	river_bank.joint_mode = Line2D.LINE_JOINT_ROUND
+	ground.add_child(river_bank)
+	ground.move_child(river_bank, ground.get_node("RioCubatao").get_index())
+	var coast = ground.get_node("OceanEstuary").polygon
+	var shore = Line2D.new()
+	var shore_points = PackedVector2Array()
+	for segment in range(5):
+		var steps = ceili(coast[segment].distance_to(coast[segment+1])/12.0)
+		for step in range(steps):
+			var point = coast[segment].lerp(coast[segment+1],float(step)/steps)
+			point.y += sin(point.x*0.071)*1.8 + sin(point.x*0.19)*0.7
+			shore_points.append(point)
+	shore_points.append(coast[5])
+	shore.points = shore_points
+	shore.width = 8
+	shore.default_color = Color(0.42,0.43,0.28)
+	shore.joint_mode = Line2D.LINE_JOINT_ROUND
+	shore.material = grain
+	ground.add_child(shore)
+	ground.move_child(shore, ground.get_node("OceanEstuary").get_index()+1)
+	# Use the same timber as the port for the crossing, retaining its collision area.
+	var bridge = Sprite2D.new()
+	bridge.texture = preload("res://Assets/Sprites/Clean/pier.png")
+	bridge.position = Vector2(824,1420)
+	bridge.scale = Vector2(0.105,0.044)
+	ground.get_node("RiverBridge").color.a = 0
+	ground.add_child(bridge)
 	var motes = preload("res://Scripts/ForestMotes.gd").new()
 	motes.player = scene.player
 	motes.z_index = 25
@@ -23,7 +73,11 @@ func _ready():
 		var sprite = actor.get_node_or_null("Sprite2D") as Sprite2D
 		if sprite:
 			var shadow = preload("res://Scripts/GroundShadow.gd").new()
-			shadow.width = (14.0 if actor == scene.player else 19.0) if actor == scene.player or actor == scene.mula else minf(80, sprite.get_rect().size.x * sprite.scale.x * 0.32)
+			var companion = actor == scene.player or actor == scene.mula
+			shadow.width = (12.0 if actor == scene.player else 16.0) if companion else minf(65, sprite.get_rect().size.x * sprite.scale.x * 0.34)
+			if not companion:
+				shadow.position = Vector2(sprite.position.x, sprite.position.y + sprite.get_rect().end.y * sprite.scale.y - 2)
+				shadow.depth = 0.18
 			shadow.z_index = -1
 			actor.add_child(shadow)
 			if actor == scene.player or actor == scene.mula:

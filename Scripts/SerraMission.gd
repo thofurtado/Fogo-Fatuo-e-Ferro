@@ -247,9 +247,13 @@ func _build_world_bounds():
 		col.shape = shape
 		col.position = rect.get_center()
 		body.add_child(col)
-	var coast = CollisionPolygon2D.new()
-	coast.polygon = scene.get_node("GroundLayer/OceanEstuary").polygon
-	body.add_child(coast)
+	var coast_outline = scene.get_node("GroundLayer/OceanEstuary").polygon
+	# The pier is walkable; remove its deck from the otherwise solid estuary.
+	var dock = PackedVector2Array([Vector2(979,1845),Vector2(1031,1845),Vector2(1031,2070),Vector2(979,2070)])
+	for outline in Geometry2D.clip_polygons(coast_outline,dock):
+		var coast = CollisionPolygon2D.new()
+		coast.polygon = outline
+		body.add_child(coast)
 
 func _build_river():
 	var river = Area2D.new()
@@ -295,5 +299,7 @@ func _build_prop_collisions():
 		node.add_child.call_deferred(body)
 
 func resize_hud(size: Vector2i):
-	objective_panel.size.x = minf(540, size.x - 32)
+	objective_panel.position.y = 116 if size.x > 600 else 156
+	objective_panel.size.x = minf(480 if size.x > 600 else 540, size.x - 32)
+	toast.position.y = objective_panel.position.y + objective_panel.size.y + 8
 	result_panel.position = Vector2((size.x-504)*0.5,maxf(100,(size.y-420)*0.5))

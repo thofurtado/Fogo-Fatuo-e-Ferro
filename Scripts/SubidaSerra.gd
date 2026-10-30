@@ -101,6 +101,13 @@ func _configure_screen():
 	var logical = Vector2i(roundi(720*ratio),720) if ratio > 1.25 and not DisplayServer.is_touchscreen_available() else Vector2i(572,1024)
 	if get_window().content_scale_size != logical:
 		get_window().content_scale_size = logical
+	var hud = get_node("UILayer/TopHUD") as Control
+	hud.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	hud.position = Vector2(12,12)
+	hud.size = Vector2(minf(660,logical.x-152) if logical.x > 600 else logical.x-24,62)
+	if is_instance_valid(exploration_menu):
+		exploration_menu.pause_button.offset_top = 12 if logical.x > 600 else 76
+		exploration_menu.pause_button.offset_bottom = 74 if logical.x > 600 else 148
 	if is_instance_valid(dialogue_box):
 		dialogue_box.offset_top = -390 if logical.x > 600 else -460
 	if is_instance_valid(input_hint):

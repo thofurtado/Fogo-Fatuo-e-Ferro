@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/RanchoPouso.tscn" id="22_rancho_scene"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/fogueira.tres" id="8_fire_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/bau.tres" id="9_chest_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/bau_madeira.png" id="10_crate_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/bau.tres" id="10_crate_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/placa.tres" id="11_sign_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/altar.tres" id="12_altar_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/jequitiba.tres" id="13_tree_tex"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" path="res://Assets/Sprites/cerca_madeira.png" id="15_fence_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/fogo_fatuo.png" id="16_flame_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/bloco_granito.png" id="17_granite_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/cais_madeira.png" id="18_cais_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/pier.png" id="18_cais_tex"]
 [ext_resource type="PackedScene" path="res://Scenes/EscarpmentLedge.tscn" id="19_ledge_scene"]
 [ext_resource type="Script" path="res://Scripts/CliffFace.gd" id="23_cliff"]
 
@@ -468,29 +468,27 @@ position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_mula")
 
 [node name="SantosCais01" type="Sprite2D" parent="YSortContainer"]
-position = Vector2(1005, 1945)
-scale = Vector2(1.5, 1.2)
-texture = ExtResource("18_cais_tex")
-
-[node name="SantosCais02" type="Sprite2D" parent="YSortContainer"]
-position = Vector2(963, 1965)
-scale = Vector2(1.5, 1.2)
+z_index = -2
+position = Vector2(1005, 1960)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("18_cais_tex")
 
 [node name="CratePort01" type="CharacterBody2D" parent="YSortContainer" groups=["pushable"]]
-position = Vector2(1030, 1920)
+position = Vector2(1058, 1906)
 script = ExtResource("4_pushable")
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/CratePort01"]
-scale = Vector2(1.2, 1.2)
+position = Vector2(0, -19)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("10_crate_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/CratePort01"]
 shape = SubResource("RectangleShape2D_crate")
 
 [node name="CratePort02" type="CharacterBody2D" parent="YSortContainer" groups=["pushable"]]
-position = Vector2(980, 1930)
+position = Vector2(970, 1870)
 script = ExtResource("4_pushable")
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/CratePort02"]
-scale = Vector2(1.2, 1.2)
+position = Vector2(0, -19)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("10_crate_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/CratePort02"]
 shape = SubResource("RectangleShape2D_crate")

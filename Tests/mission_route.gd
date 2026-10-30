@@ -24,6 +24,10 @@ func run():
 	query.collide_with_areas = false
 	query.exclude = [scene.player.get_rid(), scene.mula.get_rid()]
 	var space = scene.get_world_2d().direct_space_state
+	query.transform = Transform2D(0,Vector2(1005,2030))
+	assert(space.intersect_shape(query,1).is_empty(), "The pier deck must be walkable")
+	query.transform = Transform2D(0,Vector2(1075,2030))
+	assert(not space.intersect_shape(query,1).is_empty(), "Water beside the pier must remain blocked")
 	for y in range(140):
 		for x in range(108):
 			query.transform = Transform2D(0,Vector2(x*16+8,y*16+8))
