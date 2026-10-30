@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3]
+[gd_scene load_steps=34 format=3]
 
 [ext_resource type="Script" path="res://Scripts/SubidaSerra.gd" id="1_scene"]
 [ext_resource type="Script" path="res://Scripts/TropeiroPlayer.gd" id="2_player"]
@@ -6,7 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/PushableCargo.gd" id="4_pushable"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/tiao_caboclo.png" id="5_tiao_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/mula_bonita.png" id="6_mula_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/cabana_tropeira.png" id="7_cabana_tex"]
+[ext_resource type="PackedScene" path="res://Scenes/TavernaSantos.tscn" id="7_taverna_scene"]
+[ext_resource type="PackedScene" path="res://Scenes/ArmazemCoroa.tscn" id="20_armazem_scene"]
+[ext_resource type="PackedScene" path="res://Scenes/CasaColonial.tscn" id="21_casa_scene"]
+[ext_resource type="PackedScene" path="res://Scenes/RanchoPouso.tscn" id="22_rancho_scene"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/fogueira_tropeiro.png" id="8_fire_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/bau_fechado.png" id="9_chest_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/bau_madeira.png" id="10_crate_tex"]
@@ -28,9 +31,6 @@ radius = 11.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crate"]
 size = Vector2(28, 28)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cabin"]
-size = Vector2(170, 70)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
 radius = 45.0
@@ -518,41 +518,17 @@ texture = ExtResource("10_crate_tex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/CratePort02"]
 shape = SubResource("RectangleShape2D_crate")
 
-[node name="SantosTaverna" type="StaticBody2D" parent="YSortContainer"]
+[node name="SantosTaverna" parent="YSortContainer" instance=ExtResource("7_taverna_scene")]
 position = Vector2(1273, 1780)
-[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/SantosTaverna"]
-position = Vector2(0, -35)
-scale = Vector2(0.55, 0.55)
-texture = ExtResource("7_cabana_tex")
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SantosTaverna"]
-shape = SubResource("RectangleShape2D_cabin")
 
-[node name="SantosArmazem" type="StaticBody2D" parent="YSortContainer"]
+[node name="SantosArmazem" parent="YSortContainer" instance=ExtResource("20_armazem_scene")]
 position = Vector2(1402, 1738)
-[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/SantosArmazem"]
-position = Vector2(0, -35)
-scale = Vector2(0.60, 0.60)
-texture = ExtResource("7_cabana_tex")
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SantosArmazem"]
-shape = SubResource("RectangleShape2D_cabin")
 
-[node name="SantosFazenda" type="StaticBody2D" parent="YSortContainer"]
+[node name="SantosFazenda" parent="YSortContainer" instance=ExtResource("21_casa_scene")]
 position = Vector2(1008, 1820)
-[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/SantosFazenda"]
-position = Vector2(0, -35)
-scale = Vector2(0.50, 0.50)
-texture = ExtResource("7_cabana_tex")
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SantosFazenda"]
-shape = SubResource("RectangleShape2D_cabin")
 
-[node name="RanchoCabana" type="StaticBody2D" parent="YSortContainer"]
+[node name="RanchoCabana" parent="YSortContainer" instance=ExtResource("22_rancho_scene")]
 position = Vector2(880, 1370)
-[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/RanchoCabana"]
-position = Vector2(0, -30)
-scale = Vector2(0.48, 0.48)
-texture = ExtResource("7_cabana_tex")
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/RanchoCabana"]
-shape = SubResource("RectangleShape2D_cabin")
 
 [node name="RanchoFogueira" type="Area2D" parent="YSortContainer"]
 position = Vector2(824, 1360)

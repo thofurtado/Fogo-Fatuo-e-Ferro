@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://Scripts/WorldRPG.gd" id="1_world"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/textura_grama_serra.png" id="2_grass_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_jequitiba.png" id="3_tree_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/cabana_tropeira.png" id="4_cabin_tex"]
+[ext_resource type="PackedScene" path="res://Scenes/RanchoPouso.tscn" id="4_rancho_scene"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/fogueira_tropeiro.png" id="5_fire_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/bau_fechado.png" id="6_chest_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/placa_madeira.png" id="7_sign_tex"]
@@ -18,9 +18,6 @@ radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tree_root"]
 radius = 14.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cabin"]
-size = Vector2(220, 90)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fire"]
 radius = 16.0
@@ -194,20 +191,11 @@ shape = SubResource("CircleShape2D_interact_small")
 [node name="TropeiroCamp" type="Node2D" parent="YSortContainer"]
 y_sort_enabled = true
 
-[node name="Cabana" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
-y_sort_enabled = true
+[node name="Cabana" parent="YSortContainer/TropeiroCamp" instance=ExtResource("4_rancho_scene")]
 position = Vector2(360, 700)
 
-[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-scale = Vector2(0.48, 0.48)
-texture = ExtResource("4_cabin_tex")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-position = Vector2(0, 30)
-shape = SubResource("RectangleShape2D_cabin")
-
 [node name="PortaArea" type="Area2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-position = Vector2(-2, 70)
+position = Vector2(-2, 42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana/PortaArea"]
 shape = SubResource("CircleShape2D_interact_small")
