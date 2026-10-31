@@ -83,11 +83,7 @@ func _physics_process(delta):
 		velocity = input_vector * effective_speed
 		is_moving = true
 		
-		# Vira o sprite horizontalmente
-		if input_vector.x > 0.1:
-			sprite.flip_h = false
-		elif input_vector.x < -0.1:
-			sprite.flip_h = true
+
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, effective_speed * 10.0 * delta)
 		is_moving = false
@@ -102,13 +98,3 @@ func _physics_process(delta):
 		if collider is CharacterBody2D and collider.is_in_group("pushable"):
 			collider.velocity = -collision.get_normal() * (effective_speed * 0.6)
 			collider.move_and_slide()
-			
-	# Animação sutil de passos (bobbing com ritmo cadenciado + imersão visual na água)
-	if is_moving:
-		var bob_freq = 4.5 if in_water else 7.5
-		bob_timer += delta * bob_freq
-		var bob_offset = sin(bob_timer) * (1.0 if in_water else 1.6)
-		sprite.position.y = sprite_ground_y + bob_offset + (water_sink_depth if in_water else 0.0)
-	else:
-		bob_timer = 0.0
-		sprite.position.y = sprite_ground_y + (water_sink_depth if in_water else 0.0)

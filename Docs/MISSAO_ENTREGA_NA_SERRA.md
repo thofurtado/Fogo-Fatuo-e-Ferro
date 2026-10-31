@@ -31,8 +31,18 @@ No Godot 4.7.2, após importar os recursos:
 
 ```text
 godot --headless --path . --script res://Tests/controls_smoke.gd
+godot --headless --path . --script res://Tests/walk_cycle.gd
 godot --headless --path . --script res://Tests/mission_rules.gd
 godot --headless --path . --script res://Tests/mission_route.gd
 ```
 
-O teste de percurso constrói uma malha a partir das colisões reais, move o personagem usando a mesma entrada virtual do jogo, alcança as áreas de interação e termina a missão. Os testes usam armazenamento isolado ou desativam a gravação. A exportação Web também executa os três testes. Teste físico de controle, celular e navegação no Preview continuam necessários para avaliar conforto e compatibilidade no dispositivo final.
+O teste de percurso constrói uma malha a partir das colisões reais, move o personagem usando a mesma entrada virtual do jogo, alcança as áreas de interação e termina a missão. Os testes usam armazenamento isolado ou desativam a gravação. A exportação Web também executa os quatro testes. Teste físico de controle, celular e navegação no Preview continuam necessários para avaliar conforto e compatibilidade no dispositivo final.
+
+
+## Revisao artistica manual pendente
+
+Em `Scenes/SubidaSerra.tscn`, o grupo `EscarpmentsContainer` contem as bordas de queda. As faixas marrons sao desenhos provisorios de `Scripts/EscarpmentLedge.gd`, nao erros de exportacao. Os paredoes nas laterais usam `Scripts/CliffFace.gd`. A composicao atual coloca muitas dessas bordas atravessando visualmente a trilha: ajustar apenas cor ou shader nao resolve a leitura de altura. E necessario recompor os patamares, substituir esses desenhos por arte coerente e conferir as colisoes e gatilhos de queda junto com o novo visual.
+
+Em `YSortContainer`, revisar o espacamento, escala e sobreposicao das arvores e construcoes, evitando repeticao excessiva. Usar o tropeiro (aproximadamente 66 pixels de altura no mundo) como referencia. Mover um objeto pelo no pai preserva a relacao entre sprite e colisao; mover apenas o `Sprite2D` pode separar a imagem de sua area solida. A posicao dos objetivos tambem deve continuar acessivel.
+
+A caminhada do tropeiro usa poses de contato e passagem distintas, com ancoragem dos pes e espelhamento consistente do ciclo lateral. O ritmo acompanha a distancia real percorrida. O teste `walk_cycle.gd` verifica a diferenca de silhueta e o avanco dos quadros em todas as direcoes; isso nao substitui a revisao artistica do movimento.

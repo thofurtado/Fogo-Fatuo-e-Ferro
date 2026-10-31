@@ -33,6 +33,7 @@ jobs:
           # primeira passada importa as texturas (.godot/ nao vai pro git); pode sair != 0 sem ser erro real
           godot --headless --path . --import || true
           godot --headless --path . --script res://Tests/controls_smoke.gd
+          godot --headless --path . --script res://Tests/walk_cycle.gd
           godot --headless --path . --script res://Tests/mission_rules.gd
           godot --headless --path . --script res://Tests/mission_route.gd
           godot --headless --path . --export-release "Web" build/web/index.html
