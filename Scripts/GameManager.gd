@@ -15,6 +15,31 @@ var periodo_partida: String = "noite"
 var partida_noite: bool = true
 
 var current_archetype: Dictionary = {}
+var serra_resume_requested: bool = false
+var serra_save_enabled: bool = true
+var serra_save_path: String = "user://serra_checkpoint.json"
+
+func read_serra_checkpoint() -> Dictionary:
+	if not FileAccess.file_exists(serra_save_path):
+		return {}
+	var data = JSON.parse_string(FileAccess.get_file_as_string(serra_save_path))
+	if not data is Dictionary or data.get("version", 0) != 1:
+		return {}
+	if not data.get("position") is Array or data["position"].size() != 2:
+		return {}
+	return data
+
+func write_serra_checkpoint(data: Dictionary):
+	if not serra_save_enabled:
+		return
+	var file = FileAccess.open(serra_save_path, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(data))
+
+func clear_serra_checkpoint():
+	if serra_save_enabled and FileAccess.file_exists(serra_save_path):
+		DirAccess.remove_absolute(serra_save_path)
+
 
 var archetypes_catalog: Array[Dictionary] = [
 	{

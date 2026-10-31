@@ -1,16 +1,15 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Texture2D" path="res://Assets/Sprites/rancho_pouso.png" id="1_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/rancho.tres" id="1_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
 size = Vector2(180, 50)
 
 [node name="RanchoPouso" type="StaticBody2D"]
-y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -70)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -91.640)
+scale = Vector2(0.42, 0.42)
 texture = ExtResource("1_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

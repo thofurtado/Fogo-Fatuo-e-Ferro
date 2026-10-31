@@ -1,13 +1,13 @@
-﻿[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://Scripts/WorldRPG.gd" id="1_world"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/textura_grama_serra.png" id="2_grass_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/arvore_jequitiba.png" id="3_tree_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/cabana_tropeira.png" id="4_cabin_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/fogueira_tropeiro.png" id="5_fire_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/bau_fechado.png" id="6_chest_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/placa_madeira.png" id="7_sign_tex"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/altar_ancestral.png" id="8_altar_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/jequitiba.tres" id="3_tree_tex"]
+[ext_resource type="PackedScene" path="res://Scenes/RanchoPouso.tscn" id="4_rancho_scene"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/fogueira.tres" id="5_fire_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/bau.tres" id="6_chest_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/placa.tres" id="7_sign_tex"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/altar.tres" id="8_altar_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/cerca_madeira.png" id="9_fence_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/amuleto_verde.png" id="10_amulet_tex"]
 [ext_resource type="Script" path="res://Scripts/CurumimPlayer.gd" id="11_player"]
@@ -18,9 +18,6 @@ radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tree_root"]
 radius = 14.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cabin"]
-size = Vector2(220, 90)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fire"]
 radius = 16.0
@@ -157,7 +154,8 @@ y_sort_enabled = true
 position = Vector2(740, 1370)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
-scale = Vector2(0.45, 0.45)
+position = Vector2(0, -37.200)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("8_altar_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/StartingClearing/CurupiraTotem"]
@@ -185,7 +183,8 @@ y_sort_enabled = true
 position = Vector2(800, 770)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Crossroads/Placa"]
-scale = Vector2(0.38, 0.38)
+position = Vector2(0, -32.080)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("7_sign_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Crossroads/Placa"]
@@ -194,20 +193,11 @@ shape = SubResource("CircleShape2D_interact_small")
 [node name="TropeiroCamp" type="Node2D" parent="YSortContainer"]
 y_sort_enabled = true
 
-[node name="Cabana" type="StaticBody2D" parent="YSortContainer/TropeiroCamp"]
-y_sort_enabled = true
+[node name="Cabana" parent="YSortContainer/TropeiroCamp" instance=ExtResource("4_rancho_scene")]
 position = Vector2(360, 700)
 
-[node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-scale = Vector2(0.48, 0.48)
-texture = ExtResource("4_cabin_tex")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-position = Vector2(0, 30)
-shape = SubResource("RectangleShape2D_cabin")
-
 [node name="PortaArea" type="Area2D" parent="YSortContainer/TropeiroCamp/Cabana"]
-position = Vector2(-2, 70)
+position = Vector2(-2, 42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Cabana/PortaArea"]
 shape = SubResource("CircleShape2D_interact_small")
@@ -217,7 +207,8 @@ y_sort_enabled = true
 position = Vector2(460, 830)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
-scale = Vector2(0.42, 0.42)
+position = Vector2(0, -23.775)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("5_fire_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Fogueira"]
@@ -234,7 +225,8 @@ y_sort_enabled = true
 position = Vector2(250, 830)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/TropeiroCamp/Bau"]
-scale = Vector2(0.38, 0.38)
+position = Vector2(0, -21.980)
+scale = Vector2(0.14, 0.14)
 texture = ExtResource("6_chest_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/TropeiroCamp/Bau"]
@@ -262,7 +254,8 @@ y_sort_enabled = true
 position = Vector2(1280, 770)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
-scale = Vector2(0.45, 0.45)
+position = Vector2(0, -37.200)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("8_altar_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/SacredMarsh/AltarFogoFatuo"]
@@ -288,6 +281,7 @@ y_sort_enabled = true
 position = Vector2(650, 1450)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree1"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -300,6 +294,7 @@ y_sort_enabled = true
 position = Vector2(950, 1450)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree2"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -312,6 +307,7 @@ y_sort_enabled = true
 position = Vector2(620, 1300)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree3"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -324,6 +320,7 @@ y_sort_enabled = true
 position = Vector2(980, 1300)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree4"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -336,6 +333,7 @@ y_sort_enabled = true
 position = Vector2(660, 1120)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree5"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -348,6 +346,7 @@ y_sort_enabled = true
 position = Vector2(940, 1120)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree6"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -360,6 +359,7 @@ y_sort_enabled = true
 position = Vector2(680, 940)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree7"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -372,6 +372,7 @@ y_sort_enabled = true
 position = Vector2(920, 940)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree8"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -384,6 +385,7 @@ y_sort_enabled = true
 position = Vector2(700, 680)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree9"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -396,6 +398,7 @@ y_sort_enabled = true
 position = Vector2(900, 680)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree10"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -408,6 +411,7 @@ y_sort_enabled = true
 position = Vector2(500, 880)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree11"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -420,6 +424,7 @@ y_sort_enabled = true
 position = Vector2(1100, 880)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree12"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -432,6 +437,7 @@ y_sort_enabled = true
 position = Vector2(180, 680)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree13"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -444,6 +450,7 @@ y_sort_enabled = true
 position = Vector2(520, 680)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree14"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -456,6 +463,7 @@ y_sort_enabled = true
 position = Vector2(1080, 640)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree15"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 
@@ -468,6 +476,7 @@ y_sort_enabled = true
 position = Vector2(1440, 640)
 
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Trees/Tree16"]
+position = Vector2(0, -59.880)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("3_tree_tex")
 

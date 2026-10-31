@@ -3,8 +3,8 @@
 @onready var player = $Player
 @onready var sign_area = $PlacaArea
 @onready var dialogue_box = $UILayer/DialogueBox
-@onready var dialogue_label = $UILayer/DialogueBox/MarginContainer/HBoxContainer/VBoxContainer/DialogueText
-@onready var speaker_label = $UILayer/DialogueBox/MarginContainer/HBoxContainer/VBoxContainer/Speaker
+@onready var dialogue_label = $UILayer/DialogueBox/MarginContainer/VBoxContainer/DialogueText
+@onready var speaker_label = $UILayer/DialogueBox/MarginContainer/VBoxContainer/Speaker
 @onready var hud_hero_name = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/HeroLabel
 @onready var hud_hp = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/HpLabel
 @onready var hud_mana = $UILayer/TopHUD/MarginContainer/VBoxContainer/HBoxContainer/ManaLabel
