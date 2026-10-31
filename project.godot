@@ -39,3 +39,14 @@ movie_writer/movie_file="C:/Users/Johnny/Documents/GitHub/Fogo-Fatuo-e-Ferro/gam
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+serra_wind={
+"type": "float",
+"value": 0.3
+}
+serra_rain={
+"type": "float",
+"value": 0.0
+}

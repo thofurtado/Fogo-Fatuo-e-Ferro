@@ -19,6 +19,17 @@ var panic_cooldown: float = 0.0
 var panic_direction: Vector2 = Vector2.ZERO
 var panic_count: int = 0
 var snort: AudioStreamPlayer2D
+var directional_animator: Node
+
+func get_rein_anchor() -> Vector2:
+	var direction = directional_animator.direction if directional_animator else &"south"
+	var height = sprite.texture.get_height()*sprite.scale.y
+	var width = sprite.texture.get_width()*sprite.scale.x
+	var offset = Vector2(0,-height*0.20)
+	if direction == &"north": offset.y = -height*0.35
+	elif direction == &"west": offset = Vector2(-width*0.35,-height*0.12)
+	elif direction == &"east": offset = Vector2(width*0.35,-height*0.12)
+	return global_position+sprite.position+offset
 
 func startle(threat: Vector2) -> bool:
 	if get_tree().paused or panic_cooldown > 0 or is_falling_ledge or not follow_target or follow_target.input_blocked:
@@ -83,11 +94,9 @@ func _ready():
 	add_child(snort)
 	sprite_ground_y = sprite.position.y
 	var animator = preload("res://Scripts/DirectionalAnimator.gd").new()
+	directional_animator = animator
 	animator.frames = preload("res://Assets/Sprites/Characters/mule_walk.tres")
 	add_child(animator)
-	if rein_line:
-		rein_line.width = 2.0
-		rein_line.default_color = Color(0.45, 0.28, 0.15, 0.85)
 
 func _physics_process(delta):
 	panic_cooldown = maxf(0,panic_cooldown-delta)
@@ -97,20 +106,6 @@ func _physics_process(delta):
 	var target_pos = follow_target.global_position
 	var direct_dist = global_position.distance_to(target_pos)
 	
-	# Linha visual da rédea elástica (sempre atualizada, mesmo durante o salto)
-	if rein_line:
-		rein_line.clear_points()
-		rein_line.add_point(Vector2.ZERO)
-		var local_target = to_local(target_pos + Vector2(0, 8))
-		rein_line.add_point(local_target)
-		# Tensão visual da corda: afina e fica mais esticada se puxar muito
-		if direct_dist > follow_distance * 1.5:
-			rein_line.width = 1.5
-			rein_line.default_color = Color(0.55, 0.22, 0.12, 0.9)
-		else:
-			rein_line.width = 2.0
-			rein_line.default_color = Color(0.45, 0.28, 0.15, 0.85)
-
 	# Se estiver executando o salto de escarpa, a física normal pausa para o tween
 	if is_falling_ledge:
 		return

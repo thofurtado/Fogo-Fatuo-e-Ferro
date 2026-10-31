@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://Scripts/WildlifeRoute.gd" id="1_route"]
+
+[sub_resource type="Curve2D" id="curve_0"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 1040, 1630, 0, 0, 0, 0, 960, 1650, 0, 0, 0, 0, 850, 1680, 0, 0, 0, 0, 980, 1700, 0, 0, 0, 0, 1040, 1630)}
+
+[sub_resource type="Curve2D" id="curve_1"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 1010, 1550, 0, 0, 0, 0, 940, 1540, 0, 0, 0, 0, 865, 1565, 0, 0, 0, 0, 960, 1580, 0, 0, 0, 0, 1010, 1550)}
+
+[sub_resource type="Curve2D" id="curve_2"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 1240, 470, 0, 0, 0, 0, 1170, 480, 0, 0, 0, 0, 1100, 505, 0, 0, 0, 0, 1195, 520, 0, 0, 0, 0, 1240, 470)}
+
+[sub_resource type="Curve2D" id="curve_3"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, -160, 1650, 0, 0, 0, 0, 450, 1600, 0, 0, 0, 0, 1080, 1450, 0, 0, 0, 0, 1900, 1350)}
+
+[sub_resource type="Curve2D" id="curve_4"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, -160, 1120, 0, 0, 0, 0, 650, 1180, 0, 0, 0, 0, 1100, 950, 0, 0, 0, 0, 1900, 820)}
+
+[sub_resource type="Curve2D" id="curve_5"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 1900, 380, 0, 0, 0, 0, 1220, 540, 0, 0, 0, 0, 850, 470, 0, 0, 0, 0, -160, 320)}
+
+[sub_resource type="Curve2D" id="curve_6"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 772, 1490, 0, 0, 0, 0, 750, 1505, 0, 0, 0, 0, 735, 1535, 0, 0, 0, 0, 775, 1520, 0, 0, 0, 0, 772, 1490)}
+
+[sub_resource type="Curve2D" id="curve_7"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 744, 1280, 0, 0, 0, 0, 720, 1300, 0, 0, 0, 0, 710, 1320, 0, 0, 0, 0, 745, 1310, 0, 0, 0, 0, 744, 1280)}
+
+[sub_resource type="Curve2D" id="curve_8"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 705, 1060, 0, 0, 0, 0, 690, 1080, 0, 0, 0, 0, 690, 1110, 0, 0, 0, 0, 720, 1090, 0, 0, 0, 0, 705, 1060)}
+
+[sub_resource type="Curve2D" id="curve_9"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 620, 1300, 0, 0, 0, 0, 590, 1295, 0, 0, 0, 0, 635, 1275, 0, 0, 0, 0, 658, 1295, 0, 0, 0, 0, 620, 1300)}
+
+[sub_resource type="Curve2D" id="curve_10"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 1350, 1050, 0, 0, 0, 0, 1320, 1045, 0, 0, 0, 0, 1365, 1025, 0, 0, 0, 0, 1388, 1045, 0, 0, 0, 0, 1350, 1050)}
+
+[sub_resource type="Curve2D" id="curve_11"]
+_data = {"points": PackedVector2Array(0, 0, 0, 0, 1220, 540, 0, 0, 0, 0, 1190, 535, 0, 0, 0, 0, 1235, 515, 0, 0, 0, 0, 1258, 535, 0, 0, 0, 0, 1220, 540)}
+
+[node name="WildlifeRoutes" type="Node2D"]
+
+[node name="CobraBaixa" type="Path2D" parent="."]
+curve = SubResource("curve_0")
+script = ExtResource("1_route")
+species = "snake"
+pause_seconds = PackedFloat32Array(4, 1, 5, 1, 0)
+sheltered_stops = PackedInt32Array(0, 2)
+elevation = 0.0
+patrol_speed = 24.0
+
+[node name="CobraRancho" type="Path2D" parent="."]
+curve = SubResource("curve_1")
+script = ExtResource("1_route")
+species = "snake"
+pause_seconds = PackedFloat32Array(5, 1, 4, 1, 0)
+sheltered_stops = PackedInt32Array(0, 2)
+elevation = 0.0
+patrol_speed = 22.0
+
+[node name="CobraCume" type="Path2D" parent="."]
+curve = SubResource("curve_2")
+script = ExtResource("1_route")
+species = "snake"
+pause_seconds = PackedFloat32Array(5, 2, 4, 1, 0)
+sheltered_stops = PackedInt32Array(0, 2)
+elevation = 0.0
+patrol_speed = 23.0
+
+[node name="JacutingaPorto" type="Path2D" parent="."]
+curve = SubResource("curve_3")
+script = ExtResource("1_route")
+species = "bird"
+pause_seconds = PackedFloat32Array(0, 4, 0, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 150.0
+patrol_speed = 95.0
+
+[node name="JacutingaSerra" type="Path2D" parent="."]
+curve = SubResource("curve_4")
+script = ExtResource("1_route")
+species = "bird"
+pause_seconds = PackedFloat32Array(0, 5, 0, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 140.0
+patrol_speed = 100.0
+
+[node name="JacutingaAlto" type="Path2D" parent="."]
+curve = SubResource("curve_5")
+script = ExtResource("1_route")
+species = "bird"
+pause_seconds = PackedFloat32Array(0, 4, 0, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 135.0
+patrol_speed = 105.0
+
+[node name="PererecaRio" type="Path2D" parent="."]
+curve = SubResource("curve_6")
+script = ExtResource("1_route")
+species = "frog"
+pause_seconds = PackedFloat32Array(4, 2, 5, 2, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 0.0
+patrol_speed = 24.0
+
+[node name="PererecaMargem" type="Path2D" parent="."]
+curve = SubResource("curve_7")
+script = ExtResource("1_route")
+species = "frog"
+pause_seconds = PackedFloat32Array(5, 2, 4, 2, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 0.0
+patrol_speed = 23.0
+
+[node name="PererecaVeu" type="Path2D" parent="."]
+curve = SubResource("curve_8")
+script = ExtResource("1_route")
+species = "frog"
+pause_seconds = PackedFloat32Array(4, 3, 5, 2, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 0.0
+patrol_speed = 25.0
+
+[node name="SaguiJequitiba" type="Path2D" parent="."]
+curve = SubResource("curve_9")
+script = ExtResource("1_route")
+species = "marmoset"
+pause_seconds = PackedFloat32Array(5, 3, 4, 3, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 155.0
+patrol_speed = 45.0
+
+[node name="SaguiCurvas" type="Path2D" parent="."]
+curve = SubResource("curve_10")
+script = ExtResource("1_route")
+species = "marmoset"
+pause_seconds = PackedFloat32Array(4, 3, 5, 3, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 160.0
+patrol_speed = 48.0
+
+[node name="SaguiCume" type="Path2D" parent="."]
+curve = SubResource("curve_11")
+script = ExtResource("1_route")
+species = "marmoset"
+pause_seconds = PackedFloat32Array(5, 4, 3, 3, 0)
+sheltered_stops = PackedInt32Array()
+elevation = 150.0
+patrol_speed = 45.0

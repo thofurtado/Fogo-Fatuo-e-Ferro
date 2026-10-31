@@ -4,6 +4,7 @@ var scene: Node2D
 var objective_panel: PanelContainer
 var objective: Label
 var bearing: Label
+var weather_label: Label
 var marker: Node2D
 var result_panel: PanelContainer
 var result_title: Label
@@ -69,6 +70,11 @@ func _build_hud():
 	bearing.add_theme_font_size_override("font_size",17)
 	bearing.add_theme_color_override("font_color",Color(1,0.85,0.48))
 	rows.add_child(bearing)
+	weather_label = Label.new()
+	weather_label.add_theme_font_size_override("font_size",14)
+	weather_label.add_theme_color_override("font_color",Color(0.69,0.79,0.81))
+	weather_label.text = "Tempo aberto · brisa na serra"
+	rows.add_child(weather_label)
 	toast = Label.new()
 	toast.position = Vector2(24,252)
 	toast.size.x = 524
@@ -117,6 +123,7 @@ func _process(delta):
 	if finished or get_tree().paused:
 		return
 	toast_timer = maxf(0,toast_timer-delta)
+	toast.position.y = objective_panel.position.y+objective_panel.size.y+8
 	toast.visible = toast_timer > 0
 	elapsed += delta
 	var target = next_target()
@@ -182,6 +189,9 @@ func register_fall():
 	if GameManager.current_archetype["vida_atual"] <= 0:
 		_show_result(false)
 
+func defeat():
+	_show_result(false)
+
 func complete():
 	if not scene.chest_opened or not camp_rested or not scene.caipora_offering_done:
 		scene._show_dialogue("A carga ainda precisa de preparo", "Conclua os preparativos indicados no objetivo antes de encerrar a entrega.")
@@ -193,6 +203,7 @@ func _show_result(success: bool):
 	if finished:
 		return
 	finished = true
+	if scene.soundscape: scene.soundscape.play_cue("delivery_cue" if success else "hit_thud")
 	won = success
 	marker.hide()
 	scene.dialogue_box.hide()
@@ -204,7 +215,7 @@ func _show_result(success: bool):
 	result_text.text = ("Você chegou ao planalto com a carga e a Bonita.
 
 Tempo: %d min %02d s · Quedas: %d
-Afinidade: %d%%" % [int(elapsed)/60,int(elapsed)%60,falls,scene.mula.affinity]) if won else "As quedas esgotaram sua vida. Retome do último checkpoint, com a vida restaurada, para tentar novamente."
+Afinidade: %d%%" % [int(elapsed)/60,int(elapsed)%60,falls,scene.mula.affinity]) if won else "Sua vida se esgotou durante a viagem. Retome do último checkpoint, com a vida restaurada, para tentar novamente."
 	retry_button.text = "Jogar novamente" if won else "Retomar do checkpoint"
 	result_panel.show()
 	retry_button.grab_focus()

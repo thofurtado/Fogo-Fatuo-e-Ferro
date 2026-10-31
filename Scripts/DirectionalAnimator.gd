@@ -17,7 +17,7 @@ func _ready():
 	sprite.scale = Vector2.ONE * (0.23 if is_player else 0.25)
 	step_sound = AudioStreamPlayer2D.new()
 	step_sound.stream = load("res://Assets/SFX/footstep.wav")
-	step_sound.volume_db = -23 if is_player else -27
+	step_sound.volume_db = -17 if is_player else -18
 	step_sound.max_distance = 340
 	actor.add_child(step_sound)
 	previous_position = actor.global_position
@@ -44,6 +44,7 @@ func _physics_process(_delta):
 		timer = 0
 	var step = int(timer*2)
 	if moving and step != last_step and not actor.is_falling_ledge:
+		step_sound.stream = preload("res://Assets/SFX/water_step.wav") if actor.in_water else (preload("res://Assets/SFX/wood_step.wav") if actor.get_meta("under_roof",false) else (preload("res://Assets/SFX/footstep.wav") if is_player else preload("res://Assets/SFX/hoof_step.wav")))
 		step_sound.pitch_scale = 1.0 if is_player else 0.8
 		if DisplayServer.get_name() != "headless":
 			step_sound.play()

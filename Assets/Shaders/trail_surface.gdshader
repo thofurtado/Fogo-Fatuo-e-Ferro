@@ -1,4 +1,5 @@
 shader_type canvas_item;
+global uniform float serra_rain;
 varying vec2 world_pos;
 uniform vec2 path_points[40];
 uniform int point_count = 0;
@@ -18,6 +19,6 @@ void fragment(){
 	float rut=1.0-smoothstep(1.0,3.0,abs(d-9.0));
 	soil*=1.0-rut*0.08;
 	soil*=0.94+noise(world_pos*0.06)*0.10+hash(floor(world_pos))*0.045;
-	COLOR.rgb=soil;
+	COLOR.rgb=soil*(1.0-serra_rain*0.18);
 	COLOR.a*=1.0-smoothstep(22.0,29.0,d+edge);
 }

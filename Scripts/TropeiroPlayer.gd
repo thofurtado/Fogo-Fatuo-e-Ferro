@@ -7,12 +7,14 @@ class_name TropeiroPlayer
 
 var virtual_direction: Vector2 = Vector2.ZERO
 var travel_speed_factor: float = 1.0
+var weather_speed_factor: float = 1.0
 var input_blocked: bool = false
 var facing_direction: Vector2 = Vector2.DOWN
 var is_moving: bool = false
 var bob_timer: float = 0.0
 var sprite_ground_y: float = -18.0
 var is_falling_ledge: bool = false
+var directional_animator: Node
 var leash_velocity: Vector2 = Vector2.ZERO
 var leash_time: float = 0.0
 
@@ -31,6 +33,7 @@ var water_sink_depth: float = 0.0
 func _ready():
 	sprite_ground_y = sprite.position.y
 	var animator = preload("res://Scripts/DirectionalAnimator.gd").new()
+	directional_animator = animator
 	animator.is_player = true
 	animator.frames = preload("res://Assets/Sprites/Characters/hero_walk.tres")
 	add_child(animator)
@@ -38,6 +41,12 @@ func _ready():
 	if cam:
 		cam.zoom = camera_zoom
 		cam.position.y = -70
+
+func get_rein_anchor() -> Vector2:
+	var direction = directional_animator.direction if directional_animator else &"south"
+	var hand_x = {&"south":-10.0,&"north":9.0,&"west":-8.0,&"east":8.0}[direction]
+	var height = sprite.texture.get_height()*sprite.scale.y
+	return global_position+Vector2(hand_x,sprite.position.y+height*0.10)
 
 func enter_water_zone(slow_factor: float = 0.35, sink_depth: float = 3.5):
 	water_zones_count += 1
@@ -89,7 +98,7 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 		leash_time = 0
 		leash_velocity = Vector2.ZERO
-	var effective_speed = speed * water_slow_factor * travel_speed_factor
+	var effective_speed = speed * water_slow_factor * travel_speed_factor * weather_speed_factor
 		
 	if input_vector != Vector2.ZERO:
 		input_vector = input_vector.limit_length(1.0)

@@ -38,6 +38,9 @@ jobs:
           godot --headless --path . --script res://Tests/mission_route.gd
           godot --headless --path . --script res://Tests/trail_corridor.gd
           godot --headless --path . --script res://Tests/wildlife_reactions.gd
+          godot --headless --path . --script res://Tests/wildlife_routines_reins.gd
+          godot --headless --path . --script res://Tests/weather_sound.gd
+          godot --headless --path . --script res://Tests/snake_strike.gd
           godot --headless --path . --export-release "Web" build/web/index.html
           # o export as vezes sai com 0 mesmo falhando: confere os artefatos
           for f in index.html index.js index.wasm index.pck; do

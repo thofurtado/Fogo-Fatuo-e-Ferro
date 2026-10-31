@@ -36,9 +36,12 @@ godot --headless --path . --script res://Tests/mission_rules.gd
 godot --headless --path . --script res://Tests/mission_route.gd
 godot --headless --path . --script res://Tests/trail_corridor.gd
 godot --headless --path . --script res://Tests/wildlife_reactions.gd
+godot --headless --path . --script res://Tests/wildlife_routines_reins.gd
+godot --headless --path . --script res://Tests/weather_sound.gd
+godot --headless --path . --script res://Tests/snake_strike.gd
 ```
 
-O teste de percurso constrói uma malha a partir das colisões reais, move o personagem usando a mesma entrada virtual do jogo, alcança as áreas de interação e termina a missão. Os testes usam armazenamento isolado ou desativam a gravação. O workflow de exportação Web executa os seis testes. Teste físico de controle, celular e navegação no Preview continuam necessários para avaliar conforto e compatibilidade no dispositivo final.
+O teste de percurso constrói uma malha a partir das colisões reais, move o personagem usando a mesma entrada virtual do jogo, alcança as áreas de interação e termina a missão. Os testes usam armazenamento isolado ou desativam a gravação. O workflow de exportação Web executa os nove testes. Teste físico de controle, celular e navegação no Preview continuam necessários para avaliar conforto e compatibilidade no dispositivo final.
 
 
 ## Trecho de referencia: rancho e curvas da serra
@@ -53,10 +56,32 @@ Este e o primeiro trecho de referencia, nao o acabamento final de todas as regio
 
 ## Fauna reativa
 
-Doze animais ocupam pontos definidos de margem de rio, mata e trilha: tres cobras, tres aves, tres pererecas e tres saguis. `ForestWildlife.gd` define os habitats; `WildlifeCritter.gd` controla observacao, fuga, ocultacao e retorno. O retorno so ocorre quando a comitiva esta longe do ponto original. Aves batem asas e ganham altura; pererecas saltam; saguis recuam em altura junto a vegetacao; cobras rastejam e podem assustar a mula. Sao representacoes estilizadas, nao simulacoes biologicas.
+Doze animais ocupam pontos definidos de margem de rio, mata e trilha: tres cobras, tres aves, tres pererecas e tres saguis. `SerraWildlifeRoutes.tscn` define os habitats e percursos; `ForestWildlife.gd` instancia os animais; `WildlifeCritter.gd` controla observacao, fuga, ocultacao e retorno. O retorno so ocorre quando a comitiva esta longe do ponto original. Aves batem asas e ganham altura; pererecas saltam; saguis recuam em altura junto a vegetacao; cobras rastejam e podem assustar a mula. Sao representacoes estilizadas, nao simulacoes biologicas.
 
-O susto da Bonita dura menos de um segundo a um segundo, com recuperacao de dez segundos entre ativacoes. Maior afinidade encurta a reacao. Quando a redea estica, o tropeiro recebe um puxao limitado por velocidade e pelas colisoes; nao ha teleporte nem perda automatica de vida ou afinidade pelo susto. Pausa, inventario e dialogo impedem novos encontros de susto. Os animais nao sao inimigos e nao causam dano direto nesta versao.
+O susto da Bonita dura menos de um segundo a um segundo, com recuperacao de dez segundos entre ativacoes. Maior afinidade encurta a reacao. Quando a redea estica, o tropeiro recebe um puxao limitado por velocidade e pelas colisoes; nao ha teleporte nem perda automatica de vida ou afinidade pelo susto. Pausa, inventario e dialogo impedem novos encontros de susto. As cobras agora podem dar um bote defensivo; os demais animais nao causam dano direto.
 
 `wildlife_reactions.gd` verifica fuga real das aves, pererecas e saguis, susto unico da mula, deslocamento limitado do tropeiro, recuperacao, bloqueio durante pausa/inventario e impossibilidade de atravessar uma parede com o puxao. Os sons de bater de asas, coaxo e resfolego sao efeitos sintetizados discretos; nao sao gravacoes identificadas de especies.
 
 Referencias regionais: [fauna da Serra da Bocaina, ICMBio](https://www.gov.br/icmbio/pt-br/assuntos/biodiversidade/unidade-de-conservacao/unidades-de-biomas/mata-atlantica/lista-de-ucs/parna-da-serra-da-bocaina/atributos-naturais/fauna), [jararaca, Instituto Butantan](https://butantan.gov.br/bubutantan/uma-jararaca-nada-comum-conheca-a-maior-causadora-de-acidentes-com-cobras-do-brasil).
+
+## Rotinas, pousos e redea
+
+`Scenes/SerraWildlifeRoutes.tscn` contem doze `Path2D`, editaveis com a ferramenta de curvas do Godot. O script `WildlifeRoute.gd` expoe a especie, velocidade, altura, tempo de pausa por ponto e indices dos abrigos. Os tempos correspondem aos pontos de controle, nao aos pontos intermediarios gerados pelo Godot. Os percursos terrestres e de galhos terminam no ponto inicial para fechar o circuito; os voos terminam fora do mapa e recomecam somente fora do enquadramento da camera. As tangentes da curva tambem sao respeitadas no jogo.
+
+Aves usam `FaunaSky`, acima das copas e construcoes, com sombra no chao. Elas percorrem o cenario, param em arvores, recolhem as asas e retomam o voo. Os saguis ficam nos galhos de tres arvores definidas e alternam poses de alimentacao ao parar. Pererecas saltam entre pontos de margem e respiram durante o repouso. Cobras saem do mato, rastejam pela rota e voltam a abrigos com vegetacao na frente do corpo. A Bonita reage quando a cobra esta exposta. A aproximacao da comitiva continua interrompendo essas rotinas para a fuga.
+
+`ReinRope.gd` atualiza a redea entre a mao do tropeiro e o cabresto da mula. Os pontos acompanham a direcao e a altura do quadro atual dos personagens. A curva perde folga quando a distancia aumenta, com uma oscilacao pequena e acabamento de sombra e fibra. O puxao fisico do susto continua limitado e respeitando as paredes; a nova curva e apresentacao visual, nao uma simulacao completa de corda com colisoes em cada ponto.
+
+`wildlife_routines_reins.gd` acompanha quarenta segundos simulados de todas as rotas, verifica paradas e poses, camada do ceu, altura dos saguis, pontos de ligacao da redea e sua mudanca de folga para tensao.
+
+## Clima, abrigo e som
+
+`SerraWeather.gd` alterna tempo aberto, garoa, chuva forte e dissipacao com transicoes graduais. Vento movimenta as copas e samambaias, o terreno escurece com a chuva e a poeira deixa de aparecer quando molhado. A marcha ao ar livre perde no maximo 6% de velocidade; chuva nao retira HP. O rancho permite entrada pela frente, mostra o personagem sob a cobertura por transparencia e elimina essa penalidade enquanto abrigado. O ciclo para na pausa.
+
+Aves procuram o pouso durante chuva forte e saguis prolongam o repouso nos galhos. Pererecas ficam mais ativas e coaxam. As reacoes de fuga continuam prioritarias quando a comitiva se aproxima.
+
+`SerraSoundscape.gd` mistura sete camadas: mata, vento, chuva, telhado, rio, cachoeira e fogueira. Agua e fogo variam de volume com a distancia; sob o rancho entra o som de gotas na cobertura. Passos diferenciam terra, agua, madeira e cascos. Inventario, bau, descanso, oferenda, entrega, dano e tensao da redea recebem sinais sonoros. Sao efeitos sintetizados de prototipo, nao gravacoes de campo de especies nativas. A regulagem de volume existente continua disponivel na pausa.
+
+A jararaca exposta arma o bote somente muito perto: aviso visual e chiado por 0,7 segundo, avanco curto na direcao marcada e 3 HP de dano em contato. E possivel desviar. Ha seis segundos entre ataques e imunidade breve apos o dano. Paredes bloqueiam o acerto; dialogos, inventario e pausa impedem novos ataques. Chegar a zero HP abre a mesma retomada de checkpoint usada nas quedas. Nao ha veneno persistente nem novos predadores nesta entrega.
+
+`weather_sound.gd` verifica abrigo acessivel, mudanca da mistura sonora, pausa do clima e retomada das aves depois da chuva. `snake_strike.gd` verifica aviso, acerto, esquiva, intervalo, bloqueio por parede/inventario e derrota. A exportacao Web e a renderizacao nativa complementam esses testes; escuta em diferentes dispositivos e teste no navegador/celular continuam necessarios.

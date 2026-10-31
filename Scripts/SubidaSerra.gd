@@ -19,6 +19,9 @@ const FOOD_ITEM = "Feijão tropeiro (+6 vida)"
 const OFFERING_ITEM = "Fumo de rolo para a Caipora"
 var mission: CanvasLayer
 var wildlife: Node
+var weather: Node2D
+var soundscape: Node
+var damage_immunity: float = 0
 var interaction_button: Button
 var food_button: Button
 var input_hint: Label
@@ -87,6 +90,10 @@ func _ready():
 	add_child(mission)
 	var atmosphere = preload("res://Scripts/SerraAtmosphere.gd").new()
 	add_child(atmosphere)
+	weather = preload("res://Scripts/SerraWeather.gd").new()
+	add_child(weather)
+	soundscape = preload("res://Scripts/SerraSoundscape.gd").new()
+	add_child(soundscape)
 	wildlife = preload("res://Scripts/ForestWildlife.gd").new()
 	add_child(wildlife)
 	get_window().size_changed.connect(_configure_screen)
@@ -192,6 +199,7 @@ func _toggle_inventory():
 	if mission and mission.finished:
 		return
 	inventory_panel.visible = not inventory_panel.visible
+	if soundscape: soundscape.play_cue("inventory_click")
 	player.input_blocked = inventory_panel.visible
 	if inventory_panel.visible:
 		held_directions.clear()
@@ -377,6 +385,7 @@ func _use_provision():
 		inventory_text.text += "\nVocê já está com a vida cheia."
 		return
 	GameManager.inventory.erase(FOOD_ITEM)
+	if soundscape: soundscape.play_cue("rest_cue")
 	arch["vida_atual"] = mini(arch["vida_max"], arch["vida_atual"] + 6)
 	_refresh_inventory()
 	_update_hud()
@@ -395,6 +404,7 @@ func _handle_interaction():
 	match id:
 		"bau_rancho":
 			if not chest_opened:
+				if soundscape: soundscape.play_cue("chest_cue")
 				chest_opened = true
 				GameManager.add_item(FOOD_ITEM)
 				GameManager.add_item(OFFERING_ITEM)
@@ -405,6 +415,7 @@ func _handle_interaction():
 			else:
 				_show_dialogue("Baú vazio", "As provisões já estão com você. Veja o próximo objetivo no alto da tela.")
 		"fogueira_rancho":
+			if soundscape: soundscape.play_cue("rest_cue")
 			GameManager.current_archetype["vida_atual"] = GameManager.current_archetype["vida_max"]
 			if not mission.camp_rested:
 				mula.add_affinity(15)
@@ -419,6 +430,7 @@ func _handle_interaction():
 			if not GameManager.boato_cachoeira_descoberto:
 				_show_dialogue("Uma fenda sob a água", "Talvez a placa da trilha explique o que há neste lugar.")
 			elif not waterfall_chest_opened:
+				if soundscape: soundscape.play_cue("chest_cue")
 				waterfall_chest_opened = true
 				GameManager.add_item("40 patacas de prata")
 				mula.add_affinity(20)
@@ -434,6 +446,7 @@ func _handle_interaction():
 				_show_dialogue("Falta a oferenda", "O altar pede fumo de rolo. Há provisões no baú do rancho; não entregue a carga sem preparar a comitiva.")
 			else:
 				GameManager.inventory.erase(OFFERING_ITEM)
+				if soundscape: soundscape.play_cue("offering_cue")
 				caipora_offering_done = true
 				mula.add_affinity(25)
 				_update_hud()
@@ -443,6 +456,7 @@ func _handle_interaction():
 			mission.complete()
 
 func on_player_fell_ledge(hp_loss: int, aff_loss: int):
+	if soundscape: soundscape.play_cue("hit_thud")
 	if mula:
 		mula.add_affinity(-aff_loss)
 	_update_hud()
@@ -451,3 +465,19 @@ func on_player_fell_ledge(hp_loss: int, aff_loss: int):
 	mission.notify("Queda: -%d vida · siga as curvas da trilha" % hp_loss,Color(1,0.5,0.4))
 	if mission:
 		mission.register_fall()
+
+func _physics_process(delta):
+	damage_immunity = maxf(0,damage_immunity-delta)
+
+func receive_damage(amount: int, source: String) -> bool:
+	if damage_immunity>0 or amount<=0 or not mission or mission.finished or get_tree().paused or player.input_blocked or dialogue_box.visible or player.is_falling_ledge:
+		return false
+	damage_immunity = 1.2
+	GameManager.current_archetype["vida_atual"] = maxi(0,GameManager.current_archetype["vida_atual"]-amount)
+	_update_hud()
+	player.sprite.modulate = Color(1,0.45,0.38)
+	player.create_tween().tween_property(player.sprite,"modulate",Color.WHITE,0.4)
+	mission.notify("-%d vida · %s" % [amount,source],Color(1,0.55,0.4))
+	if soundscape: soundscape.play_cue("hit_thud")
+	if GameManager.current_archetype["vida_atual"] <= 0: mission.defeat()
+	return true
