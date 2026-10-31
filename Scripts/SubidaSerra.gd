@@ -18,6 +18,7 @@ extends Node2D
 const FOOD_ITEM = "Feijão tropeiro (+6 vida)"
 const OFFERING_ITEM = "Fumo de rolo para a Caipora"
 var mission: CanvasLayer
+var wildlife: Node
 var interaction_button: Button
 var food_button: Button
 var input_hint: Label
@@ -86,6 +87,8 @@ func _ready():
 	add_child(mission)
 	var atmosphere = preload("res://Scripts/SerraAtmosphere.gd").new()
 	add_child(atmosphere)
+	wildlife = preload("res://Scripts/ForestWildlife.gd").new()
+	add_child(wildlife)
 	get_window().size_changed.connect(_configure_screen)
 	_configure_screen()
 

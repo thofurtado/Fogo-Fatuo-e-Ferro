@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 class_name EscarpmentLedge
 
@@ -14,6 +15,10 @@ class_name EscarpmentLedge
 @export var drop_distance: float = 46.0
 @export var penalty_hp: int = 3
 @export var penalty_affinity: int = 5
+@export var lip_texture: Texture2D:
+	set(value):
+		lip_texture = value
+		queue_redraw()
 
 @onready var solid_body = $StaticBody2D
 @onready var solid_shape = $StaticBody2D/CollisionShape2D
@@ -24,6 +29,8 @@ signal player_dropped(ledge)
 
 func _ready():
 	_setup_shapes()
+	if Engine.is_editor_hint():
+		return
 	if drop_area:
 		drop_area.collision_mask = 0xFFFFFFFF
 		if not drop_area.body_entered.is_connected(_on_drop_area_body_entered):
@@ -60,6 +67,10 @@ func _setup_shapes():
 # A low, uneven earth/stone lip marks the drop without exposing editor glyphs.
 func _draw():
 	var half_width = ledge_width * 0.5
+	if lip_texture:
+		var face_height = maxf(16,ledge_height-16)
+		draw_texture_rect(lip_texture,Rect2(-half_width,-10,ledge_width,face_height+12),false)
+		return
 	var bottom = clampf(ledge_height * 0.35, 6.0, 12.0)
 	var outline = PackedVector2Array([
 		Vector2(-half_width, -1), Vector2(-half_width + 7, -5),
@@ -87,7 +98,10 @@ func _on_drop_area_body_entered(body):
 		_process_drop(body)
 
 func _process_drop(body: Node2D):
-	var target_y = body.global_position.y + drop_distance
+	# Start detection includes the body's feet radius. Land beyond the entire
+	# face, so taller authored banks cannot leave the player inside their wall.
+	var face_bottom = global_position.y + maxf(16.0,ledge_height-16.0) - 2.0
+	var target_y = maxf(body.global_position.y + drop_distance,face_bottom+20.0)
 	
 	if body is TropeiroPlayer:
 		player_dropped.emit(self)

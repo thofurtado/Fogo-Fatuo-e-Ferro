@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3]
+[gd_scene load_steps=36 format=3]
 
 [ext_resource type="Script" path="res://Scripts/SubidaSerra.gd" id="1_scene"]
 [ext_resource type="Script" path="res://Scripts/TropeiroPlayer.gd" id="2_player"]
@@ -22,7 +22,8 @@
 [ext_resource type="Texture2D" path="res://Assets/Sprites/bloco_granito.png" id="17_granite_tex"]
 [ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/pier.png" id="18_cais_tex"]
 [ext_resource type="PackedScene" path="res://Scenes/EscarpmentLedge.tscn" id="19_ledge_scene"]
-[ext_resource type="Script" path="res://Scripts/CliffFace.gd" id="23_cliff"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Clean/bank.tres" id="24_bank"]
+[ext_resource type="PackedScene" path="res://Scenes/SerraFern.tscn" id="25_fern"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player_feet"]
 radius = 14.0
@@ -107,17 +108,25 @@ color = Color(0.65, 0.54, 0.38, 1)
 polygon = PackedVector2Array(-100, -100, 1850, -100, 1850, 490, 1580, 540, 1290, 510, 1060, 550, 780, 520, 470, 580, 170, 540, -100, 590)
 color = Color(0.35, 0.56, 0.28, 1)
 
+[node name="RanchoClearing" type="Polygon2D" parent="GroundLayer"]
+polygon = PackedVector2Array(845, 1325, 980, 1320, 1030, 1420, 1000, 1510, 865, 1525, 835, 1465, 850, 1380)
+color = Color(0.48, 0.43, 0.29, 1)
+
 [node name="RioCubatao" type="Line2D" parent="GroundLayer"]
-points = PackedVector2Array(720, 1050, 750, 1180, 780, 1300, 824, 1420, 750, 1520, 600, 1600, 400, 1720, 200, 1850, 0, 1950)
+points = PackedVector2Array(720, 1050, 750, 1180, 760, 1300, 770, 1370, 824, 1420, 750, 1520, 600, 1600, 400, 1720, 200, 1850, 0, 1950)
 width = 44.0
 default_color = Color(0.15, 0.46, 0.65, 0.95)
 joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CachoeiraVeu" type="Line2D" parent="GroundLayer"]
 points = PackedVector2Array(740, 880, 730, 950, 720, 1050)
 width = 30.0
 default_color = Color(0.45, 0.72, 0.88, 0.95)
 joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="RiverBridge" type="ColorRect" parent="GroundLayer"]
 offset_left = 794.0
@@ -144,284 +153,35 @@ end_cap_mode = 2
 
 [node name="EscarpmentsContainer" type="Node2D" parent="."]
 
-[node name="Ledge_01" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(901.8, 1160.9)
-ledge_width = 180.8
-ledge_height = 23.9
+[node name="BarrancoBaixo" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
+position = Vector2(975, 1070)
+ledge_width = 240.0
+ledge_height = 48.0
+lip_texture = ExtResource("24_bank")
 
-[node name="Ledge_02" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1036.3, 1140)
-ledge_width = 180.8
-ledge_height = 23.9
+[node name="BarrancoCurva" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
+position = Vector2(1040, 963)
+ledge_width = 160.0
+ledge_height = 48.0
+lip_texture = ExtResource("24_bank")
 
-[node name="Ledge_03" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1142.6, 1118.4)
-ledge_width = 41.3
-ledge_height = 23.9
+[node name="BarrancoCentral" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
+position = Vector2(1000, 878)
+ledge_width = 150.0
+ledge_height = 40.0
+lip_texture = ExtResource("24_bank")
 
-[node name="Ledge_04" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1175.6, 1097.4)
-ledge_width = 32
-ledge_height = 23.9
+[node name="BarrancoAlto" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
+position = Vector2(1020, 778)
+ledge_width = 140.0
+ledge_height = 48.0
+lip_texture = ExtResource("24_bank")
 
-[node name="Ledge_05" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1197.6, 1081.9)
-ledge_width = 32
-ledge_height = 23.9
-
-[node name="Ledge_06" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1002.4, 1099.4)
-ledge_width = 180.8
-ledge_height = 23.9
-
-[node name="Ledge_07" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1110.6, 1079)
-ledge_width = 54.7
-ledge_height = 23.9
-
-[node name="Ledge_08" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1145.7, 1060.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_09" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1171.7, 1041.9)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_10" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1197.9, 1038)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_11" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1229.5, 1041.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_12" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1251.5, 1063.4)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_13" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1246.6, 1085.4)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_14" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1235.8, 1115.4)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_15" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1214.7, 1142.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_16" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1051.9, 1022.2)
-ledge_width = 54.7
-ledge_height = 23.9
-
-[node name="Ledge_17" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1098.1, 1031.4)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_18" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1118, 1054.8)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_19" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(966.1, 1008.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_20" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(994.8, 1060.4)
-ledge_width = 132.9
-ledge_height = 23.9
-
-[node name="Ledge_21" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(910, 1064.6)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_22" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(983.2, 987.6)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_23" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1073, 982)
-ledge_width = 132.9
-ledge_height = 23.9
-
-[node name="Ledge_24" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1157.8, 932.6)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_25" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1185.2, 954.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_26" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1186.6, 983.6)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_27" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1178, 1011.6)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_28" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1033.4, 916.6)
-ledge_width = 132.9
-ledge_height = 23.9
-
-[node name="Ledge_29" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1121, 922.8)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_30" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1148.4, 858.6)
-ledge_width = 132.9
-ledge_height = 23.9
-
-[node name="Ledge_31" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1126.8, 884.8)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_32" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1259.8, 821.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_33" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1282.7, 845.8)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_34" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1279.1, 875)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_35" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1216.2, 778.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_36" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1209.2, 819.4)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_37" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1128.8, 784.8)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_38" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1053.8, 806.4)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_39" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1145.8, 738.4)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_40" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1221, 754.2)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_41" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1073.6, 737.7)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_42" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(956.8, 746.2)
-ledge_width = 74.1
-ledge_height = 23.9
-
-[node name="Ledge_43" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1045.9, 757.1)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_44" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1020.6, 768.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_45" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(945.9, 698.2)
-ledge_width = 200.4
-ledge_height = 23.9
-
-[node name="Ledge_46" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1060.5, 716.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_47" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1041.8, 525)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_48" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1079.8, 530.2)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="Ledge_49" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
-position = Vector2(1118.5, 543.8)
-ledge_width = 34.4
-ledge_height = 23.9
-
-[node name="GraniteParedao" type="Node2D" parent="."]
-
-[node name="ParedaoWest01" type="StaticBody2D" parent="GraniteParedao"]
-position = Vector2(730, 1050)
-script = ExtResource("23_cliff")
-face_width = 60
-face_height = 360
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GraniteParedao/ParedaoWest01"]
-polygon = PackedVector2Array(-30, -180, 30, -180, 30, 180, -30, 180)
-
-[node name="ParedaoWest02" type="StaticBody2D" parent="GraniteParedao"]
-position = Vector2(810, 720)
-script = ExtResource("23_cliff")
-face_width = 50
-face_height = 300
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GraniteParedao/ParedaoWest02"]
-polygon = PackedVector2Array(-25, -150, 25, -150, 25, 150, -25, 150)
-
-[node name="ParedaoEast01" type="StaticBody2D" parent="GraniteParedao"]
-position = Vector2(1300, 950)
-script = ExtResource("23_cliff")
-face_width = 70
-face_height = 440
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GraniteParedao/ParedaoEast01"]
-polygon = PackedVector2Array(-35, -220, 35, -220, 35, 220, -35, 220)
-
-[node name="ParedaoEast02" type="StaticBody2D" parent="GraniteParedao"]
-position = Vector2(1220, 650)
-script = ExtResource("23_cliff")
-face_width = 50
-face_height = 240
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GraniteParedao/ParedaoEast02"]
-polygon = PackedVector2Array(-25, -120, 25, -120, 25, 120, -25, 120)
+[node name="BarrancoPlanalto" parent="EscarpmentsContainer" instance=ExtResource("19_ledge_scene")]
+position = Vector2(980, 688)
+ledge_width = 135.0
+ledge_height = 48.0
+lip_texture = ExtResource("24_bank")
 
 [node name="YSortContainer" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -506,7 +266,7 @@ position = Vector2(1008, 1820)
 position = Vector2(930, 1370)
 
 [node name="RanchoFogueira" type="Area2D" parent="YSortContainer"]
-position = Vector2(850, 1465)
+position = Vector2(880, 1480)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/RanchoFogueira"]
 position = Vector2(0, -23.775)
 scale = Vector2(0.15, 0.15)
@@ -551,7 +311,7 @@ texture = ExtResource("12_altar_tex")
 shape = SubResource("CircleShape2D_interact")
 
 [node name="CruzeiroTopo" type="Area2D" parent="YSortContainer"]
-position = Vector2(1062, 430)
+position = Vector2(1120, 430)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/CruzeiroTopo"]
 position = Vector2(0, -37.200)
 scale = Vector2(0.16, 0.16)
@@ -582,9 +342,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_03" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(550, 1800)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_03"]
-position = Vector2(0, -149.700)
-scale = Vector2(0.6, 0.6)
+position = Vector2(0, -125.748)
+scale = Vector2(0.50400, 0.50400)
 texture = ExtResource("13_tree_tex")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_03"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -622,9 +384,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_07" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(650, 1180)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_07"]
-position = Vector2(0, -162.175)
-scale = Vector2(0.65, 0.65)
+position = Vector2(0, -136.227)
+scale = Vector2(0.54600, 0.54600)
 texture = ExtResource("13_tree_tex")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_07"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -662,9 +426,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_11" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(740, 680)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_11"]
-position = Vector2(0, -162.175)
-scale = Vector2(0.65, 0.65)
+position = Vector2(0, -136.227)
+scale = Vector2(0.54600, 0.54600)
 texture = ExtResource("13_tree_tex")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_11"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -702,9 +468,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_15" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(950, 240)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_15"]
-position = Vector2(0, -174.650)
-scale = Vector2(0.7, 0.7)
+position = Vector2(0, -146.706)
+scale = Vector2(0.58800, 0.58800)
 texture = ExtResource("13_tree_tex")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_15"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -742,9 +510,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_19" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(1420, 1480)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_19"]
-position = Vector2(0, -129.250)
-scale = Vector2(0.51804, 0.51804)
+position = Vector2(0, -108.570)
+scale = Vector2(0.43515, 0.43515)
 texture = ExtResource("14_tree_trop")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_19"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -782,9 +552,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_23" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(1380, 920)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_23"]
-position = Vector2(0, -129.250)
-scale = Vector2(0.51804, 0.51804)
+position = Vector2(0, -108.570)
+scale = Vector2(0.43515, 0.43515)
 texture = ExtResource("14_tree_trop")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_23"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -822,9 +594,11 @@ shape = SubResource("CircleShape2D_tree_trunk")
 [node name="Tree_27" type="StaticBody2D" parent="YSortContainer"]
 position = Vector2(1200, 420)
 [node name="Sprite2D" type="Sprite2D" parent="YSortContainer/Tree_27"]
-position = Vector2(0, -129.250)
-scale = Vector2(0.51804, 0.51804)
+position = Vector2(0, -108.570)
+scale = Vector2(0.43515, 0.43515)
 texture = ExtResource("14_tree_trop")
+flip_h = true
+modulate = Color(0.94, 0.98, 0.88, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_27"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
@@ -848,6 +622,62 @@ texture = ExtResource("14_tree_trop")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSortContainer/Tree_29"]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_tree_trunk")
+
+[node name="Samambaia01" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(875, 1070)
+
+[node name="Samambaia02" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(1098, 1078)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia03" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(944, 966)
+
+[node name="Samambaia04" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(1125, 973)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia05" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(923, 873)
+
+[node name="Samambaia06" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(1084, 879)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia07" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(944, 784)
+
+[node name="Samambaia08" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(1104, 789)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia09" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(907, 680)
+
+[node name="Samambaia10" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(1056, 685)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia11" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(713, 1405)
+
+[node name="Samambaia12" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(982, 1422)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia13" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(910, 1510)
+
+[node name="Samambaia14" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(1000, 1550)
+scale = Vector2(0.85, 0.85)
+
+[node name="Samambaia15" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(740, 1300)
+
+[node name="Samambaia16" parent="YSortContainer" instance=ExtResource("25_fern")]
+position = Vector2(905, 1280)
+scale = Vector2(0.85, 0.85)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 

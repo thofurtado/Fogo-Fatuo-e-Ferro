@@ -13,6 +13,14 @@ var is_moving: bool = false
 var bob_timer: float = 0.0
 var sprite_ground_y: float = -18.0
 var is_falling_ledge: bool = false
+var leash_velocity: Vector2 = Vector2.ZERO
+var leash_time: float = 0.0
+
+func apply_leash_pull(pull: Vector2, duration: float = 0.18):
+	if input_blocked or is_falling_ledge:
+		return
+	leash_velocity = pull.limit_length(75)
+	leash_time = duration
 
 # Mecânica de água / riacho
 var water_zones_count: int = 0
@@ -46,8 +54,12 @@ func exit_water_zone():
 
 func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 	if is_falling_ledge:
+		leash_time = 0
+		leash_velocity = Vector2.ZERO
 		return
 	is_falling_ledge = true
+	leash_time = 0
+	leash_velocity = Vector2.ZERO
 	velocity = Vector2.ZERO
 	
 	# Hop animation no sprite (arco de salto na pedra)
@@ -75,6 +87,8 @@ func _physics_process(delta):
 	if input_blocked:
 		input_vector = Vector2.ZERO
 		velocity = Vector2.ZERO
+		leash_time = 0
+		leash_velocity = Vector2.ZERO
 	var effective_speed = speed * water_slow_factor * travel_speed_factor
 		
 	if input_vector != Vector2.ZERO:
@@ -85,9 +99,16 @@ func _physics_process(delta):
 		
 
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, effective_speed * 10.0 * delta)
+		# The rein is an external velocity, not acceleration accumulated each frame.
+		velocity = Vector2.ZERO if leash_time > 0 else velocity.move_toward(Vector2.ZERO, effective_speed * 10.0 * delta)
 		is_moving = false
 		
+	if leash_time > 0:
+		leash_time = maxf(0,leash_time-delta)
+		velocity += leash_velocity
+		is_moving = true
+	else:
+		leash_velocity = Vector2.ZERO
 	# Move com colisão
 	move_and_slide()
 	

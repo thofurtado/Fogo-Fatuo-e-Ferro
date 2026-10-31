@@ -74,6 +74,7 @@ func _build_hud():
 	toast.size.x = 524
 	toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	toast.add_theme_font_size_override("font_size",20)
+	toast.add_theme_stylebox_override("normal",style.duplicate())
 	toast.hide()
 	add_child(toast)
 	marker = preload("res://Scripts/MissionWaypoint.gd").new()

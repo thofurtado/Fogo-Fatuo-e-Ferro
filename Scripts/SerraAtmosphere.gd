@@ -39,6 +39,8 @@ func _ready():
 	river_bank.width = 54
 	river_bank.default_color = Color(0.33,0.36,0.23)
 	river_bank.joint_mode = Line2D.LINE_JOINT_ROUND
+	river_bank.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	river_bank.end_cap_mode = Line2D.LINE_CAP_ROUND
 	ground.add_child(river_bank)
 	ground.move_child(river_bank, ground.get_node("RioCubatao").get_index())
 	var coast = ground.get_node("OceanEstuary").polygon

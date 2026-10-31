@@ -14,6 +14,22 @@ var is_moving: bool = false
 var bob_timer: float = 0.0
 var sprite_ground_y: float = -16.0
 var is_falling_ledge: bool = false
+var panic_time: float = 0.0
+var panic_cooldown: float = 0.0
+var panic_direction: Vector2 = Vector2.ZERO
+var panic_count: int = 0
+var snort: AudioStreamPlayer2D
+
+func startle(threat: Vector2) -> bool:
+	if get_tree().paused or panic_cooldown > 0 or is_falling_ledge or not follow_target or follow_target.input_blocked:
+		return false
+	panic_direction = (global_position-threat).normalized()
+	if panic_direction.is_zero_approx(): panic_direction = Vector2.LEFT
+	panic_time = lerpf(1.0,0.7,clampf(float(affinity-60)/90.0,0,1))
+	panic_cooldown = 10.0
+	panic_count += 1
+	if snort and DisplayServer.get_name() != "headless": snort.play()
+	return true
 
 # Mecânica de água / riacho
 var water_zones_count: int = 0
@@ -60,6 +76,11 @@ func drop_down_ledge(target_y: float, on_finished: Callable = Callable()):
 
 func _ready():
 	collision_layer = 2
+	snort = AudioStreamPlayer2D.new()
+	snort.stream = preload("res://Assets/SFX/mule_snort.wav")
+	snort.volume_db = -19
+	snort.max_distance = 360
+	add_child(snort)
 	sprite_ground_y = sprite.position.y
 	var animator = preload("res://Scripts/DirectionalAnimator.gd").new()
 	animator.frames = preload("res://Assets/Sprites/Characters/mule_walk.tres")
@@ -69,6 +90,7 @@ func _ready():
 		rein_line.default_color = Color(0.45, 0.28, 0.15, 0.85)
 
 func _physics_process(delta):
+	panic_cooldown = maxf(0,panic_cooldown-delta)
 	if not follow_target:
 		return
 		
@@ -91,6 +113,22 @@ func _physics_process(delta):
 
 	# Se estiver executando o salto de escarpa, a física normal pausa para o tween
 	if is_falling_ledge:
+		return
+	if follow_target.input_blocked:
+		panic_time = 0
+	if panic_time > 0:
+		panic_time = maxf(0,panic_time-delta)
+		var flee = panic_direction
+		if test_move(global_transform,flee*12):
+			flee = flee.rotated(PI/3)
+			if test_move(global_transform,flee*12): flee = Vector2.ZERO
+		velocity = flee * 130.0 * water_slow_factor
+		move_and_slide()
+		is_moving = velocity.length() > 2
+		if global_position.distance_to(target_pos) > 66:
+			follow_target.apply_leash_pull((global_position-target_pos).normalized()*70)
+		if panic_time <= 0:
+			breadcrumbs.clear()
 		return
 		
 	# Grava rastro de passos do Tropeiro para fazer as curvas da trilha
@@ -134,3 +172,8 @@ func _physics_process(delta):
 
 func add_affinity(amount: int):
 	affinity = clamp(affinity + amount, 0, 150)
+
+func _exit_tree():
+	if is_instance_valid(snort):
+		snort.stop()
+		snort.stream = null

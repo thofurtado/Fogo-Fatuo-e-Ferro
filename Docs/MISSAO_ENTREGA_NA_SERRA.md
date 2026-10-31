@@ -34,15 +34,29 @@ godot --headless --path . --script res://Tests/controls_smoke.gd
 godot --headless --path . --script res://Tests/walk_cycle.gd
 godot --headless --path . --script res://Tests/mission_rules.gd
 godot --headless --path . --script res://Tests/mission_route.gd
+godot --headless --path . --script res://Tests/trail_corridor.gd
+godot --headless --path . --script res://Tests/wildlife_reactions.gd
 ```
 
-O teste de percurso constrói uma malha a partir das colisões reais, move o personagem usando a mesma entrada virtual do jogo, alcança as áreas de interação e termina a missão. Os testes usam armazenamento isolado ou desativam a gravação. A exportação Web também executa os quatro testes. Teste físico de controle, celular e navegação no Preview continuam necessários para avaliar conforto e compatibilidade no dispositivo final.
+O teste de percurso constrói uma malha a partir das colisões reais, move o personagem usando a mesma entrada virtual do jogo, alcança as áreas de interação e termina a missão. Os testes usam armazenamento isolado ou desativam a gravação. O workflow de exportação Web executa os seis testes. Teste físico de controle, celular e navegação no Preview continuam necessários para avaliar conforto e compatibilidade no dispositivo final.
 
 
-## Revisao artistica manual pendente
+## Trecho de referencia: rancho e curvas da serra
 
-Em `Scenes/SubidaSerra.tscn`, o grupo `EscarpmentsContainer` contem as bordas de queda. As faixas marrons sao desenhos provisorios de `Scripts/EscarpmentLedge.gd`, nao erros de exportacao. Os paredoes nas laterais usam `Scripts/CliffFace.gd`. A composicao atual coloca muitas dessas bordas atravessando visualmente a trilha: ajustar apenas cor ou shader nao resolve a leitura de altura. E necessario recompor os patamares, substituir esses desenhos por arte coerente e conferir as colisoes e gatilhos de queda junto com o novo visual.
+As 49 bordas pequenas e os quatro paredoes provisorios foram substituidos por cinco barrancos ilustrados em `EscarpmentsContainer`. Cada barranco fica entre as curvas, com arte, area solida e gatilho de queda no mesmo no. O Inspector expoe `lip_texture`, `ledge_width` e `ledge_height`; a arte aparece no editor. A queda calcula o pouso alem da face inteira para nao prender o ator dentro da colisao.
 
-Em `YSortContainer`, revisar o espacamento, escala e sobreposicao das arvores e construcoes, evitando repeticao excessiva. Usar o tropeiro (aproximadamente 66 pixels de altura no mundo) como referencia. Mover um objeto pelo no pai preserva a relacao entre sprite e colisao; mover apenas o `Sprite2D` pode separar a imagem de sua area solida. A posicao dos objetivos tambem deve continuar acessivel.
+O rancho tem uma clareira, fogueira ao lado da estrada e vegetacao rasteira reutilizavel (`Scenes/SerraFern.tscn`). O riacho foi afastado da trilha antes da ponte. Algumas arvores receberam variacoes de tamanho e espelhamento. O marco do cume fica ao lado da estrada, preservando a passagem de ida e volta.
 
-A caminhada do tropeiro usa poses de contato e passagem distintas, com ancoragem dos pes e espelhamento consistente do ciclo lateral. O ritmo acompanha a distancia real percorrida. O teste `walk_cycle.gd` verifica a diferenca de silhueta e o avanco dos quadros em todas as direcoes; isso nao substitui a revisao artistica do movimento.
+`Tests/trail_corridor.gd` segue a estrada pintada ate o alto e retorna pelo mesmo caminho, exigindo zero quedas. Depois verifica uma queda proposital e o pouso fora do barranco. `mission_route.gd` continua verificando a entrega completa com as colisoes reais. Isso complementa a revisao visual, sem substituir teste de conforto em celular e controle fisico.
+
+Este e o primeiro trecho de referencia, nao o acabamento final de todas as regioes. Revisar a repeticao das copas, a transicao do porto, o encaixe dos barrancos no terreno e a consistencia das poses dos personagens. Em `YSortContainer`, mover o no pai preserva sprite e colisao juntos. Usar o tropeiro (aproximadamente 66 pixels de altura no mundo) como referencia de escala.
+
+## Fauna reativa
+
+Doze animais ocupam pontos definidos de margem de rio, mata e trilha: tres cobras, tres aves, tres pererecas e tres saguis. `ForestWildlife.gd` define os habitats; `WildlifeCritter.gd` controla observacao, fuga, ocultacao e retorno. O retorno so ocorre quando a comitiva esta longe do ponto original. Aves batem asas e ganham altura; pererecas saltam; saguis recuam em altura junto a vegetacao; cobras rastejam e podem assustar a mula. Sao representacoes estilizadas, nao simulacoes biologicas.
+
+O susto da Bonita dura menos de um segundo a um segundo, com recuperacao de dez segundos entre ativacoes. Maior afinidade encurta a reacao. Quando a redea estica, o tropeiro recebe um puxao limitado por velocidade e pelas colisoes; nao ha teleporte nem perda automatica de vida ou afinidade pelo susto. Pausa, inventario e dialogo impedem novos encontros de susto. Os animais nao sao inimigos e nao causam dano direto nesta versao.
+
+`wildlife_reactions.gd` verifica fuga real das aves, pererecas e saguis, susto unico da mula, deslocamento limitado do tropeiro, recuperacao, bloqueio durante pausa/inventario e impossibilidade de atravessar uma parede com o puxao. Os sons de bater de asas, coaxo e resfolego sao efeitos sintetizados discretos; nao sao gravacoes identificadas de especies.
+
+Referencias regionais: [fauna da Serra da Bocaina, ICMBio](https://www.gov.br/icmbio/pt-br/assuntos/biodiversidade/unidade-de-conservacao/unidades-de-biomas/mata-atlantica/lista-de-ucs/parna-da-serra-da-bocaina/atributos-naturais/fauna), [jararaca, Instituto Butantan](https://butantan.gov.br/bubutantan/uma-jararaca-nada-comum-conheca-a-maior-causadora-de-acidentes-com-cobras-do-brasil).
