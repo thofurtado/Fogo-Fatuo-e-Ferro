@@ -13,6 +13,7 @@ var is_moving: bool = false
 var bob_timer: float = 0.0
 var sprite_ground_y: float = -18.0
 var is_falling_ledge: bool = false
+var directional_animator: Node
 var leash_velocity: Vector2 = Vector2.ZERO
 var leash_time: float = 0.0
 
@@ -31,6 +32,7 @@ var water_sink_depth: float = 0.0
 func _ready():
 	sprite_ground_y = sprite.position.y
 	var animator = preload("res://Scripts/DirectionalAnimator.gd").new()
+	directional_animator = animator
 	animator.is_player = true
 	animator.frames = preload("res://Assets/Sprites/Characters/hero_walk.tres")
 	add_child(animator)
@@ -38,6 +40,12 @@ func _ready():
 	if cam:
 		cam.zoom = camera_zoom
 		cam.position.y = -70
+
+func get_rein_anchor() -> Vector2:
+	var direction = directional_animator.direction if directional_animator else &"south"
+	var hand_x = {&"south":-10.0,&"north":9.0,&"west":-8.0,&"east":8.0}[direction]
+	var height = sprite.texture.get_height()*sprite.scale.y
+	return global_position+Vector2(hand_x,sprite.position.y+height*0.10)
 
 func enter_water_zone(slow_factor: float = 0.35, sink_depth: float = 3.5):
 	water_zones_count += 1
