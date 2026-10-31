@@ -7,6 +7,7 @@ class_name TropeiroPlayer
 
 var virtual_direction: Vector2 = Vector2.ZERO
 var travel_speed_factor: float = 1.0
+var weather_speed_factor: float = 1.0
 var input_blocked: bool = false
 var facing_direction: Vector2 = Vector2.DOWN
 var is_moving: bool = false
@@ -97,7 +98,7 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 		leash_time = 0
 		leash_velocity = Vector2.ZERO
-	var effective_speed = speed * water_slow_factor * travel_speed_factor
+	var effective_speed = speed * water_slow_factor * travel_speed_factor * weather_speed_factor
 		
 	if input_vector != Vector2.ZERO:
 		input_vector = input_vector.limit_length(1.0)

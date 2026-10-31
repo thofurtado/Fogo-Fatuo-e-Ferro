@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum State { FORAGING, ALERT, FLEEING, HIDDEN, PATROLLING }
+enum State { FORAGING, ALERT, FLEEING, HIDDEN, PATROLLING, WINDUP, STRIKING, RECOVERING }
 var kind: String = "frog"
 var manager: Node
 var cover: Vector2
@@ -32,6 +32,12 @@ var stop_offsets: PackedFloat32Array
 var visual_lift: float = 0
 var blocked_time: float = 0
 var flee_target: Vector2
+var attack_cooldown: float = 0
+var attack_origin: Vector2
+var strike_goal: Vector2
+var attack_hit: bool = false
+var weather_sheltering: bool = false
+var call_time: float = 5
 
 func _ready():
 	home = global_position
@@ -95,7 +101,9 @@ func _physics_process(delta):
 	if not manager.enabled: return
 	clock += delta
 	state_time -= delta
+	attack_cooldown = maxf(0,attack_cooldown-delta)
 	var scene = manager.scene
+	var wet = scene.weather.rain if scene.weather else 0.0
 	if state == State.HIDDEN:
 		if state_time <= 0 and home.distance_to(scene.player.global_position) > 160 and home.distance_to(scene.mula.global_position) > 160 and not manager.is_position_visible(home,perch_height):
 			global_position = home
@@ -108,6 +116,19 @@ func _physics_process(delta):
 	var mule_distance = global_position.distance_to(scene.mula.global_position)
 	var radius = {"snake":40.0,"bird":86.0,"frog":54.0,"marmoset":110.0}[kind]
 	if is_concealed(): radius = 22
+	if kind == "snake" and state in [State.FORAGING,State.PATROLLING] and player_distance<40 and not is_concealed() and attack_cooldown<=0 and manager.can_react():
+		begin_strike()
+	if state in [State.WINDUP,State.STRIKING,State.RECOVERING]:
+		_update_strike(delta)
+		_update_visual(delta)
+		queue_redraw()
+		return
+	weather_sheltering = wet>0.6 and kind in ["bird","marmoset"]
+	if weather_sheltering and kind == "bird" and state == State.PATROLLING:
+		for index in range(1,pause_times.size()-1):
+			if pause_times[index]>0:
+				waypoint_index = index
+				break
 	if state in [State.FORAGING,State.PATROLLING] and manager.can_react() and (player_distance < radius or mule_distance < radius):
 		start_flee(scene.player.global_position if player_distance < mule_distance else scene.mula.global_position)
 	match state:
@@ -120,13 +141,22 @@ func _physics_process(delta):
 		State.PATROLLING: _walk_route(delta)
 		State.FORAGING:
 			velocity = Vector2.ZERO
+			if weather_sheltering: state_time = maxf(state_time,1.0)
+			if kind == "frog":
+				state_time -= delta*wet*0.6
+				call_time -= delta
+				if call_time<=0 and wet>0.2:
+					call_time = rng.randf_range(5,9)
+					if DisplayServer.get_name() != "headless": sound.play()
 			if state_time <= 0: state = State.PATROLLING
 	_update_visual(delta)
+	queue_redraw()
 
 func _walk_route(delta):
 	if patrol_points.size() < 2: return
 	var goal = stop_offsets[waypoint_index]
 	var speed = patrol_speed
+	if kind == "frog" and manager.scene.weather: speed *= 1.0+manager.scene.weather.rain*0.45
 	if kind == "frog": speed *= 0.25+absf(sin(clock*10))*0.9
 	var next_progress = minf(goal,route_progress+speed*delta)
 	var desired = patrol_curve.sample_baked(next_progress,true)
@@ -193,8 +223,58 @@ func _hide_for_a_while():
 	state_time = rng.randf_range(12,20)
 	hide()
 
+func begin_strike() -> bool:
+	if kind != "snake" or state not in [State.FORAGING,State.PATROLLING] or attack_cooldown>0 or not manager.can_react() or is_concealed(): return false
+	attack_origin = global_position
+	var target = manager.scene.player.global_position
+	strike_goal = global_position+(target-global_position).limit_length(36)
+	away = (target-global_position).normalized()
+	attack_hit = false
+	attack_cooldown = 6.0
+	state = State.WINDUP
+	state_time = 0.7
+	velocity = Vector2.ZERO
+	manager.scene.soundscape.play_cue("snake_hiss",-15)
+	manager.scene.mission.notify("Jararaca armou o bote! Afaste-se.",Color(1,0.78,0.30))
+	return true
+
+func _update_strike(delta):
+	if not manager.can_react() and state != State.RECOVERING:
+		state = State.RECOVERING
+		state_time = 0.6
+		attack_hit = true
+	match state:
+		State.WINDUP:
+			velocity = Vector2.ZERO
+			if state_time<=0:
+				state = State.STRIKING
+				state_time = 0.18
+		State.STRIKING:
+			velocity = ((strike_goal-global_position)/maxf(delta,0.001)).limit_length(220)
+			move_and_slide()
+			var player = manager.scene.player
+			if not attack_hit and global_position.distance_to(player.global_position)<22:
+				var ray = PhysicsRayQueryParameters2D.create(global_position,player.global_position,1,[get_rid(),player.get_rid(),manager.scene.mula.get_rid()])
+				if get_world_2d().direct_space_state.intersect_ray(ray).is_empty():
+					attack_hit = manager.scene.receive_damage(3,"Picada de jararaca")
+			if state_time<=0:
+				state = State.RECOVERING
+				state_time = 0.6
+		State.RECOVERING:
+			velocity = ((attack_origin-global_position)/maxf(delta,0.001)).limit_length(60)
+			move_and_slide()
+			if state_time<=0:
+				state = State.PATROLLING
+				velocity = Vector2.ZERO
+
+func _draw():
+	if state != State.WINDUP: return
+	var pulse = 0.35+absf(sin(clock*10))*0.30
+	draw_arc(Vector2.ZERO,24,0,TAU,32,Color(1,0.65,0.15,pulse),1.8,true)
+	draw_line(Vector2.ZERO,away*30,Color(1,0.65,0.15,pulse),2,true)
+
 func _update_visual(delta):
-	var moving = state in [State.PATROLLING,State.FLEEING] and velocity.length()>0.1
+	var moving = state in [State.PATROLLING,State.FLEEING,State.STRIKING] and velocity.length()>0.1
 	var idle = state == State.FORAGING
 	var poses = idle_frames if idle else walk_frames
 	var rate = (1.2 if kind == "marmoset" else 0.65) if idle else (9.0 if kind == "bird" else 6.0)
@@ -220,6 +300,7 @@ func _update_visual(delta):
 	if kind == "snake":
 		sprite.position.y = -3
 		if moving: sprite.rotation = away.angle()-(0 if sprite.flip_h else PI)
+		if state == State.WINDUP: sprite.scale *= Vector2(0.88,1.25)
 	shadow.modulate.a = 0.3 if lift>20 else 1.0
 	modulate.a = clampf(state_time*3,0,1) if state == State.FLEEING and state_time<0.33 else 1.0
 

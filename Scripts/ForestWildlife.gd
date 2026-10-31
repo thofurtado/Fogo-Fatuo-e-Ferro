@@ -40,9 +40,10 @@ func _populate():
 				bush.set_meta("fauna_cover",true)
 				bush.get_node("Sprite2D").modulate = Color(0.87,0.96,0.82)
 				scene.get_node("YSortContainer").add_child(bush)
+				if scene.weather: scene.weather.decorate_foliage(bush.get_node("Sprite2D"))
 
 func can_react() -> bool:
-	return enabled and reactions_enabled and not scene.mission.finished and not scene.player.input_blocked and not scene.dialogue_box.visible and not scene.player.is_falling_ledge
+	return enabled and reactions_enabled and not get_tree().paused and not scene.mission.finished and not scene.player.input_blocked and not scene.dialogue_box.visible and not scene.player.is_falling_ledge
 
 func snake_near(snake: Node2D):
 	if not can_react() or snake.is_concealed() or snake.global_position.distance_to(scene.mula.global_position) > 90:

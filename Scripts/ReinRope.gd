@@ -5,6 +5,8 @@ var shadow_line: Line2D
 var highlight: Line2D
 var clock: float = 0
 var tension: float = 0
+var creak_cooldown: float = 0
+var previous_tension: float = 0
 
 func _ready():
 	mule = get_parent()
@@ -28,6 +30,7 @@ func _ready():
 
 func _process(delta):
 	clock += delta
+	creak_cooldown = maxf(0,creak_cooldown-delta)
 	update_rope()
 
 func update_rope():
@@ -38,6 +41,11 @@ func update_rope():
 	var distance = mule.global_position.distance_to(player.global_position)
 	tension = clampf((distance-(mule.follow_distance-12))/27.0,0,1)
 	if mule.panic_time > 0 and distance > 66: tension = maxf(tension,0.92)
+	if tension>0.85 and previous_tension<=0.85 and creak_cooldown<=0:
+		var scene = get_tree().current_scene
+		if scene and scene.get("soundscape"): scene.soundscape.play_cue("rein_creak",-23)
+		creak_cooldown = 1.6
+	previous_tension = tension
 	var sag = lerpf(17,1.2,tension)
 	var sway = lerpf(1.2,0.08,tension)
 	var curve_points = PackedVector2Array()

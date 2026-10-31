@@ -112,14 +112,6 @@ func _ready():
 	fire_light.position = scene.get_node("YSortContainer/RanchoFogueira").global_position
 	fire_light.energy = 0.65
 	add_child(fire_light)
-	var ambience = AudioStreamPlayer.new()
-	ambience.stream = load("res://Assets/SFX/forest_ambience.wav")
-	if ambience.stream is AudioStreamWAV:
-		ambience.stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
-	ambience.volume_db = -16
-	add_child(ambience)
-	if DisplayServer.get_name() != "headless":
-		ambience.play()
 
 func _process(delta):
 	time += delta
@@ -129,7 +121,7 @@ func _process(delta):
 	for actor in [scene.player,scene.mula]:
 		var dust = actor.get_node_or_null("FootstepDust")
 		if dust:
-			dust.emitting = actor.is_moving and not actor.in_water and not actor.is_falling_ledge
+			dust.emitting = actor.is_moving and not actor.in_water and not actor.is_falling_ledge and (not scene.weather or scene.weather.rain<0.2)
 
 func _draw():
 	var scene = get_parent()

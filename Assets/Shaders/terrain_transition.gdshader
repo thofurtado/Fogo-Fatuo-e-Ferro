@@ -1,4 +1,5 @@
 shader_type canvas_item;
+global uniform float serra_rain;
 varying vec2 world_pos;
 uniform vec2 edge_points[32];
 uniform int edge_count = 0;
@@ -16,5 +17,6 @@ void fragment(){
 	}
 	float patches=noise(world_pos*0.025);
 	COLOR.rgb *= 0.90 + patches*0.16 + hash(floor(world_pos))*0.045;
+	COLOR.rgb*=1.0-serra_rain*0.08;
 	COLOR.a *= smoothstep(0.0,feather,distance_to_edge-noise(world_pos*0.10)*feather*0.40);
 }
